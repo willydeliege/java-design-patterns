@@ -18,7 +18,7 @@ the object has to play in that client’s context. The object manages its role s
 individual objects, different contexts are kept separate and system configuration is simplified.
 
 ## Class diagram
-![alt text](./etc/role-object.urm.png "Role Object pattern class diagram")
+![alt text](/etc/role-object.urm.png "Role Object pattern class diagram")
 
 ## Applicability
 Use the Role Object pattern, if:

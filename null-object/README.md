@@ -172,7 +172,7 @@ Program output:
 
 ## Class diagram
 
-![alt text](./etc/null-object.png "Null Object")
+![alt text](/etc/null-object.png "Null Object")
 
 ## Applicability
 

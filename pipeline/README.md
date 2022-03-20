@@ -95,7 +95,7 @@ And here's the `Pipeline` in action processing the string.
 
 ## Class diagram
 
-![alt text](./etc/pipeline.urm.png "Pipeline pattern class diagram")
+![alt text](/etc/pipeline.urm.png "Pipeline pattern class diagram")
 
 ## Applicability
 

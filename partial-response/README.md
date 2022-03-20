@@ -14,7 +14,7 @@ Send partial response from server to client on need basis. Client will specify t
 that it need to server, instead of serving all details for resource. 
 
 ## Class diagram
-![alt text](./etc/partial-response.urm.png "partial-response")
+![alt text](/etc/partial-response.urm.png "partial-response")
 
 ## Applicability
 Use the Partial Response pattern when

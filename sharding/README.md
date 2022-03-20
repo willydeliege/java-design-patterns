@@ -15,7 +15,7 @@ Sharding pattern means divide the data store into horizontal partitions or shard
 A shard is a data store in its own right (it can contain the data for many entities of different types), running on a server acting as a storage node.
 
 ## Class diagram
-![alt text](./etc/sharding.urm.png "Sharding pattern class diagram")
+![alt text](/etc/sharding.urm.png "Sharding pattern class diagram")
 
 ## Applicability  
 This pattern offers the following benefits:

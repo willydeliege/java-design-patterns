@@ -166,7 +166,7 @@ sun age: 10000000 years mass: 500000 tons
 
 ## Class diagram
 
-![alt text](./etc/memento.png "Memento")
+![alt text](/etc/memento.png "Memento")
 
 ## Applicability
 

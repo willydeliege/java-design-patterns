@@ -286,7 +286,7 @@ follow instructions on that page to continue.
 
 ## Class diagram
 
-![alt text](./etc/composite_view.png)
+![alt text](/etc/composite_view.png)
 
 The class diagram here displays the Javabean which is the view manager.
 The views are JSP's held inside the web directory.

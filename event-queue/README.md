@@ -17,7 +17,7 @@ Gives the resource for the event when it is the next in the queue and in same ti
 removes it from the queue.
 
 ## Class diagram
-![alt text](./etc/model.png "Event Queue")
+![alt text](/etc/model.png "Event Queue")
 
 ## Applicability
 Use the Event Queue pattern when

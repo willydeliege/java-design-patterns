@@ -17,7 +17,7 @@ It is a technique where an object expresses certain behavior to the outside but 
 reality delegates responsibility for implementing that behaviour to an associated object. 
 
 ## Class diagram
-![alt text](./etc/delegation.png "Delegate")
+![alt text](/etc/delegation.png "Delegate")
 
 ## Applicability
 Use the Delegate pattern in order to achieve the following

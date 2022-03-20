@@ -17,7 +17,7 @@ pattern comes in handy. It will take the whole document, split it based on given
 items to the endpoint.
 
 ## Diagram
-![alt text](./etc/sequencer.gif "Splitter")
+![alt text](/etc/sequencer.gif "Splitter")
 
 ## Applicability
 Use the Splitter pattern when

@@ -13,7 +13,7 @@ tags:
 Broadcast messages from sender to all the interested receivers.
 
 ## Class diagram
-![alt text](./etc/publish-subscribe.png "Publish Subscribe Channel")
+![alt text](/etc/publish-subscribe.png "Publish Subscribe Channel")
 
 ## Applicability
 Use the Publish Subscribe Channel pattern when

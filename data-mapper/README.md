@@ -13,7 +13,7 @@ tags:
 A layer of mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself
 
 ## Class diagram
-![alt text](./etc/data-mapper.png "Data Mapper")
+![alt text](/etc/data-mapper.png "Data Mapper")
 
 ## Applicability
 Use the Data Mapper in any of the following situations

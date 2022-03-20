@@ -13,7 +13,7 @@ tags:
 Leader Election pattern is commonly used in cloud system design. It can help to ensure that task instances select the leader instance correctly and do not conflict with each other, cause contention for shared resources, or inadvertently interfere with the work that other task instances are performing.
 
 ## Class diagram
-![alt text](./etc/leader-election.urm.png "Leader Election pattern class diagram")
+![alt text](/etc/leader-election.urm.png "Leader Election pattern class diagram")
 
 ## Applicability
 Use this pattern when

@@ -14,7 +14,7 @@ Apply a "Separation of Concerns" principle in a way that allows
 developers to build and test user interfaces.
 
 ## Class diagram
-![alt text](./etc/model-view-presenter_1.png "Model-View-Presenter")
+![alt text](/etc/model-view-presenter_1.png "Model-View-Presenter")
 
 ## Applicability
 Use the Model-View-Presenter in any of the following

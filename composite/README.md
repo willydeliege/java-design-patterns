@@ -174,7 +174,7 @@ Message from the elves:
 
 ## Class diagram
 
-![alt text](./etc/composite.urm.png "Composite class diagram")
+![alt text](/etc/composite.urm.png "Composite class diagram")
 
 ## Applicability
 

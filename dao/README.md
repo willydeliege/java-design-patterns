@@ -148,7 +148,7 @@ customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
 
 ## Class diagram
 
-![alt text](./etc/dao.png "Data Access Object")
+![alt text](/etc/dao.png "Data Access Object")
 
 ## Applicability
 

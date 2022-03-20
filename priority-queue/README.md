@@ -199,7 +199,7 @@ No Message ... waiting
 
 ## Class diagram
 
-![alt text](./etc/priority-queue.urm.png "Priority Queue pattern class diagram")
+![alt text](/etc/priority-queue.urm.png "Priority Queue pattern class diagram")
 
 ## Applicability
 

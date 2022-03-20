@@ -147,7 +147,7 @@ public class ApiGateway {
 ```
 
 ## Class diagram
-![alt text](./etc/api-gateway.png "API Gateway")
+![alt text](/etc/api-gateway.png "API Gateway")
 
 ## Applicability
 

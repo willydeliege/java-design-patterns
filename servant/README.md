@@ -15,7 +15,7 @@ Instead of defining that behavior in each class - or when we cannot factor out
 this behavior in the common parent class - it is defined once in the Servant.
 
 ## Class diagram
-![alt text](./etc/servant-pattern.png "Servant")
+![alt text](/etc/servant-pattern.png "Servant")
 
 ## Applicability
 Use the Servant pattern when

@@ -83,7 +83,7 @@ Here's the console output.
 
 ## Class diagram
 
-![alt text](./etc/execute-around.png "Execute Around")
+![alt text](/etc/execute-around.png "Execute Around")
 
 ## Applicability
 

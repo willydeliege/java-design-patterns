@@ -129,7 +129,7 @@ And finally, we show how the halfling thief utilizes the different stealing meth
 
 ## Class diagram
 
-![alt text](./etc/template_method_urm.png "Template Method")
+![alt text](/etc/template_method_urm.png "Template Method")
 
 ## Applicability
 

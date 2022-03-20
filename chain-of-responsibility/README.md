@@ -156,7 +156,7 @@ Orc soldier handling request "collect tax"
 
 ## Class diagram
 
-![alt text](./etc/chain-of-responsibility.urm.png "Chain of Responsibility class diagram")
+![alt text](/etc/chain-of-responsibility.urm.png "Chain of Responsibility class diagram")
 
 ## Applicability
 

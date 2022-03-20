@@ -348,7 +348,7 @@ Program output of every request:
 
 ## Class diagram
 
-![alt text](./etc/special_case_urm.png "Special Case")
+![alt text](/etc/special_case_urm.png "Special Case")
 
 ## Applicability
 

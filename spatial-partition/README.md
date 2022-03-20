@@ -61,7 +61,7 @@ required significantly in case of large number of objects.
 
 ## Class diagram
 
-![alt text](./etc/spatial-partition.urm.png "Spatial Partition pattern class diagram")
+![alt text](/etc/spatial-partition.urm.png "Spatial Partition pattern class diagram")
 
 ## Applicability
 

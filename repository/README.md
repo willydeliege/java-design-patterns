@@ -174,7 +174,7 @@ Person [id=4, name=Terry, surname=Law, age=36]
 
 ## Class diagram
 
-![alt text](./etc/repository.png "Repository")
+![alt text](/etc/repository.png "Repository")
 
 ## Applicability
 

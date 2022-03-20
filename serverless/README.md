@@ -60,7 +60,7 @@ actual amount of resources consumed by an application, rather than on pre-purcha
 units of capacity. 
 
 ## Class diagram
-![alt text](./etc/serverless.urm.png "Serverless pattern class diagram")
+![alt text](/etc/serverless.urm.png "Serverless pattern class diagram")
 
 ## Serverless framework
 

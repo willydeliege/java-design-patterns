@@ -214,7 +214,7 @@ Consumer CONSUMER_1 receive request to terminate.
 
 ## Class diagram
 
-![alt text](./etc/poison-pill.png "Poison Pill")
+![alt text](/etc/poison-pill.png "Poison Pill")
 
 ## Applicability
 

@@ -120,7 +120,7 @@ Here is the console output of the program.
 
 ## Class diagram
 
-![alt text](./etc/balking.png "Balking")
+![alt text](/etc/balking.png "Balking")
 
 ## Applicability
 

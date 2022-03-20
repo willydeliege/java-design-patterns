@@ -16,7 +16,7 @@ dispatcher, to the various stores that hold the application's data and business
 logic, which updates all of the views that are affected.
 
 ## Class diagram
-![alt text](./etc/flux.png "Flux")
+![alt text](/etc/flux.png "Flux")
 
 ## Applicability
 Use the Flux pattern when

@@ -152,7 +152,7 @@ The console output after running the example.
 ```
 
 ## Class diagram
-![alt text](./etc/classes.png "Event Aggregator")
+![alt text](/etc/classes.png "Event Aggregator")
 
 ## Applicability
 Use the Event Aggregator pattern when

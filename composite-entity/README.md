@@ -111,7 +111,7 @@ Arrays.stream(console.getData()).forEach(LOGGER::info);
 
 ## Class diagram
 
-![alt text](./etc/composite_entity.urm.png "Composite Entity Pattern")
+![alt text](/etc/composite_entity.urm.png "Composite Entity Pattern")
 
 ## Applicability
 

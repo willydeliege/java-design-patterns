@@ -18,7 +18,7 @@ Aggregator allows you to merge messages based on defined criteria and parameters
 applies aggregation strategy and upon fulfilling given criteria, releasing merged messages.
 
 ## Diagram 
-![alt text](./etc/aggregator.gif "Splitter")
+![alt text](/etc/aggregator.gif "Splitter")
 
 ## Applicability
 Use the Aggregator pattern when

@@ -35,7 +35,7 @@ In Plain words
 
 ## Architecture Diagram
 
-![alt text](./etc/Claim-Check-Pattern.png "Claim Check Pattern")
+![alt text](/etc/Claim-Check-Pattern.png "Claim Check Pattern")
 
 ## Applicability
 
@@ -62,7 +62,7 @@ Producer class( `UsageDetailPublisherFunction` Azure Function) will generate cal
 
 ### Class Diagrams
 
-![alt text](./etc/class-diagram.png "Claim-Check-Class-Diagram")
+![alt text](/etc/class-diagram.png "Claim-Check-Class-Diagram")
 
 ### Setup
 

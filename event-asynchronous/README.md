@@ -19,7 +19,7 @@ of the complex issues inherent in multithreaded design. Using a class that suppo
 4. Communicate with pending asynchronous operations using the familiar events-and-delegates model.
 
 ## Class diagram
-![alt text](./etc/event-asynchronous.png "Event-based Asynchronous")
+![alt text](/etc/event-asynchronous.png "Event-based Asynchronous")
 
 ## Applicability
 Use the Event-based Asynchronous pattern(s) when

@@ -14,7 +14,7 @@ When two applications communicate using a messaging system they do it by using l
 of the system, so called Message Channels.
 
 ## Class diagram
-![alt text](./etc/message-channel.png "Message Channel")
+![alt text](/etc/message-channel.png "Message Channel")
 
 ## Applicability
 Use the Message Channel pattern when

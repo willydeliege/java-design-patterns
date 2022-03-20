@@ -278,7 +278,7 @@ and keeping their domain models in memory(in contrast to persisted models such a
 
 ## Class diagram
 
-![alt text](./etc/lockable-object.urm.png "Lockable Object class diagram")
+![alt text](/etc/lockable-object.urm.png "Lockable Object class diagram")
 
 
 ## Credits

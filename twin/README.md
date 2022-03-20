@@ -152,7 +152,7 @@ ballThread.setTwin(ballItem);
 
 
 ## Class diagram
-![alt text](./etc/twin.png "Twin")
+![alt text](/etc/twin.png "Twin")
 
 ## Applicability
 Use the Twin idiom when

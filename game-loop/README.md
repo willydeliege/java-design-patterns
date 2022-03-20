@@ -246,7 +246,7 @@ Stop variable-step game loop.
 
 ## Class diagram
 
-![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
+![alt text](/etc/game-loop.urm.png "Game Loop pattern class diagram")
 
 ## Credits
   

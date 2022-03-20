@@ -224,7 +224,7 @@ Here is the console output.
 
 ## Class diagram
 
-![alt text](./etc/bytecode.urm.png "Bytecode class diagram")
+![alt text](/etc/bytecode.urm.png "Bytecode class diagram")
 
 ## Applicability
 

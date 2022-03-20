@@ -167,7 +167,7 @@ The program output is the same as the above one.
 
 ## Class diagram
 
-![alt text](./etc/strategy_urm.png "Strategy")
+![alt text](/etc/strategy_urm.png "Strategy")
 
 ## Applicability
 

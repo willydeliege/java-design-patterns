@@ -193,7 +193,7 @@ Goblin, [size=small] [visibility=invisible]
 
 ## Class diagram
 
-![alt text](./etc/command.png "Command")
+![alt text](/etc/command.png "Command")
 
 ## Applicability
 

@@ -186,7 +186,7 @@ Rogue arrives for dinner
 
 ## Class diagram
 
-![alt text](./etc/mediator_1.png "Mediator")
+![alt text](/etc/mediator_1.png "Mediator")
 
 ## Applicability
 

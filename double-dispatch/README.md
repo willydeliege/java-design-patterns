@@ -14,7 +14,7 @@ Double Dispatch pattern is a way to create maintainable dynamic
 behavior based on receiver and parameter types.
 
 ## Class diagram
-![alt text](./etc/double-dispatch.png "Double Dispatch")
+![alt text](/etc/double-dispatch.png "Double Dispatch")
 
 ## Applicability
 Use the Double Dispatch pattern when

@@ -137,7 +137,7 @@ Clubbed troll power: 20.
 
 ## Class diagram
 
-![alt text](./etc/decorator.urm.png "Decorator pattern class diagram")
+![alt text](/etc/decorator.urm.png "Decorator pattern class diagram")
 
 ## Applicability
 

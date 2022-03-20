@@ -19,7 +19,7 @@ can easily introduce code complexity. There is also cause for concern that the o
 going to phase out is never removed, causing redundant code smells and increased maintainability.
 
 ## Class diagram
-![alt text](./etc/feature-toggle.png "Feature Toggle")
+![alt text](/etc/feature-toggle.png "Feature Toggle")
 
 ## Applicability
 Use the Feature Toggle pattern when

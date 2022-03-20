@@ -100,7 +100,7 @@ public class CakeViewImpl implements View {
 
 ## Class diagram
 
-![alt text](./etc/layers.png "Layers")
+![alt text](/etc/layers.png "Layers")
 
 ## Applicability
 

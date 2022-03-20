@@ -321,7 +321,7 @@ public class App {
 
 ## Class diagram
 
-![alt text](./etc/caching.png "Caching")
+![alt text](/etc/caching.png "Caching")
 
 ## Applicability
 

@@ -17,7 +17,7 @@ system eventually covers all the old system's features and may has its own new f
 strangling the old system and allowing you to decommission it.
 
 ## Class diagram
-![alt text](./etc/strangler.png "Strangler")
+![alt text](/etc/strangler.png "Strangler")
 
 ## Applicability
 This strangler pattern is a safe way to phase one thing out for something better, cheaper, or 

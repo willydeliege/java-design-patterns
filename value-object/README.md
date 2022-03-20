@@ -75,7 +75,7 @@ Here's the console output.
 
 ## Class diagram
 
-![alt text](./etc/value-object.png "Value Object")
+![alt text](/etc/value-object.png "Value Object")
 
 ## Applicability
 

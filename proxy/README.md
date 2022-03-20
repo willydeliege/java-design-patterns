@@ -129,7 +129,7 @@ Brown wizard is not allowed to enter!
 
 ## Class diagram
 
-![alt text](./etc/proxy.urm.png "Proxy pattern class diagram")
+![alt text](/etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## Applicability
 

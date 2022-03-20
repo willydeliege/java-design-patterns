@@ -15,7 +15,7 @@ way we can encapsulate common functionality such as security,
 internationalization, routing and logging in a single place.
 
 ## Class diagram
-![alt text](./etc/front-controller.png "Front Controller")
+![alt text](/etc/front-controller.png "Front Controller")
 
 ## Applicability
 Use the Front Controller pattern when

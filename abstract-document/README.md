@@ -174,7 +174,7 @@ And finally here's how we construct and use the `Car` in a full example.
 
 ## Class diagram
 
-![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](/etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## Applicability
 

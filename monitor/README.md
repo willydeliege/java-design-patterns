@@ -61,7 +61,7 @@ getBalance always return total amount and the total amount should be same after 
 ```
 
 ## Class diagram
-![alt text](./etc/monitor.urm.png "Monitor class diagram")
+![alt text](/etc/monitor.urm.png "Monitor class diagram")
 
 ## Applicability
 Use the Monitor pattern when

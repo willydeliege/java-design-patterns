@@ -15,7 +15,7 @@ Encapsulate the processes involved in obtaining a service with a
 strong abstraction layer.
 
 ## Class diagram
-![alt text](./etc/service-locator.png "Service Locator")
+![alt text](/etc/service-locator.png "Service Locator")
 
 ## Applicability
 The service locator pattern is applicable whenever we want

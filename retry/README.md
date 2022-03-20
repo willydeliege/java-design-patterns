@@ -129,7 +129,7 @@ were left.
 
 ## Class diagram
 
-![alt text](./etc/retry.png "Retry")
+![alt text](/etc/retry.png "Retry")
 
 ## Applicability
 

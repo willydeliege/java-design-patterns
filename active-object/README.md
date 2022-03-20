@@ -123,7 +123,7 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam, a
 
 ## Class diagram
 
-![alt text](./etc/active-object.urm.png "Active Object class diagram")
+![alt text](/etc/active-object.urm.png "Active Object class diagram")
 
 ## Tutorials
 

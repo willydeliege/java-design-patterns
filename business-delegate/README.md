@@ -141,7 +141,7 @@ Here is the console output.
 
 ## Class diagram
 
-![alt text](./etc/business-delegate.urm.png "Business Delegate")
+![alt text](/etc/business-delegate.urm.png "Business Delegate")
 
 ## Related patterns
 

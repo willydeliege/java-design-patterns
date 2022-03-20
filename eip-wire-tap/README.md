@@ -15,7 +15,7 @@ by intercepting the message and redirecting it to a different location like cons
 It is important that such functionality should not modify the original message and influence the processing path.
 
 ## Diagram
-![alt text](./etc/wiretap.gif "Wire Tap")
+![alt text](/etc/wiretap.gif "Wire Tap")
 
 ## Applicability
 Use the Wire Tap pattern when

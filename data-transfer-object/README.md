@@ -100,7 +100,7 @@ Now fetching customer information is easy since we have the DTOs.
 
 ## Class diagram
 
-![alt text](./etc/data-transfer-object.urm.png "data-transfer-object")
+![alt text](/etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## Applicability
 

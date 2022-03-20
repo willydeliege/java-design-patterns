@@ -13,7 +13,7 @@ tags:
 Securing variables global to a thread against being spoiled by other threads. That is needed if you use class variables or static variables in your Callable object or Runnable object that are not read-only.
 
 ## Class diagram
-![alt text](./etc/tls.png "Thread Local Storage")
+![alt text](/etc/tls.png "Thread Local Storage")
 
 ## Applicability
 Use the Thread Local Storage in any of the following situations

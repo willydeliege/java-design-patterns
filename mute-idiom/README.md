@@ -14,7 +14,7 @@ Provide a template to suppress any exceptions that either are declared but canno
 while executing some business logic. The template removes the need to write repeated `try-catch` blocks.
 
 ## Class diagram
-![alt text](./etc/mute-idiom.png "Mute Idiom")
+![alt text](/etc/mute-idiom.png "Mute Idiom")
 
 ## Applicability
 Use this idiom when

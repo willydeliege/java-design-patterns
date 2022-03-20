@@ -216,7 +216,7 @@ And finally we can show how the client `App` interacts with `MagicService` in th
 
 
 ## Class diagram
-![alt text](./etc/service-layer.png "Service Layer")
+![alt text](/etc/service-layer.png "Service Layer")
 
 ## Applicability
 Use the Service Layer pattern when

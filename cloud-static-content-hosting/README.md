@@ -43,7 +43,7 @@ Wikipedia says
 
 **Example**
 
-![alt text](./etc/static-content-hosting.png "Static Content Hosting")
+![alt text](/etc/static-content-hosting.png "Static Content Hosting")
 
 In this example we create a static web site using AWS S3 and utilize AWS Cloudfront to distribute
 the content globally.

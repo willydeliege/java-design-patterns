@@ -154,7 +154,7 @@ result: 8
 
 ## Class diagram
 
-![alt text](./etc/interpreter_1.png "Interpreter")
+![alt text](/etc/interpreter_1.png "Interpreter")
 
 ## Applicability
 

@@ -19,7 +19,7 @@ bind - that takes monadic object and a function from plain object to monadic val
 return - that takes plain type object and returns this object wrapped in a monadic value.
 
 ## Class diagram
-![alt text](./etc/monad.png "Monad")
+![alt text](/etc/monad.png "Monad")
 
 ## Applicability
 

@@ -15,7 +15,7 @@ Producer Consumer Design pattern is a classic concurrency pattern which reduces
  Work.
 
 ## Class diagram
-![alt text](./etc/producer-consumer.png "Producer Consumer")
+![alt text](/etc/producer-consumer.png "Producer Consumer")
 
 ## Applicability
 Use the Producer Consumer idiom when

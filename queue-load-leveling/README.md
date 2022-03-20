@@ -18,7 +18,7 @@ This pattern can help to minimize the impact of peaks in demand on availability 
 for both the task and the service.
 
 ## Class diagram
-![alt text](./etc/queue-load-leveling.gif "queue-load-leveling")
+![alt text](/etc/queue-load-leveling.gif "queue-load-leveling")
 
 ## Applicability
 

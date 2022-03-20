@@ -97,7 +97,7 @@ curl http://localhost:50004/product
 
 ## Class diagram
 
-![alt text](./aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
+![alt text](/aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## Applicability
 

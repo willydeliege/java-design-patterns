@@ -129,7 +129,7 @@ Program output:
 
 ## Class diagram
 
-![alt text](./etc/trampoline.urm.png "Trampoline pattern class diagram")
+![alt text](/etc/trampoline.urm.png "Trampoline pattern class diagram")
 
 ## Applicability
 

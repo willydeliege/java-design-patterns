@@ -89,7 +89,7 @@ And lastly we can show how easy it is to give the old wizard any brand of tobacc
 
 ## Class diagram
 
-![alt text](./etc/dependency-injection.png "Dependency Injection")
+![alt text](/etc/dependency-injection.png "Dependency Injection")
 
 ## Applicability
 

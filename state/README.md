@@ -147,7 +147,7 @@ Program output:
 
 ## Class diagram
 
-![alt text](./etc/state_urm.png "State")
+![alt text](/etc/state_urm.png "State")
 
 ## Applicability
 

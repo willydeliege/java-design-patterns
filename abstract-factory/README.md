@@ -184,7 +184,7 @@ public static void main(String[] args) {
 
 ## Class diagram
 
-![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![alt text](/etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## Applicability

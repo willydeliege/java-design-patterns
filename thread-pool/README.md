@@ -167,7 +167,7 @@ Now we are ready to show the full example in action.
 
 ## Class diagram
 
-![alt text](./etc/thread_pool_urm.png "Thread Pool")
+![alt text](/etc/thread_pool_urm.png "Thread Pool")
 
 ## Applicability
 

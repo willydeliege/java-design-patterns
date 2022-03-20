@@ -91,7 +91,7 @@ if booked then calculates the refund amount and updates the database using the D
 
 ## Class diagram
 
-![alt text](./etc/transaction-script.png "Transaction script model")
+![alt text](/etc/transaction-script.png "Transaction script model")
 
 ## Applicability
 

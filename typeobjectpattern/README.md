@@ -20,7 +20,7 @@ Say, we are working on a game which has a hero and many monsters which are going
 Using the type-object pattern, instead of creating many classes inheriting from a base class, we have 1 class with a field which represents the 'type' of object. This makes the code cleaner and object instantiation also becomes as easy as parsing a json file with the object properties.
 
 ## Class diagram
-![alt text](./etc/typeobjectpattern.urm.png "Type-Object pattern class diagram")
+![alt text](/etc/typeobjectpattern.urm.png "Type-Object pattern class diagram")
 
 ## Applicability
 This pattern can be used when:

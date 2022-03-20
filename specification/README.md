@@ -199,7 +199,7 @@ selectors and some basic boolean logic.
 
 ## Class diagram
 
-![alt text](./etc/specification.png "Specification")
+![alt text](/etc/specification.png "Specification")
 
 ## Applicability
 

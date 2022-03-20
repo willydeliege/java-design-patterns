@@ -16,7 +16,7 @@ contribute to efficiency in the program's operation if properly and
 appropriately used.
 
 ## Class diagram
-![alt text](./etc/lazy-loading.png "Lazy Loading")
+![alt text](/etc/lazy-loading.png "Lazy Loading")
 
 ## Applicability
 Use the Lazy Loading idiom when
