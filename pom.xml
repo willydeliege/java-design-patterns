@@ -78,13 +78,11 @@
         <commons-io.version>2.7</commons-io.version>
         <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
         <!-- SonarCloud -->
-        <properties>
-            <sonar.organization>willydeliege</sonar.organization>
-            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-            <sonar.projectKey>willydeliege_java-design-patterns</sonar.projectKey>
-            <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
-            <sonar.projectName>Java Design Patterns</sonar.projectName>
-        </properties>
+        <sonar.organization>willydeliege</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectKey>willydeliege_java-design-patterns</sonar.projectKey>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+        <sonar.projectName>Java Design Patterns</sonar.projectName>
     </properties>
     <modules>
         <module>abstract-factory</module>
