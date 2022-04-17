@@ -6,7 +6,9 @@ permalink: /patterns/multiton/
 categories: Creational
 language: en
 tags:
- - Instantiation
+
+- Instantiation
+
 ---
 
 ## Also known as
@@ -21,18 +23,18 @@ Ensure a class only has a limited number of instances and provide a global point
 
 Real-world example
 
-> The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By 
-> definition, there's always nine of them.           
+> The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By
+> definition, there's always nine of them.
 
 In plain words
 
-> Multiton pattern ensures there are a predefined amount of instances available globally.   
+> Multiton pattern ensures there are a predefined amount of instances available globally.
 
 Wikipedia says
 
-> In software engineering, the multiton pattern is a design pattern which generalizes the singleton 
-> pattern. Whereas the singleton allows only one instance of a class to be created, the multiton 
-> pattern allows for the controlled creation of multiple instances, which it manages through the use 
+> In software engineering, the multiton pattern is a design pattern which generalizes the singleton
+> pattern. Whereas the singleton allows only one instance of a class to be created, the multiton
+> pattern allows for the controlled creation of multiple instances, which it manages through the use
 > of a map.
 
 **Programmatic Example**
@@ -83,27 +85,27 @@ And here's how we access the `Nazgul` instances.
 ```java
 // eagerly initialized multiton
 LOGGER.info("Printing out eagerly initialized multiton contents");
-LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
-LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
-LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
-LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
-LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
-LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
-LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
-LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
-LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+    LOGGER.info("KHAMUL={}",Nazgul.getInstance(NazgulName.KHAMUL));
+    LOGGER.info("MURAZOR={}",Nazgul.getInstance(NazgulName.MURAZOR));
+    LOGGER.info("DWAR={}",Nazgul.getInstance(NazgulName.DWAR));
+    LOGGER.info("JI_INDUR={}",Nazgul.getInstance(NazgulName.JI_INDUR));
+    LOGGER.info("AKHORAHIL={}",Nazgul.getInstance(NazgulName.AKHORAHIL));
+    LOGGER.info("HOARMURATH={}",Nazgul.getInstance(NazgulName.HOARMURATH));
+    LOGGER.info("ADUNAPHEL={}",Nazgul.getInstance(NazgulName.ADUNAPHEL));
+    LOGGER.info("REN={}",Nazgul.getInstance(NazgulName.REN));
+    LOGGER.info("UVATHA={}",Nazgul.getInstance(NazgulName.UVATHA));
 
 // enum multiton
-LOGGER.info("Printing out enum-based multiton contents");
-LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
-LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
-LOGGER.info("DWAR={}", NazgulEnum.DWAR);
-LOGGER.info("JI_INDUR={}", NazgulEnum.JI_INDUR);
-LOGGER.info("AKHORAHIL={}", NazgulEnum.AKHORAHIL);
-LOGGER.info("HOARMURATH={}", NazgulEnum.HOARMURATH);
-LOGGER.info("ADUNAPHEL={}", NazgulEnum.ADUNAPHEL);
-LOGGER.info("REN={}", NazgulEnum.REN);
-LOGGER.info("UVATHA={}", NazgulEnum.UVATHA);
+    LOGGER.info("Printing out enum-based multiton contents");
+    LOGGER.info("KHAMUL={}",NazgulEnum.KHAMUL);
+    LOGGER.info("MURAZOR={}",NazgulEnum.MURAZOR);
+    LOGGER.info("DWAR={}",NazgulEnum.DWAR);
+    LOGGER.info("JI_INDUR={}",NazgulEnum.JI_INDUR);
+    LOGGER.info("AKHORAHIL={}",NazgulEnum.AKHORAHIL);
+    LOGGER.info("HOARMURATH={}",NazgulEnum.HOARMURATH);
+    LOGGER.info("ADUNAPHEL={}",NazgulEnum.ADUNAPHEL);
+    LOGGER.info("REN={}",NazgulEnum.REN);
+    LOGGER.info("UVATHA={}",NazgulEnum.UVATHA);
 ```
 
 Program output:
@@ -139,5 +141,6 @@ Program output:
 
 Use the Multiton pattern when
 
-* There must be a specific number of instances of a class, and they must be accessible to clients from 
-a well-known access point.
+* There must be a specific number of instances of a class, and they must be accessible to clients
+  from
+  a well-known access point.

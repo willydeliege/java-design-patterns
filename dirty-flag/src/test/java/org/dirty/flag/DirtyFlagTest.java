@@ -46,13 +46,11 @@
 
 package org.dirty.flag;
 
+import com.iluwatar.dirtyflag.DataFetcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import com.iluwatar.dirtyflag.DataFetcher;
 
-/**
- * Application test
- */
+/** Application test */
 class DirtyFlagTest {
 
   @Test

@@ -46,22 +46,18 @@
 
 package com.iluwatar.converter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Tests for {@link Converter}
- */
+/** Tests for {@link Converter} */
 class ConverterTest {
 
   private final UserConverter userConverter = new UserConverter();
 
-  /**
-   * Tests whether a converter created of opposite functions holds equality as a bijection.
-   */
+  /** Tests whether a converter created of opposite functions holds equality as a bijection. */
   @Test
   void testConversionsStartingFromDomain() {
     var u1 = new User("Tom", "Hanks", true, "tom@hanks.com");
@@ -69,9 +65,7 @@ class ConverterTest {
     assertEquals(u1, u2);
   }
 
-  /**
-   * Tests whether a converter created of opposite functions holds equality as a bijection.
-   */
+  /** Tests whether a converter created of opposite functions holds equality as a bijection. */
   @Test
   void testConversionsStartingFromDto() {
     var u1 = new UserDto("Tom", "Hanks", true, "tom@hanks.com");
@@ -85,19 +79,22 @@ class ConverterTest {
    */
   @Test
   void testCustomConverter() {
-    var converter = new Converter<UserDto, User>(
-        userDto -> new User(
-            userDto.getFirstName(),
-            userDto.getLastName(),
-            userDto.isActive(),
-            String.valueOf(new Random().nextInt())
-        ),
-        user -> new UserDto(
-            user.getFirstName(),
-            user.getLastName(),
-            user.isActive(),
-            user.getFirstName().toLowerCase() + user.getLastName().toLowerCase() + "@whatever.com")
-    );
+    var converter =
+        new Converter<UserDto, User>(
+            userDto ->
+                new User(
+                    userDto.getFirstName(),
+                    userDto.getLastName(),
+                    userDto.isActive(),
+                    String.valueOf(new Random().nextInt())),
+            user ->
+                new UserDto(
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.isActive(),
+                    user.getFirstName().toLowerCase()
+                        + user.getLastName().toLowerCase()
+                        + "@whatever.com"));
     var u1 = new User("John", "Doe", false, "12324");
     var userDto = converter.convertFromEntity(u1);
     assertEquals("johndoe@whatever.com", userDto.getEmail());
@@ -109,11 +106,11 @@ class ConverterTest {
    */
   @Test
   void testCollectionConversion() {
-    var users = List.of(
-        new User("Camile", "Tough", false, "124sad"),
-        new User("Marti", "Luther", true, "42309fd"),
-        new User("Kate", "Smith", true, "if0243")
-    );
+    var users =
+        List.of(
+            new User("Camile", "Tough", false, "124sad"),
+            new User("Marti", "Luther", true, "42309fd"),
+            new User("Kate", "Smith", true, "if0243"));
     var fromDtos = userConverter.createFromDtos(userConverter.createFromEntities(users));
     assertEquals(users, fromDtos);
   }

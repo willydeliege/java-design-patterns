@@ -59,16 +59,6 @@ public class Queue<T> {
   private Node<T> rear;
   private int size;
 
-  static class Node<V> {
-    V value;
-    Node<V> next;
-
-    Node(V obj, Node<V> b) {
-      value = obj;
-      next = b;
-    }
-  }
-
   boolean isEmpty() {
     return size == 0;
   }
@@ -101,6 +91,16 @@ public class Queue<T> {
       throw new IsEmptyException();
     } else {
       return front.value;
+    }
+  }
+
+  static class Node<V> {
+    V value;
+    Node<V> next;
+
+    Node(V obj, Node<V> b) {
+      value = obj;
+      next = b;
     }
   }
 }

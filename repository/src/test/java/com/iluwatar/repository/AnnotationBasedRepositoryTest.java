@@ -46,6 +46,11 @@
 
 package com.iluwatar.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.google.common.collect.Lists;
 import java.util.List;
 import javax.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
@@ -54,11 +59,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import com.google.common.collect.Lists;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test case to test the functions of {@link PersonRepository}, beside the CRUD functions, the query
@@ -68,19 +68,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes = {AppConfig.class})
 class AnnotationBasedRepositoryTest {
 
-  @Resource
-  private PersonRepository repository;
-
   private final Person peter = new Person("Peter", "Sagan", 17);
   private final Person nasta = new Person("Nasta", "Kuzminova", 25);
   private final Person john = new Person("John", "lawrence", 35);
   private final Person terry = new Person("Terry", "Law", 36);
-
   private final List<Person> persons = List.of(peter, nasta, john, terry);
+  @Resource private PersonRepository repository;
 
-  /**
-   * Prepare data for test
-   */
+  /** Prepare data for test */
   @BeforeEach
   public void setup() {
     repository.saveAll(persons);
@@ -137,5 +132,4 @@ class AnnotationBasedRepositoryTest {
   public void cleanup() {
     repository.deleteAll();
   }
-
 }

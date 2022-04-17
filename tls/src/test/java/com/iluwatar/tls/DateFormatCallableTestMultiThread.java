@@ -79,6 +79,7 @@ public class DateFormatCallableTestMultiThread {
    * date values -- Array with thrown exceptions
    */
   private static final Result[] result = new Result[4];
+
   private static final List<String>[] createdDateValues = new StringArrayList[4];
   /** Expected number of date values in the date value list created by each thread */
   private final int expectedCounterDateValues = 5;

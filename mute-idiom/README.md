@@ -5,21 +5,29 @@ folder: mute-idiom
 permalink: /patterns/mute-idiom/
 categories: Idiom
 language: en
-tags: 
- - Decoupling
+tags:
+
+- Decoupling
+
 ---
 
 ## Intent
-Provide a template to suppress any exceptions that either are declared but cannot occur or should only be logged;
-while executing some business logic. The template removes the need to write repeated `try-catch` blocks.
+
+Provide a template to suppress any exceptions that either are declared but cannot occur or should
+only be logged;
+while executing some business logic. The template removes the need to write repeated `try-catch`
+blocks.
 
 ## Class diagram
+
 ![alt text](/etc/mute-idiom.png "Mute Idiom")
 
 ## Applicability
+
 Use this idiom when
 
-* an API declares some exception but can never throw that exception eg. ByteArrayOutputStream bulk write method.
+* an API declares some exception but can never throw that exception eg. ByteArrayOutputStream bulk
+  write method.
 * you need to suppress some exception just by logging it, such as closing a resource.
 
 ## Credits

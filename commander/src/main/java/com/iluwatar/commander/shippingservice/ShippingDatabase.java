@@ -46,15 +46,12 @@
 
 package com.iluwatar.commander.shippingservice;
 
-import java.util.Hashtable;
-import java.util.Map;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.shippingservice.ShippingService.ShippingRequest;
+import java.util.Hashtable;
+import java.util.Map;
 
-/**
- * ShippingDatabase is where the ShippingRequest objects are added.
- */
-
+/** ShippingDatabase is where the ShippingRequest objects are added. */
 public class ShippingDatabase extends Database<ShippingRequest> {
 
   private final Map<String, ShippingRequest> data = new Hashtable<>();
@@ -67,5 +64,4 @@ public class ShippingDatabase extends Database<ShippingRequest> {
   public ShippingRequest get(String trasnactionId) {
     return data.get(trasnactionId);
   }
-
 }

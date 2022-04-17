@@ -6,26 +6,36 @@ permalink: /patterns/monitor/
 categories: Concurrency
 language: en
 tags:
- - Performance
+
+- Performance
+
 ---
 
 ## Intent
-Monitor pattern is used to create thread-safe objects and prevent conflicts between threads in concurrent applications.
+
+Monitor pattern is used to create thread-safe objects and prevent conflicts between threads in
+concurrent applications.
 
 ## Explanation
 
 In plain words
 
-> Monitor pattern is used to enforce single-threaded access to data. Only one thread at a time is allowed to execute code within the monitor object.
+> Monitor pattern is used to enforce single-threaded access to data. Only one thread at a time is
+> allowed to execute code within the monitor object.
 
 Wikipedia says
 
-> In concurrent programming (also known as parallel programming), a monitor is a synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false. Monitors also have a mechanism for signaling other threads that their condition has been met.
+> In concurrent programming (also known as parallel programming), a monitor is a synchronization
+> construct that allows threads to have both mutual exclusion and the ability to wait (block) for a
+> certain condition to become false. Monitors also have a mechanism for signaling other threads that
+> their condition has been met.
 
 **Programmatic Examples**
 
-Consider there is a bank that transfers money from an account to another account with transfer method . it is `synchronized` mean just one thread can access to this method because if many threads access to it and transfer money from an account to another account in same time balance changed !   
- 
+Consider there is a bank that transfers money from an account to another account with transfer
+method . it is `synchronized` mean just one thread can access to this method because if many threads
+access to it and transfer money from an account to another account in same time balance changed !
+
 ```
 class Bank {
 
@@ -47,7 +57,7 @@ class Bank {
      }
 ```
 
-getBalance always return total amount and the total amount should be same after each transfers 
+getBalance always return total amount and the total amount should be same after each transfers
 
 ```
      private synchronized int getBalance() {
@@ -61,9 +71,11 @@ getBalance always return total amount and the total amount should be same after 
 ```
 
 ## Class diagram
+
 ![alt text](/etc/monitor.urm.png "Monitor class diagram")
 
 ## Applicability
+
 Use the Monitor pattern when
 
 * we have a shared resource and there is critical section .

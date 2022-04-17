@@ -46,14 +46,12 @@
 
 package com.iluwatar.hexagonal.domain;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-/**
- * Tests for lottery ticket id
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests for lottery ticket id */
 class LotteryTicketIdTest {
 
   @Test

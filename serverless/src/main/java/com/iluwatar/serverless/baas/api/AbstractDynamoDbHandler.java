@@ -46,14 +46,14 @@
 
 package com.iluwatar.serverless.baas.api;
 
-import java.io.Serializable;
-import java.util.Map;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.Serializable;
+import java.util.Map;
 
 /**
  * abstract dynamodb handler.
@@ -61,9 +61,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @param <T> - serializable collection
  */
 public abstract class AbstractDynamoDbHandler<T extends Serializable> {
-  private DynamoDBMapper dynamoDbMapper;
-
   private final ObjectMapper objectMapper;
+  private DynamoDBMapper dynamoDbMapper;
 
   public AbstractDynamoDbHandler() {
     this.initAmazonDynamoDb();
@@ -71,10 +70,8 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
   }
 
   private void initAmazonDynamoDb() {
-    var amazonDynamoDb = AmazonDynamoDBClientBuilder
-        .standard()
-        .withRegion(Regions.US_EAST_1)
-        .build();
+    var amazonDynamoDb =
+        AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1).build();
 
     this.dynamoDbMapper = new DynamoDBMapper(amazonDynamoDb);
   }
@@ -83,12 +80,12 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
     return this.dynamoDbMapper;
   }
 
-  protected ObjectMapper getObjectMapper() {
-    return objectMapper;
-  }
-
   public void setDynamoDbMapper(DynamoDBMapper dynamoDbMapper) {
     this.dynamoDbMapper = dynamoDbMapper;
+  }
+
+  protected ObjectMapper getObjectMapper() {
+    return objectMapper;
   }
 
   protected Map<String, String> headers() {
@@ -99,7 +96,7 @@ public abstract class AbstractDynamoDbHandler<T extends Serializable> {
    * API Gateway response.
    *
    * @param statusCode - status code
-   * @param body       - Object body
+   * @param body - Object body
    * @return - api gateway proxy response
    */
   protected APIGatewayProxyResponseEvent apiGatewayProxyResponseEvent(Integer statusCode, T body) {

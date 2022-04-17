@@ -46,16 +46,14 @@
 
 package com.iluwatar.hexagonal.database;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.hexagonal.test.LotteryTestUtils;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Tests for {@link LotteryTicketRepository}
- */
+import com.iluwatar.hexagonal.test.LotteryTestUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link LotteryTicketRepository} */
 class InMemoryTicketRepositoryTest {
 
   private final LotteryTicketRepository repository = new InMemoryTicketRepository();

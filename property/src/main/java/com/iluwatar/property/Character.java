@@ -49,49 +49,37 @@ package com.iluwatar.property;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Represents Character in game and his abilities (base stats).
- */
+/** Represents Character in game and his abilities (base stats). */
 public class Character implements Prototype {
-
-  /**
-   * Enumeration of Character types.
-   */
-  public enum Type {
-    WARRIOR, MAGE, ROGUE
-  }
 
   private final Prototype prototype;
   private final Map<Stats, Integer> properties = new HashMap<>();
-
   private String name;
   private Type type;
-
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Character() {
-    this.prototype = new Prototype() { // Null-value object
-      @Override
-      public Integer get(Stats stat) {
-        return null;
-      }
+    this.prototype =
+        new Prototype() { // Null-value object
+          @Override
+          public Integer get(Stats stat) {
+            return null;
+          }
 
-      @Override
-      public boolean has(Stats stat) {
-        return false;
-      }
+          @Override
+          public boolean has(Stats stat) {
+            return false;
+          }
 
-      @Override
-      public void set(Stats stat, Integer val) {
-        // Does Nothing
-      }
+          @Override
+          public void set(Stats stat, Integer val) {
+            // Does Nothing
+          }
 
-      @Override
-      public void remove(Stats stat) {
-        // Does Nothing.
-      }
-    };
+          @Override
+          public void remove(Stats stat) {
+            // Does Nothing.
+          }
+        };
   }
 
   public Character(Type type, Prototype prototype) {
@@ -99,9 +87,7 @@ public class Character implements Prototype {
     this.prototype = prototype;
   }
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Character(String name, Character prototype) {
     this.name = name;
     this.type = prototype.type;
@@ -163,4 +149,10 @@ public class Character implements Prototype {
     return builder.toString();
   }
 
+  /** Enumeration of Character types. */
+  public enum Type {
+    WARRIOR,
+    MAGE,
+    ROGUE
+  }
 }

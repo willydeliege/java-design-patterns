@@ -46,15 +46,12 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-/**
- * Lottery ticked id.
- */
+/** Lottery ticked id. */
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -71,5 +68,4 @@ public class LotteryTicketId {
   public String toString() {
     return String.format("%d", id);
   }
-
 }

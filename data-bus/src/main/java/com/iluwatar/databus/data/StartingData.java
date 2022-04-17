@@ -46,12 +46,11 @@
 
 package com.iluwatar.databus.data;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-import java.time.LocalDateTime;
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * An event raised when applications starts, containing the start time of the application.

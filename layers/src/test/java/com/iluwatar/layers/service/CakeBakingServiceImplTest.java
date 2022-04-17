@@ -46,19 +46,19 @@
 
 package com.iluwatar.layers.service;
 
-import java.util.Collections;
-import java.util.List;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
-import com.iluwatar.layers.exception.CakeBakingException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
+import com.iluwatar.layers.exception.CakeBakingException;
+import java.util.Collections;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/15/15 - 9:55 PM
@@ -87,7 +87,6 @@ public class CakeBakingServiceImplTest {
       assertNotNull(layer.toString());
       assertTrue(layer.calories > 0);
     }
-
   }
 
   @Test
@@ -110,7 +109,6 @@ public class CakeBakingServiceImplTest {
       assertNotNull(topping.toString());
       assertTrue(topping.calories > 0);
     }
-
   }
 
   @Test
@@ -147,7 +145,6 @@ public class CakeBakingServiceImplTest {
       assertFalse(cakeInfo.cakeLayerInfos.isEmpty());
       assertTrue(cakeInfo.calculateTotalCalories() > 0);
     }
-
   }
 
   @Test
@@ -160,9 +157,11 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer2);
 
     final var missingTopping = new CakeToppingInfo("Topping1", 1000);
-    assertThrows(CakeBakingException.class, () -> {
-      service.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2)));
-    });
+    assertThrows(
+        CakeBakingException.class,
+        () -> {
+          service.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2)));
+        });
   }
 
   @Test
@@ -180,9 +179,11 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer1);
 
     final var missingLayer = new CakeLayerInfo("Layer2", 2000);
-    assertThrows(CakeBakingException.class, () -> {
-      service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer)));
-    });
+    assertThrows(
+        CakeBakingException.class,
+        () -> {
+          service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer)));
+        });
   }
 
   @Test
@@ -204,9 +205,10 @@ public class CakeBakingServiceImplTest {
     service.saveNewLayer(layer2);
 
     service.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
-    assertThrows(CakeBakingException.class, () -> {
-      service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2)));
-    });
+    assertThrows(
+        CakeBakingException.class,
+        () -> {
+          service.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2)));
+        });
   }
-
 }

@@ -46,9 +46,7 @@
 
 package com.iluwatar.decorator;
 
-/**
- * Interface for trolls.
- */
+/** Interface for trolls. */
 public interface Troll {
 
   void attack();
@@ -56,5 +54,4 @@ public interface Troll {
   int getAttackPower();
 
   void fleeBattle();
-
 }

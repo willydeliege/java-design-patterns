@@ -46,24 +46,19 @@
 
 package com.iluwatar.hexagonal.service;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.Scanner;
 import com.google.inject.Guice;
 import com.iluwatar.hexagonal.banking.WireTransfers;
 import com.iluwatar.hexagonal.domain.LotteryService;
 import com.iluwatar.hexagonal.module.LotteryModule;
 import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
+import java.util.Scanner;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * Console interface for lottery players.
- */
+/** Console interface for lottery players. */
 @Slf4j
 public class ConsoleLottery {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
     var injector = Guice.createInjector(new LotteryModule());

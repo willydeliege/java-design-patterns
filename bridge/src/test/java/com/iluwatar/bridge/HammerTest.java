@@ -46,14 +46,12 @@
 
 package com.iluwatar.bridge;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
-/**
- * Tests for hammer
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests for hammer */
 class HammerTest extends WeaponTest {
 
   /**

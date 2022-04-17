@@ -49,9 +49,7 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-/**
- * ElfMage.
- */
+/** ElfMage. */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class ElfMage extends Mage {
@@ -72,5 +70,4 @@ public class ElfMage extends Mage {
   public String toString() {
     return "Elven mage helps in " + helpType;
   }
-
 }

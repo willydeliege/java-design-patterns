@@ -46,11 +46,8 @@
 
 package com.iluwatar.prototype;
 
-/**
- * Prototype.
- */
+/** Prototype. */
 public interface Prototype {
 
   Object copy();
-
 }

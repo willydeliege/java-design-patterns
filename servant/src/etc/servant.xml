@@ -53,7 +53,8 @@
         <eAnnotations source="genmymodel" xmi:id="_BWy4gHlgEeSYU-Ff_V1D0Q">
           <details key="uuid" value="_pIQGSXleEeSMFa_mT0wMkw" xmi:id="_BWy4gXlgEeSYU-Ff_V1D0Q"/>
         </eAnnotations>
-        <ownedComment body="Servant offers some functionality to a group of classes without defining that functionality in each of them. A Servant is a class whose instance provides methods that take care of a desired service,while objects for which the servant does something, are taken as parameters."
+        <ownedComment
+          body="Servant offers some functionality to a group of classes without defining that functionality in each of them. A Servant is a class whose instance provides methods that take care of a desired service,while objects for which the servant does something, are taken as parameters."
           xmi:id="_BWy4gnlgEeSYU-Ff_V1D0Q">
           <eAnnotations source="genmymodel" xmi:id="_BWy4g3lgEeSYU-Ff_V1D0Q">
             <details key="uuid" value="_pIQGSnleEeSMFa_mT0wMkw" xmi:id="_BWy4hHlgEeSYU-Ff_V1D0Q"/>
@@ -657,7 +658,8 @@
       <details key="uuid" value="_pIQtXnleEeSMFa_mT0wMkw" xmi:id="_BWzgA3lgEeSYU-Ff_V1D0Q"/>
     </eAnnotations>
   </packagedElement>
-  <packagedElement memberEnd="_BWzgEHlgEeSYU-Ff_V1D0Q _BWzgB3lgEeSYU-Ff_V1D0Q" name="jenkins_App_Servant_1"
+  <packagedElement memberEnd="_BWzgEHlgEeSYU-Ff_V1D0Q _BWzgB3lgEeSYU-Ff_V1D0Q"
+    name="jenkins_App_Servant_1"
     navigableOwnedEnd="_BWzgEHlgEeSYU-Ff_V1D0Q" xmi:id="_BWzgBHlgEeSYU-Ff_V1D0Q"
     xsi:type="uml:Association">
     <eAnnotations source="genmymodel" xmi:id="_BWzgBXlgEeSYU-Ff_V1D0Q">
@@ -679,7 +681,8 @@
         </eAnnotations>
       </upperValue>
     </ownedEnd>
-    <ownedEnd association="_BWzgBHlgEeSYU-Ff_V1D0Q" isStatic="true" name="" type="_BWzfp3lgEeSYU-Ff_V1D0Q"
+    <ownedEnd association="_BWzgBHlgEeSYU-Ff_V1D0Q" isStatic="true" name=""
+      type="_BWzfp3lgEeSYU-Ff_V1D0Q"
       visibility="package" xmi:id="_BWzgEHlgEeSYU-Ff_V1D0Q">
       <eAnnotations source="association" xmi:id="_BWzgEXlgEeSYU-Ff_V1D0Q"/>
       <eAnnotations source="genmymodel" xmi:id="_BWzgEnlgEeSYU-Ff_V1D0Q">
@@ -697,7 +700,8 @@
       </upperValue>
     </ownedEnd>
   </packagedElement>
-  <packagedElement memberEnd="_BWzgJnlgEeSYU-Ff_V1D0Q _BWzgHXlgEeSYU-Ff_V1D0Q" name="travis_App_Servant_0"
+  <packagedElement memberEnd="_BWzgJnlgEeSYU-Ff_V1D0Q _BWzgHXlgEeSYU-Ff_V1D0Q"
+    name="travis_App_Servant_0"
     navigableOwnedEnd="_BWzgJnlgEeSYU-Ff_V1D0Q" xmi:id="_BWzgGnlgEeSYU-Ff_V1D0Q"
     xsi:type="uml:Association">
     <eAnnotations source="genmymodel" xmi:id="_BWzgG3lgEeSYU-Ff_V1D0Q">
@@ -719,7 +723,8 @@
         </eAnnotations>
       </upperValue>
     </ownedEnd>
-    <ownedEnd association="_BWzgGnlgEeSYU-Ff_V1D0Q" isStatic="true" name="" type="_BWzfp3lgEeSYU-Ff_V1D0Q"
+    <ownedEnd association="_BWzgGnlgEeSYU-Ff_V1D0Q" isStatic="true" name=""
+      type="_BWzfp3lgEeSYU-Ff_V1D0Q"
       visibility="package" xmi:id="_BWzgJnlgEeSYU-Ff_V1D0Q">
       <eAnnotations source="association" xmi:id="_BWzgJ3lgEeSYU-Ff_V1D0Q"/>
       <eAnnotations source="genmymodel" xmi:id="_BWzgKHlgEeSYU-Ff_V1D0Q">

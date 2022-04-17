@@ -52,15 +52,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- * CakeTopping entity.
- */
+/** CakeTopping entity. */
 @Entity
 public class CakeTopping {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   private String name;
 
@@ -69,8 +65,7 @@ public class CakeTopping {
   @OneToOne(cascade = CascadeType.ALL)
   private Cake cake;
 
-  public CakeTopping() {
-  }
+  public CakeTopping() {}
 
   public CakeTopping(String name, int calories) {
     this.setName(name);

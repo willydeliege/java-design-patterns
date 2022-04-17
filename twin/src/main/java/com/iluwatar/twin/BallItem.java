@@ -59,8 +59,7 @@ public class BallItem extends GameItem {
 
   private boolean isSuspended;
 
-  @Setter
-  private BallThread twin;
+  @Setter private BallThread twin;
 
   @Override
   public void doDraw() {

@@ -46,9 +46,8 @@
 
 package com.iluwatar.property;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.iluwatar.property.Character.Type;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Property pattern is also known as Prototype inheritance.

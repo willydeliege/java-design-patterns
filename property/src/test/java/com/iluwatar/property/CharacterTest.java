@@ -46,14 +46,14 @@
 
 package com.iluwatar.property;
 
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
-
 import static com.iluwatar.property.Character.Type;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 7:46 PM
@@ -79,7 +79,6 @@ public class CharacterTest {
       assertFalse(prototype.has(stat));
       assertNull(prototype.get(stat));
     }
-
   }
 
   @Test
@@ -110,7 +109,6 @@ public class CharacterTest {
     final var weak = new Character("weak", prototype);
     weak.remove(Stats.ARMOR);
     assertEquals("Player: weak\nStats:\n - AGILITY:2\n - INTELLECT:3\n", weak.toString());
-
   }
 
   @Test
@@ -144,5 +142,4 @@ public class CharacterTest {
     weak.remove(Stats.ARMOR);
     assertNull(weak.type());
   }
-
 }

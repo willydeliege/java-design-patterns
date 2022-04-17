@@ -51,9 +51,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * User DTO class.
- */
+/** User DTO class. */
 @RequiredArgsConstructor
 @Getter
 @EqualsAndHashCode
@@ -64,5 +62,4 @@ public class UserDto {
   private final String lastName;
   private final boolean active;
   private final String email;
-
 }

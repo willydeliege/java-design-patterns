@@ -49,17 +49,13 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Beast.
- */
+/** Beast. */
 @EqualsAndHashCode
 @NoArgsConstructor
 public abstract class Beast implements Prototype {
 
-  public Beast(Beast source) {
-  }
+  public Beast(Beast source) {}
 
   @Override
   public abstract Beast copy();
-
 }

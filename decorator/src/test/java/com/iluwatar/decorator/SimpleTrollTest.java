@@ -46,10 +46,11 @@
 
 package com.iluwatar.decorator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -57,11 +58,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Tests for {@link SimpleTroll}
- */
+/** Tests for {@link SimpleTroll} */
 class SimpleTrollTest {
 
   private InMemoryAppender appender;

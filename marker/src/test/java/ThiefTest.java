@@ -44,15 +44,13 @@
  * THE SOFTWARE.
  */
 
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Thief test
- */
+import org.junit.jupiter.api.Test;
+
+/** Thief test */
 public class ThiefTest {
   @Test
   void testThief() {

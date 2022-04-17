@@ -6,35 +6,37 @@ permalink: /patterns/pipeline/
 categories: Behavioral
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
 
-Allows processing of data in a series of stages by giving in an initial input and passing the 
+Allows processing of data in a series of stages by giving in an initial input and passing the
 processed output to be used by the next stages.
 
 ## Explanation
 
-The Pipeline pattern uses ordered stages to process a sequence of input values. Each implemented 
-task is represented by a stage of the pipeline. You can think of pipelines as similar to assembly 
-lines in a factory, where each item in the assembly line is constructed in stages. The partially 
-assembled item is passed from one assembly stage to another. The outputs of the assembly line occur 
+The Pipeline pattern uses ordered stages to process a sequence of input values. Each implemented
+task is represented by a stage of the pipeline. You can think of pipelines as similar to assembly
+lines in a factory, where each item in the assembly line is constructed in stages. The partially
+assembled item is passed from one assembly stage to another. The outputs of the assembly line occur
 in the same order as that of the inputs.
- 
+
 Real world example
 
-> Suppose we wanted to pass through a string to a series of filtering stages and convert it as a 
-> char array on the last stage.           
+> Suppose we wanted to pass through a string to a series of filtering stages and convert it as a
+> char array on the last stage.
 
 In plain words
 
-> Pipeline pattern is an assembly line where partial results are passed from one stage to another.   
+> Pipeline pattern is an assembly line where partial results are passed from one stage to another.
 
 Wikipedia says
 
-> In software engineering, a pipeline consists of a chain of processing elements (processes, 
-> threads, coroutines, functions, etc.), arranged so that the output of each element is the input 
+> In software engineering, a pipeline consists of a chain of processing elements (processes,
+> threads, coroutines, functions, etc.), arranged so that the output of each element is the input
 > of the next; the name is by analogy to a physical pipeline.
 
 **Programmatic Example**
@@ -43,6 +45,7 @@ The stages of our pipeline are called `Handler`s.
 
 ```java
 interface Handler<I, O> {
+
   O process(I input);
 }
 ```
@@ -87,9 +90,9 @@ class Pipeline<I, O> {
 And here's the `Pipeline` in action processing the string.
 
 ```java
-    var filters = new Pipeline<>(new RemoveAlphabetsHandler())
-        .addHandler(new RemoveDigitsHandler())
-        .addHandler(new ConvertToCharArrayHandler());
+    var filters=new Pipeline<>(new RemoveAlphabetsHandler())
+    .addHandler(new RemoveDigitsHandler())
+    .addHandler(new ConvertToCharArrayHandler());
     filters.execute("GoYankees123!");
 ```
 
@@ -103,8 +106,8 @@ Use the Pipeline pattern when you want to
 
 * Execute individual stages that yields a final value.
 * Add readability to complex sequence of operations by providing a fluent builder as an interface.
-* Improve testability of code since stages will most likely be doing a single thing, complying to 
-the [Single Responsibility Principle (SRP)](https://java-design-patterns.com/principles/#single-responsibility-principle)
+* Improve testability of code since stages will most likely be doing a single thing, complying to
+  the [Single Responsibility Principle (SRP)](https://java-design-patterns.com/principles/#single-responsibility-principle)
 
 ## Known uses
 

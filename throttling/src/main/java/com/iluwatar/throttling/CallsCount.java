@@ -46,11 +46,10 @@
 
 package com.iluwatar.throttling;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A class to keep track of the counter of different Tenants.
@@ -89,9 +88,7 @@ public final class CallsCount {
     return tenantCallsCount.get(tenantName).get();
   }
 
-  /**
-   * Resets the count of all the tenants in the map.
-   */
+  /** Resets the count of all the tenants in the map. */
   public void reset() {
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
     LOGGER.info("reset counters");

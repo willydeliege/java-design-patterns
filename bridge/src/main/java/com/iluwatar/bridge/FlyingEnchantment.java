@@ -48,9 +48,7 @@ package com.iluwatar.bridge;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * FlyingEnchantment.
- */
+/** FlyingEnchantment. */
 @Slf4j
 public class FlyingEnchantment implements Enchantment {
 

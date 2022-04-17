@@ -7,7 +7,9 @@ pumlformat: svg
 categories: Architectural
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Also known as
@@ -17,12 +19,16 @@ tags:
 * Onion Architecture
 
 ## Intent
-Allow an application to equally be driven by users, programs, automated test or batch scripts, and to be developed and tested in isolation from its eventual run-time devices and databases.
+
+Allow an application to equally be driven by users, programs, automated test or batch scripts, and
+to be developed and tested in isolation from its eventual run-time devices and databases.
 
 ## Class diagram
+
 ![Hexagonal Architecture class diagram](./etc/hexagonal.png)
 
 ## Applicability
+
 Use Hexagonal Architecture pattern when
 
 * When the application needs to be independent of any frameworks
@@ -34,7 +40,8 @@ Use Hexagonal Architecture pattern when
 
 ## Real world examples
 
-* [Apache Isis](https://isis.apache.org/) builds generic UI and REST API directly from the underlying domain objects
+* [Apache Isis](https://isis.apache.org/) builds generic UI and REST API directly from the
+  underlying domain objects
 
 ## Credits
 

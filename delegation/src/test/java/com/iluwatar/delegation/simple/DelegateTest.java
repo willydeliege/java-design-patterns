@@ -46,27 +46,25 @@
 
 package com.iluwatar.delegation.simple;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
+import com.iluwatar.delegation.simple.printers.CanonPrinter;
+import com.iluwatar.delegation.simple.printers.EpsonPrinter;
+import com.iluwatar.delegation.simple.printers.HpPrinter;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-import com.iluwatar.delegation.simple.printers.CanonPrinter;
-import com.iluwatar.delegation.simple.printers.EpsonPrinter;
-import com.iluwatar.delegation.simple.printers.HpPrinter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Test for Delegation Pattern
- */
+/** Test for Delegation Pattern */
 class DelegateTest {
 
+  private static final String MESSAGE = "Test Message Printed";
   private InMemoryAppender appender;
 
   @BeforeEach
@@ -78,8 +76,6 @@ class DelegateTest {
   void tearDown() {
     appender.stop();
   }
-
-  private static final String MESSAGE = "Test Message Printed";
 
   @Test
   void testCanonPrinter() throws Exception {
@@ -105,9 +101,7 @@ class DelegateTest {
     assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
   }
 
-  /**
-   * Logging Appender
-   */
+  /** Logging Appender */
   private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
     private final List<ILoggingEvent> log = new LinkedList<>();
@@ -130,5 +124,4 @@ class DelegateTest {
       return log.size();
     }
   }
-
 }

@@ -6,37 +6,40 @@ permalink: /patterns/repository/
 categories: Architectural
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
 
-Repository layer is added between the domain and data mapping layers to isolate domain objects from 
-details of the database access code and to minimize scattering and duplication of query code. The 
-Repository pattern is especially useful in systems where number of domain classes is large or heavy 
+Repository layer is added between the domain and data mapping layers to isolate domain objects from
+details of the database access code and to minimize scattering and duplication of query code. The
+Repository pattern is especially useful in systems where number of domain classes is large or heavy
 querying is utilized.
 
 ## Explanation
 
 Real world example
 
-> Let's say we need a persistent data store for persons. Adding new persons and searching for them 
-> according to different criteria must be easy. 
+> Let's say we need a persistent data store for persons. Adding new persons and searching for them
+> according to different criteria must be easy.
 
 In plain words
 
-> Repository architectural pattern creates a uniform layer of data repositories that can be used for 
+> Repository architectural pattern creates a uniform layer of data repositories that can be used for
 > CRUD operations.
 
-[Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) says
+[Microsoft documentation](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design)
+says
 
-> Repositories are classes or components that encapsulate the logic required to access data sources. 
-> They centralize common data access functionality, providing better maintainability and decoupling 
+> Repositories are classes or components that encapsulate the logic required to access data sources.
+> They centralize common data access functionality, providing better maintainability and decoupling
 > the infrastructure or technology used to access databases from the domain model layer.
 
 **Programmatic Example**
 
-Let's first look at the person entity that we need to persist. 
+Let's first look at the person entity that we need to persist.
 
 ```java
 
@@ -70,6 +73,7 @@ public class Person {
 We are using Spring Data to create the `PersonRepository` so it becomes really simple.
 
 ```java
+
 @Repository
 public interface PersonRepository
     extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
@@ -120,35 +124,35 @@ public class PersonSpecifications {
 And here's the repository example in action.
 
 ```java
-    var peter = new Person("Peter", "Sagan", 17);
-    var nasta = new Person("Nasta", "Kuzminova", 25);
-    var john = new Person("John", "lawrence", 35);
-    var terry = new Person("Terry", "Law", 36);
+    var peter=new Person("Peter","Sagan",17);
+    var nasta=new Person("Nasta","Kuzminova",25);
+    var john=new Person("John","lawrence",35);
+    var terry=new Person("Terry","Law",36);
 
     repository.save(peter);
     repository.save(nasta);
     repository.save(john);
     repository.save(terry);
 
-    LOGGER.info("Count Person records: {}", repository.count());
+    LOGGER.info("Count Person records: {}",repository.count());
 
-    var persons = (List<Person>) repository.findAll();
+    var persons=(List<Person>)repository.findAll();
     persons.stream().map(Person::toString).forEach(LOGGER::info);
 
     nasta.setName("Barbora");
     nasta.setSurname("Spotakova");
     repository.save(nasta);
 
-    repository.findById(2L).ifPresent(p -> LOGGER.info("Find by id 2: {}", p));
+    repository.findById(2L).ifPresent(p->LOGGER.info("Find by id 2: {}",p));
     repository.deleteById(2L);
 
-    LOGGER.info("Count Person records: {}", repository.count());
+    LOGGER.info("Count Person records: {}",repository.count());
 
     repository
-        .findOne(new PersonSpecifications.NameEqualSpec("John"))
-        .ifPresent(p -> LOGGER.info("Find by John is {}", p));
+    .findOne(new PersonSpecifications.NameEqualSpec("John"))
+    .ifPresent(p->LOGGER.info("Find by John is {}",p));
 
-    persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
+    persons=repository.findAll(new PersonSpecifications.AgeBetweenSpec(20,40));
 
     LOGGER.info("Find Person with age between 20,40: ");
     persons.stream().map(Person::toString).forEach(LOGGER::info);

@@ -46,10 +46,10 @@
 
 package com.iluwatar.singleton;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.lang.reflect.InvocationTargetException;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Date: 12/29/15 - 19:26 PM.
@@ -58,16 +58,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleCheckLocking> {
 
-  /**
-   * Create a new singleton test instance using the given 'getInstance' method.
-   */
+  /** Create a new singleton test instance using the given 'getInstance' method. */
   public ThreadSafeDoubleCheckLockingTest() {
     super(ThreadSafeDoubleCheckLocking::getInstance);
   }
 
-  /**
-   * Test creating new instance by refection.
-   */
+  /** Test creating new instance by refection. */
   @Test
   void testCreatingNewInstanceByRefection() throws Exception {
     ThreadSafeDoubleCheckLocking.getInstance();
@@ -75,5 +71,4 @@ class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleChe
     constructor.setAccessible(true);
     assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
   }
-
 }

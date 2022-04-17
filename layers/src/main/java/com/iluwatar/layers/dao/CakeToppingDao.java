@@ -46,14 +46,10 @@
 
 package com.iluwatar.layers.dao;
 
+import com.iluwatar.layers.entity.CakeTopping;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import com.iluwatar.layers.entity.CakeTopping;
 
-/**
- * CRUD repository cake toppings.
- */
+/** CRUD repository cake toppings. */
 @Repository
-public interface CakeToppingDao extends CrudRepository<CakeTopping, Long> {
-
-}
+public interface CakeToppingDao extends CrudRepository<CakeTopping, Long> {}

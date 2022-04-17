@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
+  <link href="../jacoco-resources/report.css" rel="stylesheet" type="text/css"/>
+  <link href="../jacoco-resources/report.gif" rel="shortcut icon" type="image/gif"/>
+  <title>ThreadSafeDoubleCheckLocking.java</title>
+  <link href="../jacoco-resources/prettify.css" rel="stylesheet" type="text/css"/>
+  <script src="../jacoco-resources/prettify.js" type="text/javascript"></script>
+</head>
+<body onload="window['PR_TAB_WIDTH']=4;prettyPrint()">
+<div class="breadcrumb" id="breadcrumb"><span class="info"><a class="el_session"
+                                                              href="../jacoco-sessions.html">Sessions</a></span><a
+    class="el_report" href="../index.html">singleton</a> &gt; <a class="el_package"
+                                                                 href="index.source.html">com.iluwatar.singleton</a>
+  &gt; <span class="el_source">ThreadSafeDoubleCheckLocking.java</span></div>
+<h1>ThreadSafeDoubleCheckLocking.java</h1>
+<pre class="source lang-java linenums">/*
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the &quot;Software&quot;), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
+
+/*
+ * The MIT License
+ * Copyright © 2014-2021 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the &quot;Software&quot;), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+package com.iluwatar.singleton;
+
+/**
+ * &lt;p&gt;Double check locking.&lt;/p&gt;
+ *
+ * &lt;p&gt;http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html&lt;/p&gt;
+ *
+ * &lt;p&gt;Broken under Java 1.4.&lt;/p&gt;
+ *
+ * @author mortezaadi@gmail.com
+ */
+public final class ThreadSafeDoubleCheckLocking {
+
+  private static volatile ThreadSafeDoubleCheckLocking instance;
+
+  /**
+   * private constructor to prevent client from instantiating.
+   */
+<span class="fc" id="L65">  private ThreadSafeDoubleCheckLocking() {</span>
+    // to prevent instantiating by Reflection call
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (instance != null) {</span>
+<span class="fc"
+      id="L68">      throw new IllegalStateException(&quot;Already initialized.&quot;);</span>
+    }
+<span class="fc" id="L70">  }</span>
+
+  /**
+   * Public accessor.
+   *
+   * @return an instance of the class.
+   */
+  public static ThreadSafeDoubleCheckLocking getInstance() {
+    // local variable increases performance by 25 percent
+    // Joshua Bloch &quot;Effective Java, Second Edition&quot;, p. 283-284
+
+<span class="fc" id="L81">    var result = instance;</span>
+    // Check if singleton instance is initialized.
+    // If it is initialized then we can return the instance.
+<span class="fc bfc" id="L84" title="All 2 branches covered.">    if (result == null) {</span>
+      // It is not initialized but we cannot be sure because some other thread might have
+      // initialized it in the meanwhile.
+      // So to make sure we need to lock on an object to get mutual exclusion.
+<span class="fc" id="L88">      synchronized (ThreadSafeDoubleCheckLocking.class) {</span>
+        // Again assign the instance to local variable to check if it was initialized by some
+        // other thread while current thread was blocked to enter the locked zone.
+        // If it was initialized then we can return the previously created instance
+        // just like the previous null check.
+<span class="fc" id="L93">        result = instance;</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        if (result == null) {</span>
+          // The instance is still not initialized so we can safely
+          // (no other thread can enter this zone)
+          // create an instance and make it our singleton instance.
+<span class="fc" id="L98">          instance = result = new ThreadSafeDoubleCheckLocking();</span>
+        }
+<span class="fc" id="L100">      }</span>
+    }
+<span class="fc" id="L102">    return result;</span>
+  }
+}
+</pre>
+<div class="footer"><span class="right">Created with <a
+    href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span

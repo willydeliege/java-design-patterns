@@ -46,14 +46,12 @@
 
 package com.iluwatar.hexagonal.domain;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-/**
- * Unit tests for {@link PlayerDetails}
- */
+import org.junit.jupiter.api.Test;
+
+/** Unit tests for {@link PlayerDetails} */
 class PlayerDetailsTest {
 
   @Test

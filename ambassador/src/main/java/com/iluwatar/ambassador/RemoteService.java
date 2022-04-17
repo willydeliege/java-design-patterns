@@ -46,37 +46,32 @@
 
 package com.iluwatar.ambassador;
 
-import lombok.extern.slf4j.Slf4j;
-
-import com.iluwatar.ambassador.util.RandomProvider;
-
 import static java.lang.Thread.sleep;
 
-/**
- * A remote legacy application represented by a Singleton implementation.
- */
+import com.iluwatar.ambassador.util.RandomProvider;
+import lombok.extern.slf4j.Slf4j;
+
+/** A remote legacy application represented by a Singleton implementation. */
 @Slf4j
 public class RemoteService implements RemoteServiceInterface {
   private static final int THRESHOLD = 200;
   private static RemoteService service = null;
   private final RandomProvider randomProvider;
 
+  private RemoteService() {
+    this(Math::random);
+  }
+
+  /** This constructor is used for testing purposes only. */
+  RemoteService(RandomProvider randomProvider) {
+    this.randomProvider = randomProvider;
+  }
+
   static synchronized RemoteService getRemoteService() {
     if (service == null) {
       service = new RemoteService();
     }
     return service;
-  }
-
-  private RemoteService() {
-    this(Math::random);
-  }
-
-  /**
-   * This constructor is used for testing purposes only.
-   */
-  RemoteService(RandomProvider randomProvider) {
-    this.randomProvider = randomProvider;
   }
 
   /**
@@ -98,7 +93,8 @@ public class RemoteService implements RemoteServiceInterface {
       LOGGER.error("Thread sleep state interrupted", e);
       Thread.currentThread().interrupt();
     }
-    return waitTime <= THRESHOLD ? value * 10
+    return waitTime <= THRESHOLD
+        ? value * 10
         : RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue();
   }
 }

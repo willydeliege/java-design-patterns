@@ -58,5 +58,4 @@ final class FishingBoat {
   void sail() {
     LOGGER.info("The fishing boat is sailing");
   }
-
 }

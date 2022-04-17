@@ -46,15 +46,14 @@
 
 package com.iluwatar.hexagonal.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-
+import com.google.common.base.Joiner;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.PrimitiveIterator;
 import java.util.Set;
-import com.google.common.base.Joiner;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Value object representing lottery numbers. This lottery uses sets of 4 numbers. The numbers must
@@ -64,23 +63,18 @@ import com.google.common.base.Joiner;
 @ToString
 public class LotteryNumbers {
 
-  private final Set<Integer> numbers;
-
   public static final int MIN_NUMBER = 1;
   public static final int MAX_NUMBER = 20;
   public static final int NUM_NUMBERS = 4;
+  private final Set<Integer> numbers;
 
-  /**
-   * Constructor. Creates random lottery numbers.
-   */
+  /** Constructor. Creates random lottery numbers. */
   private LotteryNumbers() {
     numbers = new HashSet<>();
     generateRandomNumbers();
   }
 
-  /**
-   * Constructor. Uses given numbers.
-   */
+  /** Constructor. Uses given numbers. */
   private LotteryNumbers(Set<Integer> givenNumbers) {
     numbers = new HashSet<>();
     numbers.addAll(givenNumbers);
@@ -122,9 +116,7 @@ public class LotteryNumbers {
     return Joiner.on(',').join(numbers);
   }
 
-  /**
-   * Generates 4 unique random numbers between 1-20 into numbers set.
-   */
+  /** Generates 4 unique random numbers between 1-20 into numbers set. */
   private void generateRandomNumbers() {
     numbers.clear();
     var generator = new RandomNumberGenerator(MIN_NUMBER, MAX_NUMBER);
@@ -134,9 +126,7 @@ public class LotteryNumbers {
     }
   }
 
-  /**
-   * Helper class for generating random numbers.
-   */
+  /** Helper class for generating random numbers. */
   private static class RandomNumberGenerator {
 
     private final PrimitiveIterator.OfInt randomIterator;
@@ -161,5 +151,4 @@ public class LotteryNumbers {
       return randomIterator.nextInt();
     }
   }
-
 }

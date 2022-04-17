@@ -6,8 +6,10 @@ permalink: /patterns/throttling/
 categories: Behavioral
 language: en
 tags:
- - Performance
- - Cloud distributed
+
+- Performance
+- Cloud distributed
+
 ---
 
 ## Intent
@@ -25,39 +27,41 @@ Real-world example
 
 In plain words
 
-> Throttling pattern is used to rate-limit access to a resource. 
+> Throttling pattern is used to rate-limit access to a resource.
 
-[Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling) says
+[Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
+says
 
-> Control the consumption of resources used by an instance of an application, an individual tenant, 
-> or an entire service. This can allow the system to continue to function and meet service level 
+> Control the consumption of resources used by an instance of an application, an individual tenant,
+> or an entire service. This can allow the system to continue to function and meet service level
 > agreements, even when an increase in demand places an extreme load on resources.
 
 **Programmatic Example**
 
-`BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of 
+`BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of
 calls per `BarCustomer`.
 
 ```java
 public class BarCustomer {
 
-    @Getter
-    private final String name;
-    @Getter
-    private final int allowedCallsPerSecond;
+  @Getter
+  private final String name;
+  @Getter
+  private final int allowedCallsPerSecond;
 
-    public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
-        if (allowedCallsPerSecond < 0) {
-            throw new InvalidParameterException("Number of calls less than 0 not allowed");
-        }
-        this.name = name;
-        this.allowedCallsPerSecond = allowedCallsPerSecond;
-        callsCount.addTenant(name);
+  public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
+    if (allowedCallsPerSecond < 0) {
+      throw new InvalidParameterException("Number of calls less than 0 not allowed");
     }
+    this.name = name;
+    this.allowedCallsPerSecond = allowedCallsPerSecond;
+    callsCount.addTenant(name);
+  }
 }
 
 @Slf4j
 public final class CallsCount {
+
   private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
   public void addTenant(String tenantName) {
@@ -79,7 +83,7 @@ public final class CallsCount {
 }
 ```
 
-Next, the service that the tenants are calling is introduced. To track the call count, a throttler 
+Next, the service that the tenants are calling is introduced. To track the call count, a throttler
 timer is used.
 
 ```java
@@ -116,67 +120,67 @@ know that the beer serving rate is limited by their appearances.
 ```java
 class Bartender {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Bartender.class);
-    private final CallsCount callsCount;
+  private static final Logger LOGGER = LoggerFactory.getLogger(Bartender.class);
+  private final CallsCount callsCount;
 
-    public Bartender(Throttler timer, CallsCount callsCount) {
-        this.callsCount = callsCount;
-        timer.start();
-    }
+  public Bartender(Throttler timer, CallsCount callsCount) {
+    this.callsCount = callsCount;
+    timer.start();
+  }
 
-    public int orderDrink(BarCustomer barCustomer) {
-        var tenantName = barCustomer.getName();
-        var count = callsCount.getCount(tenantName);
-        if (count >= barCustomer.getAllowedCallsPerSecond()) {
-            LOGGER.error("I'm sorry {}, you've had enough for today!", tenantName);
-            return -1;
-        }
-        callsCount.incrementCount(tenantName);
-        LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count+1);
-        return getRandomCustomerId();
+  public int orderDrink(BarCustomer barCustomer) {
+    var tenantName = barCustomer.getName();
+    var count = callsCount.getCount(tenantName);
+    if (count >= barCustomer.getAllowedCallsPerSecond()) {
+      LOGGER.error("I'm sorry {}, you've had enough for today!", tenantName);
+      return -1;
     }
+    callsCount.incrementCount(tenantName);
+    LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count + 1);
+    return getRandomCustomerId();
+  }
 
-    private int getRandomCustomerId() {
-        return ThreadLocalRandom.current().nextInt(1, 10000);
-    }
+  private int getRandomCustomerId() {
+    return ThreadLocalRandom.current().nextInt(1, 10000);
+  }
 }
 ```
 
-Now it is possible to see the full example in action. `BarCustomer` young human is rate-limited to 2 
+Now it is possible to see the full example in action. `BarCustomer` young human is rate-limited to 2
 calls per second and the old dwarf to 4.
 
 ```java
-public static void main(String[] args) {
-    var callsCount = new CallsCount();
-    var human = new BarCustomer("young human", 2, callsCount);
-    var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
+public static void main(String[]args){
+    var callsCount=new CallsCount();
+    var human=new BarCustomer("young human",2,callsCount);
+    var dwarf=new BarCustomer("dwarf soldier",4,callsCount);
 
-    var executorService = Executors.newFixedThreadPool(2);
+    var executorService=Executors.newFixedThreadPool(2);
 
-    executorService.execute(() -> makeServiceCalls(human, callsCount));
-    executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
+    executorService.execute(()->makeServiceCalls(human,callsCount));
+    executorService.execute(()->makeServiceCalls(dwarf,callsCount));
 
     executorService.shutdown();
-    try {
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-        LOGGER.error("Executor service terminated: {}", e.getMessage());
+    try{
+    executorService.awaitTermination(10,TimeUnit.SECONDS);
+    }catch(InterruptedException e){
+    LOGGER.error("Executor service terminated: {}",e.getMessage());
     }
-}
+    }
 
-private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
-    var timer = new ThrottleTimerImpl(1000, callsCount);
-    var service = new Bartender(timer, callsCount);
+private static void makeServiceCalls(BarCustomer barCustomer,CallsCount callsCount){
+    var timer=new ThrottleTimerImpl(1000,callsCount);
+    var service=new Bartender(timer,callsCount);
     // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 50).forEach(i -> {
-        service.orderDrink(barCustomer);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            LOGGER.error("Thread interrupted: {}", e.getMessage());
-        }
+    IntStream.range(0,50).forEach(i->{
+    service.orderDrink(barCustomer);
+    try{
+    Thread.sleep(100);
+    }catch(InterruptedException e){
+    LOGGER.error("Thread interrupted: {}",e.getMessage());
+    }
     });
-}
+    }
 ```
 
 An excerpt from the example's console output:
@@ -214,8 +218,10 @@ An excerpt from the example's console output:
 
 The Throttling pattern should be used:
 
-* When service access needs to be restricted not to have high impact on the performance of the service.
-* When multiple clients are consuming the same service resources and restriction has to be made according to the usage per client.
+* When service access needs to be restricted not to have high impact on the performance of the
+  service.
+* When multiple clients are consuming the same service resources and restriction has to be made
+  according to the usage per client.
 
 ## Credits
 

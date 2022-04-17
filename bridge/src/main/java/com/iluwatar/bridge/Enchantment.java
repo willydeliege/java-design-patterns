@@ -46,9 +46,7 @@
 
 package com.iluwatar.bridge;
 
-/**
- * Enchantment.
- */
+/** Enchantment. */
 public interface Enchantment {
 
   void onActivate();

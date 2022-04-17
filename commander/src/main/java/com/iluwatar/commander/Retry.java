@@ -58,29 +58,9 @@ import java.util.function.Predicate;
  *
  * @param <T> is the type of object passed into HandleErrorIssue as a parameter.
  */
-
 public class Retry<T> {
 
-  /**
-   * Operation Interface will define method to be implemented.
-   */
-
-  public interface Operation {
-    void operation(List<Exception> list) throws Exception;
-  }
-
-  /**
-   * HandleErrorIssue defines how to handle errors.
-   *
-   * @param <T> is the type of object to be passed into the method as parameter.
-   */
-
-  public interface HandleErrorIssue<T> {
-    void handleIssue(T obj, Exception e);
-  }
-
   private static final SecureRandom RANDOM = new SecureRandom();
-
   private final Operation op;
   private final HandleErrorIssue<T> handleError;
   private final int maxAttempts;
@@ -88,9 +68,12 @@ public class Retry<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
-
-  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
-        long maxDelay, Predicate<Exception>... ignoreTests) {
+  Retry(
+      Operation op,
+      HandleErrorIssue<T> handleError,
+      int maxAttempts,
+      long maxDelay,
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.handleError = handleError;
     this.maxAttempts = maxAttempts;
@@ -104,9 +87,8 @@ public class Retry<T> {
    * Performing the operation with retries.
    *
    * @param list is the exception list
-   * @param obj  is the parameter to be passed into handleIsuue method
+   * @param obj is the parameter to be passed into handleIsuue method
    */
-
   public void perform(List<Exception> list, T obj) {
     do {
       try {
@@ -116,7 +98,7 @@ public class Retry<T> {
         this.errors.add(e);
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
           this.handleError.handleIssue(obj, e);
-          return; //return here...dont go further
+          return; // return here...dont go further
         }
         try {
           long testDelay =
@@ -124,10 +106,23 @@ public class Retry<T> {
           long delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
-          //ignore
+          // ignore
         }
       }
     } while (true);
   }
 
+  /** Operation Interface will define method to be implemented. */
+  public interface Operation {
+    void operation(List<Exception> list) throws Exception;
+  }
+
+  /**
+   * HandleErrorIssue defines how to handle errors.
+   *
+   * @param <T> is the type of object to be passed into the method as parameter.
+   */
+  public interface HandleErrorIssue<T> {
+    void handleIssue(T obj, Exception e);
+  }
 }

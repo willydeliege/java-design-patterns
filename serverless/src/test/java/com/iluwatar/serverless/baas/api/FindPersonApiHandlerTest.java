@@ -46,29 +46,26 @@
 
 package com.iluwatar.serverless.baas.api;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.iluwatar.serverless.baas.model.Person;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.iluwatar.serverless.baas.model.Person;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-/**
- * Unit tests for FindPersonApiHandler Created by dheeraj.mummar on 3/5/18.
- */
+/** Unit tests for FindPersonApiHandler Created by dheeraj.mummar on 3/5/18. */
 class FindPersonApiHandlerTest {
 
   private FindPersonApiHandler findPersonApiHandler;
 
-  @Mock
-  private DynamoDBMapper dynamoDbMapper;
+  @Mock private DynamoDBMapper dynamoDbMapper;
 
   @BeforeEach
   public void setUp() {

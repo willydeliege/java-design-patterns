@@ -69,8 +69,6 @@
 
 package com.iluwatar.twin;
 
-import org.junit.jupiter.api.Test;
-
 import static java.lang.Thread.UncaughtExceptionHandler;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofMillis;
@@ -82,6 +80,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/30/15 - 18:55 PM

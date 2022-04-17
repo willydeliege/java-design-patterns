@@ -46,16 +46,15 @@
 
 package com.iluwatar.databus.members;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-import java.time.LocalDateTime;
 import com.iluwatar.databus.DataType;
 import com.iluwatar.databus.Member;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
+import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Receiver of Data-Bus events.
@@ -93,5 +92,4 @@ public class StatusMember implements Member {
     LOGGER.info("Receiver {} sending goodbye message", id);
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
-
 }

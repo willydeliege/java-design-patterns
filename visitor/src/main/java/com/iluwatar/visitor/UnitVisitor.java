@@ -46,9 +46,7 @@
 
 package com.iluwatar.visitor;
 
-/**
- * Visitor interface.
- */
+/** Visitor interface. */
 public interface UnitVisitor {
 
   void visitSoldier(Soldier soldier);
@@ -56,5 +54,4 @@ public interface UnitVisitor {
   void visitSergeant(Sergeant sergeant);
 
   void visitCommander(Commander commander);
-
 }

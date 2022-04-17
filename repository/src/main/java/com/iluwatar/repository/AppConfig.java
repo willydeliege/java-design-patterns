@@ -46,11 +46,10 @@
 
 package com.iluwatar.repository;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.Properties;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.boot.SpringBootConfiguration;
@@ -68,52 +67,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 @Slf4j
 public class AppConfig {
 
-  /**
-   * Creation of H2 db.
-   *
-   * @return A new Instance of DataSource
-   */
-  @Bean(destroyMethod = "close")
-  public DataSource dataSource() {
-    var basicDataSource = new BasicDataSource();
-    basicDataSource.setDriverClassName("org.h2.Driver");
-    basicDataSource.setUrl("jdbc:h2:~/databases/person");
-    basicDataSource.setUsername("sa");
-    basicDataSource.setPassword("sa");
-    return basicDataSource;
-  }
-
-  /**
-   * Factory to create a especific instance of Entity Manager.
-   */
-  @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-    var entityManager = new LocalContainerEntityManagerFactoryBean();
-    entityManager.setDataSource(dataSource());
-    entityManager.setPackagesToScan("com.iluwatar");
-    entityManager.setPersistenceProvider(new HibernatePersistenceProvider());
-    entityManager.setJpaProperties(jpaProperties());
-    return entityManager;
-  }
-
-  /**
-   * Properties for Jpa.
-   */
+  /** Properties for Jpa. */
   private static Properties jpaProperties() {
     var properties = new Properties();
     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
     properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
     return properties;
-  }
-
-  /**
-   * Get transaction manager.
-   */
-  @Bean
-  public JpaTransactionManager transactionManager() {
-    var transactionManager = new JpaTransactionManager();
-    transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-    return transactionManager;
   }
 
   /**
@@ -168,7 +127,39 @@ public class AppConfig {
     persons.stream().map(Person::toString).forEach(LOGGER::info);
 
     context.close();
-
   }
 
+  /**
+   * Creation of H2 db.
+   *
+   * @return A new Instance of DataSource
+   */
+  @Bean(destroyMethod = "close")
+  public DataSource dataSource() {
+    var basicDataSource = new BasicDataSource();
+    basicDataSource.setDriverClassName("org.h2.Driver");
+    basicDataSource.setUrl("jdbc:h2:~/databases/person");
+    basicDataSource.setUsername("sa");
+    basicDataSource.setPassword("sa");
+    return basicDataSource;
+  }
+
+  /** Factory to create a especific instance of Entity Manager. */
+  @Bean
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    var entityManager = new LocalContainerEntityManagerFactoryBean();
+    entityManager.setDataSource(dataSource());
+    entityManager.setPackagesToScan("com.iluwatar");
+    entityManager.setPersistenceProvider(new HibernatePersistenceProvider());
+    entityManager.setJpaProperties(jpaProperties());
+    return entityManager;
+  }
+
+  /** Get transaction manager. */
+  @Bean
+  public JpaTransactionManager transactionManager() {
+    var transactionManager = new JpaTransactionManager();
+    transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+    return transactionManager;
+  }
 }

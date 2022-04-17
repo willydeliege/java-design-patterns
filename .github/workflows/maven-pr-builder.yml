@@ -40,20 +40,20 @@ jobs:
       matrix:
         java-version: [ 11.0.3, 11 ]
     steps:
-    
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    
-    - name: Set up JDK ${{ matrix.java-version }}
-      uses: actions/setup-java@v2
-      with:
-        java-version: ${{ matrix.java-version }}
-        distribution: 'zulu'
-        cache: 'maven'
-    
-    # Some tests need screen access
-    - name: Install xvfb
-      run: sudo apt-get install -y xvfb
-    
-    - name: Build with Maven
-      run: xvfb-run ./mvnw clean verify
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'zulu'
+          cache: 'maven'
+
+      # Some tests need screen access
+      - name: Install xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Build with Maven
+        run: xvfb-run ./mvnw clean verify

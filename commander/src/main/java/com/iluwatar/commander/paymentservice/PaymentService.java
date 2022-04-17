@@ -46,35 +46,23 @@
 
 package com.iluwatar.commander.paymentservice;
 
-import lombok.RequiredArgsConstructor;
-
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The PaymentService class receives request from the {@link com.iluwatar.commander.Commander} and
  * adds to the {@link PaymentDatabase}.
  */
-
 public class PaymentService extends Service {
-
-  @RequiredArgsConstructor
-  static class PaymentRequest {
-    final String transactionId;
-    final float payment;
-    boolean paid;
-  }
 
   public PaymentService(PaymentDatabase db, Exception... exc) {
     super(db, exc);
   }
 
-  /**
-   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
-   */
-
+  /** Public method which will receive request from {@link com.iluwatar.commander.Commander}. */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
-    //it could also be sending a userid, payment details here or something, not added here
+    // it could also be sending a userid, payment details here or something, not added here
     var id = generateId();
     var req = new PaymentRequest(id, (float) parameters[0]);
     return updateDb(req);
@@ -88,5 +76,12 @@ public class PaymentService extends Service {
       return req.transactionId;
     }
     return null;
+  }
+
+  @RequiredArgsConstructor
+  static class PaymentRequest {
+    final String transactionId;
+    final float payment;
+    boolean paid;
   }
 }

@@ -46,25 +46,22 @@
 
 package org.dirty.flag;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.dirtyflag.App;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Tests that Dirty-Flag example runs without errors.
- */
+import com.iluwatar.dirtyflag.App;
+import org.junit.jupiter.api.Test;
+
+/** Tests that Dirty-Flag example runs without errors. */
 class AppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
    *
-   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
-   * throws an exception.
+   * <p>Solution: Inserted assertion to check whether the execution of the main method in {@link
+   * App#main(String[])} throws an exception.
    */
-
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

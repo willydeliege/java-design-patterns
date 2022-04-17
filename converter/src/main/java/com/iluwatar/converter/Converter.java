@@ -46,12 +46,11 @@
 
 package com.iluwatar.converter;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Generic converter, thanks to Java8 features not only provides a way of generic bidirectional
@@ -110,5 +109,4 @@ public class Converter<T, U> {
   public final List<T> createFromEntities(final Collection<U> entities) {
     return entities.stream().map(this::convertFromEntity).collect(Collectors.toList());
   }
-
 }

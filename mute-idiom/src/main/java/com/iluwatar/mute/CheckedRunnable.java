@@ -46,9 +46,7 @@
 
 package com.iluwatar.mute;
 
-/**
- * A runnable which may throw exception on execution.
- */
+/** A runnable which may throw exception on execution. */
 @FunctionalInterface
 public interface CheckedRunnable {
   /**

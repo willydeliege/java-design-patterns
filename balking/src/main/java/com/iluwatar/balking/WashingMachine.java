@@ -46,32 +46,28 @@
 
 package com.iluwatar.balking;
 
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.TimeUnit;
-
-/**
- * Washing machine class.
- */
+/** Washing machine class. */
 @Slf4j
 public class WashingMachine {
 
   private final DelayProvider delayProvider;
   private WashingMachineState washingMachineState;
 
-  /**
-   * Creates a new instance of WashingMachine.
-   */
+  /** Creates a new instance of WashingMachine. */
   public WashingMachine() {
-    this((interval, timeUnit, task) -> {
-      try {
-        Thread.sleep(timeUnit.toMillis(interval));
-      } catch (InterruptedException ie) {
-        LOGGER.error("", ie);
-        Thread.currentThread().interrupt();
-      }
-      task.run();
-    });
+    this(
+        (interval, timeUnit, task) -> {
+          try {
+            Thread.sleep(timeUnit.toMillis(interval));
+          } catch (InterruptedException ie) {
+            LOGGER.error("", ie);
+            Thread.currentThread().interrupt();
+          }
+          task.run();
+        });
   }
 
   /**
@@ -87,9 +83,7 @@ public class WashingMachine {
     return washingMachineState;
   }
 
-  /**
-   * Method responsible for washing if the object is in appropriate state.
-   */
+  /** Method responsible for washing if the object is in appropriate state. */
   public void wash() {
     synchronized (this) {
       var machineState = getWashingMachineState();
@@ -105,12 +99,9 @@ public class WashingMachine {
     this.delayProvider.executeAfterDelay(50, TimeUnit.MILLISECONDS, this::endOfWashing);
   }
 
-  /**
-   * Method responsible of ending the washing by changing machine state.
-   */
+  /** Method responsible of ending the washing by changing machine state. */
   public synchronized void endOfWashing() {
     washingMachineState = WashingMachineState.ENABLED;
     LOGGER.info("{}: Washing completed.", Thread.currentThread().getId());
   }
-
 }

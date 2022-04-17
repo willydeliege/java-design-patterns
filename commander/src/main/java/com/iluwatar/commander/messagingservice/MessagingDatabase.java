@@ -46,15 +46,12 @@
 
 package com.iluwatar.commander.messagingservice;
 
-import java.util.Hashtable;
-import java.util.Map;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.messagingservice.MessagingService.MessageRequest;
+import java.util.Hashtable;
+import java.util.Map;
 
-/**
- * The MessagingDatabase is where the MessageRequest is added.
- */
-
+/** The MessagingDatabase is where the MessageRequest is added. */
 public class MessagingDatabase extends Database<MessageRequest> {
   private final Map<String, MessageRequest> data = new Hashtable<>();
 
@@ -67,5 +64,4 @@ public class MessagingDatabase extends Database<MessageRequest> {
   public MessageRequest get(String requestId) {
     return data.get(requestId);
   }
-
 }

@@ -6,82 +6,99 @@ permalink: /patterns/ambassador/
 categories: Structural
 language: en
 tags:
-  - Decoupling
-  - Cloud distributed
+
+- Decoupling
+- Cloud distributed
+
 ---
 
 ## Intent
 
-Provide a helper service instance on a client and offload common functionality away from a shared resource.
+Provide a helper service instance on a client and offload common functionality away from a shared
+resource.
 
 ## Explanation
 
 Real world example
 
-> A remote service has many clients accessing a function it provides. The service is a legacy application and is 
-> impossible to update. Large numbers of requests from users are causing connectivity issues. New rules for request 
+> A remote service has many clients accessing a function it provides. The service is a legacy
+> application and is
+> impossible to update. Large numbers of requests from users are causing connectivity issues. New
+> rules for request
 > frequency should be implemented along with latency checks and client-side logging.
 
 In plain words
 
-> With the Ambassador pattern, we can implement less-frequent polling from clients along with latency checks and 
+> With the Ambassador pattern, we can implement less-frequent polling from clients along with
+> latency checks and
 > logging.
 
 Microsoft documentation states
 
-> An ambassador service can be thought of as an out-of-process proxy which is co-located with the client. This pattern 
-> can be useful for offloading common client connectivity tasks such as monitoring, logging, routing, 
-> security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with legacy applications, 
-> or other applications that are difficult to modify, in order to extend their networking capabilities. It can also 
+> An ambassador service can be thought of as an out-of-process proxy which is co-located with the
+> client. This pattern
+> can be useful for offloading common client connectivity tasks such as monitoring, logging,
+> routing,
+> security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with
+> legacy applications,
+> or other applications that are difficult to modify, in order to extend their networking
+> capabilities. It can also
 > enable a specialized team to implement those features.
 
 **Programmatic Example**
 
-With the above introduction in mind we will imitate the functionality in this example. We have an interface implemented 
+With the above introduction in mind we will imitate the functionality in this example. We have an
+interface implemented
 by the remote service as well as the ambassador service:
 
 ```java
 interface RemoteServiceInterface {
-    long doRemoteFunction(int value) throws Exception;
+
+  long doRemoteFunction(int value) throws Exception;
 }
 ```
 
 A remote services represented as a singleton.
 
 ```java
+
 @Slf4j
 public class RemoteService implements RemoteServiceInterface {
-    private static RemoteService service = null;
 
-    static synchronized RemoteService getRemoteService() {
-        if (service == null) {
-            service = new RemoteService();
-        }
-        return service;
+  private static RemoteService service = null;
+
+  static synchronized RemoteService getRemoteService() {
+    if (service == null) {
+      service = new RemoteService();
+    }
+    return service;
+  }
+
+  private RemoteService() {
+  }
+
+  @Override
+  public long doRemoteFunction(int value) {
+    long waitTime = (long) Math.floor(Math.random() * 1000);
+
+    try {
+      sleep(waitTime);
+    } catch (InterruptedException e) {
+      LOGGER.error("Thread sleep interrupted", e);
     }
 
-    private RemoteService() {}
-
-    @Override
-    public long doRemoteFunction(int value) {
-        long waitTime = (long) Math.floor(Math.random() * 1000);
-
-        try {
-            sleep(waitTime);
-        } catch (InterruptedException e) {
-            LOGGER.error("Thread sleep interrupted", e);
-        }
-
-        return waitTime >= 200 ? value * 10 : -1;
-    }
+    return waitTime >= 200 ? value * 10 : -1;
+  }
 }
 ```
 
 A service ambassador adding additional features such as logging, latency checks
 
 ```java
+
 @Slf4j
 public class ServiceAmbassador implements RemoteServiceInterface {
+
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
@@ -131,8 +148,10 @@ public class ServiceAmbassador implements RemoteServiceInterface {
 A client has a local service ambassador used to interact with the remote service:
 
 ```java
+
 @Slf4j
 public class Client {
+
   private final ServiceAmbassador serviceAmbassador = new ServiceAmbassador();
 
   long useService(int value) {
@@ -147,6 +166,7 @@ Here are two clients using the service.
 
 ```java
 public class App {
+
   public static void main(String[] args) {
     var host1 = new Client();
     var host2 = new Client();
@@ -159,15 +179,15 @@ public class App {
 Here's the output for running the example:
 
 ```java
-Time taken (ms): 111
-Service result: 120
-Time taken (ms): 931
-Failed to reach remote: (1)
-Time taken (ms): 665
-Failed to reach remote: (2)
-Time taken (ms): 538
-Failed to reach remote: (3)
-Service result: -1
+Time taken(ms):111
+    Service result:120
+    Time taken(ms):931
+    Failed to reach remote:(1)
+    Time taken(ms):665
+    Failed to reach remote:(2)
+    Time taken(ms):538
+    Failed to reach remote:(3)
+    Service result:-1
 ```
 
 ## Class diagram
@@ -176,8 +196,10 @@ Service result: -1
 
 ## Applicability
 
-Ambassador is applicable when working with a legacy remote service which cannot be modified or would be extremely 
-difficult to modify. Connectivity features can be implemented on the client avoiding the need for changes on the remote 
+Ambassador is applicable when working with a legacy remote service which cannot be modified or would
+be extremely
+difficult to modify. Connectivity features can be implemented on the client avoiding the need for
+changes on the remote
 service.
 
 * Ambassador provides a local interface for a remote service.

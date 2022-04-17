@@ -46,24 +46,23 @@
 
 package com.iluwatar.layers.view;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
+import com.iluwatar.layers.dto.CakeInfo;
+import com.iluwatar.layers.dto.CakeLayerInfo;
+import com.iluwatar.layers.dto.CakeToppingInfo;
+import com.iluwatar.layers.service.CakeBakingService;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
-import com.iluwatar.layers.service.CakeBakingService;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Date: 12/15/15 - 10:04 PM
@@ -84,16 +83,15 @@ public class CakeViewImplTest {
     appender.stop();
   }
 
-  /**
-   * Verify if the cake view renders the expected result
-   */
+  /** Verify if the cake view renders the expected result */
   @Test
   void testRender() {
 
-    final var layers = List.of(
-        new CakeLayerInfo("layer1", 1000),
-        new CakeLayerInfo("layer2", 2000),
-        new CakeLayerInfo("layer3", 3000));
+    final var layers =
+        List.of(
+            new CakeLayerInfo("layer1", 1000),
+            new CakeLayerInfo("layer2", 2000),
+            new CakeLayerInfo("layer3", 3000));
 
     final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
     final var cakes = List.of(cake);
@@ -107,7 +105,6 @@ public class CakeViewImplTest {
 
     cakeView.render();
     assertEquals(cake.toString(), appender.getLastMessage());
-
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -132,5 +129,4 @@ public class CakeViewImplTest {
       return log.size();
     }
   }
-
 }

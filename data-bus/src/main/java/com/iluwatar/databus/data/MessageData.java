@@ -46,11 +46,10 @@
 
 package com.iluwatar.databus.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import com.iluwatar.databus.AbstractDataType;
 import com.iluwatar.databus.DataType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * An event raised when a string message is sent.

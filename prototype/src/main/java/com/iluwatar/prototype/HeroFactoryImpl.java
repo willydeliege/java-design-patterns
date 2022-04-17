@@ -48,9 +48,7 @@ package com.iluwatar.prototype;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Concrete factory class.
- */
+/** Concrete factory class. */
 @RequiredArgsConstructor
 public class HeroFactoryImpl implements HeroFactory {
 
@@ -58,25 +56,18 @@ public class HeroFactoryImpl implements HeroFactory {
   private final Warlord warlord;
   private final Beast beast;
 
-  /**
-   * Create mage.
-   */
+  /** Create mage. */
   public Mage createMage() {
     return mage.copy();
   }
 
-  /**
-   * Create warlord.
-   */
+  /** Create warlord. */
   public Warlord createWarlord() {
     return warlord.copy();
   }
 
-  /**
-   * Create beast.
-   */
+  /** Create beast. */
   public Beast createBeast() {
     return beast.copy();
   }
-
 }

@@ -46,9 +46,7 @@
 
 package com.iluwatar.state;
 
-/**
- * State interface.
- */
+/** State interface. */
 public interface State {
 
   void onEnterState();

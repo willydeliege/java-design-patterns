@@ -6,16 +6,21 @@ permalink: /patterns/marker/
 categories: Structural
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
+
 Using empty interfaces as markers to distinguish special treated objects.
 
 ## Class diagram
+
 ![alt text](/etc/MarkerDiagram.png "Marker Interface")
 
 ## Applicability
+
 Use the Marker Interface pattern when
 
 * you want to identify the special objects from normal objects (to treat them differently)

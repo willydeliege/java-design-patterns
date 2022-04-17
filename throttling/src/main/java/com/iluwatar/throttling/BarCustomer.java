@@ -46,19 +46,14 @@
 
 package com.iluwatar.throttling;
 
+import java.security.InvalidParameterException;
 import lombok.Getter;
 
-import java.security.InvalidParameterException;
-
-/**
- * BarCustomer is a tenant with a name and a number of allowed calls per second.
- */
+/** BarCustomer is a tenant with a name and a number of allowed calls per second. */
 public class BarCustomer {
 
-  @Getter
-  private final String name;
-  @Getter
-  private final int allowedCallsPerSecond;
+  @Getter private final String name;
+  @Getter private final int allowedCallsPerSecond;
 
   /**
    * Constructor.

@@ -6,10 +6,13 @@ permalink: /patterns/twin/
 categories: Structural
 language: en
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## Intent
+
 Twin pattern is a design pattern which provides a standard solution to simulate multiple
 inheritance in java
 
@@ -17,26 +20,27 @@ inheritance in java
 
 Real-world example
 
-> Consider a game with a ball that needs features of two types, Game Item, and threads to function 
-> smoothly in the game. We can use two objects, with one object compatible with the first type and 
+> Consider a game with a ball that needs features of two types, Game Item, and threads to function
+> smoothly in the game. We can use two objects, with one object compatible with the first type and
 > the other compatible with the second type.  
-> The pair of objects together can function as one ball in the game. 
+> The pair of objects together can function as one ball in the game.
 
 In plain words
 
-> It provides a way to form two closely coupled sub-classes that can act as a twin class having two ends. 
+> It provides a way to form two closely coupled sub-classes that can act as a twin class having two
+> ends.
 
 Wikipedia says
 
-> In software engineering, the Twin pattern is a software design pattern that allows developers 
-> to model multiple inheritance in programming languages that do not support multiple inheritance. 
+> In software engineering, the Twin pattern is a software design pattern that allows developers
+> to model multiple inheritance in programming languages that do not support multiple inheritance.
 > This pattern avoids many of the problems with multiple inheritance.
 
 **Programmatic Example**
 
-Take our game ball example from above. Consider we have a game in which the ball needs to be both a `GameItem` and `Thread`. 
+Take our game ball example from above. Consider we have a game in which the ball needs to be both
+a `GameItem` and `Thread`.
 First of all, we have the `GameItem` class given below and the `Thread` class.
-
 
 ```java
 
@@ -138,23 +142,25 @@ public class BallThread extends Thread {
 
 ``` 
 
-Now, when we need the ball, we can instantiate objects from both the `BallThread` and `BallItem` as a pair and pass them to its pair object so they can act together as appropriate.
+Now, when we need the ball, we can instantiate objects from both the `BallThread` and `BallItem` as
+a pair and pass them to its pair object so they can act together as appropriate.
 
 ```java
 
-var ballItem = new BallItem();
-var ballThread = new BallThread();
+var ballItem=new BallItem();
+    var ballThread=new BallThread();
 
-ballItem.setTwin(ballThread);
-ballThread.setTwin(ballItem);
+    ballItem.setTwin(ballThread);
+    ballThread.setTwin(ballItem);
 
 ```
 
-
 ## Class diagram
+
 ![alt text](/etc/twin.png "Twin")
 
 ## Applicability
+
 Use the Twin idiom when
 
 * To simulate multiple inheritance in a language that does not support this feature.

@@ -6,14 +6,16 @@ permalink: /patterns/caching/
 categories: Behavioral
 language: en
 tags:
-  - Performance
-  - Cloud distributed
+
+- Performance
+- Cloud distributed
+
 ---
 
 ## Intent
 
-The caching pattern avoids expensive re-acquisition of resources by not releasing them immediately 
-after use. The resources retain their identity, are kept in some fast-access storage, and are 
+The caching pattern avoids expensive re-acquisition of resources by not releasing them immediately
+after use. The resources retain their identity, are kept in some fast-access storage, and are
 re-used to avoid having to acquire them again.
 
 ## Explanation
@@ -23,7 +25,7 @@ Real world example
 > A team is working on a website that provides new homes for abandoned cats. People can post their
 > cats on the website after registering, but all the new posts require approval from one of the
 > site moderators. The user accounts of the site moderators contain a specific flag and the data
-> is stored in a MongoDB database. Checking for the moderator flag each time a post is viewed 
+> is stored in a MongoDB database. Checking for the moderator flag each time a post is viewed
 > becomes expensive and it's a good idea to utilize caching here.
 
 In plain words
@@ -32,26 +34,29 @@ In plain words
 
 Wikipedia says:
 
-> In computing, a cache is a hardware or software component that stores data so that future 
-> requests for that data can be served faster; the data stored in a cache might be the result of 
-> an earlier computation or a copy of data stored elsewhere. A cache hit occurs when the requested 
-> data can be found in a cache, while a cache miss occurs when it cannot. Cache hits are served by 
-> reading data from the cache, which is faster than recomputing a result or reading from a slower 
-> data store; thus, the more requests that can be served from the cache, the faster the system 
+> In computing, a cache is a hardware or software component that stores data so that future
+> requests for that data can be served faster; the data stored in a cache might be the result of
+> an earlier computation or a copy of data stored elsewhere. A cache hit occurs when the requested
+> data can be found in a cache, while a cache miss occurs when it cannot. Cache hits are served by
+> reading data from the cache, which is faster than recomputing a result or reading from a slower
+> data store; thus, the more requests that can be served from the cache, the faster the system
 > performs.
 
 **Programmatic Example**
 
 Let's first look at the data layer of our application. The interesting classes are `UserAccount`
-which is a simple Java object containing the user account details, and `DbManager` interface which handles
+which is a simple Java object containing the user account details, and `DbManager` interface which
+handles
 reading and writing of these objects to/from database.
 
 ```java
+
 @Data
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
 public class UserAccount {
+
   private String userId;
   private String userName;
   private String additionalInfo;
@@ -60,11 +65,15 @@ public class UserAccount {
 public interface DbManager {
 
   void connect();
+
   void disconnect();
-  
+
   UserAccount readFromDb(String userId);
+
   UserAccount writeToDb(UserAccount userAccount);
+
   UserAccount updateDb(UserAccount userAccount);
+
   UserAccount upsertDb(UserAccount userAccount);
 }
 ```
@@ -73,25 +82,27 @@ In the example, we are demonstrating various different caching policies
 
 * Write-through writes data to the cache and DB in a single transaction
 * Write-around writes data immediately into the DB instead of the cache
-* Write-behind writes data into the cache initially whilst the data is only written into the DB 
+* Write-behind writes data into the cache initially whilst the data is only written into the DB
   when the cache is full
-* Cache-aside pushes the responsibility of keeping the data synchronized in both data sources to 
+* Cache-aside pushes the responsibility of keeping the data synchronized in both data sources to
   the application itself
-* Read-through strategy is also included in the aforementioned strategies and it returns data from 
-  the cache to the caller if it exists, otherwise queries from DB and stores it into the cache for 
+* Read-through strategy is also included in the aforementioned strategies and it returns data from
+  the cache to the caller if it exists, otherwise queries from DB and stores it into the cache for
   future use.
-  
-The cache implementation in `LruCache` is a hash table accompanied by a doubly 
-linked-list. The linked-list helps in capturing and maintaining the LRU data in the cache. When 
-data is queried (from the cache), added (to the cache), or updated, the data is moved to the front 
-of the list to depict itself as the most-recently-used data. The LRU data is always at the end of 
+
+The cache implementation in `LruCache` is a hash table accompanied by a doubly
+linked-list. The linked-list helps in capturing and maintaining the LRU data in the cache. When
+data is queried (from the cache), added (to the cache), or updated, the data is moved to the front
+of the list to depict itself as the most-recently-used data. The LRU data is always at the end of
 the list.
 
 ```java
+
 @Slf4j
 public class LruCache {
 
   static class Node {
+
     String userId;
     UserAccount userAccount;
     Node previous;
@@ -102,7 +113,7 @@ public class LruCache {
       this.userAccount = userAccount;
     }
   }
-  
+
   /* ... omitted details ... */
 
   public LruCache(int capacity) {
@@ -142,14 +153,21 @@ public class LruCache {
   public boolean contains(String userId) {
     return cache.containsKey(userId);
   }
-  
+
   public void remove(Node node) { /* ... */ }
+
   public void setHead(Node node) { /* ... */ }
+
   public void invalidate(String userId) { /* ... */ }
+
   public boolean isFull() { /* ... */ }
+
   public UserAccount getLruData() { /* ... */ }
+
   public void clear() { /* ... */ }
+
   public List<UserAccount> getCacheDataInListForm() { /* ... */ }
+
   public void setCapacity(int newCapacity) { /* ... */ }
 }
 ```
@@ -158,6 +176,7 @@ The next layer we are going to look at is `CacheStore` which implements the diff
 strategies.
 
 ```java
+
 @Slf4j
 public class CacheStore {
 
@@ -219,11 +238,12 @@ public class CacheStore {
 
 `AppManager` helps to bridge the gap in communication between the main class and the application's
 back-end. DB connection is initialized through this class. The chosen caching strategy/policy is
-also initialized here. Before the cache can be used, the size of the cache has to be set. Depending 
-on the chosen caching policy, `AppManager` will call the appropriate function in the `CacheStore` 
+also initialized here. Before the cache can be used, the size of the cache has to be set. Depending
+on the chosen caching policy, `AppManager` will call the appropriate function in the `CacheStore`
 class.
 
 ```java
+
 @Slf4j
 public final class AppManager {
 
@@ -243,7 +263,7 @@ public final class AppManager {
   public UserAccount find(final String userId) {
     LOGGER.info("Trying to find {} in cache", userId);
     if (cachingPolicy == CachingPolicy.THROUGH
-            || cachingPolicy == CachingPolicy.AROUND) {
+        || cachingPolicy == CachingPolicy.AROUND) {
       return cacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
       return cacheStore.readThroughWithWriteBackPolicy(userId);
@@ -277,12 +297,13 @@ public final class AppManager {
 Here is what we do in the main class of the application.
 
 ```java
+
 @Slf4j
 public class App {
 
   public static void main(final String[] args) {
     boolean isDbMongo = isDbMongo(args);
-    if(isDbMongo){
+    if (isDbMongo) {
       LOGGER.info("Using the Mongo database engine to run the application.");
     } else {
       LOGGER.info("Using the 'in Memory' database to run the application.");
@@ -327,7 +348,7 @@ public class App {
 
 Use the Caching pattern(s) when
 
-* Repetitious acquisition, initialization, and release of the same resource cause unnecessary 
+* Repetitious acquisition, initialization, and release of the same resource cause unnecessary
   performance overhead.
 
 ## Related patterns

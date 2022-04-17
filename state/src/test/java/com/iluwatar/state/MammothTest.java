@@ -46,19 +46,18 @@
 
 package com.iluwatar.state;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Date: 12/29/15 - 8:27 PM
@@ -106,12 +105,9 @@ public class MammothTest {
     mammoth.observe();
     assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
     assertEquals(5, appender.getLogSize());
-
   }
 
-  /**
-   * Verify if {@link Mammoth#toString()} gives the expected value
-   */
+  /** Verify if {@link Mammoth#toString()} gives the expected value */
   @Test
   void testToString() {
     final var toString = new Mammoth().toString();
@@ -140,5 +136,4 @@ public class MammothTest {
       return log.get(log.size() - 1).getFormattedMessage();
     }
   }
-
 }

@@ -48,9 +48,7 @@ package com.iluwatar.commander;
 
 import lombok.AllArgsConstructor;
 
-/**
- * User class contains details of user who places order.
- */
+/** User class contains details of user who places order. */
 @AllArgsConstructor
 public class User {
   String name;

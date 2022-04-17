@@ -6,31 +6,33 @@ permalink: /patterns/visitor/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Intent
 
-Represent an operation to be performed on the elements of an object structure. Visitor lets you 
+Represent an operation to be performed on the elements of an object structure. Visitor lets you
 define a new operation without changing the classes of the elements on which it operates.
 
 ## Explanation
 
 Real-world example
 
-> Consider a tree structure with army units. Commander has two sergeants under it and each sergeant 
-> has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can 
-> easily create new objects that interact with the commander, sergeants, soldiers, or all of them. 
+> Consider a tree structure with army units. Commander has two sergeants under it and each sergeant
+> has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can
+> easily create new objects that interact with the commander, sergeants, soldiers, or all of them.
 
 In plain words
 
-> Visitor pattern defines operations that can be performed on the nodes of the data structure. 
+> Visitor pattern defines operations that can be performed on the nodes of the data structure.
 
 Wikipedia says
 
-> In object-oriented programming and software engineering, the visitor design pattern is a way of 
-> separating an algorithm from an object structure on which it operates. A practical result of this 
-> separation is the ability to add new operations to existing object structures without modifying 
+> In object-oriented programming and software engineering, the visitor design pattern is a way of
+> separating an algorithm from an object structure on which it operates. A practical result of this
+> separation is the ability to add new operations to existing object structures without modifying
 > the structures.
 
 **Programmatic Example**
@@ -122,6 +124,7 @@ public class Soldier extends Unit {
 Here are then some concrete visitors.
 
 ```java
+
 @Slf4j
 public class CommanderVisitor implements UnitVisitor {
 
@@ -184,8 +187,8 @@ Finally, we can show the power of visitors in action.
 
 ```java
 commander.accept(new SoldierVisitor());
-commander.accept(new SergeantVisitor());
-commander.accept(new CommanderVisitor());
+    commander.accept(new SergeantVisitor());
+    commander.accept(new CommanderVisitor());
 ```
 
 Program output:
@@ -210,9 +213,16 @@ Good to see you commander
 
 Use the Visitor pattern when
 
-* An object structure contains many classes of objects with differing interfaces, and you want to perform operations on these objects that depend on their concrete classes.
-* Many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them.
-* The classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes.
+* An object structure contains many classes of objects with differing interfaces, and you want to
+  perform operations on these objects that depend on their concrete classes.
+* Many distinct and unrelated operations need to be performed on objects in an object structure, and
+  you want to avoid "polluting" their classes with these operations. Visitor lets you keep related
+  operations together by defining them in one class. When the object structure is shared by many
+  applications, use Visitor to put operations in just those applications that need them.
+* The classes defining the object structure rarely change, but you often want to define new
+  operations over the structure. Changing the object structure classes requires redefining the
+  interface to all visitors, which is potentially costly. If the object structure classes change
+  often, then it's probably better to define the operations in those classes.
 
 ## Tutorials
 
@@ -222,9 +232,12 @@ Use the Visitor pattern when
 
 ## Known uses
 
-* [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
-* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html) and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
-* [javax.lang.model.element.Element](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html) and [Element Visitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/ElementVisitor.html)
+* [Apache Wicket](https://github.com/apache/wicket) component tree,
+  see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html)
+  and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
+* [javax.lang.model.element.Element](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html)
+  and [Element Visitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/ElementVisitor.html)
 * [java.nio.file.FileVisitor](http://docs.oracle.com/javase/8/docs/api/java/nio/file/FileVisitor.html)
 
 ## Credits

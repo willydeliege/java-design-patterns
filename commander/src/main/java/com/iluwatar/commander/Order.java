@@ -50,37 +50,20 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Order class holds details of the order.
- */
+/** Order class holds details of the order. */
+public class Order { // can store all transactions ids also
 
-public class Order { //can store all transactions ids also
-
-  enum PaymentStatus {
-    NOT_DONE,
-    TRYING,
-    DONE
-  }
-
-  enum MessageSent {
-    NONE_SENT,
-    PAYMENT_FAIL,
-    PAYMENT_TRYING,
-    PAYMENT_SUCCESSFUL
-  }
-
-  final User user;
-  final String item;
-  public final String id;
-  final float price;
-  final long createdTime;
   private static final SecureRandom RANDOM = new SecureRandom();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Map<String, Boolean> USED_IDS = new HashMap<>();
+  public final String id;
+  final User user;
+  final String item;
+  final float price;
+  final long createdTime;
   PaymentStatus paid;
-  MessageSent messageSent; //to avoid sending error msg on page and text more than once
-  boolean addedToEmployeeHandle; //to avoid creating more to enqueue
-
+  MessageSent messageSent; // to avoid sending error msg on page and text more than once
+  boolean addedToEmployeeHandle; // to avoid creating more to enqueue
   Order(User user, String item, float price) {
     this.createdTime = System.currentTimeMillis();
     this.user = user;
@@ -108,4 +91,16 @@ public class Order { //can store all transactions ids also
     return random.toString();
   }
 
+  enum PaymentStatus {
+    NOT_DONE,
+    TRYING,
+    DONE
+  }
+
+  enum MessageSent {
+    NONE_SENT,
+    PAYMENT_FAIL,
+    PAYMENT_TRYING,
+    PAYMENT_SUCCESSFUL
+  }
 }

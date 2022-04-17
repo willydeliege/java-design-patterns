@@ -49,17 +49,13 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Mage.
- */
+/** Mage. */
 @EqualsAndHashCode
 @NoArgsConstructor
 public abstract class Mage implements Prototype {
 
-  public Mage(Mage source) {
-  }
+  public Mage(Mage source) {}
 
   @Override
   public abstract Mage copy();
-
 }

@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,8 +46,6 @@
 
 package com.iluwatar.bytecode;
 
-import org.junit.jupiter.api.Test;
-
 import static com.iluwatar.bytecode.Instruction.GET_HEALTH;
 import static com.iluwatar.bytecode.Instruction.LITERAL;
 import static com.iluwatar.bytecode.Instruction.PLAY_SOUND;
@@ -58,9 +56,9 @@ import static com.iluwatar.bytecode.Instruction.SPAWN_PARTICLES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * Test for {@link VirtualMachine}
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for {@link VirtualMachine} */
 class VirtualMachineTest {
 
   @Test
@@ -83,7 +81,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // health amount
+    bytecode[3] = 50; // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
 
     var vm = new VirtualMachine();
@@ -99,7 +97,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // agility amount
+    bytecode[3] = 50; // agility amount
     bytecode[4] = SET_AGILITY.getIntValue();
 
     var vm = new VirtualMachine();
@@ -115,7 +113,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // wisdom amount
+    bytecode[3] = 50; // wisdom amount
     bytecode[4] = SET_WISDOM.getIntValue();
 
     var vm = new VirtualMachine();
@@ -131,7 +129,7 @@ class VirtualMachineTest {
     bytecode[0] = LITERAL.getIntValue();
     bytecode[1] = wizardNumber;
     bytecode[2] = LITERAL.getIntValue();
-    bytecode[3] = 50;                        // health amount
+    bytecode[3] = 50; // health amount
     bytecode[4] = SET_HEALTH.getIntValue();
     bytecode[5] = LITERAL.getIntValue();
     bytecode[6] = wizardNumber;

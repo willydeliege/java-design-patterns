@@ -68,6 +68,7 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
 
   /** The observer instance factory */
   private final Supplier<O> factory;
+
   private InMemoryAppender appender;
 
   /**

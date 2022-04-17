@@ -6,7 +6,9 @@ permalink: /patterns/converter/
 categories: Creational
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
@@ -20,8 +22,8 @@ mapping, reducing a boilerplate code to minimum.
 
 Real world example
 
-> In real world applications it is often the case that database layer consists of entities that need 
-> to be mapped into DTOs for use on the business logic layer. Similar mapping is done for 
+> In real world applications it is often the case that database layer consists of entities that need
+> to be mapped into DTOs for use on the business logic layer. Similar mapping is done for
 > potentially huge amount of classes and we need a generic way to achieve this.
 
 In plain words
@@ -30,7 +32,7 @@ In plain words
 
 **Programmatic Example**
 
-We need a generic solution for the mapping problem. To achieve this, let's introduce a generic 
+We need a generic solution for the mapping problem. To achieve this, let's introduce a generic
 converter.
 
 ```java
@@ -85,9 +87,9 @@ public class UserConverter extends Converter<UserDto, User> {
 Now mapping between `User` and `UserDto` becomes trivial.
 
 ```java
-var userConverter = new UserConverter();
-var dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
-var user = userConverter.convertFromDto(dtoUser);
+var userConverter=new UserConverter();
+    var dtoUser=new UserDto("John","Doe",true,"whatever[at]wherever.com");
+    var user=userConverter.convertFromDto(dtoUser);
 ```
 
 ## Class diagram
@@ -98,11 +100,11 @@ var user = userConverter.convertFromDto(dtoUser);
 
 Use the Converter Pattern in the following situations:
 
-* When you have types that logically correspond with each other and you need to convert entities 
-between them.
+* When you have types that logically correspond with each other and you need to convert entities
+  between them.
 * When you want to provide different ways of types conversions depending on the context.
-* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the 
-domain equivalence.
+* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the
+  domain equivalence.
 
 ## Credits
 

@@ -6,8 +6,10 @@ permalink: /patterns/decorator/
 categories: Structural
 language: en
 tags:
- - Gang of Four
- - Extensibility
+
+- Gang of Four
+- Extensibility
+
 ---
 
 ## Also known as
@@ -16,39 +18,42 @@ Wrapper
 
 ## Intent
 
-Attach additional responsibilities to an object dynamically. Decorators provide a flexible 
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible
 alternative to subclassing for extending functionality.
 
 ## Explanation
 
 Real-world example
 
-> There is an angry troll living in the nearby hills. Usually, it goes bare-handed but sometimes it 
-> has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it 
+> There is an angry troll living in the nearby hills. Usually, it goes bare-handed but sometimes it
+> has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it
 > dynamically with a suitable weapon.
 
 In plain words
 
-> Decorator pattern lets you dynamically change the behavior of an object at run time by wrapping 
+> Decorator pattern lets you dynamically change the behavior of an object at run time by wrapping
 > them in an object of a decorator class.
 
 Wikipedia says
 
-> In object-oriented programming, the decorator pattern is a design pattern that allows behavior to 
-> be added to an individual object, either statically or dynamically, without affecting the behavior 
-> of other objects from the same class. The decorator pattern is often useful for adhering to the 
-> Single Responsibility Principle, as it allows functionality to be divided between classes with 
+> In object-oriented programming, the decorator pattern is a design pattern that allows behavior to
+> be added to an individual object, either statically or dynamically, without affecting the behavior
+> of other objects from the same class. The decorator pattern is often useful for adhering to the
+> Single Responsibility Principle, as it allows functionality to be divided between classes with
 > unique areas of concern.
 
 **Programmatic Example**
 
-Let's take the troll example. First of all we have a `SimpleTroll` implementing the `Troll` 
+Let's take the troll example. First of all we have a `SimpleTroll` implementing the `Troll`
 interface:
 
 ```java
 public interface Troll {
+
   void attack();
+
   int getAttackPower();
+
   void fleeBattle();
 }
 
@@ -75,6 +80,7 @@ public class SimpleTroll implements Troll {
 Next, we want to add a club for the troll. We can do it dynamically by using a decorator:
 
 ```java
+
 @Slf4j
 public class ClubbedTroll implements Troll {
 
@@ -107,32 +113,32 @@ Here's the troll in action:
 ```java
 // simple troll
 LOGGER.info("A simple looking troll approaches.");
-var troll = new SimpleTroll();
-troll.attack();
-troll.fleeBattle();
-LOGGER.info("Simple troll power: {}.\n", troll.getAttackPower());
+    var troll=new SimpleTroll();
+    troll.attack();
+    troll.fleeBattle();
+    LOGGER.info("Simple troll power: {}.\n",troll.getAttackPower());
 
 // change the behavior of the simple troll by adding a decorator
-LOGGER.info("A troll with huge club surprises you.");
-var clubbedTroll = new ClubbedTroll(troll);
-clubbedTroll.attack();
-clubbedTroll.fleeBattle();
-LOGGER.info("Clubbed troll power: {}.\n", clubbedTroll.getAttackPower());
+    LOGGER.info("A troll with huge club surprises you.");
+    var clubbedTroll=new ClubbedTroll(troll);
+    clubbedTroll.attack();
+    clubbedTroll.fleeBattle();
+    LOGGER.info("Clubbed troll power: {}.\n",clubbedTroll.getAttackPower());
 ```
 
 Program output:
 
 ```java
 A simple looking troll approaches.
-The troll tries to grab you!
-The troll shrieks in horror and runs away!
-Simple troll power: 10.
+    The troll tries to grab you!
+    The troll shrieks in horror and runs away!
+    Simple troll power:10.
 
-A troll with huge club surprises you.
-The troll tries to grab you!
-The troll swings at you with a club!
-The troll shrieks in horror and runs away!
-Clubbed troll power: 20.
+    A troll with huge club surprises you.
+    The troll tries to grab you!
+    The troll swings at you with a club!
+    The troll shrieks in horror and runs away!
+    Clubbed troll power:20.
 ```
 
 ## Class diagram
@@ -143,12 +149,12 @@ Clubbed troll power: 20.
 
 Decorator is used to:
 
-* Add responsibilities to individual objects dynamically and transparently, that is, without 
-affecting other objects.
+* Add responsibilities to individual objects dynamically and transparently, that is, without
+  affecting other objects.
 * For responsibilities that can be withdrawn.
-* When extension by subclassing is impractical. Sometimes a large number of independent extensions 
-are possible and would produce an explosion of subclasses to support every combination. Or a class 
-definition may be hidden or otherwise unavailable for subclassing.
+* When extension by subclassing is impractical. Sometimes a large number of independent extensions
+  are possible and would produce an explosion of subclasses to support every combination. Or a class
+  definition may be hidden or otherwise unavailable for subclassing.
 
 ## Tutorials
 
@@ -156,12 +162,13 @@ definition may be hidden or otherwise unavailable for subclassing.
 
 ## Known uses
 
- * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
- [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
- * [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#synchronizedCollection-java.util.Collection-)
- * [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#unmodifiableCollection-java.util.Collection-)
- * [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#checkedCollection-java.util.Collection-java.lang.Class-)
-
+* [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+  , [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
+  [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html)
+  and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
+* [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#synchronizedCollection-java.util.Collection-)
+* [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#unmodifiableCollection-java.util.Collection-)
+* [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#checkedCollection-java.util.Collection-java.lang.Class-)
 
 ## Credits
 

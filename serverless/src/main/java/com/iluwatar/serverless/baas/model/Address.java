@@ -46,18 +46,15 @@
 
 package com.iluwatar.serverless.baas.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
-
-/**
- * Address class Created by dheeraj.mummarareddy on 3/4/18.
- */
+/** Address class Created by dheeraj.mummarareddy on 3/4/18. */
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -81,5 +78,4 @@ public class Address implements Serializable {
 
   @DynamoDBAttribute(attributeName = "zipCode")
   private String zipCode;
-
 }

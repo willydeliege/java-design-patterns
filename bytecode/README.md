@@ -6,7 +6,9 @@ permalink: /patterns/bytecode/
 categories: Behavioral
 language: en
 tags:
- - Game programming
+
+- Game programming
+
 ---
 
 ## Intent
@@ -17,21 +19,21 @@ Allows encoding behavior as instructions for a virtual machine.
 
 Real world example
 
-> A team is working on a new game where wizards battle against each other. The wizard behavior 
-> needs to be carefully adjusted and iterated hundreds of times through playtesting. It's not 
-> optimal to ask the programmer to make changes each time the game designer wants to vary the 
+> A team is working on a new game where wizards battle against each other. The wizard behavior
+> needs to be carefully adjusted and iterated hundreds of times through playtesting. It's not
+> optimal to ask the programmer to make changes each time the game designer wants to vary the
 > behavior, so the wizard behavior is implemented as a data-driven virtual machine.
 
 In plain words
 
 > Bytecode pattern enables behavior driven by data instead of code.
 
-[Gameprogrammingpatterns.com](https://gameprogrammingpatterns.com/bytecode.html) documentation 
+[Gameprogrammingpatterns.com](https://gameprogrammingpatterns.com/bytecode.html) documentation
 states:
 
-> An instruction set defines the low-level operations that can be performed. A series of 
-> instructions is encoded as a sequence of bytes. A virtual machine executes these instructions one 
-> at a time, using a stack for intermediate values. By combining instructions, complex high-level 
+> An instruction set defines the low-level operations that can be performed. A series of
+> instructions is encoded as a sequence of bytes. A virtual machine executes these instructions one
+> at a time, using a stack for intermediate values. By combining instructions, complex high-level
 > behavior can be defined.
 
 **Programmatic Example**
@@ -39,6 +41,7 @@ states:
 One of the most important game objects is the `Wizard` class.
 
 ```java
+
 @AllArgsConstructor
 @Setter
 @Getter
@@ -63,11 +66,12 @@ public class Wizard {
 }
 ```
 
-Next, we show the available instructions for our virtual machine. Each of the instructions has its 
+Next, we show the available instructions for our virtual machine. Each of the instructions has its
 own semantics on how it operates with the stack data. For example, the ADD instruction takes the top
 two items from the stack, adds them together and pushes the result to the stack.
 
 ```java
+
 @AllArgsConstructor
 @Getter
 public enum Instruction {
@@ -91,6 +95,7 @@ At the heart of our example is the `VirtualMachine` class. It takes instructions
 executes them to provide the game object behavior.
 
 ```java
+
 @Getter
 @Slf4j
 public class VirtualMachine {
@@ -184,11 +189,11 @@ public class VirtualMachine {
 Now we can show the full example utilizing the virtual machine.
 
 ```java
-  public static void main(String[] args) {
+  public static void main(String[]args){
 
-    var vm = new VirtualMachine(
-        new Wizard(45, 7, 11, 0, 0),
-        new Wizard(36, 18, 8, 0, 0));
+    var vm=new VirtualMachine(
+    new Wizard(45,7,11,0,0),
+    new Wizard(36,18,8,0,0));
 
     vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
     vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
@@ -202,7 +207,7 @@ Now we can show the full example utilizing the virtual machine.
     vm.execute(InstructionConverterUtil.convertToByteCode("DIVIDE"));
     vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
     vm.execute(InstructionConverterUtil.convertToByteCode("SET_HEALTH"));
-  }
+    }
 ```
 
 Here is the console output.
@@ -233,7 +238,8 @@ game’s implementation language isn’t a good fit because:
 
 * It’s too low-level, making it tedious or error-prone to program in.
 * Iterating on it takes too long due to slow compile times or other tooling issues.
-* It has too much trust. If you want to ensure the behavior being defined can’t break the game, you need to sandbox it from the rest of the codebase.
+* It has too much trust. If you want to ensure the behavior being defined can’t break the game, you
+  need to sandbox it from the rest of the codebase.
 
 ## Related patterns
 

@@ -46,10 +46,12 @@
 
 package com.iluwatar.serverless.baas.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -57,24 +59,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iluwatar.serverless.baas.model.Address;
 import com.iluwatar.serverless.baas.model.Person;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-/**
- * Unit tests for SavePersonApiHandler Created by dheeraj.mummar on 3/4/18.
- */
+/** Unit tests for SavePersonApiHandler Created by dheeraj.mummar on 3/4/18. */
 class SavePersonApiHandlerTest {
 
-  private SavePersonApiHandler savePersonApiHandler;
-
-  @Mock
-  private DynamoDBMapper dynamoDbMapper;
-
   private final ObjectMapper objectMapper = new ObjectMapper();
+  private SavePersonApiHandler savePersonApiHandler;
+  @Mock private DynamoDBMapper dynamoDbMapper;
 
   @BeforeEach
   public void setUp() {

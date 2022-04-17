@@ -50,9 +50,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * Immutable value object representing lottery ticket.
- */
+/** Immutable value object representing lottery ticket. */
 @Getter
 @ToString
 @RequiredArgsConstructor
@@ -96,5 +94,4 @@ public class LotteryTicket {
       return playerDetails.equals(other.playerDetails);
     }
   }
-
 }

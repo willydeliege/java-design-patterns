@@ -46,13 +46,10 @@
 
 package com.iluwatar.layers.view;
 
+import com.iluwatar.layers.service.CakeBakingService;
 import lombok.extern.slf4j.Slf4j;
 
-import com.iluwatar.layers.service.CakeBakingService;
-
-/**
- * View implementation for displaying cakes.
- */
+/** View implementation for displaying cakes. */
 @Slf4j
 public class CakeViewImpl implements View {
 

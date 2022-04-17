@@ -2,7 +2,8 @@
 <checkstyle version="8.19">
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/servant/src/main/java/com/iluwatar/servant/App.java">
-    <error line="51" message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>

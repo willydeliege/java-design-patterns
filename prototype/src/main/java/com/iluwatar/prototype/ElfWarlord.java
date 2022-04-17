@@ -48,9 +48,7 @@ package com.iluwatar.prototype;
 
 import lombok.EqualsAndHashCode;
 
-/**
- * ElfWarlord.
- */
+/** ElfWarlord. */
 @EqualsAndHashCode
 public class ElfWarlord extends Warlord {
 

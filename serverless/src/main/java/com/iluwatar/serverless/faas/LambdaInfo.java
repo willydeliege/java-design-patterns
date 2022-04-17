@@ -46,16 +46,13 @@
 
 package com.iluwatar.serverless.faas;
 
+import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-
-/**
- * Lambda context information.
- */
+/** Lambda context information. */
 @ToString
 @EqualsAndHashCode
 @Setter
@@ -70,5 +67,4 @@ public class LambdaInfo implements Serializable {
   private String functionName;
   private String functionVersion;
   private Integer memoryLimitInMb;
-
 }

@@ -6,8 +6,10 @@ permalink: /patterns/proxy/
 categories: Structural
 language: en
 tags:
- - Gang Of Four
- - Decoupling
+
+- Gang Of Four
+- Decoupling
+
 ---
 
 ## Also known as
@@ -22,8 +24,8 @@ Provide a surrogate or placeholder for another object to control access to it.
 
 Real-world example
 
-> Imagine a tower where the local wizards go to study their spells. The ivory tower can only be 
-> accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy 
+> Imagine a tower where the local wizards go to study their spells. The ivory tower can only be
+> accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy
 > represents the functionality of the tower and adds access control to it.
 
 In plain words
@@ -32,16 +34,16 @@ In plain words
 
 Wikipedia says
 
-> A proxy, in its most general form, is a class functioning as an interface to something else. 
-> A proxy is a wrapper or agent object that is being called by the client to access the real serving 
-> object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can 
-> provide additional logic. In the proxy extra functionality can be provided, for example caching 
-> when operations on the real object are resource intensive, or checking preconditions before 
+> A proxy, in its most general form, is a class functioning as an interface to something else.
+> A proxy is a wrapper or agent object that is being called by the client to access the real serving
+> object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can
+> provide additional logic. In the proxy extra functionality can be provided, for example caching
+> when operations on the real object are resource intensive, or checking preconditions before
 > operations on the real object are invoked.
 
 **Programmatic Example**
 
-Taking our wizard tower example from above. Firstly we have the `WizardTower` interface and the 
+Taking our wizard tower example from above. Firstly we have the `WizardTower` interface and the
 `IvoryTower` class.
 
 ```java
@@ -81,6 +83,7 @@ public class Wizard {
 Then we have the `WizardTowerProxy` to add access control to `WizardTower`.
 
 ```java
+
 @Slf4j
 public class WizardTowerProxy implements WizardTower {
 
@@ -109,12 +112,12 @@ public class WizardTowerProxy implements WizardTower {
 And here is the tower entering scenario.
 
 ```java
-var proxy = new WizardTowerProxy(new IvoryTower());
-proxy.enter(new Wizard("Red wizard"));
-proxy.enter(new Wizard("White wizard"));
-proxy.enter(new Wizard("Black wizard"));
-proxy.enter(new Wizard("Green wizard"));
-proxy.enter(new Wizard("Brown wizard"));
+var proxy=new WizardTowerProxy(new IvoryTower());
+    proxy.enter(new Wizard("Red wizard"));
+    proxy.enter(new Wizard("White wizard"));
+    proxy.enter(new Wizard("Black wizard"));
+    proxy.enter(new Wizard("Green wizard"));
+    proxy.enter(new Wizard("Brown wizard"));
 ```
 
 Program output:
@@ -133,14 +136,14 @@ Brown wizard is not allowed to enter!
 
 ## Applicability
 
-Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an 
-object than a simple pointer. Here are several common situations in which the Proxy pattern is 
+Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an
+object than a simple pointer. Here are several common situations in which the Proxy pattern is
 applicable.
 
 * Remote proxy provides a local representative for an object in a different address space.
 * Virtual proxy creates expensive objects on demand.
-* Protection proxy controls access to the original object. Protection proxies are useful when 
-objects should have different access rights.
+* Protection proxy controls access to the original object. Protection proxies are useful when
+  objects should have different access rights.
 
 Typically, the proxy pattern is used to
 
@@ -158,8 +161,8 @@ Typically, the proxy pattern is used to
 
 * [java.lang.reflect.Proxy](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html)
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
-* Mocking frameworks [Mockito](https://site.mockito.org/), 
-[Powermock](https://powermock.github.io/), [EasyMock](https://easymock.org/)
+* Mocking frameworks [Mockito](https://site.mockito.org/),
+  [Powermock](https://powermock.github.io/), [EasyMock](https://easymock.org/)
 
 ## Related patterns
 

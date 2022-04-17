@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -61,10 +61,10 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * This demo class represent how {@link com.iluwatar.filterer.domain.Filterer} pattern is used to
  * filter container-like objects to return filtered versions of themselves. The container like
- * objects are systems that are aware of threats that they can be vulnerable to. We would like
- * to have a way to create copy of different system objects but with filtered threats.
- * The thing is to keep it simple if we add new subtype of {@link Threat}
- * (for example {@link ProbableThreat}) - we still need to be able to filter by it's properties.
+ * objects are systems that are aware of threats that they can be vulnerable to. We would like to
+ * have a way to create copy of different system objects but with filtered threats. The thing is to
+ * keep it simple if we add new subtype of {@link Threat} (for example {@link ProbableThreat}) - we
+ * still need to be able to filter by it's properties.
  */
 @Slf4j
 public class App {
@@ -77,8 +77,8 @@ public class App {
   /**
    * Demonstrates how to filter {@link com.iluwatar.filterer.threat.ProbabilisticThreatAwareSystem}
    * based on probability property. The @{@link com.iluwatar.filterer.domain.Filterer#by(Predicate)}
-   * method is able to use {@link com.iluwatar.filterer.threat.ProbableThreat}
-   * as predicate argument.
+   * method is able to use {@link com.iluwatar.filterer.threat.ProbableThreat} as predicate
+   * argument.
    */
   private static void filteringSimpleProbableThreats() {
     LOGGER.info("### Filtering ProbabilisticThreatAwareSystem by probability ###");
@@ -91,20 +91,22 @@ public class App {
     var probabilisticThreatAwareSystem =
         new SimpleProbabilisticThreatAwareSystem("Sys-1", probableThreats);
 
-    LOGGER.info("Filtering ProbabilisticThreatAwareSystem. Initial : "
-        + probabilisticThreatAwareSystem);
+    LOGGER.info(
+        "Filtering ProbabilisticThreatAwareSystem. Initial : " + probabilisticThreatAwareSystem);
 
-    //Filtering using filterer
-    var filteredThreatAwareSystem = probabilisticThreatAwareSystem.filtered()
-        .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+    // Filtering using filterer
+    var filteredThreatAwareSystem =
+        probabilisticThreatAwareSystem
+            .filtered()
+            .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
 
     LOGGER.info("Filtered by probability = 0.99 : " + filteredThreatAwareSystem);
   }
 
   /**
-   * Demonstrates how to filter {@link ThreatAwareSystem} based on startingOffset property
-   * of {@link SimpleThreat}. The @{@link com.iluwatar.filterer.domain.Filterer#by(Predicate)}
-   * method is able to use {@link Threat} as predicate argument.
+   * Demonstrates how to filter {@link ThreatAwareSystem} based on startingOffset property of {@link
+   * SimpleThreat}. The @{@link com.iluwatar.filterer.domain.Filterer#by(Predicate)} method is able
+   * to use {@link Threat} as predicate argument.
    */
   private static void filteringSimpleThreats() {
     LOGGER.info("### Filtering ThreatAwareSystem by ThreatType ###");
@@ -117,11 +119,10 @@ public class App {
 
     LOGGER.info("Filtering ThreatAwareSystem. Initial : " + threatAwareSystem);
 
-    //Filtering using Filterer
-    var rootkitThreatAwareSystem = threatAwareSystem.filtered()
-        .by(threat -> threat.type() == ThreatType.ROOTKIT);
+    // Filtering using Filterer
+    var rootkitThreatAwareSystem =
+        threatAwareSystem.filtered().by(threat -> threat.type() == ThreatType.ROOTKIT);
 
     LOGGER.info("Filtered by threatType = ROOTKIT : " + rootkitThreatAwareSystem);
   }
-
 }

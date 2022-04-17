@@ -70,5 +70,4 @@ public class App {
     loadBalancer1.serverRequest(new Request("Hello"));
     loadBalancer2.serverRequest(new Request("Hello World"));
   }
-
 }

@@ -46,11 +46,11 @@
 
 package com.iluwatar.commander;
 
+import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 
 /**
  * Service class is an abstract class extended by all services in this example. They all have a
@@ -60,14 +60,13 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
  * for the transactions/requests, which are then sent back. These could be stored by the {@link
  * Commander} class in a separate database for reference (though we are not doing that here).
  */
-
 public abstract class Service {
 
-  protected final Database database;
-  public ArrayList<Exception> exceptionsList;
   private static final SecureRandom RANDOM = new SecureRandom();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<>();
+  protected final Database database;
+  public ArrayList<Exception> exceptionsList;
 
   protected Service(Database db, Exception... exc) {
     this.database = db;

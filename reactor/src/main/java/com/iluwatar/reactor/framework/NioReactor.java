@@ -46,8 +46,6 @@
 
 package com.iluwatar.reactor.framework;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -57,6 +55,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class acts as Synchronous Event De-multiplexer and Initiation Dispatcher of Reactor pattern.
@@ -65,9 +64,8 @@ import java.util.concurrent.TimeUnit;
  * synchronously de-multiplexes the event which can be any of read, write or accept, and dispatches
  * the event to the appropriate {@link ChannelHandler} using the {@link Dispatcher}.
  *
- * <p>Implementation: A NIO reactor runs in its own thread when it is started using {@link
- * #start()} method. {@link NioReactor} uses {@link Selector} for realizing Synchronous Event
- * De-multiplexing.
+ * <p>Implementation: A NIO reactor runs in its own thread when it is started using {@link #start()}
+ * method. {@link NioReactor} uses {@link Selector} for realizing Synchronous Event De-multiplexing.
  *
  * <p>NOTE: This is one of the ways to implement NIO reactor and it does not take care of all
  * possible edge cases which are required in a real application. This implementation is meant to
@@ -85,6 +83,7 @@ public class NioReactor {
    * the command and executes it in next iteration.
    */
   private final Queue<Runnable> pendingCommands = new ConcurrentLinkedQueue<>();
+
   private final ExecutorService reactorMain = Executors.newSingleThreadExecutor();
 
   /**
@@ -99,25 +98,29 @@ public class NioReactor {
     this.selector = Selector.open();
   }
 
-  /**
-   * Starts the reactor event loop in a new thread.
-   */
+  private static void onChannelWritable(SelectionKey key) throws IOException {
+    var channel = (AbstractNioChannel) key.attachment();
+    channel.flush(key);
+  }
+
+  /** Starts the reactor event loop in a new thread. */
   public void start() {
-    reactorMain.execute(() -> {
-      try {
-        LOGGER.info("Reactor started, waiting for events...");
-        eventLoop();
-      } catch (IOException e) {
-        LOGGER.error("exception in event loop", e);
-      }
-    });
+    reactorMain.execute(
+        () -> {
+          try {
+            LOGGER.info("Reactor started, waiting for events...");
+            eventLoop();
+          } catch (IOException e) {
+            LOGGER.error("exception in event loop", e);
+          }
+        });
   }
 
   /**
    * Stops the reactor and related resources such as dispatcher.
    *
    * @throws InterruptedException if interrupted while stopping the reactor.
-   * @throws IOException          if any I/O error occurs.
+   * @throws IOException if any I/O error occurs.
    */
   public void stop() throws InterruptedException, IOException {
     reactorMain.shutdown();
@@ -135,7 +138,7 @@ public class NioReactor {
    * AbstractNioChannel#getInterestedOps()} to know about the interested operation of this channel.
    *
    * @param channel a new channel on which reactor will wait for events. The channel must be bound
-   *                prior to being registered.
+   *     prior to being registered.
    * @return this
    * @throws IOException if any I/O error occurs.
    */
@@ -199,11 +202,6 @@ public class NioReactor {
     }
   }
 
-  private static void onChannelWritable(SelectionKey key) throws IOException {
-    var channel = (AbstractNioChannel) key.attachment();
-    channel.flush(key);
-  }
-
   private void onChannelReadable(SelectionKey key) {
     try {
       // reads the incoming data in context of reactor main loop. Can this be improved?
@@ -240,7 +238,7 @@ public class NioReactor {
    * <p>This is a non-blocking method and does not guarantee that the operations have changed when
    * this method returns.
    *
-   * @param key           the key for which operations have to be changed.
+   * @param key the key for which operations have to be changed.
    * @param interestedOps the new interest operations.
    */
   public void changeOps(SelectionKey key, int interestedOps) {
@@ -248,9 +246,7 @@ public class NioReactor {
     selector.wakeup();
   }
 
-  /**
-   * A command that changes the interested operations of the key provided.
-   */
+  /** A command that changes the interested operations of the key provided. */
   class ChangeKeyOpsCommand implements Runnable {
     private final SelectionKey key;
     private final int interestedOps;

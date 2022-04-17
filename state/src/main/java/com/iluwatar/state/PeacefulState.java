@@ -48,9 +48,7 @@ package com.iluwatar.state;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Peaceful state.
- */
+/** Peaceful state. */
 @Slf4j
 public class PeacefulState implements State {
 
@@ -69,5 +67,4 @@ public class PeacefulState implements State {
   public void onEnterState() {
     LOGGER.info("{} calms down.", mammoth);
   }
-
 }

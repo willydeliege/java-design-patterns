@@ -46,10 +46,15 @@
 
 package com.iluwatar.twin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -57,12 +62,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 /**
  * Date: 12/30/15 - 18:44 PM
@@ -91,12 +90,14 @@ public class BallItemTest {
 
     final var inOrder = inOrder(ballThread);
 
-    IntStream.range(0, 10).forEach(i -> {
-      ballItem.click();
-      inOrder.verify(ballThread).suspendMe();
-      ballItem.click();
-      inOrder.verify(ballThread).resumeMe();
-    });
+    IntStream.range(0, 10)
+        .forEach(
+            i -> {
+              ballItem.click();
+              inOrder.verify(ballThread).suspendMe();
+              ballItem.click();
+              inOrder.verify(ballThread).resumeMe();
+            });
 
     inOrder.verifyNoMoreInteractions();
   }
@@ -128,9 +129,7 @@ public class BallItemTest {
     assertEquals(1, appender.getLogSize());
   }
 
-  /**
-   * Logging Appender Implementation
-   */
+  /** Logging Appender Implementation */
   public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
@@ -152,5 +151,4 @@ public class BallItemTest {
       return log.size();
     }
   }
-
 }

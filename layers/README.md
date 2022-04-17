@@ -7,32 +7,34 @@ pumlformat: svg
 categories: Architectural
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
 
-Layers is an architectural pattern where software responsibilities are divided among the different 
+Layers is an architectural pattern where software responsibilities are divided among the different
 layers of the application.
 
 ## Explanation
 
 Real world example
 
-> Consider a web site displaying decorated cakes for weddings and such. Instead of the web page 
-> directly reaching into the database, it relies on a service to deliver this information. The 
+> Consider a web site displaying decorated cakes for weddings and such. Instead of the web page
+> directly reaching into the database, it relies on a service to deliver this information. The
 > service then queries the data layer to assimilate the needed information.
 
 In plain words
 
-> With Layers architectural pattern different concerns reside on separate layers. View layer is 
-> interested only in rendering, service layer assembles the requested data from various sources, and 
+> With Layers architectural pattern different concerns reside on separate layers. View layer is
+> interested only in rendering, service layer assembles the requested data from various sources, and
 > data layer gets the bits from the data storage.
 
 Wikipedia says
 
-> In software engineering, multitier architecture (often referred to as n-tier architecture) or 
-> multilayered architecture is a client–server architecture in which presentation, application 
+> In software engineering, multitier architecture (often referred to as n-tier architecture) or
+> multilayered architecture is a client–server architecture in which presentation, application
 > processing, and data management functions are physically separated.
 
 **Programmatic Example**
@@ -40,6 +42,7 @@ Wikipedia says
 On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
 
 ```java
+
 @Entity
 public class Cake {
 

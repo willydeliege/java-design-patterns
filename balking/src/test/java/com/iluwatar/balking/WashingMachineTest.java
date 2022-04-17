@@ -46,14 +46,12 @@
 
 package com.iluwatar.balking;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Tests for {@link WashingMachine}
- */
+/** Tests for {@link WashingMachine} */
 class WashingMachineTest {
 
   private final FakeDelayProvider fakeDelayProvider = new FakeDelayProvider();

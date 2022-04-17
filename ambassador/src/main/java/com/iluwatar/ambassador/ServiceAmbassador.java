@@ -46,10 +46,10 @@
 
 package com.iluwatar.ambassador;
 
-import lombok.extern.slf4j.Slf4j;
-
 import static com.iluwatar.ambassador.RemoteServiceStatus.FAILURE;
 import static java.lang.Thread.sleep;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ServiceAmbassador provides an interface for a ({@link Client}) to access ({@link RemoteService}).
@@ -62,8 +62,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
-  ServiceAmbassador() {
-  }
+  ServiceAmbassador() {}
 
   @Override
   public long doRemoteFunction(int value) {

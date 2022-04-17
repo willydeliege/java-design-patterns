@@ -46,16 +46,16 @@
 
 package com.iluwatar.databus.members;
 
-import java.time.LocalDateTime;
-import java.time.Month;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import com.iluwatar.databus.DataBus;
 import com.iluwatar.databus.data.MessageData;
 import com.iluwatar.databus.data.StartingData;
 import com.iluwatar.databus.data.StoppingData;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import java.time.LocalDateTime;
+import java.time.Month;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link StatusMember}.
@@ -66,39 +66,38 @@ class StatusMemberTest {
 
   @Test
   void statusRecordsTheStartTime() {
-    //given
+    // given
     final var startTime = LocalDateTime.of(2017, Month.APRIL, 1, 19, 9);
     final var startingData = new StartingData(startTime);
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(startingData);
-    //then
+    // then
     assertEquals(startTime, statusMember.getStarted());
   }
 
   @Test
   void statusRecordsTheStopTime() {
-    //given
+    // given
     final var stop = LocalDateTime.of(2017, Month.APRIL, 1, 19, 12);
     final var stoppingData = new StoppingData(stop);
     stoppingData.setDataBus(DataBus.getInstance());
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(stoppingData);
-    //then
+    // then
     assertEquals(stop, statusMember.getStopped());
   }
 
   @Test
   void statusIgnoresMessageData() {
-    //given
+    // given
     final var messageData = new MessageData("message");
     final var statusMember = new StatusMember(1);
-    //when
+    // when
     statusMember.accept(messageData);
-    //then
+    // then
     assertNull(statusMember.getStarted());
     assertNull(statusMember.getStopped());
   }
-
 }

@@ -48,9 +48,7 @@ package com.iluwatar.visitor;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SergeantVisitor.
- */
+/** SergeantVisitor. */
 @Slf4j
 public class SergeantVisitor implements UnitVisitor {
 

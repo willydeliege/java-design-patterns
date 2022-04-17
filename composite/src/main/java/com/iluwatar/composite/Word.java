@@ -48,20 +48,17 @@ package com.iluwatar.composite;
 
 import java.util.List;
 
-/**
- * Word.
- */
+/** Word. */
 public class Word extends LetterComposite {
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Word(List<Letter> letters) {
     letters.forEach(this::add);
   }
 
   /**
    * Constructor.
+   *
    * @param letters to include
    */
   public Word(char... letters) {

@@ -56,15 +56,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- * Cake entity.
- */
+/** Cake entity. */
 @Entity
 public class Cake {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   @OneToOne(cascade = CascadeType.REMOVE)
   private CakeTopping topping;

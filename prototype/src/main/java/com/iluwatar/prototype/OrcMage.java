@@ -49,9 +49,7 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-/**
- * OrcMage.
- */
+/** OrcMage. */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class OrcMage extends Mage {
@@ -72,5 +70,4 @@ public class OrcMage extends Mage {
   public String toString() {
     return "Orcish mage attacks with " + weapon;
   }
-
 }

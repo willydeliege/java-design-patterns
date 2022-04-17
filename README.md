@@ -15,7 +15,12 @@
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md)
+Read in different language : [**zh**](localization/zh/README.md), [**
+ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**
+tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**
+es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**
+id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**
+de**](localization/de/README.md), [**ja**](localization/ja/README.md)
 
 <br/>
 
@@ -52,9 +57,10 @@ Once you are familiar with these concepts you can start drilling down into the
 [available design patterns](https://java-design-patterns.com/patterns/) by any
 of the following approaches
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+- Search for a specific pattern by name. Can't find one? Please report a new
+  pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
+- Using tags such as `Performance`, `Gang of Four` or `Data access`.
+- Using pattern categories, `Creational`, `Behavioral`, and others.
 
 Hopefully, you find the object-oriented solutions presented on this site useful
 in your architectures and have as much fun learning them as we had while developing them.
@@ -63,7 +69,8 @@ in your architectures and have as much fun learning them as we had while develop
 
 If you are willing to contribute to the project you will find the relevant information in
 our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+you and answer your questions in
+the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # License
 

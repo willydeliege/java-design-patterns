@@ -46,17 +46,17 @@
 
 package com.iluwatar.mute;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mute pattern is utilized when we need to suppress an exception due to an API flaw or in situation
  * when all we can do to handle the exception is to log it. This pattern should not be used
  * everywhere. It is very important to logically handle the exceptions in a system, but some
  * situations like the ones described above require this pattern, so that we don't need to repeat
+ *
  * <pre>
  * <code>
  *   try {
@@ -65,7 +65,9 @@ import java.util.Optional;
  *     // ignore by logging or throw error if unexpected exception occurs
  *   }
  * </code>
- * </pre> every time we need to ignore an exception.
+ * </pre>
+ *
+ * every time we need to ignore an exception.
  */
 @Slf4j
 public class App {

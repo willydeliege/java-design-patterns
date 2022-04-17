@@ -6,12 +6,16 @@ permalink: /patterns/registry/
 categories: Creational
 language: en
 tags:
- - Instantiation
+
+- Instantiation
+
 ---
 
 ## Intent
-Stores the objects of a single class and provide a global point of access to them. 
-Similar to Multiton pattern, only difference is that in a registry there is no restriction on the number of objects.
+
+Stores the objects of a single class and provide a global point of access to them.
+Similar to Multiton pattern, only difference is that in a registry there is no restriction on the
+number of objects.
 
 ## Explanation
 
@@ -45,6 +49,7 @@ public class Customer {
 ```
 
 This registry of the `Customer` objects is `CustomerRegistry`
+
 ```java
 public final class CustomerRegistry {
 
@@ -72,16 +77,22 @@ public final class CustomerRegistry {
 ```
 
 ## Class diagram
+
 ![Registry](./etc/registry.png)
 
 ## Applicability
-Use Registry pattern when 
 
-* client wants reference of some object, so client can lookup for that object in the object's registry.
+Use Registry pattern when
+
+* client wants reference of some object, so client can lookup for that object in the object's
+  registry.
 
 ## Consequences
-Large number of bulky objects added to registry would result in a lot of memory consumption as objects in the registry are not garbage collected.
+
+Large number of bulky objects added to registry would result in a lot of memory consumption as
+objects in the registry are not garbage collected.
 
 ## Credits
+
 * https://www.martinfowler.com/eaaCatalog/registry.html
 * https://wiki.c2.com/?RegistryPattern

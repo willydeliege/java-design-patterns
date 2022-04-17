@@ -23,23 +23,16 @@
 
 package com.iluwatar.caching.database;
 
+import com.iluwatar.caching.UserAccount;
 import java.util.HashMap;
 import java.util.Map;
-import com.iluwatar.caching.UserAccount;
 
-/**
- * Implementation of DatabaseManager.
- * implements base methods to work with hashMap as database.
- */
+/** Implementation of DatabaseManager. implements base methods to work with hashMap as database. */
 public class VirtualDb implements DbManager {
-  /**
-   * Virtual DataBase.
-   */
+  /** Virtual DataBase. */
   private Map<String, UserAccount> db;
 
-  /**
-   * Creates new HashMap.
-   */
+  /** Creates new HashMap. */
   @Override
   public void connect() {
     db = new HashMap<>();

@@ -36,7 +36,8 @@
       </g>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="2" x2="227" y1="84" y2="84"/>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="2" x2="227" y1="90" y2="90"/>
-      <rect fill="url(#greyGradient)" height="80" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1" width="225"
+      <rect fill="url(#greyGradient)" height="80" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1"
+        width="225"
         x="2" y="42"/>
       <text fill="#033656" font-style="normal" font-weight="bold" text-anchor="middle" x="115"
         y="60">App
@@ -90,7 +91,8 @@
       </g>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="272" x2="484" y1="504" y2="504"/>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="272" x2="484" y1="548" y2="548"/>
-      <rect fill="url(#greyGradient)" height="171" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1" width="212"
+      <rect fill="url(#greyGradient)" height="171" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1"
+        width="212"
         x="272" y="462"/>
       <text fill="#033656" font-style="normal" font-weight="bold" text-anchor="middle" x="378"
         y="480">King
@@ -151,7 +153,8 @@
       </g>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="512" x2="724" y1="504" y2="504"/>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="512" x2="724" y1="548" y2="548"/>
-      <rect fill="url(#greyGradient)" height="191" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1" width="212"
+      <rect fill="url(#greyGradient)" height="191" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1"
+        width="212"
         x="512" y="462"/>
       <text fill="#033656" font-style="normal" font-weight="bold" text-anchor="middle" x="618"
         y="480">Queen
@@ -193,9 +196,11 @@
 
       </g>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="392" x2="585" y1="312" y2="312"/>
-      <rect fill="url(#greyGradient)" height="150" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1" width="193"
+      <rect fill="url(#greyGradient)" height="150" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1"
+        width="193"
         x="392" y="252"/>
-      <text fill="#696969" font-size="12" font-style="normal" font-weight="bold" text-anchor="middle"
+      <text fill="#696969" font-size="12" font-style="normal" font-weight="bold"
+        text-anchor="middle"
         x="489" y="270">« Interface »
       </text>
       <text fill="#033656" font-style="normal" font-weight="bold" text-anchor="middle" x="489"
@@ -250,7 +255,8 @@
       </g>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="342" x2="634" y1="44" y2="44"/>
       <line stroke="#CCCCCC" stroke-width="1.0" x1="342" x2="634" y1="69" y2="69"/>
-      <rect fill="url(#greyGradient)" height="151" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1" width="292"
+      <rect fill="url(#greyGradient)" height="151" rx="5" ry="0" stroke="#CCCCCC" stroke-width="1"
+        width="292"
         x="342" y="2"/>
       <text fill="#033656" font-style="normal" font-weight="bold" text-anchor="middle" x="488"
         y="20">Servant

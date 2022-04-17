@@ -46,14 +46,12 @@
 
 package com.iluwatar.proxy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Tests for {@link Wizard}
- */
+/** Tests for {@link Wizard} */
 class WizardTest {
 
   @Test

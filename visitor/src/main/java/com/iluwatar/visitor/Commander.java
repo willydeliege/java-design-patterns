@@ -46,9 +46,7 @@
 
 package com.iluwatar.visitor;
 
-/**
- * Commander.
- */
+/** Commander. */
 public class Commander extends Unit {
 
   public Commander(Unit... children) {

@@ -46,6 +46,9 @@
 
 package com.iluwatar.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.Test;
@@ -55,30 +58,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-/**
- * This case is Just for test the Annotation Based configuration
- */
+/** This case is Just for test the Annotation Based configuration */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {AppConfig.class})
 class AppConfigTest {
 
-  @Autowired
-  DataSource dataSource;
+  @Autowired DataSource dataSource;
 
-  /**
-   * Test for bean instance
-   */
+  /** Test for bean instance */
   @Test
   void testDataSource() {
     assertNotNull(dataSource);
   }
 
-  /**
-   * Test for correct query execution
-   */
+  /** Test for correct query execution */
   @Test
   @Transactional
   void testQuery() throws SQLException {
@@ -90,5 +83,4 @@ class AppConfigTest {
     }
     assertEquals(expected, result);
   }
-
 }

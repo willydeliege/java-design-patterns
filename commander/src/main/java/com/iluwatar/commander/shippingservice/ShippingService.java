@@ -46,33 +46,21 @@
 
 package com.iluwatar.commander.shippingservice;
 
-import lombok.AllArgsConstructor;
-
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import lombok.AllArgsConstructor;
 
 /**
  * ShippingService class receives request from {@link com.iluwatar.commander.Commander} class and
  * adds it to the {@link ShippingDatabase}.
  */
-
 public class ShippingService extends Service {
-
-  @AllArgsConstructor
-  static class ShippingRequest {
-    String transactionId;
-    String item;
-    String address;
-  }
 
   public ShippingService(ShippingDatabase db, Exception... exc) {
     super(db, exc);
   }
 
-  /**
-   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
-   */
-
+  /** Public method which will receive request from {@link com.iluwatar.commander.Commander}. */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
     var id = generateId();
     var item = (String) parameters[0];
@@ -88,5 +76,12 @@ public class ShippingService extends Service {
       return req.transactionId;
     }
     return null;
+  }
+
+  @AllArgsConstructor
+  static class ShippingRequest {
+    String transactionId;
+    String item;
+    String address;
   }
 }

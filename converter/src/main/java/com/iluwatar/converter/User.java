@@ -51,9 +51,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * User class.
- */
+/** User class. */
 @ToString
 @EqualsAndHashCode
 @Getter

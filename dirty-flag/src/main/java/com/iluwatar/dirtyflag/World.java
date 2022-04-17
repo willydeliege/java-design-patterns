@@ -56,8 +56,8 @@ import java.util.List;
  */
 public class World {
 
-  private List<String> countries;
   private final DataFetcher df;
+  private List<String> countries;
 
   public World() {
     this.countries = new ArrayList<>();

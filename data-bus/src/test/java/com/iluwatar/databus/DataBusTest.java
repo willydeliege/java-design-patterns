@@ -46,13 +46,13 @@
 
 package com.iluwatar.databus;
 
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.never;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.never;
 
 /**
  * Tests for {@link DataBus}.
@@ -61,11 +61,9 @@ import static org.mockito.Mockito.never;
  */
 class DataBusTest {
 
-  @Mock
-  private Member member;
+  @Mock private Member member;
 
-  @Mock
-  private DataType event;
+  @Mock private DataType event;
 
   @BeforeEach
   void setUp() {
@@ -74,25 +72,24 @@ class DataBusTest {
 
   @Test
   void publishedEventIsReceivedBySubscribedMember() {
-    //given
+    // given
     final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);
-    //when
+    // when
     dataBus.publish(event);
-    //then
+    // then
     then(member).should().accept(event);
   }
 
   @Test
   void publishedEventIsNotReceivedByMemberAfterUnsubscribing() {
-    //given
+    // given
     final var dataBus = DataBus.getInstance();
     dataBus.subscribe(member);
     dataBus.unsubscribe(member);
-    //when
+    // when
     dataBus.publish(event);
-    //then
+    // then
     then(member).should(never()).accept(event);
   }
-
 }

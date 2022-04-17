@@ -46,14 +46,13 @@
 
 package com.iluwatar.reactor.app;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.IOException;
-import org.junit.jupiter.api.Test;
 import com.iluwatar.reactor.framework.SameThreadDispatcher;
 import com.iluwatar.reactor.framework.ThreadPoolDispatcher;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class tests the Distributed Logging service by starting a Reactor and then sending it
@@ -65,7 +64,7 @@ class ReactorTest {
   /**
    * Test the application using pooled thread dispatcher.
    *
-   * @throws IOException          if any I/O error occurs.
+   * @throws IOException if any I/O error occurs.
    * @throws InterruptedException if interrupted while stopping the application.
    */
   @Test
@@ -97,7 +96,7 @@ class ReactorTest {
   /**
    * Test the application using same thread dispatcher.
    *
-   * @throws IOException          if any I/O error occurs.
+   * @throws IOException if any I/O error occurs.
    * @throws InterruptedException if interrupted while stopping the application.
    */
   @Test

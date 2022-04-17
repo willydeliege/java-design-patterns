@@ -46,10 +46,10 @@
 
 package com.iluwatar.layers.exception;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/15/15 - 7:57 PM
@@ -72,5 +72,4 @@ public class CakeBakingExceptionTest {
     assertEquals(expectedMessage, exception.getMessage());
     assertNull(exception.getCause());
   }
-
 }

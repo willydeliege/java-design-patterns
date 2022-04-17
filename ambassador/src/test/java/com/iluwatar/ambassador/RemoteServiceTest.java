@@ -46,14 +46,12 @@
 
 package com.iluwatar.ambassador;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.ambassador.util.RandomProvider;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for {@link RemoteService}
- */
+import com.iluwatar.ambassador.util.RandomProvider;
+import org.junit.jupiter.api.Test;
+
+/** Test for {@link RemoteService} */
 class RemoteServiceTest {
 
   @Test

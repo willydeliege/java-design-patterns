@@ -46,14 +46,12 @@
 
 package com.iluwatar.serverless.faas;
 
-import java.io.Serializable;
-import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.Serializable;
+import java.util.Map;
 
-/**
- * Api gateway response.
- */
+/** Api gateway response. */
 public class ApiGatewayResponse implements Serializable {
 
   private static final long serialVersionUID = 1181159426782844892L;
@@ -66,17 +64,13 @@ public class ApiGatewayResponse implements Serializable {
   /**
    * api gateway response.
    *
-   * @param statusCode      - http status code
-   * @param body            - response body
-   * @param headers         - response headers
+   * @param statusCode - http status code
+   * @param body - response body
+   * @param headers - response headers
    * @param isBase64Encoded - base64Encoded flag
    */
   public ApiGatewayResponse(
-      Integer statusCode,
-      String body,
-      Map<String, String> headers,
-      Boolean isBase64Encoded
-  ) {
+      Integer statusCode, String body, Map<String, String> headers, Boolean isBase64Encoded) {
     this.statusCode = statusCode;
     this.body = body;
     this.headers = headers;

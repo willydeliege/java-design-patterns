@@ -46,14 +46,12 @@
 
 package com.iluwatar.hexagonal.banking;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Tests for banking
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests for banking */
 class InMemoryBankTest {
 
   private final WireTransfers bank = new InMemoryBank();

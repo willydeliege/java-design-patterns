@@ -46,11 +46,11 @@
 
 package com.iluwatar.retry;
 
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link Retry}.
@@ -59,23 +59,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 class RetryTest {
 
-  /**
-   * Should contain all errors thrown.
-   */
+  /** Should contain all errors thrown. */
   @Test
   void errors() {
     final var e = new BusinessException("unhandled");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0);
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.errors(), hasItem(e));
@@ -88,17 +86,17 @@ class RetryTest {
   @Test
   void attempts() {
     final var e = new BusinessException("unhandled");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0);
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.attempts(), is(1));
@@ -111,21 +109,20 @@ class RetryTest {
   @Test
   void ignore() {
     final var e = new CustomerNotFoundException("customer not found");
-    final var retry = new Retry<String>(
-        () -> {
-          throw e;
-        },
-        2,
-        0,
-        ex -> CustomerNotFoundException.class.isAssignableFrom(ex.getClass())
-    );
+    final var retry =
+        new Retry<String>(
+            () -> {
+              throw e;
+            },
+            2,
+            0,
+            ex -> CustomerNotFoundException.class.isAssignableFrom(ex.getClass()));
     try {
       retry.perform();
     } catch (BusinessException ex) {
-      //ignore
+      // ignore
     }
 
     assertThat(retry.attempts(), is(2));
   }
-
 }

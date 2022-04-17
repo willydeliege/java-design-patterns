@@ -69,7 +69,7 @@ public class App {
    * Following method performs the initialization.
    *
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
+   *     error.txt)
    */
   public static void prepare() throws FileNotFoundException {
 
@@ -78,9 +78,7 @@ public class App {
     consoleLoggerModule = ConsoleLoggerModule.getSingleton().prepare();
   }
 
-  /**
-   * Following method performs the finalization.
-   */
+  /** Following method performs the finalization. */
   public static void unprepare() {
 
     /* Close all resources */
@@ -88,9 +86,7 @@ public class App {
     consoleLoggerModule.unprepare();
   }
 
-  /**
-   * Following method is main executor.
-   */
+  /** Following method is main executor. */
   public static void execute() {
 
     /* Send logs on file system */
@@ -107,7 +103,7 @@ public class App {
    *
    * @param args command line args.
    * @throws FileNotFoundException if program is not able to find log files (output.txt and
-   *                               error.txt)
+   *     error.txt)
    */
   public static void main(final String... args) throws FileNotFoundException {
     prepare();

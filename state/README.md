@@ -6,7 +6,9 @@ permalink: /patterns/state/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Also known as
@@ -15,26 +17,26 @@ Objects for States
 
 ## Intent
 
-Allow an object to alter its behavior when its internal state changes. The object will appear to 
+Allow an object to alter its behavior when its internal state changes. The object will appear to
 change its class.
 
 ## Explanation
 
 Real-world example
 
-> When observing a mammoth in its natural habitat it seems to change its behavior based on the 
-> situation. It may first appear calm, but over time when it detects a threat, it gets angry and 
-> dangerous to its surroundings.  
+> When observing a mammoth in its natural habitat it seems to change its behavior based on the
+> situation. It may first appear calm, but over time when it detects a threat, it gets angry and
+> dangerous to its surroundings.
 
 In plain words
 
-> State pattern allows an object to change its behavior. 
+> State pattern allows an object to change its behavior.
 
 Wikipedia says
 
-> The state pattern is a behavioral software design pattern that allows an object to alter its 
-> behavior when its internal state changes. This pattern is close to the concept of finite-state 
-> machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a 
+> The state pattern is a behavioral software design pattern that allows an object to alter its
+> behavior when its internal state changes. This pattern is close to the concept of finite-state
+> machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a
 > strategy through invocations of methods defined in the pattern's interface.
 
 **Programmatic Example**
@@ -128,7 +130,7 @@ public class Mammoth {
 Here is the full example of how the mammoth behaves over time.
 
 ```java
-    var mammoth = new Mammoth();
+    var mammoth=new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
@@ -153,12 +155,20 @@ Program output:
 
 Use the State pattern in either of the following cases
 
-* An object's behavior depends on its state, and it must change its behavior at run-time depending on that state
-* Operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
+* An object's behavior depends on its state, and it must change its behavior at run-time depending
+  on that state
+* Operations have large, multipart conditional statements that depend on the object's state. This
+  state is usually represented by one or more enumerated constants. Often, several operations will
+  contain this same conditional structure. The State pattern puts each branch of the conditional in
+  a separate class. This lets you treat the object's state as an object in its own right that can
+  vary independently from other objects.
 
 ## Known uses
 
-* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-) controlled by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the behavior is dependent on current phase of lifecycle.
+* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-)
+  controlled
+  by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the
+  behavior is dependent on current phase of lifecycle.
 * [JDiameter - Diameter State Machine](https://github.com/npathai/jdiameter/blob/master/core/jdiameter/api/src/main/java/org/jdiameter/api/app/State.java)
 
 ## Credits

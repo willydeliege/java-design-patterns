@@ -46,19 +46,15 @@
 
 package com.iluwatar.hexagonal.administration;
 
-import org.slf4j.Logger;
 import com.iluwatar.hexagonal.domain.LotteryAdministration;
+import org.slf4j.Logger;
 
-/**
- * Console implementation for lottery administration.
- */
+/** Console implementation for lottery administration. */
 public class ConsoleAdministrationSrvImpl implements ConsoleAdministrationSrv {
   private final LotteryAdministration administration;
   private final Logger logger;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public ConsoleAdministrationSrvImpl(LotteryAdministration administration, Logger logger) {
     this.administration = administration;
     this.logger = logger;
@@ -66,7 +62,8 @@ public class ConsoleAdministrationSrvImpl implements ConsoleAdministrationSrv {
 
   @Override
   public void getAllSubmittedTickets() {
-    administration.getAllSubmittedTickets()
+    administration
+        .getAllSubmittedTickets()
         .forEach((k, v) -> logger.info("Key: {}, Value: {}", k, v));
   }
 

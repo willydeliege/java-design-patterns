@@ -46,9 +46,8 @@
 
 package com.iluwatar.module;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.PrintStream;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The ConsoleLoggerModule is responsible for showing logs on System Console.
@@ -64,8 +63,7 @@ public final class ConsoleLoggerModule {
   public PrintStream output = null;
   public PrintStream error = null;
 
-  private ConsoleLoggerModule() {
-  }
+  private ConsoleLoggerModule() {}
 
   /**
    * Static method to get single instance of class.
@@ -81,9 +79,7 @@ public final class ConsoleLoggerModule {
     return ConsoleLoggerModule.singleton;
   }
 
-  /**
-   * Following method performs the initialization.
-   */
+  /** Following method performs the initialization. */
   public ConsoleLoggerModule prepare() {
 
     LOGGER.debug("ConsoleLoggerModule::prepare();");
@@ -94,9 +90,7 @@ public final class ConsoleLoggerModule {
     return this;
   }
 
-  /**
-   * Following method performs the finalization.
-   */
+  /** Following method performs the finalization. */
   public void unprepare() {
 
     if (this.output != null) {

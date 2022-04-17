@@ -46,17 +46,15 @@
 
 package com.iluwatar.serverless.faas.api;
 
-import org.junit.jupiter.api.Test;
-import com.amazonaws.services.lambda.runtime.Context;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Unit tests for LambdaInfoApiHandler
- */
+import com.amazonaws.services.lambda.runtime.Context;
+import org.junit.jupiter.api.Test;
+
+/** Unit tests for LambdaInfoApiHandler */
 class LambdaInfoApiHandlerTest {
 
   @Test

@@ -46,8 +46,6 @@
 
 package com.iluwatar.reactor.app;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -60,6 +58,7 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Represents the clients of Reactor pattern. Multiple clients are run concurrently and send logging
@@ -80,6 +79,14 @@ public class AppClient {
     appClient.start();
   }
 
+  private static void artificialDelayOf(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException e) {
+      LOGGER.error("sleep interrupted", e);
+    }
+  }
+
   /**
    * Starts the logging clients.
    *
@@ -93,9 +100,7 @@ public class AppClient {
     service.execute(new UdpLoggingClient("Client 4", 16669));
   }
 
-  /**
-   * Stops logging clients. This is a blocking call.
-   */
+  /** Stops logging clients. This is a blocking call. */
   public void stop() {
     service.shutdown();
     if (!service.isTerminated()) {
@@ -109,17 +114,7 @@ public class AppClient {
     LOGGER.info("Logging clients stopped");
   }
 
-  private static void artificialDelayOf(long millis) {
-    try {
-      Thread.sleep(millis);
-    } catch (InterruptedException e) {
-      LOGGER.error("sleep interrupted", e);
-    }
-  }
-
-  /**
-   * A logging client that sends requests to Reactor on TCP socket.
-   */
+  /** A logging client that sends requests to Reactor on TCP socket. */
   static class TcpLoggingClient implements Runnable {
 
     private final int serverPort;
@@ -164,12 +159,9 @@ public class AppClient {
         artificialDelayOf(100);
       }
     }
-
   }
 
-  /**
-   * A logging client that sends requests to Reactor on UDP socket.
-   */
+  /** A logging client that sends requests to Reactor on UDP socket. */
   static class UdpLoggingClient implements Runnable {
     private final String clientName;
     private final InetSocketAddress remoteAddress;
@@ -178,7 +170,7 @@ public class AppClient {
      * Creates a new UDP logging client.
      *
      * @param clientName the name of the client to be sent in logging requests.
-     * @param port       the port on which client will send logging requests.
+     * @param port the port on which client will send logging requests.
      * @throws UnknownHostException if localhost is unknown
      */
     public UdpLoggingClient(String clientName, int port) throws UnknownHostException {

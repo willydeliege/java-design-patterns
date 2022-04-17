@@ -46,8 +46,6 @@
 
 package com.iluwatar.reactor.framework;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -55,10 +53,9 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
- */
+/** A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel. */
 @Slf4j
 public class NioDatagramChannel extends AbstractNioChannel {
 
@@ -71,7 +68,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
    * <p>Note the constructor does not bind the socket, {@link #bind()} method should be called for
    * binding the socket.
    *
-   * @param port    the port to be bound to listen for incoming datagram requests.
+   * @param port the port to be bound to listen for incoming datagram requests.
    * @param handler the handler to be used for handling incoming requests on this channel.
    * @throws IOException if any I/O error occurs.
    */
@@ -151,12 +148,10 @@ public class NioDatagramChannel extends AbstractNioChannel {
     super.write(data, key);
   }
 
-  /**
-   * Container of data used for {@link NioDatagramChannel} to communicate with remote peer.
-   */
+  /** Container of data used for {@link NioDatagramChannel} to communicate with remote peer. */
   public static class DatagramPacket {
-    private SocketAddress sender;
     private final ByteBuffer data;
+    private SocketAddress sender;
     private SocketAddress receiver;
 
     /**

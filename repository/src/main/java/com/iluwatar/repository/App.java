@@ -46,9 +46,8 @@
 
 package com.iluwatar.repository;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -124,6 +123,5 @@ public class App {
     repository.deleteAll();
 
     context.close();
-
   }
 }

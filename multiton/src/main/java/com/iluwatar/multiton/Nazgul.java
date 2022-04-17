@@ -56,8 +56,6 @@ public final class Nazgul {
 
   private static final Map<NazgulName, Nazgul> nazguls;
 
-  private final NazgulName name;
-
   static {
     nazguls = new ConcurrentHashMap<>();
     nazguls.put(NazgulName.KHAMUL, new Nazgul(NazgulName.KHAMUL));
@@ -70,6 +68,8 @@ public final class Nazgul {
     nazguls.put(NazgulName.REN, new Nazgul(NazgulName.REN));
     nazguls.put(NazgulName.UVATHA, new Nazgul(NazgulName.UVATHA));
   }
+
+  private final NazgulName name;
 
   private Nazgul(NazgulName name) {
     this.name = name;

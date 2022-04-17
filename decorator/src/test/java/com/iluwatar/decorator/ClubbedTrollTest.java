@@ -46,17 +46,15 @@
 
 package com.iluwatar.decorator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-/**
- * Tests for {@link ClubbedTroll}
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link ClubbedTroll} */
 class ClubbedTrollTest {
 
   @Test

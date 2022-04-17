@@ -23,10 +23,10 @@
 
 package com.iluwatar.saga.choreography;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.saga.orchestration.SagaApplication;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import com.iluwatar.saga.orchestration.SagaApplication;
+import org.junit.jupiter.api.Test;
 
 /***
  * empty test
@@ -34,6 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class SagaApplicationTest {
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> SagaApplication.main(new String[]{}));
+    assertDoesNotThrow(() -> SagaApplication.main(new String[] {}));
   }
 }

@@ -84,9 +84,7 @@ public abstract class AbstractNioChannel {
     this.channelToPendingWrites = new ConcurrentHashMap<>();
   }
 
-  /**
-   * Injects the reactor in this channel.
-   */
+  /** Injects the reactor in this channel. */
   void setReactor(NioReactor reactor) {
     this.reactor = reactor;
   }
@@ -154,7 +152,7 @@ public abstract class AbstractNioChannel {
    * Writes the data to the channel.
    *
    * @param pendingWrite the data to be written on channel.
-   * @param key          the key which is writable.
+   * @param key the key which is writable.
    * @throws IOException if any I/O error occurs.
    */
   protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
@@ -178,7 +176,7 @@ public abstract class AbstractNioChannel {
    * </pre>
    *
    * @param data the data to be written on underlying channel.
-   * @param key  the key which is writable.
+   * @param key the key which is writable.
    */
   public void write(Object data, SelectionKey key) {
     var pendingWrites = this.channelToPendingWrites.get(key.channel());

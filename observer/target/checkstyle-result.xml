@@ -2,40 +2,48 @@
 <checkstyle version="8.19">
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/observer/src/main/java/com/iluwatar/observer/Weather.java">
-    <error line="51" message="Wrong lexicographical order for &apos;java.util.ArrayList&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;java.util.ArrayList&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-    <error line="52" message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="52"
+      message="Wrong lexicographical order for &apos;java.util.List&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/observer/src/main/java/com/iluwatar/observer/generic/GWeather.java">
-    <error line="51" message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/observer/src/main/java/com/iluwatar/observer/generic/GOrcs.java">
-    <error line="51" message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/observer/src/main/java/com/iluwatar/observer/generic/GHobbits.java">
-    <error line="51" message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.WeatherType&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>
   <file
     name="/home/willefi/IdeaProjects/java-design-patterns/observer/src/main/java/com/iluwatar/observer/App.java">
-    <error line="51" message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GHobbits&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="51"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GHobbits&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-    <error line="52" message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GOrcs&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="52"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GOrcs&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-    <error line="53" message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GWeather&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
+    <error line="53"
+      message="Wrong lexicographical order for &apos;com.iluwatar.observer.generic.GWeather&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
       severity="warning"
       source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
   </file>

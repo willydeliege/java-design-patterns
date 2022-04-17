@@ -46,11 +46,11 @@
 
 package com.iluwatar.strategy;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 10:50 PM.
@@ -59,9 +59,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  */
 public class DragonSlayerTest {
 
-  /**
-   * Verify if the dragon slayer uses the strategy during battle.
-   */
+  /** Verify if the dragon slayer uses the strategy during battle. */
   @Test
   void testGoToBattle() {
     final var strategy = mock(DragonSlayingStrategy.class);
@@ -72,9 +70,7 @@ public class DragonSlayerTest {
     verifyNoMoreInteractions(strategy);
   }
 
-  /**
-   * Verify if the dragon slayer uses the new strategy during battle after a change of strategy.
-   */
+  /** Verify if the dragon slayer uses the new strategy during battle after a change of strategy. */
   @Test
   void testChangeStrategy() {
     final var initialStrategy = mock(DragonSlayingStrategy.class);
