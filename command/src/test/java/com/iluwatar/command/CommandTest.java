@@ -46,9 +46,9 @@
 
 package com.iluwatar.command;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * The Command pattern is a behavioral design pattern in which an object is used to encapsulate all
@@ -102,17 +102,18 @@ class CommandTest {
    * This method asserts that the passed goblin object has the name as expectedName, size as
    * expectedSize and visibility as expectedVisibility.
    *
-   * @param goblin             a goblin object whose state is to be verified against other
-   *                           parameters
-   * @param expectedName       expectedName of the goblin
-   * @param expectedSize       expected size of the goblin
+   * @param goblin a goblin object whose state is to be verified against other parameters
+   * @param expectedName expectedName of the goblin
+   * @param expectedSize expected size of the goblin
    * @param expectedVisibility expected visibility of the goblin
    */
-  private void verifyGoblin(Goblin goblin, String expectedName, Size expectedSize,
-                            Visibility expectedVisibility) {
+  private void verifyGoblin(
+      Goblin goblin, String expectedName, Size expectedSize, Visibility expectedVisibility) {
     assertEquals(expectedName, goblin.toString(), "Goblin's name must be same as expectedName");
     assertEquals(expectedSize, goblin.getSize(), "Goblin's size must be same as expectedSize");
-    assertEquals(expectedVisibility, goblin.getVisibility(),
+    assertEquals(
+        expectedVisibility,
+        goblin.getVisibility(),
         "Goblin's visibility must be same as expectedVisibility");
   }
 }

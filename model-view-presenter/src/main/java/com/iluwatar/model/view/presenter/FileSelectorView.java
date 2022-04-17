@@ -54,14 +54,10 @@ import java.io.Serializable;
  */
 public interface FileSelectorView extends Serializable {
 
-  /**
-   * Opens the view.
-   */
+  /** Opens the view. */
   void open();
 
-  /**
-   * Closes the view.
-   */
+  /** Closes the view. */
   void close();
 
   /**
@@ -72,13 +68,6 @@ public interface FileSelectorView extends Serializable {
   boolean isOpened();
 
   /**
-   * Sets the presenter component, to the one given as parameter.
-   *
-   * @param presenter The new presenter component.
-   */
-  void setPresenter(FileSelectorPresenter presenter);
-
-  /**
    * Gets presenter component.
    *
    * @return The presenter Component.
@@ -86,11 +75,11 @@ public interface FileSelectorView extends Serializable {
   FileSelectorPresenter getPresenter();
 
   /**
-   * Sets the file's name, to the value given as parameter.
+   * Sets the presenter component, to the one given as parameter.
    *
-   * @param name The new name of the file.
+   * @param presenter The new presenter component.
    */
-  void setFileName(String name);
+  void setPresenter(FileSelectorPresenter presenter);
 
   /**
    * Gets the name of file.
@@ -98,6 +87,13 @@ public interface FileSelectorView extends Serializable {
    * @return The name of the file.
    */
   String getFileName();
+
+  /**
+   * Sets the file's name, to the value given as parameter.
+   *
+   * @param name The new name of the file.
+   */
+  void setFileName(String name);
 
   /**
    * Displays a message to the users.

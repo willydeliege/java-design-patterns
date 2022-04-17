@@ -46,9 +46,7 @@
 
 package com.iluwatar.model.view.controller;
 
-/**
- * Nourishment enumeration.
- */
+/** Nourishment enumeration. */
 public enum Nourishment {
   SATURATED("saturated"),
   HUNGRY("hungry"),

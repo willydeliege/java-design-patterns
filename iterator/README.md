@@ -6,7 +6,9 @@ permalink: /patterns/iterator/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Also known as
@@ -14,25 +16,26 @@ tags:
 Cursor
 
 ## Intent
-Provide a way to access the elements of an aggregate object sequentially without exposing its 
+
+Provide a way to access the elements of an aggregate object sequentially without exposing its
 underlying representation.
 
 ## Explanation
 
 Real-world example
 
-> Treasure chest contains a set of magical items. There multiple types of items such as rings, 
-> potions, and weapons. The items can be browsed by type using an iterator the treasure chest 
-> provides. 
+> Treasure chest contains a set of magical items. There multiple types of items such as rings,
+> potions, and weapons. The items can be browsed by type using an iterator the treasure chest
+> provides.
 
 In plain words
 
-> Containers can provide a representation agnostic iterator interface to provide access to the 
-> elements. 
+> Containers can provide a representation agnostic iterator interface to provide access to the
+> elements.
 
 Wikipedia says
 
-> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is 
+> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is
 > used to traverse a container and access the container's elements.
 
 **Programmatic Example**
@@ -113,20 +116,20 @@ public interface Iterator<T> {
 }
 ```
 
-In the following example, we iterate through the ring-type items found in the chest. 
+In the following example, we iterate through the ring-type items found in the chest.
 
 ```java
-var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
-while (itemIterator.hasNext()) {
-  LOGGER.info(itemIterator.next().toString());
-}
+var itemIterator=TREASURE_CHEST.iterator(ItemType.RING);
+    while(itemIterator.hasNext()){
+    LOGGER.info(itemIterator.next().toString());
+    }
 ```
 
 Program output:
 
 ```java
 Ring of shadows
-Ring of armor
+    Ring of armor
 ```
 
 ## Class diagram

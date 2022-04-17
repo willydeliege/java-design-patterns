@@ -46,16 +46,16 @@
 
 package com.iluwatar.iterator.bst;
 
+import com.iluwatar.iterator.Iterator;
 import java.util.ArrayDeque;
 import java.util.NoSuchElementException;
-import com.iluwatar.iterator.Iterator;
 
 /**
  * An in-order implementation of a BST Iterator. For example, given a BST with Integer values,
  * expect to retrieve TreeNodes according to the Integer's natural ordering (1, 2, 3...)
  *
  * @param <T> This Iterator has been implemented with generic typing to allow for TreeNodes of
- *            different value types
+ *     different value types
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
@@ -105,5 +105,4 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
     pushPathToNextSmallest(next.getRight());
     return next;
   }
-
 }

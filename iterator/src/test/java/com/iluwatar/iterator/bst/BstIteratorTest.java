@@ -46,16 +46,16 @@
 
 package com.iluwatar.iterator.bst;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class BstIteratorTest {
@@ -78,7 +78,9 @@ class BstIteratorTest {
   @Test
   void nextForEmptyTree() {
     var iter = new BstIterator<>(emptyRoot);
-    assertThrows(NoSuchElementException.class, iter::next,
+    assertThrows(
+        NoSuchElementException.class,
+        iter::next,
         "next() should throw an IllegalStateException if hasNext() is false.");
   }
 
@@ -122,5 +124,4 @@ class BstIteratorTest {
     assertEquals(Integer.valueOf(7), iter.next().getVal(), "Sixth Node is 7.");
     assertFalse(iter.hasNext(), "Iterator hasNext() should be false, end of tree.");
   }
-
 }

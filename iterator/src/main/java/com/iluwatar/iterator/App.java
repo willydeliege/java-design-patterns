@@ -46,17 +46,16 @@
 
 package com.iluwatar.iterator;
 
-import lombok.extern.slf4j.Slf4j;
+import static com.iluwatar.iterator.list.ItemType.ANY;
+import static com.iluwatar.iterator.list.ItemType.POTION;
+import static com.iluwatar.iterator.list.ItemType.RING;
+import static com.iluwatar.iterator.list.ItemType.WEAPON;
 
 import com.iluwatar.iterator.bst.BstIterator;
 import com.iluwatar.iterator.bst.TreeNode;
 import com.iluwatar.iterator.list.ItemType;
 import com.iluwatar.iterator.list.TreasureChest;
-
-import static com.iluwatar.iterator.list.ItemType.ANY;
-import static com.iluwatar.iterator.list.ItemType.POTION;
-import static com.iluwatar.iterator.list.ItemType.RING;
-import static com.iluwatar.iterator.list.ItemType.WEAPON;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Iterator pattern is a design pattern in which an iterator is used to traverse a container and

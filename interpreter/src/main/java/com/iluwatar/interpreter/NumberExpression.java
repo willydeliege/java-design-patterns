@@ -46,9 +46,7 @@
 
 package com.iluwatar.interpreter;
 
-/**
- * NumberExpression.
- */
+/** NumberExpression. */
 public class NumberExpression extends Expression {
 
   private final int number;

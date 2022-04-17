@@ -56,6 +56,11 @@ import org.junit.jupiter.params.provider.Arguments;
  */
 public class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
 
+  /** Create a new test instance using the given test parameters and expected result */
+  public MultiplyExpressionTest() {
+    super("*", MultiplyExpression::new);
+  }
+
   /**
    * Create a new set of test entries with the expected result
    *
@@ -65,12 +70,4 @@ public class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
   public Stream<Arguments> expressionProvider() {
     return prepareParameters((f, s) -> f * s);
   }
-
-  /**
-   * Create a new test instance using the given test parameters and expected result
-   */
-  public MultiplyExpressionTest() {
-    super("*", MultiplyExpression::new);
-  }
-
 }

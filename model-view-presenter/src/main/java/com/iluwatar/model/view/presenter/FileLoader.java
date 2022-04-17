@@ -62,26 +62,18 @@ import org.slf4j.LoggerFactory;
  */
 public class FileLoader implements Serializable {
 
-  /**
-   * Generated serial version UID.
-   */
+  /** Generated serial version UID. */
   private static final long serialVersionUID = -4745803872902019069L;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
 
-  /**
-   * Indicates if the file is loaded or not.
-   */
+  /** Indicates if the file is loaded or not. */
   private boolean loaded;
 
-  /**
-   * The name of the file that we want to load.
-   */
+  /** The name of the file that we want to load. */
   private String fileName;
 
-  /**
-   * Loads the data of the file specified.
-   */
+  /** Loads the data of the file specified. */
   public String loadData() {
     var dataFileName = this.fileName;
     try (var br = new BufferedReader(new FileReader(new File(dataFileName)))) {
@@ -96,21 +88,21 @@ public class FileLoader implements Serializable {
   }
 
   /**
-   * Sets the path of the file to be loaded, to the given value.
-   *
-   * @param fileName The path of the file to be loaded.
-   */
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
-
-  /**
    * Gets the path of the file to be loaded.
    *
    * @return fileName The path of the file to be loaded.
    */
   public String getFileName() {
     return this.fileName;
+  }
+
+  /**
+   * Sets the path of the file to be loaded, to the given value.
+   *
+   * @param fileName The path of the file to be loaded.
+   */
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
   }
 
   /**

@@ -46,57 +46,48 @@
 
 package com.iluwatar.model.view.presenter;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * This class is the GUI implementation of the View component in the Model-View-Presenter pattern.
  */
 public class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListener {
 
-  /**
-   * Default serial version ID.
-   */
+  /** Default serial version ID. */
   private static final long serialVersionUID = 1L;
 
-  /**
-   * The "OK" button for loading the file.
-   */
+  /** The "OK" button for loading the file. */
   private final JButton ok;
 
-  /**
-   * The cancel button.
-   */
+  /** The cancel button. */
   private final JButton cancel;
 
-  /**
-   * The text field for giving the name of the file that we want to open.
-   */
+  /** The text field for giving the name of the file that we want to open. */
   private final JTextField input;
 
-  /**
-   * A text area that will keep the contents of the file opened.
-   */
+  /** A text area that will keep the contents of the file opened. */
   private final JTextArea area;
 
-  /**
-   * The Presenter component that the frame will interact with.
-   */
+  /** The Presenter component that the frame will interact with. */
   private FileSelectorPresenter presenter;
 
-  /**
-   * The name of the file that we want to read it's contents.
-   */
+  /** The name of the file that we want to read it's contents. */
   private String fileName;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public FileSelectorJFrame() {
     super("File Loader");
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -191,23 +182,23 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   }
 
   @Override
-  public void setPresenter(FileSelectorPresenter presenter) {
-    this.presenter = presenter;
-  }
-
-  @Override
   public FileSelectorPresenter getPresenter() {
     return this.presenter;
   }
 
   @Override
-  public void setFileName(String name) {
-    this.fileName = name;
+  public void setPresenter(FileSelectorPresenter presenter) {
+    this.presenter = presenter;
   }
 
   @Override
   public String getFileName() {
     return this.fileName;
+  }
+
+  @Override
+  public void setFileName(String name) {
+    this.fileName = name;
   }
 
   @Override

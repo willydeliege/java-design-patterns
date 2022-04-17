@@ -46,13 +46,11 @@
 
 package com.iluwatar.iterator.list;
 
-/**
- * Item.
- */
+/** Item. */
 public class Item {
 
-  private ItemType type;
   private final String name;
+  private ItemType type;
 
   public Item(ItemType type, String name) {
     this.setType(type);

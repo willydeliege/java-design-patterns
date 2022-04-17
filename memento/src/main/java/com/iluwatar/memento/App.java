@@ -46,9 +46,8 @@
 
 package com.iluwatar.memento;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Stack;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Memento pattern is a software design pattern that provides the ability to restore an object
@@ -70,9 +69,7 @@ import java.util.Stack;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     var states = new Stack<StarMemento>();
 

@@ -23,32 +23,13 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.iluwatar</groupId>
-    <artifactId>java-design-patterns</artifactId>
-    <version>1.26.0-SNAPSHOT</version>
-  </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>model-view-presenter</artifactId>
-  <name>model-view-presenter</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.java.dev.swing-layout</groupId>
-      <artifactId>swing-layout</artifactId>
-      <version>1.0.2</version>
-    </dependency>
-  </dependencies>
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
@@ -61,7 +42,28 @@
             </configuration>
           </execution>
         </executions>
+        <groupId>org.apache.maven.plugins</groupId>
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+    <dependency>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>swing-layout</artifactId>
+      <groupId>net.java.dev.swing-layout</groupId>
+      <version>1.0.2</version>
+    </dependency>
+  </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <name>model-view-presenter</name>
+  <parent>
+    <artifactId>java-design-patterns</artifactId>
+    <groupId>com.iluwatar</groupId>
+    <version>1.26.0-SNAPSHOT</version>
+  </parent>
+  <url>http://maven.apache.org</url>
 </project>

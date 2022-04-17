@@ -46,9 +46,7 @@
 
 package com.iluwatar.interpreter;
 
-/**
- * Expression.
- */
+/** Expression. */
 public abstract class Expression {
 
   public abstract int interpret();

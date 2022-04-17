@@ -6,7 +6,9 @@ permalink: /patterns/memento/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Also known as
@@ -15,24 +17,24 @@ Token
 
 ## Intent
 
-Without violating encapsulation, capture and externalize an object's internal state so that the 
+Without violating encapsulation, capture and externalize an object's internal state so that the
 object can be restored to this state later.
 
 ## Explanation
 
 Real-world example
 
-> We are working on an astrology application where we need to analyze star properties over time. We 
+> We are working on an astrology application where we need to analyze star properties over time. We
 > are creating snapshots of star states using the Memento pattern.
 
 In plain words
 
-> Memento pattern captures object internal state making it easy to store and restore objects in any 
+> Memento pattern captures object internal state making it easy to store and restore objects in any
 > point of time.
 
 Wikipedia says
 
-> The memento pattern is a software design pattern that provides the ability to restore an object to 
+> The memento pattern is a software design pattern that provides the ability to restore an object to
 > its previous state (undo via rollback).
 
 **Programmatic Example**
@@ -50,11 +52,12 @@ public enum StarType {
 }
 ```
 
-Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
+Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we
 need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 ```java
 public interface StarMemento {
+
 }
 
 public class Star {
@@ -129,8 +132,8 @@ public class Star {
 And finally here's how we use the mementos to store and restore star states.
 
 ```java
-    var states = new Stack<>();
-    var star = new Star(StarType.SUN, 10000000, 500000);
+    var states=new Stack<>();
+    var star=new Star(StarType.SUN,10000000,500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();
@@ -144,9 +147,9 @@ And finally here's how we use the mementos to store and restore star states.
     states.add(star.getMemento());
     star.timePasses();
     LOGGER.info(star.toString());
-    while (states.size() > 0) {
-      star.setMemento(states.pop());
-      LOGGER.info(star.toString());
+    while(states.size()>0){
+    star.setMemento(states.pop());
+    LOGGER.info(star.toString());
     }
 ```
 
@@ -173,8 +176,8 @@ sun age: 10000000 years mass: 500000 tons
 Use the Memento pattern when
 
 * A snapshot of an object's state must be saved so that it can be restored to that state later, and
-* A direct interface to obtaining the state would expose implementation details and break the 
-object's encapsulation
+* A direct interface to obtaining the state would expose implementation details and break the
+  object's encapsulation
 
 ## Known uses
 

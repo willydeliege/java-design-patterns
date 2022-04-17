@@ -46,31 +46,24 @@
 
 package com.iluwatar.command;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Deque;
 import java.util.LinkedList;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * Wizard is the invoker of the commands.
- */
+/** Wizard is the invoker of the commands. */
 @Slf4j
 public class Wizard {
 
   private final Deque<Runnable> undoStack = new LinkedList<>();
   private final Deque<Runnable> redoStack = new LinkedList<>();
 
-  /**
-   * Cast spell.
-   */
+  /** Cast spell. */
   public void castSpell(Runnable runnable) {
     runnable.run();
     undoStack.offerLast(runnable);
   }
 
-  /**
-   * Undo last spell.
-   */
+  /** Undo last spell. */
   public void undoLastSpell() {
     if (!undoStack.isEmpty()) {
       var previousSpell = undoStack.pollLast();
@@ -79,9 +72,7 @@ public class Wizard {
     }
   }
 
-  /**
-   * Redo last spell.
-   */
+  /** Redo last spell. */
   public void redoLastSpell() {
     if (!redoStack.isEmpty()) {
       var previousSpell = redoStack.pollLast();

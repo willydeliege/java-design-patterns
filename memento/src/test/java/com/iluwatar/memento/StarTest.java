@@ -46,9 +46,9 @@
 
 package com.iluwatar.memento;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/20/15 - 10:08 AM
@@ -57,9 +57,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class StarTest {
 
-  /**
-   * Verify the stages of a dying sun, without going back in time
-   */
+  /** Verify the stages of a dying sun, without going back in time */
   @Test
   void testTimePasses() {
     final var star = new Star(StarType.SUN, 1, 2);
@@ -84,9 +82,7 @@ public class StarTest {
     assertEquals("dead star age: 256 years mass: 0 tons", star.toString());
   }
 
-  /**
-   * Verify some stage of a dying sun, but go back in time to test the memento
-   */
+  /** Verify some stage of a dying sun, but go back in time to test the memento */
   @Test
   void testSetMemento() {
     final var star = new Star(StarType.SUN, 1, 2);
@@ -115,7 +111,5 @@ public class StarTest {
 
     star.setMemento(firstMemento);
     assertEquals("sun age: 1 years mass: 2 tons", star.toString());
-
   }
-
 }

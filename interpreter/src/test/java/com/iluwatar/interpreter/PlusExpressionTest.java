@@ -56,6 +56,11 @@ import org.junit.jupiter.params.provider.Arguments;
  */
 public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
 
+  /** Create a new test instance using the given test parameters and expected result */
+  public PlusExpressionTest() {
+    super("+", PlusExpression::new);
+  }
+
   /**
    * Create a new set of test entries with the expected result
    *
@@ -65,12 +70,4 @@ public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
   public Stream<Arguments> expressionProvider() {
     return prepareParameters(Integer::sum);
   }
-
-  /**
-   * Create a new test instance using the given test parameters and expected result
-   */
-  public PlusExpressionTest() {
-    super("+", PlusExpression::new);
-  }
-
 }

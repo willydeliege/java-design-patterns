@@ -46,12 +46,12 @@
 
 package com.iluwatar.interpreter;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/14/15 - 12:08 PM
@@ -59,6 +59,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Jeroen Meulemeester
  */
 public class NumberExpressionTest extends ExpressionTest<NumberExpression> {
+
+  /** Create a new test instance using the given test parameters and expected result */
+  public NumberExpressionTest() {
+    super("number", (f, s) -> f);
+  }
 
   /**
    * Create a new set of test entries with the expected result
@@ -68,13 +73,6 @@ public class NumberExpressionTest extends ExpressionTest<NumberExpression> {
   @Override
   public Stream<Arguments> expressionProvider() {
     return prepareParameters((f, s) -> f);
-  }
-
-  /**
-   * Create a new test instance using the given test parameters and expected result
-   */
-  public NumberExpressionTest() {
-    super("number", (f, s) -> f);
   }
 
   /**
@@ -88,5 +86,4 @@ public class NumberExpressionTest extends ExpressionTest<NumberExpression> {
     final var numberExpression = new NumberExpression(testStringValue);
     assertEquals(expectedValue, numberExpression.interpret());
   }
-
 }
