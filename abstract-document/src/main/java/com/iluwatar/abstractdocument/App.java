@@ -1,4 +1,27 @@
 /*
+*The MIT License
+*Copyright © 2014-2021 Ilkka Seppälä
+*
+*Permission is hereby granted, free of charge, to any person obtaining a copy
+*of this software and associated documentation files (the "Software"), to deal
+*in the Software without restriction, including without limitation the rights
+*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*copies of the Software, and to permit persons to whom the Software is
+*furnished to do so, subject to the following conditions:
+*
+*The above copyright notice and this permission notice shall be included in
+*all copies or substantial portions of the Software.
+*
+*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+*THE SOFTWARE.
+*/
+
+/*
  *The MIT License
  *Copyright © 2014-2021 Ilkka Seppälä
  *
@@ -46,12 +69,11 @@
 
 package com.iluwatar.abstractdocument;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.List;
-import java.util.Map;
 import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.enums.Property;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Abstract Document pattern enables handling additional, non-static properties. This pattern
@@ -72,20 +94,26 @@ public class App {
   public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
-    var wheelProperties = Map.of(
-        Property.TYPE.toString(), "wheel",
-        Property.MODEL.toString(), "15C",
-        Property.PRICE.toString(), 100L);
+    var wheelProperties =
+        Map.of(
+            Property.TYPE.toString(), "wheel",
+            Property.MODEL.toString(), "15C",
+            Property.PRICE.toString(), 100L);
 
-    var doorProperties = Map.of(
-        Property.TYPE.toString(), "door",
-        Property.MODEL.toString(), "Lambo",
-        Property.PRICE.toString(), 300L);
+    var doorProperties =
+        Map.of(
+            Property.TYPE.toString(), "door",
+            Property.MODEL.toString(), "Lambo",
+            Property.PRICE.toString(), 300L);
 
-    var carProperties = Map.of(
-        Property.MODEL.toString(), "300SL",
-        Property.PRICE.toString(), 10000L,
-        Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
+    var carProperties =
+        Map.of(
+            Property.MODEL.toString(),
+            "300SL",
+            Property.PRICE.toString(),
+            10000L,
+            Property.PARTS.toString(),
+            List.of(wheelProperties, doorProperties));
 
     var car = new Car(carProperties);
 
@@ -93,10 +121,13 @@ public class App {
     LOGGER.info("-> model: {}", car.getModel().orElseThrow());
     LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
     LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
-        p.getType().orElse(null),
-        p.getModel().orElse(null),
-        p.getPrice().orElse(null))
-    );
+    car.getParts()
+        .forEach(
+            p ->
+                LOGGER.info(
+                    "\t{}/{}/{}",
+                    p.getType().orElse(null),
+                    p.getModel().orElse(null),
+                    p.getPrice().orElse(null)));
   }
 }

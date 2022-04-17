@@ -5,13 +5,15 @@ folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
 language: en
-tags: 
- - Extensibility
+tags:
+
+- Extensibility
+
 ---
 
 ## Intent
 
-Use dynamic properties and achieve flexibility of untyped languages while keeping type-safety. 
+Use dynamic properties and achieve flexibility of untyped languages while keeping type-safety.
 
 ## Explanation
 
@@ -21,7 +23,8 @@ set of interfaces.
 
 Real world example
 
->  Consider a car that consists of multiple parts. However we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
+> Consider a car that consists of multiple parts. However we don't know if the specific car really has all the parts, or
+> just some of them. Our cars are dynamic and extremely flexible.
 
 In plain words
 
@@ -29,11 +32,11 @@ In plain words
 
 Wikipedia says
 
-> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing 
-the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components 
-in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the 
-support of type-safety. The pattern makes use of traits to separate different properties of a class into different 
-interfaces.
+> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing
+> the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components
+> in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the
+> support of type-safety. The pattern makes use of traits to separate different properties of a class into different
+> interfaces.
 
 **Programmatic Example**
 
@@ -43,80 +46,82 @@ map and any amount of child objects.
 ```java
 public interface Document {
 
-  Void put(String key, Object value);
+	Void put(String key, Object value);
 
-  Object get(String key);
+	Object get(String key);
 
-  <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
+	<T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
 }
 
 public abstract class AbstractDocument implements Document {
 
-  private final Map<String, Object> properties;
+	private final Map<String, Object> properties;
 
-  protected AbstractDocument(Map<String, Object> properties) {
-    Objects.requireNonNull(properties, "properties map is required");
-    this.properties = properties;
-  }
+	protected AbstractDocument(Map<String, Object> properties) {
+		Objects.requireNonNull(properties, "properties map is required");
+		this.properties = properties;
+	}
 
-  @Override
-  public Void put(String key, Object value) {
-    properties.put(key, value);
-    return null;
-  }
+	@Override
+	public Void put(String key, Object value) {
+		properties.put(key, value);
+		return null;
+	}
 
-  @Override
-  public Object get(String key) {
-    return properties.get(key);
-  }
+	@Override
+	public Object get(String key) {
+		return properties.get(key);
+	}
 
-  @Override
-  public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
-    return Stream.ofNullable(get(key))
-        .filter(Objects::nonNull)
-        .map(el -> (List<Map<String, Object>>) el)
-        .findAny()
-        .stream()
-        .flatMap(Collection::stream)
-        .map(constructor);
-  }
+	@Override
+	public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
+		return Stream.ofNullable(get(key))
+				.filter(Objects::nonNull)
+				.map(el -> (List<Map<String, Object>>) el)
+				.findAny()
+				.stream()
+				.flatMap(Collection::stream)
+				.map(constructor);
+	}
   ...
 }
 ```
+
 Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create
 static looking interface to our `Car` class.
 
 ```java
 public enum Property {
 
-  PARTS, TYPE, PRICE, MODEL
+	PARTS, TYPE, PRICE, MODEL
 }
 
 public interface HasType extends Document {
 
-  default Optional<String> getType() {
-    return Optional.ofNullable((String) get(Property.TYPE.toString()));
-  }
+	default Optional<String> getType() {
+		return Optional.ofNullable((String) get(Property.TYPE.toString()));
+	}
 }
 
 public interface HasPrice extends Document {
 
-  default Optional<Number> getPrice() {
-    return Optional.ofNullable((Number) get(Property.PRICE.toString()));
-  }
+	default Optional<Number> getPrice() {
+		return Optional.ofNullable((Number) get(Property.PRICE.toString()));
+	}
 }
+
 public interface HasModel extends Document {
 
-  default Optional<String> getModel() {
-    return Optional.ofNullable((String) get(Property.MODEL.toString()));
-  }
+	default Optional<String> getModel() {
+		return Optional.ofNullable((String) get(Property.MODEL.toString()));
+	}
 }
 
 public interface HasParts extends Document {
 
-  default Stream<Part> getParts() {
-    return children(Property.PARTS.toString(), Part::new);
-  }
+	default Stream<Part> getParts() {
+		return children(Property.PARTS.toString(), Part::new);
+	}
 }
 ```
 
