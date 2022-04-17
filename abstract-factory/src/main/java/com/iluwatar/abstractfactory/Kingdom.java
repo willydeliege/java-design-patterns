@@ -57,21 +57,10 @@ public class Kingdom {
   private Castle castle;
   private Army army;
 
-  /**
-   * The factory of kingdom factories.
-   */
+  /** The factory of kingdom factories. */
   public static class FactoryMaker {
 
-    /**
-     * Enumeration for the different types of Kingdoms.
-     */
-    public enum KingdomType {
-      ELF, ORC
-    }
-
-    /**
-     * The factory method to create KingdomFactory concrete objects.
-     */
+    /** The factory method to create KingdomFactory concrete objects. */
     public static KingdomFactory makeFactory(KingdomType type) {
       switch (type) {
         case ELF:
@@ -81,6 +70,12 @@ public class Kingdom {
         default:
           throw new IllegalArgumentException("KingdomType not supported.");
       }
+    }
+
+    /** Enumeration for the different types of Kingdoms. */
+    public enum KingdomType {
+      ELF,
+      ORC
     }
   }
 }

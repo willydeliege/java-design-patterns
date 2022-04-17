@@ -67,10 +67,6 @@ public class App implements Runnable {
 
   private final Kingdom kingdom = new Kingdom();
 
-  public Kingdom getKingdom() {
-    return kingdom;
-  }
-
   /**
    * Program entry point.
    *
@@ -79,6 +75,10 @@ public class App implements Runnable {
   public static void main(String[] args) {
     var app = new App();
     app.run();
+  }
+
+  public Kingdom getKingdom() {
+    return kingdom;
   }
 
   @Override
@@ -98,6 +98,7 @@ public class App implements Runnable {
 
   /**
    * Creates kingdom.
+   *
    * @param kingdomType type of Kingdom
    */
   public void createKingdom(final Kingdom.FactoryMaker.KingdomType kingdomType) {

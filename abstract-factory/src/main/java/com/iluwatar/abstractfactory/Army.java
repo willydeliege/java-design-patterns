@@ -46,9 +46,7 @@
 
 package com.iluwatar.abstractfactory;
 
-/**
- * Army interface.
- */
+/** Army interface. */
 public interface Army {
 
   String getDescription();

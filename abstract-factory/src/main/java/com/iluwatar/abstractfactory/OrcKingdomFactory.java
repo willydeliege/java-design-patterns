@@ -46,9 +46,7 @@
 
 package com.iluwatar.abstractfactory;
 
-/**
- * OrcKingdomFactory concrete factory.
- */
+/** OrcKingdomFactory concrete factory. */
 public class OrcKingdomFactory implements KingdomFactory {
 
   @Override
