@@ -69,13 +69,6 @@
 
 package com.iluwatar.flux.store;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.flux.action.Content;
-import com.iluwatar.flux.action.ContentAction;
-import com.iluwatar.flux.action.MenuAction;
-import com.iluwatar.flux.action.MenuItem;
-import com.iluwatar.flux.view.View;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -83,6 +76,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import com.iluwatar.flux.action.Content;
+import com.iluwatar.flux.action.ContentAction;
+import com.iluwatar.flux.action.MenuAction;
+import com.iluwatar.flux.action.MenuItem;
+import com.iluwatar.flux.view.View;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:18 PM

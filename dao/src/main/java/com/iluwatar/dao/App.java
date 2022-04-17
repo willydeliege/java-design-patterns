@@ -46,11 +46,10 @@
 
 package com.iluwatar.dao;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
 /**
@@ -89,14 +88,14 @@ public class App {
 
   private static void deleteSchema(DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private static void createSchema(DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }

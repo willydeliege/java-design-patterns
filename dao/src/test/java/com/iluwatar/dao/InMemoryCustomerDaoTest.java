@@ -46,22 +46,20 @@
 
 package com.iluwatar.dao;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-/**
- * Tests {@link InMemoryCustomerDao}.
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
+/** Tests {@link InMemoryCustomerDao}. */
 class InMemoryCustomerDaoTest {
 
-  private InMemoryCustomerDao dao;
   private static final Customer CUSTOMER = new Customer(1, "Freddy", "Krueger");
+  private InMemoryCustomerDao dao;
 
   @BeforeEach
   void setUp() {
@@ -70,8 +68,22 @@ class InMemoryCustomerDaoTest {
   }
 
   /**
-   * Represents the scenario when the DAO operations are being performed on a non existent
-   * customer.
+   * An arbitrary number which does not correspond to an active Customer id.
+   *
+   * @return an int of a customer id which doesn't exist
+   */
+  private int getNonExistingCustomerId() {
+    return 999;
+  }
+
+  private void assertCustomerCountIs(int count) throws Exception {
+    try (var allCustomers = dao.getAll()) {
+      assertEquals(count, allCustomers.count());
+    }
+  }
+
+  /**
+   * Represents the scenario when the DAO operations are being performed on a non existent customer.
    */
   @Nested
   class NonExistingCustomer {
@@ -143,8 +155,8 @@ class InMemoryCustomerDaoTest {
     }
 
     @Test
-    void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
-        Exception {
+    void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation()
+        throws Exception {
       final var newFirstname = "Bernard";
       final var newLastname = "Montgomery";
       final var customer = new Customer(CUSTOMER.getId(), newFirstname, newLastname);
@@ -163,21 +175,6 @@ class InMemoryCustomerDaoTest {
 
       assertTrue(optionalCustomer.isPresent());
       assertEquals(CUSTOMER, optionalCustomer.get());
-    }
-  }
-
-  /**
-   * An arbitrary number which does not correspond to an active Customer id.
-   *
-   * @return an int of a customer id which doesn't exist
-   */
-  private int getNonExistingCustomerId() {
-    return 999;
-  }
-
-  private void assertCustomerCountIs(int count) throws Exception {
-    try (var allCustomers = dao.getAll()) {
-      assertEquals(count, allCustomers.count());
     }
   }
 }

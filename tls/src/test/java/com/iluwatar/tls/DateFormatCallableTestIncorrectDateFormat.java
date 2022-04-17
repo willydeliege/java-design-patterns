@@ -46,22 +46,22 @@
 
 package com.iluwatar.tls;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.List;
 import java.util.concurrent.Executors;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 /**
  * Test of the Callable
- * <p>
- * In this test {@link DateFormatCallable} is tested with only one thread (i.e. without concurrency
- * situation)
- * <p>
- * An incorrect formatted date is passed to the Callable After a successful run 0 date values and 5
- * exceptions should be in the result object.
+ *
+ * <p>In this test {@link DateFormatCallable} is tested with only one thread (i.e. without
+ * concurrency situation)
+ *
+ * <p>An incorrect formatted date is passed to the Callable After a successful run 0 date values and
+ * 5 exceptions should be in the result object.
  *
  * @author Thomas Bauer, January 2017
  */
@@ -85,20 +85,17 @@ public class DateFormatCallableTestIncorrectDateFormat {
   private final int expectedCounterExceptions = 5;
 
   /**
-   * Expected content of the list containing the exceptions created by the run of
-   * DateFormatRunnalbe
+   * Expected content of the list containing the exceptions created by the run of DateFormatRunnalbe
    */
-  private final List<String> expectedExceptions = List.of(
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
-      "class java.text.ParseException: Unparseable date: \"15.12.2015\""
-  );
+  private final List<String> expectedExceptions =
+      List.of(
+          "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+          "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+          "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+          "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
+          "class java.text.ParseException: Unparseable date: \"15.12.2015\"");
 
-  /**
-   * Run Callable and prepare results for usage in the test methods
-   */
+  /** Run Callable and prepare results for usage in the test methods */
   @BeforeAll
   public static void setup() {
     // Create a callable. Pass a string date value not matching the format string

@@ -46,16 +46,13 @@
 
 package com.iluwatar.flux.view;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.dispatcher.Dispatcher;
 import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * MenuView is a concrete view.
- */
+/** MenuView is a concrete view. */
 @Slf4j
 public class MenuView implements View {
 

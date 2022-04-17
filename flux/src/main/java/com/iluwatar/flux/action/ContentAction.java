@@ -46,9 +46,7 @@
 
 package com.iluwatar.flux.action;
 
-/**
- * ContentAction is a concrete action.
- */
+/** ContentAction is a concrete action. */
 public class ContentAction extends Action {
 
   private final Content content;

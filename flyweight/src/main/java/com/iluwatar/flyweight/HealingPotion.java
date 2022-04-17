@@ -48,9 +48,7 @@ package com.iluwatar.flyweight;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * HealingPotion.
- */
+/** HealingPotion. */
 @Slf4j
 public class HealingPotion implements Potion {
 

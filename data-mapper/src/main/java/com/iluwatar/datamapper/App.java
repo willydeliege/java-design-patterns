@@ -63,6 +63,8 @@ public final class App {
 
   private static final String STUDENT_STRING = "App.main(), student : ";
 
+  private App() {}
+
   /**
    * Program entry point.
    *
@@ -97,8 +99,5 @@ public final class App {
 
     /* Delete student in db */
     mapper.delete(student);
-  }
-
-  private App() {
   }
 }

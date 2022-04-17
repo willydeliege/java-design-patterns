@@ -46,14 +46,12 @@
 
 package com.iluwatar.datamapper;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-/**
- * Tests {@link Student}.
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests {@link Student}. */
 final class StudentTest {
 
   /**

@@ -46,15 +46,12 @@
 
 package com.iluwatar.flux.view;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import com.iluwatar.flux.store.Store;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * ContentView is a concrete view.
- */
+/** ContentView is a concrete view. */
 @Slf4j
 public class ContentView implements View {
 

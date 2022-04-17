@@ -46,9 +46,7 @@
 
 package com.iluwatar.builder;
 
-/**
- * Hero, the class with many parameters.
- */
+/** Hero, the class with many parameters. */
 public final class Hero {
 
   private final Profession profession;
@@ -95,10 +93,7 @@ public final class Hero {
   public String toString() {
 
     var sb = new StringBuilder();
-    sb.append("This is a ")
-        .append(profession)
-        .append(" named ")
-        .append(name);
+    sb.append("This is a ").append(profession).append(" named ").append(name);
     if (hairColor != null || hairType != null) {
       sb.append(" with ");
       if (hairColor != null) {
@@ -119,9 +114,7 @@ public final class Hero {
     return sb.toString();
   }
 
-  /**
-   * The builder class.
-   */
+  /** The builder class. */
   public static class Builder {
 
     private final Profession profession;
@@ -131,9 +124,7 @@ public final class Hero {
     private Armor armor;
     private Weapon weapon;
 
-    /**
-     * Constructor.
-     */
+    /** Constructor. */
     public Builder(Profession profession, String name) {
       if (profession == null || name == null) {
         throw new IllegalArgumentException("profession and name can not be null");

@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -61,6 +61,12 @@ public class Saga {
   private boolean forward;
   private boolean finished;
 
+  private Saga() {
+    this.chapters = new ArrayList<>();
+    this.pos = 0;
+    this.forward = true;
+    this.finished = false;
+  }
 
   public static Saga create() {
     return new Saga();
@@ -73,9 +79,7 @@ public class Saga {
    */
   public SagaResult getResult() {
     if (finished) {
-      return forward
-          ? SagaResult.FINISHED
-          : SagaResult.ROLLBACKED;
+      return forward ? SagaResult.FINISHED : SagaResult.ROLLBACKED;
     }
 
     return SagaResult.PROGRESS;
@@ -150,18 +154,9 @@ public class Saga {
     return --pos;
   }
 
-
-  private Saga() {
-    this.chapters = new ArrayList<>();
-    this.pos = 0;
-    this.forward = true;
-    this.finished = false;
-  }
-
   Chapter getCurrent() {
     return chapters.get(pos);
   }
-
 
   boolean isPresent() {
     return pos >= 0 && pos < chapters.size();
@@ -169,6 +164,32 @@ public class Saga {
 
   boolean isCurrentSuccess() {
     return chapters.get(pos).isSuccess();
+  }
+
+  @Override
+  public String toString() {
+    return "Saga{"
+        + "chapters="
+        + Arrays.toString(chapters.toArray())
+        + ", pos="
+        + pos
+        + ", forward="
+        + forward
+        + '}';
+  }
+
+  /** result for chapter. */
+  public enum ChapterResult {
+    INIT,
+    SUCCESS,
+    ROLLBACK
+  }
+
+  /** result for saga. */
+  public enum SagaResult {
+    PROGRESS,
+    FINISHED,
+    ROLLBACKED
   }
 
   /**
@@ -179,7 +200,6 @@ public class Saga {
     private final String name;
     private ChapterResult result;
     private Object inValue;
-
 
     public Chapter(String name) {
       this.name = name;
@@ -215,32 +235,5 @@ public class Saga {
     public boolean isSuccess() {
       return result == ChapterResult.SUCCESS;
     }
-  }
-
-
-  /**
-   * result for chapter.
-   */
-  public enum ChapterResult {
-    INIT, SUCCESS, ROLLBACK
-  }
-
-  /**
-   * result for saga.
-   */
-  public enum SagaResult {
-    PROGRESS, FINISHED, ROLLBACKED
-  }
-
-  @Override
-  public String toString() {
-    return "Saga{"
-        + "chapters="
-        + Arrays.toString(chapters.toArray())
-        + ", pos="
-        + pos
-        + ", forward="
-        + forward
-        + '}';
   }
 }

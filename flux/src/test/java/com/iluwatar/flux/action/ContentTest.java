@@ -46,10 +46,10 @@
 
 package com.iluwatar.flux.action;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:11 PM
@@ -66,5 +66,4 @@ public class ContentTest {
       assertFalse(toString.trim().isEmpty());
     }
   }
-
 }

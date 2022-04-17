@@ -47,7 +47,6 @@
 package com.iluwatar.cqrs.util;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -77,5 +76,4 @@ public class HibernateUtil {
   public static SessionFactory getSessionFactory() {
     return SESSIONFACTORY;
   }
-
 }

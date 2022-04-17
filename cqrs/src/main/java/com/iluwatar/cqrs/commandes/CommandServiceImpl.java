@@ -46,10 +46,10 @@
 
 package com.iluwatar.cqrs.commandes;
 
-import org.hibernate.SessionFactory;
 import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
+import org.hibernate.SessionFactory;
 
 /**
  * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api
@@ -162,5 +162,4 @@ public class CommandServiceImpl implements ICommandService {
       session.getTransaction().commit();
     }
   }
-
 }

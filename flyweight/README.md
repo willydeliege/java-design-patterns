@@ -6,8 +6,10 @@ permalink: /patterns/flyweight/
 categories: Structural
 language: en
 tags:
- - Gang of Four
- - Performance
+
+- Gang of Four
+- Performance
+
 ---
 
 ## Intent
@@ -18,20 +20,20 @@ Use sharing to support large numbers of fine-grained objects efficiently.
 
 Real-world example
 
-> Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is 
-> no need to create a new object for each of them. Instead, one object instance can represent 
+> Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is
+> no need to create a new object for each of them. Instead, one object instance can represent
 > multiple shelf items so the memory footprint remains small.
 
 In plain words
 
-> It is used to minimize memory usage or computational expenses by sharing as much as possible with 
+> It is used to minimize memory usage or computational expenses by sharing as much as possible with
 > similar objects.
 
 Wikipedia says
 
-> In computer programming, flyweight is a software design pattern. A flyweight is an object that 
-> minimizes memory use by sharing as much data as possible with other similar objects; it is a way 
-> to use objects in large numbers when a simple repeated representation would use an unacceptable 
+> In computer programming, flyweight is a software design pattern. A flyweight is an object that
+> minimizes memory use by sharing as much data as possible with other similar objects; it is a way
+> to use objects in large numbers when a simple repeated representation would use an unacceptable
 > amount of memory.
 
 **Programmatic example**
@@ -40,11 +42,13 @@ Translating our alchemist shop example from above. First of all, we have differe
 
 ```java
 public interface Potion {
+
   void drink();
 }
 
 @Slf4j
 public class HealingPotion implements Potion {
+
   @Override
   public void drink() {
     LOGGER.info("You feel healed. (Potion={})", System.identityHashCode(this));
@@ -53,6 +57,7 @@ public class HealingPotion implements Potion {
 
 @Slf4j
 public class HolyWaterPotion implements Potion {
+
   @Override
   public void drink() {
     LOGGER.info("You feel blessed. (Potion={})", System.identityHashCode(this));
@@ -61,6 +66,7 @@ public class HolyWaterPotion implements Potion {
 
 @Slf4j
 public class InvisibilityPotion implements Potion {
+
   @Override
   public void drink() {
     LOGGER.info("You become invisible. (Potion={})", System.identityHashCode(this));
@@ -108,6 +114,7 @@ public class PotionFactory {
 aforementioned `PotionFactory`.
 
 ```java
+
 @Slf4j
 public class AlchemistShop {
 
@@ -156,29 +163,29 @@ In our scenario, a brave visitor enters the alchemist shop and drinks all the po
 
 ```java
 // create the alchemist shop with the potions
-var alchemistShop = new AlchemistShop();
+var alchemistShop=new AlchemistShop();
 // a brave visitor enters the alchemist shop and drinks all the potions
-alchemistShop.drinkPotions();
+    alchemistShop.drinkPotions();
 ```
 
 Program output:
 
 ```java
-Drinking top shelf potions 
-You become invisible. (Potion=1509514333)
-You become invisible. (Potion=1509514333)
-You feel strong. (Potion=739498517)
-You feel healed. (Potion=125130493)
-You become invisible. (Potion=1509514333)
-You feel strong. (Potion=739498517)
-You feel healed. (Potion=125130493)
-You feel healed. (Potion=125130493)
-Drinking bottom shelf potions
-Urgh! This is poisonous. (Potion=166239592)
-Urgh! This is poisonous. (Potion=166239592)
-Urgh! This is poisonous. (Potion=166239592)
-You feel blessed. (Potion=991505714)
-You feel blessed. (Potion=991505714)
+Drinking top shelf potions
+    You become invisible.(Potion=1509514333)
+    You become invisible.(Potion=1509514333)
+    You feel strong.(Potion=739498517)
+    You feel healed.(Potion=125130493)
+    You become invisible.(Potion=1509514333)
+    You feel strong.(Potion=739498517)
+    You feel healed.(Potion=125130493)
+    You feel healed.(Potion=125130493)
+    Drinking bottom shelf potions
+    Urgh!This is poisonous.(Potion=166239592)
+    Urgh!This is poisonous.(Potion=166239592)
+    Urgh!This is poisonous.(Potion=166239592)
+    You feel blessed.(Potion=991505714)
+    You feel blessed.(Potion=991505714)
 ```
 
 ## Class diagram
@@ -187,20 +194,21 @@ You feel blessed. (Potion=991505714)
 
 ## Applicability
 
-The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the 
+The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the
 Flyweight pattern when all of the following are true:
 
 * An application uses a large number of objects.
 * Storage costs are high because of the sheer quantity of objects.
 * Most of the object state can be made extrinsic.
-* Many groups of objects may be replaced by relatively few shared objects once the extrinsic state 
+* Many groups of objects may be replaced by relatively few shared objects once the extrinsic state
   is removed.
-* The application doesn't depend on object identity. Since flyweight objects may be shared, identity 
-tests will return true for conceptually distinct objects.
+* The application doesn't depend on object identity. Since flyweight objects may be shared, identity
+  tests will return true for conceptually distinct objects.
 
 ## Known uses
 
-* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29) and similarly for Byte, Character and other wrapped types.
+* [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29)
+  and similarly for Byte, Character and other wrapped types.
 
 ## Credits
 

@@ -46,21 +46,19 @@
 
 package com.iluwatar.dao;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-/**
- * Tests {@link Customer}.
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Tests {@link Customer}. */
 class CustomerTest {
 
-  private Customer customer;
   private static final int ID = 1;
   private static final String FIRSTNAME = "Winston";
   private static final String LASTNAME = "Churchill";
+  private Customer customer;
 
   @BeforeEach
   void setUp() {
@@ -111,7 +109,10 @@ class CustomerTest {
 
   @Test
   void testToString() {
-    assertEquals(String.format("Customer(id=%s, firstName=%s, lastName=%s)",
-        customer.getId(), customer.getFirstName(), customer.getLastName()), customer.toString());
+    assertEquals(
+        String.format(
+            "Customer(id=%s, firstName=%s, lastName=%s)",
+            customer.getId(), customer.getFirstName(), customer.getLastName()),
+        customer.toString());
   }
 }

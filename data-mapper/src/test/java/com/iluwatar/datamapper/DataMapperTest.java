@@ -46,10 +46,10 @@
 
 package com.iluwatar.datamapper;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -58,13 +58,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * present; they need no SQL interface code, and certainly no knowledge of the database schema. (The
  * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
  * Data Mapper itself is even unknown to the domain layer.
+ *
  * <p>
  */
 class DataMapperTest {
 
-  /**
-   * This test verify that first data mapper is able to perform all CRUD operations on Student
-   */
+  /** This test verify that first data mapper is able to perform all CRUD operations on Student */
   @Test
   void testFirstDataMapper() {
 

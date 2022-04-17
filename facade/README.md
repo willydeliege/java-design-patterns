@@ -6,22 +6,24 @@ permalink: /patterns/facade/
 categories: Structural
 language: en
 tags:
- - Gang Of Four
- - Decoupling
+
+- Gang Of Four
+- Decoupling
+
 ---
 
 ## Intent
 
-Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level 
+Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level
 interface that makes the subsystem easier to use.
 
 ## Explanation
 
 Real-world example
 
-> How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you 
-> believe because you are using a simple interface that goldmine provides on the outside, internally 
-> it has to do a lot of stuff to make it happen. This simple interface to the complex subsystem is a 
+> How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you
+> believe because you are using a simple interface that goldmine provides on the outside, internally
+> it has to do a lot of stuff to make it happen. This simple interface to the complex subsystem is a
 > facade.
 
 In plain words
@@ -30,7 +32,7 @@ In plain words
 
 Wikipedia says
 
-> A facade is an object that provides a simplified interface to a larger body of code, such as a 
+> A facade is an object that provides a simplified interface to a larger body of code, such as a
 > class library.
 
 **Programmatic Example**
@@ -39,6 +41,7 @@ Let's take our goldmine example from above. Here we have the dwarven mine worker
 there's a base class `DwarvenMineWorker`:
 
 ```java
+
 @Slf4j
 public abstract class DwarvenMineWorker {
 
@@ -95,10 +98,11 @@ public abstract class DwarvenMineWorker {
 }
 ```
 
-Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigger` and 
+Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigger` and
 `DwarvenCartOperator`:
 
 ```java
+
 @Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
@@ -151,10 +155,10 @@ public class DwarvenGoldmineFacade {
   private final List<DwarvenMineWorker> workers;
 
   public DwarvenGoldmineFacade() {
-      workers = List.of(
-            new DwarvenGoldDigger(),
-            new DwarvenCartOperator(),
-            new DwarvenTunnelDigger());
+    workers = List.of(
+        new DwarvenGoldDigger(),
+        new DwarvenCartOperator(),
+        new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {
@@ -179,10 +183,10 @@ public class DwarvenGoldmineFacade {
 Now let's use the facade:
 
 ```java
-var facade = new DwarvenGoldmineFacade();
-facade.startNewDay();
-facade.digOutGold();
-facade.endDay();
+var facade=new DwarvenGoldmineFacade();
+    facade.startNewDay();
+    facade.digOutGold();
+    facade.endDay();
 ```
 
 Program output:
@@ -213,18 +217,20 @@ Program output:
 
 Use the Facade pattern when
 
-* You want to provide a simple interface to a complex subsystem. Subsystems often get more complex 
-as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the 
-subsystem more reusable and easier to customize, but it also becomes harder to use for clients that 
-don't need to customize it. A facade can provide a simple default view of the subsystem that is good 
-enough for most clients. Only clients needing more customization will need to look beyond the 
-facade.
-* There are many dependencies between clients and the implementation classes of an abstraction. 
-Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting 
-subsystem independence and portability.
-* You want to layer your subsystems. Use a facade to define an entry point to each subsystem level. 
-If subsystems are dependent, then you can simplify the dependencies between them by making them 
-communicate with each other solely through their facades.
+* You want to provide a simple interface to a complex subsystem. Subsystems often get more complex
+  as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the
+  subsystem more reusable and easier to customize, but it also becomes harder to use for clients
+  that
+  don't need to customize it. A facade can provide a simple default view of the subsystem that is
+  good
+  enough for most clients. Only clients needing more customization will need to look beyond the
+  facade.
+* There are many dependencies between clients and the implementation classes of an abstraction.
+  Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting
+  subsystem independence and portability.
+* You want to layer your subsystems. Use a facade to define an entry point to each subsystem level.
+  If subsystems are dependent, then you can simplify the dependencies between them by making them
+  communicate with each other solely through their facades.
 
 ## Credits
 

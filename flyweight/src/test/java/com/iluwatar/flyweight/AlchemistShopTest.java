@@ -46,11 +46,11 @@
 
 package com.iluwatar.flyweight;
 
-import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:54 PM
@@ -78,7 +78,5 @@ public class AlchemistShopTest {
     // There are 13 potion instances, but only 5 unique instance types
     assertEquals(13, allPotions.size());
     assertEquals(5, allPotions.stream().map(System::identityHashCode).distinct().count());
-
   }
-
 }

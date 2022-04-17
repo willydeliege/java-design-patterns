@@ -46,10 +46,9 @@
 
 package com.iluwatar.tls;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Calendar;
 import java.util.concurrent.Executors;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadLocal pattern
@@ -140,10 +139,12 @@ public class App {
       var cal = Calendar.getInstance();
       cal.setTime(dt);
       // Formatted output of the date value: DD.MM.YYYY
-      LOGGER.info(cal.get(Calendar.DAY_OF_MONTH) + "."
-          + cal.get(Calendar.MONTH) + "."
-          + cal.get(Calendar.YEAR)
-      );
+      LOGGER.info(
+          cal.get(Calendar.DAY_OF_MONTH)
+              + "."
+              + cal.get(Calendar.MONTH)
+              + "."
+              + cal.get(Calendar.YEAR));
     }
     return counter;
   }

@@ -46,21 +46,19 @@
 
 package com.iluwatar.cqrs;
 
-import java.math.BigInteger;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.cqrs.commandes.CommandServiceImpl;
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.queries.IQueryService;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
+import java.math.BigInteger;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-/**
- * Integration test of IQueryService and ICommandService with h2 data
- */
+/** Integration test of IQueryService and ICommandService with h2 data */
 class IntegrationTest {
 
   private static IQueryService queryService;
@@ -86,7 +84,6 @@ class IntegrationTest {
     commandService.bookAddedToAuthor("title2", 20, "username1");
     commandService.bookPriceUpdated("title2", 30);
     commandService.bookTitleUpdated("title2", "new_title2");
-
   }
 
   @Test
@@ -102,7 +99,6 @@ class IntegrationTest {
     var author = queryService.getAuthorByUsername("new_username2");
     var expectedAuthor = new Author("new_name2", "new_email2", "new_username2");
     assertEquals(expectedAuthor, author);
-
   }
 
   @Test
@@ -131,5 +127,4 @@ class IntegrationTest {
     var authorCount = queryService.getAuthorsCount();
     assertEquals(new BigInteger("2"), authorCount);
   }
-
 }

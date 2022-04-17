@@ -46,9 +46,7 @@
 
 package com.iluwatar.flyweight;
 
-/**
- * Interface for Potions.
- */
+/** Interface for Potions. */
 public interface Potion {
 
   void drink();

@@ -6,7 +6,9 @@ permalink: /patterns/dao/
 categories: Architectural
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
@@ -17,16 +19,16 @@ Object provides an abstract interface to some type of database or other persiste
 
 Real world example
 
-> There's a set of customers that need to be persisted to database. Additionally we need the whole 
-> set of CRUD (create/read/update/delete) operations so we can operate on customers easily. 
+> There's a set of customers that need to be persisted to database. Additionally we need the whole
+> set of CRUD (create/read/update/delete) operations so we can operate on customers easily.
 
 In plain words
 
-> DAO is an interface we provide over the base persistence mechanism. 
+> DAO is an interface we provide over the base persistence mechanism.
 
 Wikipedia says
 
-> In computer software, a data access object (DAO) is a pattern that provides an abstract interface 
+> In computer software, a data access object (DAO) is a pattern that provides an abstract interface
 > to some type of database or other persistence mechanism.
 
 **Programmatic Example**
@@ -50,7 +52,7 @@ public class Customer {
 }
 ```
 
-Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao` 
+Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao`
 keeps a simple map of customers in memory while `DBCustomerDao` is the real RDBMS implementation.
 
 ```java
@@ -91,59 +93,59 @@ public class DbCustomerDao implements CustomerDao {
 Finally here's how we use our DAO to manage customers.
 
 ```java
-    final var dataSource = createDataSource();
+    final var dataSource=createDataSource();
     createSchema(dataSource);
-    final var customerDao = new DbCustomerDao(dataSource);
-    
+final var customerDao=new DbCustomerDao(dataSource);
+
     addCustomers(customerDao);
     log.info(ALL_CUSTOMERS);
-    try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((customer) -> log.info(customer.toString()));
+    try(var customerStream=customerDao.getAll()){
+    customerStream.forEach((customer)->log.info(customer.toString()));
     }
-    log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
-    final var customer = new Customer(4, "Dan", "Danson");
+    log.info("customerDao.getCustomerById(2): "+customerDao.getById(2));
+final var customer=new Customer(4,"Dan","Danson");
     customerDao.add(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
+    log.info(ALL_CUSTOMERS+customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.update(customer);
     log.info(ALL_CUSTOMERS);
-    try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((cust) -> log.info(cust.toString()));
+    try(var customerStream=customerDao.getAll()){
+    customerStream.forEach((cust)->log.info(cust.toString()));
     }
     customerDao.delete(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
-    
+    log.info(ALL_CUSTOMERS+customerDao.getAll());
+
     deleteSchema(dataSource);
 ```
 
 The program output:
 
 ```java
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@7cef4e59
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-Customer{id=4, firstName='Daniel', lastName='Danielson'}
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@2db0f6b2
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@12c8a2c0
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-Customer{id=4, firstName='Daniel', lastName='Danielson'}
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
+customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@7cef4e59
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    Customer{id=4,firstName='Daniel',lastName='Danielson'}
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@2db0f6b2
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@12c8a2c0
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    Customer{id=4,firstName='Daniel',lastName='Danielson'}
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@6ec8211c
 ```
 
 ## Class diagram
