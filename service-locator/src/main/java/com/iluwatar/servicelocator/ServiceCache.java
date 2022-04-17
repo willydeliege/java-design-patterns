@@ -46,10 +46,9 @@
 
 package com.iluwatar.servicelocator;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The service cache implementation which will cache services that are being created. On first hit,

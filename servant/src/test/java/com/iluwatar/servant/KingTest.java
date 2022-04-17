@@ -46,10 +46,10 @@
 
 package com.iluwatar.servant;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 9:40 PM
@@ -125,5 +125,4 @@ class KingTest {
     king.changeMood();
     assertFalse(king.getMood());
   }
-
 }

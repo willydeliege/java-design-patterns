@@ -46,13 +46,10 @@
 
 package com.iluwatar.observer.generic;
 
+import com.iluwatar.observer.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
-import com.iluwatar.observer.WeatherType;
-
-/**
- * GHobbits.
- */
+/** GHobbits. */
 @Slf4j
 public class GHobbits implements Race {
 

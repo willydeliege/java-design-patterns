@@ -6,8 +6,10 @@ permalink: /patterns/observer/
 categories: Behavioral
 language: en
 tags:
- - Gang Of Four
- - Reactive
+
+- Gang Of Four
+- Reactive
+
 ---
 
 ## Also known as
@@ -16,15 +18,15 @@ Dependents, Publish-Subscribe
 
 ## Intent
 
-Define a one-to-many dependency between objects so that when one object changes state, all its 
+Define a one-to-many dependency between objects so that when one object changes state, all its
 dependents are notified and updated automatically.
 
 ## Explanation
 
 Real-world example
 
-> In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors so they 
-> closely follow the weather changes. One could say that they are constantly observing the 
+> In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors so they
+> closely follow the weather changes. One could say that they are constantly observing the
 > weather.
 
 In plain words
@@ -33,8 +35,8 @@ In plain words
 
 Wikipedia says
 
-> The observer pattern is a software design pattern in which an object, called the subject, 
-> maintains a list of its dependents, called observers, and notifies them automatically of any state 
+> The observer pattern is a software design pattern in which an object, called the subject,
+> maintains a list of its dependents, called observers, and notifies them automatically of any state
 > changes, usually by calling one of their methods.
 
 **Programmatic Example**
@@ -71,6 +73,7 @@ public class Hobbits implements WeatherObserver {
 Then here's the `Weather` that is constantly changing.
 
 ```java
+
 @Slf4j
 public class Weather {
 
@@ -111,7 +114,7 @@ public class Weather {
 Here's the full example in action.
 
 ```java
-    var weather = new Weather();
+    var weather=new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
     weather.timePasses();
@@ -145,12 +148,12 @@ The hobbits are facing sunny weather now
 
 Use the Observer pattern in any of the following situations:
 
-* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in 
-separate objects lets you vary and reuse them independently.
-* When a change to one object requires changing others, and you don't know how many objects need to 
-be changed.
-* When an object should be able to notify other objects without making assumptions about who these 
-objects are. In other words, you don't want these objects tightly coupled.
+* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in
+  separate objects lets you vary and reuse them independently.
+* When a change to one object requires changing others, and you don't know how many objects need to
+  be changed.
+* When an object should be able to notify other objects without making assumptions about who these
+  objects are. In other words, you don't want these objects tightly coupled.
 
 ## Known uses
 

@@ -6,18 +6,23 @@ permalink: /patterns/service-locator/
 categories: Architectural
 language: en
 tags:
- - Game programming
- - Performance
+
+- Game programming
+- Performance
+
 ---
 
 ## Intent
+
 Encapsulate the processes involved in obtaining a service with a
 strong abstraction layer.
 
 ## Class diagram
+
 ![alt text](/etc/service-locator.png "Service Locator")
 
 ## Applicability
+
 The service locator pattern is applicable whenever we want
 to locate/fetch various services using JNDI which, typically, is a redundant
 and expensive lookup. The service Locator pattern addresses this expensive
@@ -35,8 +40,8 @@ improves the performance of application to great extent.
 
 ## Consequences
 
-* Violates Interface Segregation Principle (ISP) by providing pattern consumers with an access 
-to a number of services that they don't potentially need.
+* Violates Interface Segregation Principle (ISP) by providing pattern consumers with an access
+  to a number of services that they don't potentially need.
 * Creates hidden dependencies that can break the clients at runtime.
 
 ## Credits

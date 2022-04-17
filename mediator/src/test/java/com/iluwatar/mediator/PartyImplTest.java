@@ -46,12 +46,12 @@
 
 package com.iluwatar.mediator;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/19/15 - 10:00 PM
@@ -82,5 +82,4 @@ public class PartyImplTest {
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
   }
-
 }

@@ -46,9 +46,8 @@
 
 package com.iluwatar.servant;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Servant offers some functionality to a group of classes without defining that functionality in
@@ -63,17 +62,13 @@ public class App {
   private static final Servant jenkins = new Servant("Jenkins");
   private static final Servant travis = new Servant("Travis");
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     scenario(jenkins, 1);
     scenario(travis, 0);
   }
 
-  /**
-   * Can add a List with enum Actions for variable scenarios.
-   */
+  /** Can add a List with enum Actions for variable scenarios. */
   public static void scenario(Servant servant, int compliment) {
     var k = new King();
     var q = new Queen();

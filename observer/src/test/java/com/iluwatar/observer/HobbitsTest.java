@@ -56,20 +56,17 @@ import java.util.List;
  */
 public class HobbitsTest extends WeatherObserverTest<Hobbits> {
 
-  @Override
-  public Collection<Object[]> dataProvider() {
-    return List.of(
-        new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
-        new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
-        new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},
-        new Object[]{WeatherType.COLD, "The hobbits are facing Cold weather now"});
-  }
-
-  /**
-   * Create a new test with the given weather and expected response
-   */
+  /** Create a new test with the given weather and expected response */
   public HobbitsTest() {
     super(Hobbits::new);
   }
 
+  @Override
+  public Collection<Object[]> dataProvider() {
+    return List.of(
+        new Object[] {WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
+        new Object[] {WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
+        new Object[] {WeatherType.WINDY, "The hobbits are facing Windy weather now"},
+        new Object[] {WeatherType.COLD, "The hobbits are facing Cold weather now"});
+  }
 }

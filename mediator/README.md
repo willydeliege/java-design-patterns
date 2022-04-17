@@ -6,14 +6,16 @@ permalink: /patterns/mediator/
 categories: Behavioral
 language: en
 tags:
- - Gang Of Four
- - Decoupling
+
+- Gang Of Four
+- Decoupling
+
 ---
 
 ## Intent
 
-Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling 
-by keeping objects from referring to each other explicitly, and it lets you vary their interaction 
+Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling
+by keeping objects from referring to each other explicitly, and it lets you vary their interaction
 independently.
 
 ## Explanation
@@ -31,21 +33,21 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, the mediator pattern defines an object that encapsulates how a set of 
-> objects interact. This pattern is considered to be a behavioral pattern due to the way it can 
-> alter the program's running behavior. In object-oriented programming, programs often consist of 
-> many classes. Business logic and computation are distributed among these classes. However, as 
-> more classes are added to a program, especially during maintenance and/or refactoring, the 
-> problem of communication between these classes may become more complex. This makes the program 
-> harder to read and maintain. Furthermore, it can become difficult to change the program, since 
-> any change may affect code in several other classes. With the mediator pattern, communication 
-> between objects is encapsulated within a mediator object. Objects no longer communicate directly 
-> with each other, but instead communicate through the mediator. This reduces the dependencies 
+> In software engineering, the mediator pattern defines an object that encapsulates how a set of
+> objects interact. This pattern is considered to be a behavioral pattern due to the way it can
+> alter the program's running behavior. In object-oriented programming, programs often consist of
+> many classes. Business logic and computation are distributed among these classes. However, as
+> more classes are added to a program, especially during maintenance and/or refactoring, the
+> problem of communication between these classes may become more complex. This makes the program
+> harder to read and maintain. Furthermore, it can become difficult to change the program, since
+> any change may affect code in several other classes. With the mediator pattern, communication
+> between objects is encapsulated within a mediator object. Objects no longer communicate directly
+> with each other, but instead communicate through the mediator. This reduces the dependencies
 > between communicating objects, thereby reducing coupling.
 
 **Programmatic Example**
 
-In this example, the mediator encapsulates how a set of objects interact. Instead of referring to 
+In this example, the mediator encapsulates how a set of objects interact. Instead of referring to
 each other directly they use the mediator interface.
 
 The party members `Rogue`, `Wizard`, `Hobbit`, and `Hunter` all inherit from the `PartyMemberBase`
@@ -139,24 +141,24 @@ Here's a demo showing the mediator pattern in action.
 
 ```java
     // create party and members
-    Party party = new PartyImpl();
-    var hobbit = new Hobbit();
-    var wizard = new Wizard();
-    var rogue = new Rogue();
-    var hunter = new Hunter();
+    Party party=new PartyImpl();
+        var hobbit=new Hobbit();
+        var wizard=new Wizard();
+        var rogue=new Rogue();
+        var hunter=new Hunter();
 
-    // add party members
-    party.addMember(hobbit);
-    party.addMember(wizard);
-    party.addMember(rogue);
-    party.addMember(hunter);
+        // add party members
+        party.addMember(hobbit);
+        party.addMember(wizard);
+        party.addMember(rogue);
+        party.addMember(hunter);
 
-    // perform actions -> the other party members
-    // are notified by the party
-    hobbit.act(Action.ENEMY);
-    wizard.act(Action.TALE);
-    rogue.act(Action.GOLD);
-    hunter.act(Action.HUNT);
+        // perform actions -> the other party members
+        // are notified by the party
+        hobbit.act(Action.ENEMY);
+        wizard.act(Action.TALE);
+        rogue.act(Action.GOLD);
+        hunter.act(Action.HUNT);
 ```
 
 Here's the console output from running the example.
@@ -192,16 +194,21 @@ Rogue arrives for dinner
 
 Use the Mediator pattern when
 
-* A set of objects communicate in well-defined but complex ways. The resulting interdependencies are unstructured and difficult to understand
+* A set of objects communicate in well-defined but complex ways. The resulting interdependencies are
+  unstructured and difficult to understand
 * Reusing an object is difficult because it refers to and communicates with many other objects
-* A behavior that's distributed between several classes should be customizable without a lot of subclassing
+* A behavior that's distributed between several classes should be customizable without a lot of
+  subclassing
 
 ## Known uses
 
-* All scheduleXXX() methods of [java.util.Timer](http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
+* All scheduleXXX() methods
+  of [java.util.Timer](http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
 * [java.util.concurrent.Executor#execute()](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)
-* submit() and invokeXXX() methods of [java.util.concurrent.ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
-* scheduleXXX() methods of [java.util.concurrent.ScheduledExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html)
+* submit() and invokeXXX() methods
+  of [java.util.concurrent.ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
+* scheduleXXX() methods
+  of [java.util.concurrent.ScheduledExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html)
 * [java.lang.reflect.Method#invoke()](http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html#invoke-java.lang.Object-java.lang.Object...-)
 
 ## Credits

@@ -69,19 +69,19 @@
 
 package com.iluwatar.observer.generic;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.observer.WeatherObserver;
-import com.iluwatar.observer.WeatherType;
-import com.iluwatar.observer.utils.InMemoryAppender;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import com.iluwatar.observer.WeatherObserver;
+import com.iluwatar.observer.WeatherType;
+import com.iluwatar.observer.utils.InMemoryAppender;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 11:08 AM

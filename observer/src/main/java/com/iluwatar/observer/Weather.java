@@ -46,10 +46,9 @@
 
 package com.iluwatar.observer;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Weather can be observed by implementing {@link WeatherObserver} interface and registering as
@@ -58,8 +57,8 @@ import java.util.List;
 @Slf4j
 public class Weather {
 
-  private WeatherType currentWeather;
   private final List<WeatherObserver> observers;
+  private WeatherType currentWeather;
 
   public Weather() {
     observers = new ArrayList<>();
@@ -74,9 +73,7 @@ public class Weather {
     observers.remove(obs);
   }
 
-  /**
-   * Makes time pass for weather.
-   */
+  /** Makes time pass for weather. */
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];

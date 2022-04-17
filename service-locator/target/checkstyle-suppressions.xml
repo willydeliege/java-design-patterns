@@ -23,40 +23,11 @@
     THE SOFTWARE.
 
 -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>service-locator</artifactId>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <configuration>
-              <archive>
-                <manifest>
-                  <mainClass>com.iluwatar.servicelocator.App</mainClass>
-                </manifest>
-              </archive>
-            </configuration>
-          </execution>
-        </executions>
-        <groupId>org.apache.maven.plugins</groupId>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <dependency>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <groupId>org.junit.jupiter</groupId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>java-design-patterns</artifactId>
-    <groupId>com.iluwatar</groupId>
-    <version>1.26.0-SNAPSHOT</version>
-  </parent>
-</project>
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+  "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+  <suppress checks="AvoidStarImport" files="[\\/]src[\\/]test[\\/]java[\\/]"/>
+  <suppress checks="[a-zA-Z0-9]*" files="[\\/]src[\\/]test[\\/]resources[\\/]"/>
+  <suppress checks="[a-zA-Z0-9]*" files="[\\/]build[\\/]generated-sources[\\/]"/>
+  <suppress checks="[a-zA-Z0-9]*" files="[\\/]src[\\/]main[\\/]resources[\\/]"/>
+</suppressions>

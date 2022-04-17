@@ -46,13 +46,10 @@
 
 package com.iluwatar.observer.generic;
 
+import com.iluwatar.observer.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
-import com.iluwatar.observer.WeatherType;
-
-/**
- * GWeather.
- */
+/** GWeather. */
 @Slf4j
 public class GWeather extends Observable<GWeather, Race, WeatherType> {
 
@@ -62,9 +59,7 @@ public class GWeather extends Observable<GWeather, Race, WeatherType> {
     currentWeather = WeatherType.SUNNY;
   }
 
-  /**
-   * Makes time pass for weather.
-   */
+  /** Makes time pass for weather. */
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];

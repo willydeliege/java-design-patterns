@@ -46,11 +46,10 @@
 
 package com.iluwatar.observer;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.iluwatar.observer.generic.GHobbits;
 import com.iluwatar.observer.generic.GOrcs;
 import com.iluwatar.observer.generic.GWeather;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Observer pattern is a software design pattern in which an object, called the subject,

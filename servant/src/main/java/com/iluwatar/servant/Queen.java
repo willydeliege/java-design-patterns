@@ -46,9 +46,7 @@
 
 package com.iluwatar.servant;
 
-/**
- * Queen.
- */
+/** Queen. */
 public class Queen implements Royalty {
 
   private boolean isDrunk = true;
@@ -86,5 +84,4 @@ public class Queen implements Royalty {
   public void setFlirtiness(boolean f) {
     this.isFlirty = f;
   }
-
 }
