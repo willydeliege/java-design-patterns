@@ -61,9 +61,7 @@ import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.eventbus.ActionDomainEvent;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
-/**
- * Domain Service for Simple Objects.
- */
+/** Domain Service for Simple Objects. */
 @DomainService(repositoryFor = SimpleObject.class)
 @DomainServiceLayout(menuOrder = "10")
 public class SimpleObjects {
@@ -71,8 +69,7 @@ public class SimpleObjects {
 
   // region > injected services
 
-  @javax.inject.Inject
-  DomainObjectContainer container;
+  @javax.inject.Inject DomainObjectContainer container;
 
   // endregion
 
@@ -103,20 +100,7 @@ public class SimpleObjects {
 
   // endregion
 
-  /**
-   * Create Domain Event on SimpleObjects.
-   */
-  // region > create (action)
-  public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjects> {
-    public CreateDomainEvent(final SimpleObjects source, final Identifier identifier,
-                             final Object... arguments) {
-      super(source, identifier, arguments);
-    }
-  }
-
-  /**
-   * Create simple object.
-   */
+  /** Create simple object. */
   @Action(domainEvent = CreateDomainEvent.class)
   @MemberOrder(sequence = "3")
   public SimpleObject create(@ParameterLayout(named = "Name") final String name) {
@@ -126,4 +110,12 @@ public class SimpleObjects {
     return obj;
   }
 
+  /** Create Domain Event on SimpleObjects. */
+  // region > create (action)
+  public static class CreateDomainEvent extends ActionDomainEvent<SimpleObjects> {
+    public CreateDomainEvent(
+        final SimpleObjects source, final Identifier identifier, final Object... arguments) {
+      super(source, identifier, arguments);
+    }
+  }
 }

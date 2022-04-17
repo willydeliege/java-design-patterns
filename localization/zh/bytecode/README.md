@@ -6,7 +6,9 @@ permalink: /patterns/bytecode/
 categories: Behavioral
 language: zh
 tags:
- - Game programming
+
+- Game programming
+
 ---
 
 ## 意图
@@ -32,6 +34,7 @@ tags:
 其中最重要的游戏对象是`巫师`类。
 
 ```java
+
 @AllArgsConstructor
 @Setter
 @Getter
@@ -59,6 +62,7 @@ public class Wizard {
 下面我们展示虚拟机可用的指令。每个指令对于如何操作栈中的数据都有自己的语义。例如，增加指令，其取得栈顶的两个元素并把结果压入栈中。
 
 ```java
+
 @AllArgsConstructor
 @Getter
 public enum Instruction {
@@ -81,6 +85,7 @@ public enum Instruction {
 我们示例的核心是`虚拟机`类。 它将指令作为输入并执行它们以提供游戏对象行为。
 
 ```java
+
 @Getter
 @Slf4j
 public class VirtualMachine {
@@ -174,11 +179,11 @@ public class VirtualMachine {
 现在我们可以展示使用虚拟机的完整示例。
 
 ```java
-  public static void main(String[] args) {
+  public static void main(String[]args){
 
-    var vm = new VirtualMachine(
-        new Wizard(45, 7, 11, 0, 0),
-        new Wizard(36, 18, 8, 0, 0));
+    var vm=new VirtualMachine(
+    new Wizard(45,7,11,0,0),
+    new Wizard(36,18,8,0,0));
 
     vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
     vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
@@ -192,7 +197,7 @@ public class VirtualMachine {
     vm.execute(InstructionConverterUtil.convertToByteCode("DIVIDE"));
     vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
     vm.execute(InstructionConverterUtil.convertToByteCode("SET_HEALTH"));
-  }
+    }
 ```
 
 下面是控制台输出。
@@ -217,8 +222,6 @@ public class VirtualMachine {
 ![alt text](../../../bytecode/etc/bytecode.urm.png "Bytecode class diagram")
 
 ## 适用性
-
-
 
 当您需要定义很多行为并且游戏的实现语言不合适时，请使用字节码模式，因为：
 

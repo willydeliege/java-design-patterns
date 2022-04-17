@@ -5,30 +5,32 @@ folder: fluentinterface
 permalink: /patterns/fluentinterface/
 categories: Functional
 language: en
-tags: 
- - Reactive
+tags:
+
+- Reactive
+
 ---
 
 ## Intent
 
-A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific 
+A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific
 language. Using this pattern results in code that can be read nearly as human language.
 
 ## Explanation
 
-The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those 
+The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those
 interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
- 
+
 A fluent interface can be implemented using any of
- 
- * Method chaining - calling a method returns some object on which further methods can be called.
- * Static factory methods and imports.
- * Named parameters - can be simulated in Java using static factory methods.
+
+* Method chaining - calling a method returns some object on which further methods can be called.
+* Static factory methods and imports.
+* Named parameters - can be simulated in Java using static factory methods.
 
 Real world example
 
-> We need to select numbers based on different criteria from the list. It's a great chance to 
-> utilize fluent interface pattern to provide readable easy-to-use developer experience. 
+> We need to select numbers based on different criteria from the list. It's a great chance to
+> utilize fluent interface pattern to provide readable easy-to-use developer experience.
 
 In plain words
 
@@ -36,8 +38,8 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, a fluent interface is an object-oriented API whose design relies 
-> extensively on method chaining. Its goal is to increase code legibility by creating a 
+> In software engineering, a fluent interface is an object-oriented API whose design relies
+> extensively on method chaining. Its goal is to increase code legibility by creating a
 > domain-specific language (DSL).
 
 **Programmatic Example**
@@ -85,72 +87,70 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 }
 ```
 
-Their usage is demonstrated with a simple number list that is filtered, transformed and collected. The 
+Their usage is demonstrated with a simple number list that is filtered, transformed and collected.
+The
 result is printed afterwards.
 
 ```java
-    var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
+    var integerList=List.of(1,-61,14,-22,18,-87,6,64,-82,26,-98,97,45,23,2,-68);
 
-    prettyPrint("The initial list contains: ", integerList);
+    prettyPrint("The initial list contains: ",integerList);
 
-    var firstFiveNegatives = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(negatives())
-        .first(3)
-        .asList();
-    prettyPrint("The first three negative values are: ", firstFiveNegatives);
+    var firstFiveNegatives=SimpleFluentIterable
+    .fromCopyOf(integerList)
+    .filter(negatives())
+    .first(3)
+    .asList();
+    prettyPrint("The first three negative values are: ",firstFiveNegatives);
 
-
-    var lastTwoPositives = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(positives())
-        .last(2)
-        .asList();
-    prettyPrint("The last two positive values are: ", lastTwoPositives);
+    var lastTwoPositives=SimpleFluentIterable
+    .fromCopyOf(integerList)
+    .filter(positives())
+    .last(2)
+    .asList();
+    prettyPrint("The last two positive values are: ",lastTwoPositives);
 
     SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(number -> number % 2 == 0)
-        .first()
-        .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
+    .fromCopyOf(integerList)
+    .filter(number->number%2==0)
+    .first()
+    .ifPresent(evenNumber->LOGGER.info("The first even number is: {}",evenNumber));
 
+    var transformedList=SimpleFluentIterable
+    .fromCopyOf(integerList)
+    .filter(negatives())
+    .map(transformToString())
+    .asList();
+    prettyPrint("A string-mapped list of negative numbers contains: ",transformedList);
 
-    var transformedList = SimpleFluentIterable
-        .fromCopyOf(integerList)
-        .filter(negatives())
-        .map(transformToString())
-        .asList();
-    prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
-
-
-    var lastTwoOfFirstFourStringMapped = LazyFluentIterable
-        .from(integerList)
-        .filter(positives())
-        .first(4)
-        .last(2)
-        .map(number -> "String[" + valueOf(number) + "]")
-        .asList();
+    var lastTwoOfFirstFourStringMapped=LazyFluentIterable
+    .from(integerList)
+    .filter(positives())
+    .first(4)
+    .last(2)
+    .map(number->"String["+valueOf(number)+"]")
+    .asList();
     prettyPrint("The lazy list contains the last two of the first four positive numbers "
-        + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
+    +"mapped to Strings: ",lastTwoOfFirstFourStringMapped);
 
     LazyFluentIterable
-        .from(integerList)
-        .filter(negatives())
-        .first(2)
-        .last()
-        .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+    .from(integerList)
+    .filter(negatives())
+    .first(2)
+    .last()
+    .ifPresent(number->LOGGER.info("Last amongst first two negatives: {}",number));
 ```
 
 Program output:
 
 ```java
-The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
-The first three negative values are: -61, -22, -87.
-The last two positive values are: 23, 2.
-The first even number is: 14
-A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
-The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
-Last amongst first two negatives: -22    
+The initial list contains:1,-61,14,-22,18,-87,6,64,-82,26,-98,97,45,23,2,-68.
+    The first three negative values are:-61,-22,-87.
+    The last two positive values are:23,2.
+    The first even number is:14
+    A string-mapped list of negative numbers contains:String[-61],String[-22],String[-87],String[-82],String[-98],String[-68].
+    The lazy list contains the last two of the first four positive numbers mapped to Strings:String[18],String[6].
+    Last amongst first two negatives:-22    
 ```
 
 ## Class diagram

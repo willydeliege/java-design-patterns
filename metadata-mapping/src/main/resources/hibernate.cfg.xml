@@ -24,12 +24,12 @@
 
 -->
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
     <!-- JDBC Database connection settings -->
-    <property name="connection.url">jdbc:h2:mem:metamapping</property>
+    <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml"/>
     <property name="connection.driver_class">org.h2.Driver</property>
     <!-- JDBC connection pool settings ... using built-in test pool -->
     <property name="connection.pool_size">1</property>
@@ -39,6 +39,6 @@
     <property name="show_sql">false</property>
     <!-- Drop and re-create the database schema on startup -->
     <property name="hbm2ddl.auto">create-drop</property>
-    <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml" />
+    <property name="connection.url">jdbc:h2:mem:metamapping</property>
   </session-factory>
 </hibernate-configuration>

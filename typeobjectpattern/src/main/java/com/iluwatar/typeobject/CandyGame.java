@@ -46,17 +46,15 @@
 
 package com.iluwatar.typeobject;
 
-import lombok.extern.slf4j.Slf4j;
-
+import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
-import com.iluwatar.typeobject.Candy.Type;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
  * (field 'cells') and totalPoints gained during the game.
  */
-
 @Slf4j
 public class CandyGame {
 
@@ -88,8 +86,11 @@ public class CandyGame {
         var candyName = cell[j].candy.name;
         if (candyName.length() < 20) {
           var totalSpaces = 20 - candyName.length();
-          LOGGER.info(numOfSpaces(totalSpaces / 2) + cell[j].candy.name
-              + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
+          LOGGER.info(
+              numOfSpaces(totalSpaces / 2)
+                  + cell[j].candy.name
+                  + numOfSpaces(totalSpaces - totalSpaces / 2)
+                  + "|");
         } else {
           LOGGER.info(candyName + "|");
         }
@@ -191,5 +192,4 @@ public class CandyGame {
       end = System.currentTimeMillis();
     }
   }
-
 }

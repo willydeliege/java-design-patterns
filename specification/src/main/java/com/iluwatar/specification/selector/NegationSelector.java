@@ -58,9 +58,7 @@ public class NegationSelector<T> extends AbstractSelector<T> {
     this.component = selector;
   }
 
-  /**
-   * Tests if the selector fails the test (yes).
-   */
+  /** Tests if the selector fails the test (yes). */
   @Override
   public boolean test(T t) {
     return !(component.test(t));

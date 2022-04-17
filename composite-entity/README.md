@@ -6,26 +6,32 @@ permalink: /patterns/composite-entity/
 categories: Structural
 language: en
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## Intent
 
-It is used to model, represent, and manage a set of persistent objects that are interrelated, rather than representing them as individual fine-grained entities. 
+It is used to model, represent, and manage a set of persistent objects that are interrelated, rather
+than representing them as individual fine-grained entities.
 
 ## Explanation
 
 Real world example
 
-> For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity pattern, dependent objects such as messages and signals can be combined together and controlled using a single object.
+> For a console, there may be many interfaces that need to be managed and controlled. Using the
+> composite entity pattern, dependent objects such as messages and signals can be combined together
+> and controlled using a single object.
 
 In plain words
 
-> Composite entity pattern allows a set of related objects to be represented and managed by a unified object.
+> Composite entity pattern allows a set of related objects to be represented and managed by a
+> unified object.
 
 **Programmatic Example**
 
-We need a generic solution for the problem. To achieve this, let's introduce a generic 
+We need a generic solution for the problem. To achieve this, let's introduce a generic
 Composite Entity Pattern.
 
 ```java
@@ -101,12 +107,12 @@ public class CompositeEntity {
 Now managing the assignment of message and signal objects with the composite entity `console`.
 
 ```java
-var console = new CompositeEntity();
-console.init();
-console.setData("No Danger", "Green Light");
-Arrays.stream(console.getData()).forEach(LOGGER::info);
-console.setData("Danger", "Red Light");
-Arrays.stream(console.getData()).forEach(LOGGER::info);
+var console=new CompositeEntity();
+    console.init();
+    console.setData("No Danger","Green Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+    console.setData("Danger","Red Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
 ```
 
 ## Class diagram
@@ -117,7 +123,10 @@ Arrays.stream(console.getData()).forEach(LOGGER::info);
 
 Use the Composite Entity Pattern in the following situation:
 
-* You want to manage multiple dependency objects through one object to adjust the degree of granularity between objects. At the same time, the lifetime of dependency objects depends on a coarse-grained object.
+* You want to manage multiple dependency objects through one object to adjust the degree of
+  granularity between objects. At the same time, the lifetime of dependency objects depends on a
+  coarse-grained object.
+
 ## Credits
 
 * [Composite Entity Pattern in wikipedia](https://en.wikipedia.org/wiki/Composite_entity_pattern)

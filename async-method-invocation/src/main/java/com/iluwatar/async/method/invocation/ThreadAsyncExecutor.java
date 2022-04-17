@@ -51,14 +51,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Implementation of async executor that creates a new thread for every task.
- */
+/** Implementation of async executor that creates a new thread for every task. */
 public class ThreadAsyncExecutor implements AsyncExecutor {
 
-  /**
-   * Index for thread naming.
-   */
+  /** Index for thread naming. */
   private final AtomicInteger idx = new AtomicInteger(0);
 
   @Override
@@ -69,19 +65,22 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
   @Override
   public <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback) {
     var result = new CompletableResult<>(callback);
-    new Thread(() -> {
-      try {
-        result.setValue(task.call());
-      } catch (Exception ex) {
-        result.setException(ex);
-      }
-    }, "executor-" + idx.incrementAndGet()).start();
+    new Thread(
+            () -> {
+              try {
+                result.setValue(task.call());
+              } catch (Exception ex) {
+                result.setException(ex);
+              }
+            },
+            "executor-" + idx.incrementAndGet())
+        .start();
     return result;
   }
 
   @Override
-  public <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException,
-      InterruptedException {
+  public <T> T endProcess(AsyncResult<T> asyncResult)
+      throws ExecutionException, InterruptedException {
     if (!asyncResult.isCompleted()) {
       asyncResult.await();
     }
@@ -115,21 +114,6 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     }
 
     /**
-     * Sets the value from successful execution and executes callback if available. Notifies any
-     * thread waiting for completion.
-     *
-     * @param value value of the evaluated task
-     */
-    void setValue(T value) {
-      this.value = value;
-      this.state = COMPLETED;
-      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.empty()));
-      synchronized (lock) {
-        lock.notifyAll();
-      }
-    }
-
-    /**
      * Sets the exception from failed execution and executes callback if available. Notifies any
      * thread waiting for completion.
      *
@@ -157,6 +141,21 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
         throw new ExecutionException(exception);
       } else {
         throw new IllegalStateException("Execution not completed yet");
+      }
+    }
+
+    /**
+     * Sets the value from successful execution and executes callback if available. Notifies any
+     * thread waiting for completion.
+     *
+     * @param value value of the evaluated task
+     */
+    void setValue(T value) {
+      this.value = value;
+      this.state = COMPLETED;
+      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.empty()));
+      synchronized (lock) {
+        lock.notifyAll();
       }
     }
 

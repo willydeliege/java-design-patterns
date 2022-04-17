@@ -6,48 +6,64 @@ permalink: /patterns/service-layer/
 categories: Architectural
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
 
-Service Layer is an abstraction over domain logic. It defines application's boundary with a layer of services that 
-establishes a set of available operations and coordinates the application's response in each operation.
+Service Layer is an abstraction over domain logic. It defines application's boundary with a layer of
+services that
+establishes a set of available operations and coordinates the application's response in each
+operation.
 
 ## Explanation
 
-Typically applications require different kinds of interfaces to the data they store and the logic they implement. 
-Despite their different purposes, these interfaces often need common interactions with the application to access and 
-manipulate its data and invoke its business logic. Encoding the logic of the interactions separately in each module 
-causes a lot of duplication. It's better to centralize building the business logic inside single Service Layer to avoid 
+Typically applications require different kinds of interfaces to the data they store and the logic
+they implement.
+Despite their different purposes, these interfaces often need common interactions with the
+application to access and
+manipulate its data and invoke its business logic. Encoding the logic of the interactions separately
+in each module
+causes a lot of duplication. It's better to centralize building the business logic inside single
+Service Layer to avoid
 these pitfalls.
- 
+
 Real world example
 
-> We are writing an application that tracks wizards, spellbooks and spells. Wizards may have spellbooks and spellbooks 
-may have spells.           
+> We are writing an application that tracks wizards, spellbooks and spells. Wizards may have
+> spellbooks and spellbooks
+> may have spells.
 
 In plain words
 
-> Service Layer is an abstraction over application's business logic.   
+> Service Layer is an abstraction over application's business logic.
 
 Wikipedia says
 
-> Service layer is an architectural pattern, applied within the service-orientation design paradigm, which aims to 
-organize the services, within a service inventory, into a set of logical layers. Services that are categorized into 
-a particular layer share functionality. This helps to reduce the conceptual overhead related to managing the service 
-inventory, as the services belonging to the same layer address a smaller set of activities.
+> Service layer is an architectural pattern, applied within the service-orientation design paradigm,
+> which aims to
+> organize the services, within a service inventory, into a set of logical layers. Services that are
+> categorized into
+> a particular layer share functionality. This helps to reduce the conceptual overhead related to
+> managing the service
+> inventory, as the services belonging to the same layer address a smaller set of activities.
 
 **Programmatic Example**
 
-The example application demonstrates interactions between a client `App` and a service `MagicService` that allows
-interaction between wizards, spellbooks and spells. The service is implemented with 3-layer architecture 
+The example application demonstrates interactions between a client `App` and a
+service `MagicService` that allows
+interaction between wizards, spellbooks and spells. The service is implemented with 3-layer
+architecture
 (entity, dao, service).
 
-For this explanation we are looking at one vertical slice of the system. Let's start from the entity layer and look at 
+For this explanation we are looking at one vertical slice of the system. Let's start from the entity
+layer and look at
 `Wizard` class. Other entities not shown here are `Spellbook` and `Spell`.
 
 ```java
+
 @Entity
 @Table(name = "WIZARD")
 public class Wizard extends BaseEntity {
@@ -199,7 +215,7 @@ public class MagicServiceImpl implements MagicService {
 And finally we can show how the client `App` interacts with `MagicService` in the Service Layer.
 
 ```java
-    var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
+    var service=new MagicServiceImpl(wizardDao,spellbookDao,spellDao);
     LOGGER.info("Enumerating all wizards");
     service.findAllWizards().stream().map(Wizard::getName).forEach(LOGGER::info);
     LOGGER.info("Enumerating all spellbooks");
@@ -207,18 +223,19 @@ And finally we can show how the client `App` interacts with `MagicService` in th
     LOGGER.info("Enumerating all spells");
     service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
     LOGGER.info("Find wizards with spellbook 'Book of Idores'");
-    var wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
-    wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
+    var wizardsWithSpellbook=service.findWizardsWithSpellbook("Book of Idores");
+    wizardsWithSpellbook.forEach(w->LOGGER.info("{} has 'Book of Idores'",w.getName()));
     LOGGER.info("Find wizards with spell 'Fireball'");
-    var wizardsWithSpell = service.findWizardsWithSpell("Fireball");
-    wizardsWithSpell.forEach(w -> LOGGER.info("{} has 'Fireball'", w.getName()));
+    var wizardsWithSpell=service.findWizardsWithSpell("Fireball");
+    wizardsWithSpell.forEach(w->LOGGER.info("{} has 'Fireball'",w.getName()));
 ```
 
-
 ## Class diagram
+
 ![alt text](/etc/service-layer.png "Service Layer")
 
 ## Applicability
+
 Use the Service Layer pattern when
 
 * You want to encapsulate domain logic under API

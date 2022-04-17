@@ -6,7 +6,9 @@ permalink: /patterns/factory-kit/
 categories: Creational
 language: en
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## Intent
@@ -19,7 +21,7 @@ Real-world example
 
 > Imagine a magical weapon factory that can create any type of weapon wished for. When the factory
 > is unboxed, the master recites the weapon types needed to prepare it. After that, any of those
-> weapon types can be summoned in an instant. 
+> weapon types can be summoned in an instant.
 
 In plain words
 
@@ -31,20 +33,22 @@ Let's first define the simple `Weapon` hierarchy.
 
 ```java
 public interface Weapon {
+
 }
 
 public enum WeaponType {
-    SWORD,
-    AXE,
-    BOW,
-    SPEAR
+  SWORD,
+  AXE,
+  BOW,
+  SPEAR
 }
 
 public class Sword implements Weapon {
-    @Override
-    public String toString() {
-        return "Sword";
-    }
+
+  @Override
+  public String toString() {
+    return "Sword";
+  }
 }
 
 // Axe, Bow, and Spear are defined similarly
@@ -54,6 +58,7 @@ Next, we define a functional interface that allows adding a builder with a name 
 
 ```java
 public interface Builder {
+
   void add(WeaponType name, Supplier<Weapon> supplier);
 }
 ```
@@ -66,11 +71,11 @@ be able to construct. The method `#create` is then used to create object instanc
 public interface WeaponFactory {
 
   static WeaponFactory factory(Consumer<Builder> consumer) {
-      var map = new HashMap<WeaponType, Supplier<Weapon>>();
-      consumer.accept(map::put);
-      return name -> map.get(name).get();
+    var map = new HashMap<WeaponType, Supplier<Weapon>>();
+    consumer.accept(map::put);
+    return name -> map.get(name).get();
   }
-    
+
   Weapon create(WeaponType name);
 }
 ```
@@ -78,18 +83,18 @@ public interface WeaponFactory {
 Now, we can show how `WeaponFactory` can be used.
 
 ```java
-var factory = WeaponFactory.factory(builder -> {
-  builder.add(WeaponType.SWORD, Sword::new);
-  builder.add(WeaponType.AXE, Axe::new);
-  builder.add(WeaponType.SPEAR, Spear::new);
-  builder.add(WeaponType.BOW, Bow::new);
-});
-var list = new ArrayList<Weapon>();
-list.add(factory.create(WeaponType.AXE));
-list.add(factory.create(WeaponType.SPEAR));
-list.add(factory.create(WeaponType.SWORD));
-list.add(factory.create(WeaponType.BOW));
-list.stream().forEach(weapon -> LOGGER.info("{}", weapon.toString()));
+var factory=WeaponFactory.factory(builder->{
+    builder.add(WeaponType.SWORD,Sword::new);
+    builder.add(WeaponType.AXE,Axe::new);
+    builder.add(WeaponType.SPEAR,Spear::new);
+    builder.add(WeaponType.BOW,Bow::new);
+    });
+    var list=new ArrayList<Weapon>();
+    list.add(factory.create(WeaponType.AXE));
+    list.add(factory.create(WeaponType.SPEAR));
+    list.add(factory.create(WeaponType.SWORD));
+    list.add(factory.create(WeaponType.BOW));
+    list.stream().forEach(weapon->LOGGER.info("{}",weapon.toString()));
 ```
 
 Here is the console output when the example is run.

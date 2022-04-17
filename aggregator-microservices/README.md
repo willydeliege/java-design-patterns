@@ -6,30 +6,37 @@ permalink: /patterns/aggregator-microservices/
 categories: Architectural
 language: en
 tags:
+
 - Cloud distributed
 - Decoupling
 - Microservices
+
 ---
 
 ## Intent
 
-The user makes a single call to the aggregator service, and the aggregator then calls each relevant microservice.
+The user makes a single call to the aggregator service, and the aggregator then calls each relevant
+microservice.
 
 ## Explanation
 
 Real world example
 
-> Our web marketplace needs information about products and their current inventory. It makes a call to an aggregator
-> service which in turn calls the product information microservice and product inventory microservice returning the
-> combined information. 
+> Our web marketplace needs information about products and their current inventory. It makes a call
+> to an aggregator
+> service which in turn calls the product information microservice and product inventory
+> microservice returning the
+> combined information.
 
 In plain words
 
-> Aggregator Microservice collects pieces of data from various microservices and returns an aggregate for processing. 
+> Aggregator Microservice collects pieces of data from various microservices and returns an
+> aggregate for processing.
 
 Stack Overflow says
 
-> Aggregator Microservice invokes multiple services to achieve the functionality required by the application.
+> Aggregator Microservice invokes multiple services to achieve the functionality required by the
+> application.
 
 **Programmatic Example**
 
@@ -37,6 +44,7 @@ Let's start from the data model. Here's our `Product`.
 
 ```java
 public class Product {
+
   private String title;
   private int productInventories;
   // getters and setters ->
@@ -44,10 +52,12 @@ public class Product {
 }
 ```
 
-Next we can introduce our `Aggregator` microservice. It contains clients `ProductInformationClient` and
+Next we can introduce our `Aggregator` microservice. It contains clients `ProductInformationClient`
+and
 `ProductInventoryClient` for calling respective microservices.
 
 ```java
+
 @RestController
 public class Aggregator {
 
@@ -75,12 +85,15 @@ public class Aggregator {
 }
 ```
 
-Here's the essence of information microservice implementation. Inventory microservice is similar, it just returns
+Here's the essence of information microservice implementation. Inventory microservice is similar, it
+just returns
 inventory counts.
 
 ```java
+
 @RestController
 public class InformationController {
+
   @RequestMapping(value = "/information", method = RequestMethod.GET)
   public String getProductTitle() {
     return "The Product Title.";
@@ -101,7 +114,8 @@ curl http://localhost:50004/product
 
 ## Applicability
 
-Use the Aggregator Microservices pattern when you need a unified API for various microservices, regardless the client device.
+Use the Aggregator Microservices pattern when you need a unified API for various microservices,
+regardless the client device.
 
 ## Credits
 

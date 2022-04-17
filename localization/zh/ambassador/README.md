@@ -6,8 +6,10 @@ permalink: /patterns/ambassador/
 categories: Structural
 language: zh
 tags:
-  - Decoupling
-  - Cloud distributed
+
+- Decoupling
+- Cloud distributed
+
 ---
 
 ## 目的
@@ -26,7 +28,8 @@ tags:
 
 微软文档做了如下阐述
 
-> 可以将大使服务视为与客户端位于同一位置的进程外代理。 此模式对于以语言不可知的方式减轻常见的客户端连接任务（例如监视，日志记录，路由，安全性（如TLS）和弹性模式）的工作很有用。 它通常与旧版应用程序或其他难以修改的应用程序一起使用，以扩展其网络功能。 它还可以使专业团队实现这些功能。
+> 可以将大使服务视为与客户端位于同一位置的进程外代理。 此模式对于以语言不可知的方式减轻常见的客户端连接任务（例如监视，日志记录，路由，安全性（如TLS）和弹性模式）的工作很有用。
+> 它通常与旧版应用程序或其他难以修改的应用程序一起使用，以扩展其网络功能。 它还可以使专业团队实现这些功能。
 
 **程序示例**
 
@@ -34,7 +37,8 @@ tags:
 
 ```java
 interface RemoteServiceInterface {
-    long doRemoteFunction(int value) throws Exception;
+
+  long doRemoteFunction(int value) throws Exception;
 }
 ```
 
@@ -43,30 +47,31 @@ interface RemoteServiceInterface {
 ```java
 public class RemoteService implements RemoteServiceInterface {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
-    private static RemoteService service = null;
+  private static final Logger LOGGER = LoggerFactory.getLogger(RemoteService.class);
+  private static RemoteService service = null;
 
-    static synchronized RemoteService getRemoteService() {
-        if (service == null) {
-            service = new RemoteService();
-        }
-        return service;
+  static synchronized RemoteService getRemoteService() {
+    if (service == null) {
+      service = new RemoteService();
+    }
+    return service;
+  }
+
+  private RemoteService() {
+  }
+
+  @Override
+  public long doRemoteFunction(int value) {
+    long waitTime = (long) Math.floor(Math.random() * 1000);
+
+    try {
+      sleep(waitTime);
+    } catch (InterruptedException e) {
+      LOGGER.error("Thread sleep interrupted", e);
     }
 
-    private RemoteService() {}
-
-    @Override
-    public long doRemoteFunction(int value) {
-        long waitTime = (long) Math.floor(Math.random() * 1000);
-
-        try {
-            sleep(waitTime);
-        } catch (InterruptedException e) {
-            LOGGER.error("Thread sleep interrupted", e);
-        }
-
-        return waitTime >= 200 ? value * 10 : -1;
-    }
+    return waitTime >= 200 ? value * 10 : -1;
+  }
 }
 ```
 
@@ -142,6 +147,7 @@ public class Client {
 
 ```java
 public class App {
+
   public static void main(String[] args) {
     var host1 = new Client();
     var host2 = new Client();
@@ -154,15 +160,15 @@ public class App {
 Here's the output for running the example:
 
 ```java
-Time taken (ms): 111
-Service result: 120
-Time taken (ms): 931
-Failed to reach remote: (1)
-Time taken (ms): 665
-Failed to reach remote: (2)
-Time taken (ms): 538
-Failed to reach remote: (3)
-Service result: -1
+Time taken(ms):111
+    Service result:120
+    Time taken(ms):931
+    Failed to reach remote:(1)
+    Time taken(ms):665
+    Failed to reach remote:(2)
+    Time taken(ms):538
+    Failed to reach remote:(3)
+    Service result:-1
 ```
 
 ## 类图

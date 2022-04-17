@@ -46,14 +46,13 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class responsible for control the access for reader or writer
@@ -64,25 +63,21 @@ import java.util.concurrent.locks.ReadWriteLock;
 @Slf4j
 public class ReaderWriterLock implements ReadWriteLock {
 
-
   private final Object readerMutex = new Object();
-
-  private int currentReaderCount;
-
   /**
    * Global mutex is used to indicate that whether reader or writer gets the lock in the moment.
    *
-   * <p>1. When it contains the reference of {@link #readerLock}, it means that the lock is
-   * acquired by the reader, another reader can also do the read operation concurrently. <br> 2.
-   * When it contains the reference of reference of {@link #writerLock}, it means that the lock is
-   * acquired by the writer exclusively, no more reader or writer can get the lock.
+   * <p>1. When it contains the reference of {@link #readerLock}, it means that the lock is acquired
+   * by the reader, another reader can also do the read operation concurrently. <br>
+   * 2. When it contains the reference of reference of {@link #writerLock}, it means that the lock
+   * is acquired by the writer exclusively, no more reader or writer can get the lock.
    *
    * <p>This is the most important field in this class to control the access for reader/writer.
    */
   private final Set<Object> globalMutex = new HashSet<>();
-
   private final ReadLock readerLock = new ReadLock();
   private final WriteLock writerLock = new WriteLock();
+  private int currentReaderCount;
 
   @Override
   public Lock readLock() {
@@ -94,23 +89,17 @@ public class ReaderWriterLock implements ReadWriteLock {
     return writerLock;
   }
 
-  /**
-   * return true when globalMutex hold the reference of writerLock.
-   */
+  /** return true when globalMutex hold the reference of writerLock. */
   private boolean doesWriterOwnThisLock() {
     return globalMutex.contains(writerLock);
   }
 
-  /**
-   * Nobody get the lock when globalMutex contains nothing.
-   */
+  /** Nobody get the lock when globalMutex contains nothing. */
   private boolean isLockFree() {
     return globalMutex.isEmpty();
   }
 
-  /**
-   * Reader Lock, can be access for more than one reader concurrently if no writer get the lock.
-   */
+  /** Reader Lock, can be access for more than one reader concurrently if no writer get the lock. */
   private class ReadLock implements Lock {
 
     @Override
@@ -159,7 +148,6 @@ public class ReaderWriterLock implements ReadWriteLock {
           }
         }
       }
-
     }
 
     @Override
@@ -181,12 +169,9 @@ public class ReaderWriterLock implements ReadWriteLock {
     public Condition newCondition() {
       throw new UnsupportedOperationException();
     }
-
   }
 
-  /**
-   * Writer Lock, can only be accessed by one writer concurrently.
-   */
+  /** Writer Lock, can only be accessed by one writer concurrently. */
   private class WriteLock implements Lock {
 
     @Override
@@ -236,5 +221,4 @@ public class ReaderWriterLock implements ReadWriteLock {
       throw new UnsupportedOperationException();
     }
   }
-
 }

@@ -48,9 +48,7 @@ package com.iluwatar.tolerantreader;
 
 import lombok.Getter;
 
-/**
- * RainbowFishV2 is the evolved schema.
- */
+/** RainbowFishV2 is the evolved schema. */
 @Getter
 public class RainbowFishV2 extends RainbowFish {
 
@@ -64,15 +62,18 @@ public class RainbowFishV2 extends RainbowFish {
     super(name, age, lengthMeters, weightTons);
   }
 
-  /**
-   * Constructor.
-   */
-  public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
-                       boolean hungry, boolean angry) {
+  /** Constructor. */
+  public RainbowFishV2(
+      String name,
+      int age,
+      int lengthMeters,
+      int weightTons,
+      boolean sleeping,
+      boolean hungry,
+      boolean angry) {
     this(name, age, lengthMeters, weightTons);
     this.sleeping = sleeping;
     this.hungry = hungry;
     this.angry = angry;
   }
-
 }

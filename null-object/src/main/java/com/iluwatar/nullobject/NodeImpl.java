@@ -48,9 +48,7 @@ package com.iluwatar.nullobject;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation for binary tree's normal nodes.
- */
+/** Implementation for binary tree's normal nodes. */
 @Slf4j
 public class NodeImpl implements Node {
 
@@ -58,9 +56,7 @@ public class NodeImpl implements Node {
   private final Node left;
   private final Node right;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public NodeImpl(String name, Node left, Node right) {
     this.name = name;
     this.left = left;

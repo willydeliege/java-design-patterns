@@ -46,10 +46,9 @@
 
 package com.iluwatar.eda.event;
 
+import com.iluwatar.eda.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import com.iluwatar.eda.model.User;
 
 /**
  * The {@link UserCreatedEvent} should should be dispatched whenever a user has been created. This

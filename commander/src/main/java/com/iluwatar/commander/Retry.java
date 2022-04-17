@@ -68,6 +68,7 @@ public class Retry<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+
   Retry(
       Operation op,
       HandleErrorIssue<T> handleError,

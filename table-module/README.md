@@ -6,17 +6,23 @@ permalink: /patterns/table-module/
 categories: Structural
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
-Table Module organizes domain logic with one class per table in the database, and a single instance of a class contains the various procedures that will act on the data.
+
+Table Module organizes domain logic with one class per table in the database, and a single instance
+of a class contains the various procedures that will act on the data.
 
 ## Explanation
 
 Real world example
 
-> When dealing with a user system, we need some operations on the user table. We can use the table module pattern in this scenario. We can create a class named UserTableModule and initialize a instance of that class to handle the business logic for all rows in the user table.
+> When dealing with a user system, we need some operations on the user table. We can use the table
+> module pattern in this scenario. We can create a class named UserTableModule and initialize a
+> instance of that class to handle the business logic for all rows in the user table.
 
 In plain words
 
@@ -24,17 +30,21 @@ In plain words
 
 Programmatic Example
 
-In the example of the user system, we need to deal with the domain logic of user login and user registration. We can use the table module pattern and create an instance of the class `UserTableModule` to handle the business logic for all rows in the user table.
+In the example of the user system, we need to deal with the domain logic of user login and user
+registration. We can use the table module pattern and create an instance of the
+class `UserTableModule` to handle the business logic for all rows in the user table.
 
 Here is the basic `User` entity.
 
 ```java
+
 @Setter
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
 public class User {
+
   private int id;
   private String username;
   private String password;
@@ -45,6 +55,7 @@ Here is the `UserTableModule` class.
 
 ```java
 public class UserTableModule {
+
   private final DataSource dataSource;
   private Connection connection = null;
   private ResultSet resultSet = null;
@@ -53,7 +64,7 @@ public class UserTableModule {
   public UserTableModule(final DataSource userDataSource) {
     this.dataSource = userDataSource;
   }
-  
+
   /**
    * Login using username and password.
    *
@@ -63,7 +74,7 @@ public class UserTableModule {
    * @throws SQLException if any error
    */
   public int login(final String username, final String password) throws SQLException {
-  		// Method implementation.
+    // Method implementation.
 
   }
 
@@ -75,41 +86,42 @@ public class UserTableModule {
    * @throws SQLException if any error
    */
   public int registerUser(final User user) throws SQLException {
-  		// Method implementation.
+    // Method implementation.
   }
 }
 ```
 
-In the class `App`, we use an instance of the `UserTableModule` to handle user login and registration.
+In the class `App`, we use an instance of the `UserTableModule` to handle user login and
+registration.
 
 ```java
 // Create data source and create the user table.
-final var dataSource = createDataSource();
-createSchema(dataSource);
-userTableModule = new UserTableModule(dataSource);
+final var dataSource=createDataSource();
+    createSchema(dataSource);
+    userTableModule=new UserTableModule(dataSource);
 
 //Initialize two users.
-var user1 = new User(1, "123456", "123456");
-var user2 = new User(2, "test", "password");
+    var user1=new User(1,"123456","123456");
+    var user2=new User(2,"test","password");
 
 //Login and register using the instance of userTableModule.
-userTableModule.registerUser(user1);
-userTableModule.login(user1.getUsername(), user1.getPassword());
-userTableModule.login(user2.getUsername(), user2.getPassword());
-userTableModule.registerUser(user2);
-userTableModule.login(user2.getUsername(), user2.getPassword());
+    userTableModule.registerUser(user1);
+    userTableModule.login(user1.getUsername(),user1.getPassword());
+    userTableModule.login(user2.getUsername(),user2.getPassword());
+    userTableModule.registerUser(user2);
+    userTableModule.login(user2.getUsername(),user2.getPassword());
 
-deleteSchema(dataSource);
+    deleteSchema(dataSource);
 ```
 
 The program output:
 
 ```java
-12:22:13.095 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.117 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
-12:22:13.128 [main] INFO com.iluwatar.tablemodule.UserTableModule - Fail to login!
-12:22:13.136 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.144 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
+12:22:13.095[main]INFO com.iluwatar.tablemodule.UserTableModule-Register successfully!
+    12:22:13.117[main]INFO com.iluwatar.tablemodule.UserTableModule-Login successfully!
+    12:22:13.128[main]INFO com.iluwatar.tablemodule.UserTableModule-Fail to login!
+    12:22:13.136[main]INFO com.iluwatar.tablemodule.UserTableModule-Register successfully!
+    12:22:13.144[main]INFO com.iluwatar.tablemodule.UserTableModule-Login successfully!
 ```
 
 ## Class diagram

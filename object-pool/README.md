@@ -6,8 +6,10 @@ permalink: /patterns/object-pool/
 categories: Creational
 language: en
 tags:
- - Game programming
- - Performance
+
+- Game programming
+- Performance
+
 ---
 
 ## Also known as
@@ -16,25 +18,25 @@ Resource Pool
 
 ## Intent
 
-When objects are expensive to create and they are needed only for short periods of time it is 
-advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated 
+When objects are expensive to create and they are needed only for short periods of time it is
+advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated
 objects tracking which ones are in use and which are available.
 
 ## Explanation
 
 Real world example
 
-> In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they 
-> are extremely expensive to create. The solution is to create a pool of them, track which ones are 
-> in-use, and instead of disposing them re-use the instances.   
+> In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they
+> are extremely expensive to create. The solution is to create a pool of them, track which ones are
+> in-use, and instead of disposing them re-use the instances.
 
 In plain words
 
-> Object Pool manages a set of instances instead of creating and destroying them on demand. 
+> Object Pool manages a set of instances instead of creating and destroying them on demand.
 
 Wikipedia says
 
-> The object pool pattern is a software creational design pattern that uses a set of initialized 
+> The object pool pattern is a software creational design pattern that uses a set of initialized
 > objects kept ready to use – a "pool" – rather than allocating and destroying them on demand.
 
 **Programmatic Example**
@@ -111,14 +113,14 @@ public class OliphauntPool extends ObjectPool<Oliphaunt> {
 Finally, here's how we utilize the pool.
 
 ```java
-    var pool = new OliphauntPool();
-    var oliphaunt1 = pool.checkOut();
-    var oliphaunt2 = pool.checkOut();
-    var oliphaunt3 = pool.checkOut();
+    var pool=new OliphauntPool();
+    var oliphaunt1=pool.checkOut();
+    var oliphaunt2=pool.checkOut();
+    var oliphaunt3=pool.checkOut();
     pool.checkIn(oliphaunt1);
     pool.checkIn(oliphaunt2);
-    var oliphaunt4 = pool.checkOut();
-    var oliphaunt5 = pool.checkOut();
+    var oliphaunt4=pool.checkOut();
+    var oliphaunt5=pool.checkOut();
 ```
 
 Program output:

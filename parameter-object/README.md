@@ -6,7 +6,9 @@ permalink: /patterns/parameter-object/
 categories: Behavioral
 language: en
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## Intent
@@ -29,13 +31,14 @@ is also created. Usually it's an inner static class. The final step is to use th
 to construct a new parameter object. For those parameters that are skipped,
 their default values are going to be used.
 
-
 **Programmatic Example**
 
-Here's the simple `SearchService` class where Method Overloading is used to default values here. To use method overloading, either the number of arguments or argument type has to be different.
+Here's the simple `SearchService` class where Method Overloading is used to default values here. To
+use method overloading, either the number of arguments or argument type has to be different.
 
 ```java
 public class SearchService {
+
   //Method Overloading example. SortOrder is defaulted in this method
   public String search(String type, String sortBy) {
     return getQuerySummary(type, sortBy, SortOrder.DESC);
@@ -66,7 +69,7 @@ public class SearchService {
     return getQuerySummary(parameterObject.getType(), parameterObject.getSortBy(),
         parameterObject.getSortOrder());
   }
-  
+
   private String getQuerySummary(String type, String sortBy, SortOrder sortOrder) {
     return "Requesting shoes of type \"" + type + "\" sorted by \"" + sortBy + "\" in \""
         + sortOrder.getValue() + "ending\" order...";
@@ -74,6 +77,7 @@ public class SearchService {
 }
 
 public class ParameterObject {
+
   public static final String DEFAULT_SORT_BY = "price";
   public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
 
@@ -132,7 +136,8 @@ public class ParameterObject {
 
 ## Applicability
 
-This pattern shows us the way to have default parameters for a method in Java as the language doesn't default parameters feature out of the box. 
+This pattern shows us the way to have default parameters for a method in Java as the language
+doesn't default parameters feature out of the box.
 
 ## Credits
 

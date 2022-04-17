@@ -46,14 +46,13 @@
 
 package com.iluwatar.event.queue;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class implements the Event Queue pattern.
@@ -65,27 +64,19 @@ public class Audio {
   private static final Audio INSTANCE = new Audio();
 
   private static final int MAX_PENDING = 16;
-
+  private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
   private int headIndex;
-
   private int tailIndex;
-
   private volatile Thread updateThread = null;
 
-  private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
-
   // Visible only for testing purposes
-  Audio() {
-
-  }
+  Audio() {}
 
   public static Audio getInstance() {
     return INSTANCE;
   }
 
-  /**
-   * This method stops the Update Method's thread and waits till service stops.
-   */
+  /** This method stops the Update Method's thread and waits till service stops. */
   public synchronized void stopService() throws InterruptedException {
     if (updateThread != null) {
       updateThread.interrupt();
@@ -109,18 +100,18 @@ public class Audio {
    */
   public void init() {
     if (updateThread == null) {
-      updateThread = new Thread(() -> {
-        while (!Thread.currentThread().isInterrupted()) {
-          update();
-        }
-      });
+      updateThread =
+          new Thread(
+              () -> {
+                while (!Thread.currentThread().isInterrupted()) {
+                  update();
+                }
+              });
     }
     startThread();
   }
 
-  /**
-   * This is a synchronized thread starter.
-   */
+  /** This is a synchronized thread starter. */
   private synchronized void startThread() {
     if (!updateThread.isAlive()) {
       updateThread.start();
@@ -152,9 +143,7 @@ public class Audio {
     tailIndex = (tailIndex + 1) % MAX_PENDING;
   }
 
-  /**
-   * This method uses the Update Method pattern. It takes the audio from the queue and plays it
-   */
+  /** This method uses the Update Method pattern. It takes the audio from the queue and plays it */
   private void update() {
     // If there are no pending requests, do nothing.
     if (headIndex == tailIndex) {
@@ -181,7 +170,7 @@ public class Audio {
    * @param filePath is the path of the audio file
    * @return AudioInputStream
    * @throws UnsupportedAudioFileException when the audio file is not supported
-   * @throws IOException                   when the file is not readable
+   * @throws IOException when the file is not readable
    */
   public AudioInputStream getAudioStream(String filePath)
       throws UnsupportedAudioFileException, IOException {
@@ -196,5 +185,4 @@ public class Audio {
   public PlayMessage[] getPendingAudio() {
     return pendingAudio;
   }
-
 }

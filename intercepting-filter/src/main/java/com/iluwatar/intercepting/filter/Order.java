@@ -46,9 +46,7 @@
 
 package com.iluwatar.intercepting.filter;
 
-/**
- * Order class carries the order data.
- */
+/** Order class carries the order data. */
 public class Order {
 
   private String name;
@@ -57,16 +55,11 @@ public class Order {
   private String depositNumber;
   private String orderItem;
 
-  public Order() {
-  }
+  public Order() {}
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Order(
-      String name, String contactNumber, String address,
-      String depositNumber, String order
-  ) {
+      String name, String contactNumber, String address, String depositNumber, String order) {
     this.name = name;
     this.contactNumber = contactNumber;
     this.address = address;

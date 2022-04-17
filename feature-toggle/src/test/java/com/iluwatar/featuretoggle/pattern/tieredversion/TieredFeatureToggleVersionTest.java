@@ -46,18 +46,16 @@
 
 package com.iluwatar.featuretoggle.pattern.tieredversion;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.featuretoggle.pattern.Service;
-import com.iluwatar.featuretoggle.user.User;
-import com.iluwatar.featuretoggle.user.UserGroup;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test Tiered Feature Toggle
- */
+import com.iluwatar.featuretoggle.pattern.Service;
+import com.iluwatar.featuretoggle.user.User;
+import com.iluwatar.featuretoggle.user.UserGroup;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Test Tiered Feature Toggle */
 class TieredFeatureToggleVersionTest {
 
   final User paidUser = new User("Jamie Coder");

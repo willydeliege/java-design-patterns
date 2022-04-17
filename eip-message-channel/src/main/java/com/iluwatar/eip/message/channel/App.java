@@ -47,7 +47,6 @@
 package com.iluwatar.eip.message.channel;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -66,28 +65,27 @@ import org.apache.camel.impl.DefaultCamelContext;
  * random channel; it selects what channel to get information from based on what type of information
  * it wants.
  *
- * <p>In this example we use Apache Camel to establish two different Message Channels. The first
- * one reads from standard input and delivers messages to Direct endpoint. The second Message
- * Channel is established from the Direct component to console output. No actual messages are sent,
- * only the established routes are printed to standard output.
+ * <p>In this example we use Apache Camel to establish two different Message Channels. The first one
+ * reads from standard input and delivers messages to Direct endpoint. The second Message Channel is
+ * established from the Direct component to console output. No actual messages are sent, only the
+ * established routes are printed to standard output.
  */
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) throws Exception {
     var context = new DefaultCamelContext();
 
-    context.addRoutes(new RouteBuilder() {
+    context.addRoutes(
+        new RouteBuilder() {
 
-      @Override
-      public void configure() throws Exception {
-        from("stream:in").to("direct:greetings");
-        from("direct:greetings").to("stream:out");
-      }
-    });
+          @Override
+          public void configure() throws Exception {
+            from("stream:in").to("direct:greetings");
+            from("direct:greetings").to("stream:out");
+          }
+        });
 
     context.start();
     context.getRoutes().forEach(r -> LOGGER.info(r.toString()));

@@ -46,10 +46,12 @@
 
 package domainapp.integtests.tests.modules.simple;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.fixture.scenarios.RecreateSimpleObjects;
 import domainapp.integtests.tests.SimpleAppIntegTest;
-
 import javax.inject.Inject;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
@@ -58,24 +60,15 @@ import org.apache.isis.applib.services.wrapper.InvalidException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-/**
- * Test Fixtures with Simple Objects
- */
+/** Test Fixtures with Simple Objects */
 public class SimpleObjectIntegTest extends SimpleAppIntegTest {
 
-  @Inject
-  FixtureScripts fixtureScripts;
-  @Inject
-  DomainObjectContainer container;
-
+  private static final String NEW_NAME = "new name";
+  @Inject FixtureScripts fixtureScripts;
+  @Inject DomainObjectContainer container;
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
   SimpleObject simpleObjectWrapped;
-  
-  private static final String NEW_NAME = "new name";
 
   @Before
   public void setUp() {

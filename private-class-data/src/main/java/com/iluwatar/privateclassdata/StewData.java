@@ -46,9 +46,7 @@
 
 package com.iluwatar.privateclassdata;
 
-/**
- * Stew ingredients.
- */
+/** Stew ingredients. */
 public class StewData {
 
   private final int numPotatoes;
@@ -56,9 +54,7 @@ public class StewData {
   private final int numMeat;
   private final int numPeppers;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;

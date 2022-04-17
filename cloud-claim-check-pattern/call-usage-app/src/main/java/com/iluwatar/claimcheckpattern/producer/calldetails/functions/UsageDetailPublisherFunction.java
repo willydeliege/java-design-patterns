@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -71,10 +71,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
-/**
- * Azure Functions with HTTP Trigger.
- * This is Producer class.
- */
+/** Azure Functions with HTTP Trigger. This is Producer class. */
 public class UsageDetailPublisherFunction {
 
   private MessageHandlerUtility<UsageDetail> messageHandlerUtility;
@@ -85,23 +82,28 @@ public class UsageDetailPublisherFunction {
     this.eventHandlerUtility = new EventHandlerUtility<>();
   }
 
-  public UsageDetailPublisherFunction(MessageHandlerUtility<UsageDetail> messageHandlerUtility,
+  public UsageDetailPublisherFunction(
+      MessageHandlerUtility<UsageDetail> messageHandlerUtility,
       EventHandlerUtility<MessageHeader> eventHandlerUtility) {
     this.messageHandlerUtility = messageHandlerUtility;
     this.eventHandlerUtility = eventHandlerUtility;
   }
 
   /**
-   * Azure function which create message, drop it in persistent storage
-   * and publish the event to Event Grid topic.
+   * Azure function which create message, drop it in persistent storage and publish the event to
+   * Event Grid topic.
+   *
    * @param request represents HttpRequestMessage
    * @param context represents ExecutionContext
    * @return HttpResponseMessage
    */
   @FunctionName("UsageDetailPublisherFunction")
-  public HttpResponseMessage run(@HttpTrigger(name = "req", methods = {
-      HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS)
-      HttpRequestMessage<Optional<String>> request,
+  public HttpResponseMessage run(
+      @HttpTrigger(
+              name = "req",
+              methods = {HttpMethod.POST},
+              authLevel = AuthorizationLevel.ANONYMOUS)
+          HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) {
     try {
 
@@ -109,10 +111,11 @@ public class UsageDetailPublisherFunction {
 
       for (EventGridEvent eventGridEvent : eventGridEvents) {
         // Handle system events
-        if (eventGridEvent.getEventType()
+        if (eventGridEvent
+            .getEventType()
             .equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
-          SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
-              .toObject(SubscriptionValidationEventData.class);
+          SubscriptionValidationEventData subscriptionValidationEventData =
+              eventGridEvent.getData().toObject(SubscriptionValidationEventData.class);
           // Handle the subscription validation event
           var responseData = new SubscriptionValidationResponse();
           responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
@@ -140,8 +143,8 @@ public class UsageDetailPublisherFunction {
           messageHeader.setTopic("usagecostprocessorfunction-topic");
           messageHeader.setEventType("UsageDetail");
           messageHeader.setEventTime(OffsetDateTime.now().toString());
-          var messageReference = new MessageReference("callusageapp",
-              messageHeader.getId() + "/input.json");
+          var messageReference =
+              new MessageReference("callusageapp", messageHeader.getId() + "/input.json");
           messageHeader.setData(messageReference);
           messageHeader.setDataVersion("v1.0");
 

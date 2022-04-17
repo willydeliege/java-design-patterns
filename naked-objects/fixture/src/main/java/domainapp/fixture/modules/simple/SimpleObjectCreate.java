@@ -48,29 +48,22 @@ package domainapp.fixture.modules.simple;
 
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
-
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-/**
- * Fixture to create a simple object.
- */
+/** Fixture to create a simple object. */
 public class SimpleObjectCreate extends FixtureScript {
 
   // endregion
 
-
   // region > simpleObject (output)
   private SimpleObject simpleObject;
 
-  @javax.inject.Inject
-  private SimpleObjects simpleObjects;
+  @javax.inject.Inject private SimpleObjects simpleObjects;
 
   // region > name (input)
   private String name;
 
-  /**
-   * Name of the object (required).
-   */
+  /** Name of the object (required). */
   public String getName() {
     return name;
   }
@@ -80,9 +73,7 @@ public class SimpleObjectCreate extends FixtureScript {
     return this;
   }
 
-  /**
-   * The created simple object (output).
-   */
+  /** The created simple object (output). */
   public SimpleObject getSimpleObject() {
     return simpleObject;
   }
@@ -98,5 +89,4 @@ public class SimpleObjectCreate extends FixtureScript {
     // also make available to UI
     ec.addResult(this, simpleObject);
   }
-
 }

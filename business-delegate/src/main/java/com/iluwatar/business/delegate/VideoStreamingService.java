@@ -46,9 +46,7 @@
 
 package com.iluwatar.business.delegate;
 
-/**
- * Interface for video streaming service implementations.
- */
+/** Interface for video streaming service implementations. */
 public interface VideoStreamingService {
 
   void doProcessing();

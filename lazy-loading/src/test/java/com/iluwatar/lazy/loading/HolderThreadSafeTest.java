@@ -66,5 +66,4 @@ public class HolderThreadSafeTest extends AbstractHolderTest {
   Heavy getHeavy() throws Exception {
     return this.holder.getHeavy();
   }
-
 }

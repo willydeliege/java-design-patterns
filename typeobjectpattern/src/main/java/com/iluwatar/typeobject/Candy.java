@@ -57,19 +57,12 @@ import lombok.Setter;
 @Getter(AccessLevel.PACKAGE)
 public class Candy {
 
-  enum Type {
-    CRUSHABLE_CANDY,
-    REWARD_FRUIT
-  }
-
+  private final Type type;
   String name;
   Candy parent;
   String parentName;
 
-  @Setter
-  private int points;
-  private final Type type;
-
+  @Setter private int points;
   Candy(String name, String parentName, Type type, int points) {
     this.name = name;
     this.parent = null;
@@ -78,4 +71,8 @@ public class Candy {
     this.parentName = parentName;
   }
 
+  enum Type {
+    CRUSHABLE_CANDY,
+    REWARD_FRUIT
+  }
 }

@@ -46,11 +46,11 @@
 
 package com.iluwatar.event.aggregator;
 
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 2:52 PM
@@ -59,15 +59,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 class EventTest {
 
-  /**
-   * Verify if every event has a non-null, non-empty description
-   */
+  /** Verify if every event has a non-null, non-empty description */
   @Test
   void testToString() {
-    Arrays.stream(Event.values()).map(Event::toString).forEach(toString -> {
-      assertNotNull(toString);
-      assertFalse(toString.trim().isEmpty());
-    });
+    Arrays.stream(Event.values())
+        .map(Event::toString)
+        .forEach(
+            toString -> {
+              assertNotNull(toString);
+              assertFalse(toString.trim().isEmpty());
+            });
   }
-
 }

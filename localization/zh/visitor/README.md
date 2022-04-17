@@ -6,7 +6,9 @@ permalink: /patterns/visitor/
 categories: Behavioral
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 目的
@@ -181,8 +183,8 @@ public class SoldierVisitor implements UnitVisitor {
 
 ```java
 commander.accept(new SoldierVisitor());
-commander.accept(new SergeantVisitor());
-commander.accept(new CommanderVisitor());
+    commander.accept(new SergeantVisitor());
+    commander.accept(new CommanderVisitor());
 ```
 
 程序输出:
@@ -208,14 +210,18 @@ Good to see you commander
 使用访问者模式当
 
 * 对象结构包含许多具有不同接口的对象类，并且你希望根据这些对象的具体类对这些对象执行操作。
-* 需要对对象结构中的对象执行许多不同且不相关的操作，并且你想避免使用这些操作“污染”它们的类。 访问者可以通过在一个类中定义相关操作来将它们保持在一起。当许多应用程序共享对象结构时，请使用访问者模式将操作仅放在需要它们的那些应用程序中
+* 需要对对象结构中的对象执行许多不同且不相关的操作，并且你想避免使用这些操作“污染”它们的类。
+  访问者可以通过在一个类中定义相关操作来将它们保持在一起。当许多应用程序共享对象结构时，请使用访问者模式将操作仅放在需要它们的那些应用程序中
 * 定义对象结构的类很少变化，但是你经常想在结构上定义新的操作。更改对象结构类需要重新定义所有访问者的接口，这可能会导致成本高昂。如果对象结构类经常更改，则最好在这些类中定义操作。
 
 ## 真实例子
 
-* [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
-* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html) and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
-* [javax.lang.model.element.Element](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html) and [Element Visitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/ElementVisitor.html)
+* [Apache Wicket](https://github.com/apache/wicket) component tree,
+  see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html)
+  and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)
+* [javax.lang.model.element.Element](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html)
+  and [Element Visitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/ElementVisitor.html)
 * [java.nio.file.FileVisitor](http://docs.oracle.com/javase/8/docs/api/java/nio/file/FileVisitor.html)
 
 ## 鸣谢

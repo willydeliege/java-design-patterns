@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.19">
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceCache.java">
-    <error line="51" message="Wrong lexicographical order for &apos;java.util.HashMap&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
-      severity="warning"
-      source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-    <error line="52" message="Wrong lexicographical order for &apos;java.util.Map&apos; import. Should be before &apos;lombok.extern.slf4j.Slf4j&apos;."
-      severity="warning"
-      source="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck"/>
-  </file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceImpl.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceCache.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/App.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/Service.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/service-locator/src/main/java/com/iluwatar/servicelocator/ServiceLocator.java">
+</file>
 </checkstyle>

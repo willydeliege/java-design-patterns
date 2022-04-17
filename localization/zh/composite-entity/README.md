@@ -6,7 +6,9 @@ permalink: /patterns/composite-entity/
 categories: Structural
 language: zh
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## 含义
@@ -100,12 +102,12 @@ public class CompositeEntity {
 现在我们使用 `console` 复合实体来进行消息对象、信号对象的分配。
 
 ```java
-var console = new CompositeEntity();
-console.init();
-console.setData("No Danger", "Green Light");
-Arrays.stream(console.getData()).forEach(LOGGER::info);
-console.setData("Danger", "Red Light");
-Arrays.stream(console.getData()).forEach(LOGGER::info);
+var console=new CompositeEntity();
+    console.init();
+    console.setData("No Danger","Green Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+    console.setData("Danger","Red Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
 ```
 
 ## 类图
@@ -117,6 +119,7 @@ Arrays.stream(console.getData()).forEach(LOGGER::info);
 复合实体模式适用于以下场景：
 
 * 你想要通过一个对象来管理多个依赖对象，已调整对象之间的细化程度。同时将依赖对象的生命周期托管到这个粗粒度的复合实体对象。
+
 ## 引用
 
 * [Composite Entity Pattern in wikipedia](https://en.wikipedia.org/wiki/Composite_entity_pattern)

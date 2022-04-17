@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,21 +46,19 @@
 
 package com.iluwatar.leaderelection.bully;
 
-import java.util.Map;
-import java.util.Queue;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.leaderelection.AbstractInstance;
-import com.iluwatar.leaderelection.Instance;
-import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageType;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-/**
- * BullyMessageManager unit test.
- */
+import com.iluwatar.leaderelection.AbstractInstance;
+import com.iluwatar.leaderelection.Instance;
+import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageType;
+import java.util.Map;
+import java.util.Queue;
+import org.junit.jupiter.api.Test;
+
+/** BullyMessageManager unit test. */
 public class BullyMessageManagerTest {
 
   @Test
@@ -78,7 +76,8 @@ public class BullyMessageManagerTest {
       var instance2 = new BullyInstance(null, 1, 2);
       var instance3 = new BullyInstance(null, 1, 3);
       var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+      Map<Integer, Instance> instanceMap =
+          Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       var messageManager = new BullyMessageManager(instanceMap);
       var result = messageManager.sendElectionMessage(3, "3");
@@ -102,7 +101,8 @@ public class BullyMessageManagerTest {
     var instance2 = new BullyInstance(null, 1, 2);
     var instance3 = new BullyInstance(null, 1, 3);
     var instance4 = new BullyInstance(null, 1, 4);
-    Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+    Map<Integer, Instance> instanceMap =
+        Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
     instance1.setAlive(false);
     var messageManager = new BullyMessageManager(instanceMap);
     var result = messageManager.sendElectionMessage(2, "2");
@@ -116,7 +116,8 @@ public class BullyMessageManagerTest {
       var instance2 = new BullyInstance(null, 1, 2);
       var instance3 = new BullyInstance(null, 1, 3);
       var instance4 = new BullyInstance(null, 1, 4);
-      Map<Integer, Instance> instanceMap = Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
+      Map<Integer, Instance> instanceMap =
+          Map.of(1, instance1, 2, instance2, 3, instance3, 4, instance4);
       instance1.setAlive(false);
       var messageManager = new BullyMessageManager(instanceMap);
       messageManager.sendLeaderMessage(2, 2);
@@ -153,6 +154,4 @@ public class BullyMessageManagerTest {
       fail("Error to access private field.");
     }
   }
-
-
 }

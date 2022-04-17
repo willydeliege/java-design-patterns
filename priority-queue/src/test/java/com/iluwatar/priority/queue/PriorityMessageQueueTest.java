@@ -46,16 +46,13 @@
 
 package com.iluwatar.priority.queue;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test case for order of messages
- */
-public class PriorityMessageQueueTest {
+import org.junit.jupiter.api.Test;
 
+/** Test case for order of messages */
+public class PriorityMessageQueueTest {
 
   @Test
   void remove() {

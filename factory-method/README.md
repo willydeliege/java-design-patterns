@@ -6,8 +6,10 @@ permalink: /patterns/factory-method/
 categories: Creational
 language: en
 tags:
- - Extensibility
- - Gang of Four
+
+- Extensibility
+- Gang of Four
+
 ---
 
 ## Also known as
@@ -16,14 +18,14 @@ Virtual Constructor
 
 ## Intent
 
-Define an interface for creating an object, but let subclasses decide which class to instantiate. 
+Define an interface for creating an object, but let subclasses decide which class to instantiate.
 Factory Method lets a class defer instantiation to subclasses.
 
 ## Explanation
 
 Real-world example
 
-> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. 
+> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons.
 > Depending on the customer at hand the right type of blacksmith is summoned.
 
 In plain words
@@ -32,53 +34,57 @@ In plain words
 
 Wikipedia says
 
-> In class-based programming, the factory method pattern is a creational pattern that uses factory 
-> methods to deal with the problem of creating objects without having to specify the exact class of 
-> the object that will be created. This is done by creating objects by calling a factory method 
-> — either specified in an interface and implemented by child classes, or implemented in a base 
+> In class-based programming, the factory method pattern is a creational pattern that uses factory
+> methods to deal with the problem of creating objects without having to specify the exact class of
+> the object that will be created. This is done by creating objects by calling a factory method
+> — either specified in an interface and implemented by child classes, or implemented in a base
 > class and optionally overridden by derived classes—rather than by calling a constructor.
 
- **Programmatic Example**
+**Programmatic Example**
 
-Taking our blacksmith example above. First of all, we have a `Blacksmith` interface and some 
+Taking our blacksmith example above. First of all, we have a `Blacksmith` interface and some
 implementations for it:
 
 ```java
 public interface Blacksmith {
+
   Weapon manufactureWeapon(WeaponType weaponType);
 }
 
 public class ElfBlacksmith implements Blacksmith {
+
   public Weapon manufactureWeapon(WeaponType weaponType) {
     return ELFARSENAL.get(weaponType);
   }
 }
 
 public class OrcBlacksmith implements Blacksmith {
+
   public Weapon manufactureWeapon(WeaponType weaponType) {
     return ORCARSENAL.get(weaponType);
   }
 }
 ```
 
-When the customers come, the correct type of blacksmith is summoned and requested weapons are 
+When the customers come, the correct type of blacksmith is summoned and requested weapons are
 manufactured:
 
 ```java
-Blacksmith blacksmith = new OrcBlacksmith();
-Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
+Blacksmith blacksmith=new OrcBlacksmith();
+    Weapon weapon=blacksmith.manufactureWeapon(WeaponType.SPEAR);
+    LOGGER.info("{} manufactured {}",blacksmith,weapon);
+    weapon=blacksmith.manufactureWeapon(WeaponType.AXE);
+    LOGGER.info("{} manufactured {}",blacksmith,weapon);
 
-blacksmith = new ElfBlacksmith();
-weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    blacksmith=new ElfBlacksmith();
+    weapon=blacksmith.manufactureWeapon(WeaponType.SPEAR);
+    LOGGER.info("{} manufactured {}",blacksmith,weapon);
+    weapon=blacksmith.manufactureWeapon(WeaponType.AXE);
+    LOGGER.info("{} manufactured {}",blacksmith,weapon);
 ```
 
 Program output:
+
 ```
 The orc blacksmith manufactured an orcish spear
 The orc blacksmith manufactured an orcish axe
@@ -96,8 +102,8 @@ Use the Factory Method pattern when:
 
 * Class cannot anticipate the class of objects it must create.
 * Class wants its subclasses to specify the objects it creates.
-* Classes delegate responsibility to one of several helper subclasses, and you want to localize the 
-knowledge of which helper subclass is the delegate.
+* Classes delegate responsibility to one of several helper subclasses, and you want to localize the
+  knowledge of which helper subclass is the delegate.
 
 ## Known uses
 

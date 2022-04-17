@@ -47,14 +47,10 @@
 package com.iluwatar.price.microservice;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-/**
- * Exposes the Price microservice's endpoints.
- */
+/** Exposes the Price microservice's endpoints. */
 @Slf4j
 @RestController
 public class PriceController {

@@ -52,9 +52,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import units.CommanderUnit;
 
-/**
- * Class defining Commander.
- */
+/** Class defining Commander. */
 @Getter
 @RequiredArgsConstructor
 @Slf4j
@@ -66,5 +64,4 @@ public class Commander implements CommanderExtension {
   public void commanderReady() {
     LOGGER.info("[Commander] " + unit.getName() + " is ready!");
   }
-
 }

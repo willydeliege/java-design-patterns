@@ -6,7 +6,9 @@ permalink: /patterns/arrange-act-assert/
 categories: Idiom
 language: en
 tags:
- - Testing
+
+- Testing
+
 ---
 
 ## Also known as
@@ -44,7 +46,7 @@ In plain words
 
 WikiWikiWeb says
 
-> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods. 
+> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
 **Programmatic Example**
 
@@ -134,7 +136,7 @@ class CashAAATest {
 
 Use Arrange/Act/Assert pattern when
 
-* You need to structure your unit tests so that they're easier to read, maintain, and enhance. 
+* You need to structure your unit tests so that they're easier to read, maintain, and enhance.
 
 ## Credits
 

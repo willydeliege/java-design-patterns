@@ -46,13 +46,10 @@
 
 package com.iluwatar.business.delegate;
 
+import java.util.Locale;
 import lombok.Setter;
 
-import java.util.Locale;
-
-/**
- * Class for performing service lookups.
- */
+/** Class for performing service lookups. */
 @Setter
 public class BusinessLookup {
 

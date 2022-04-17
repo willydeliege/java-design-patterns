@@ -6,7 +6,9 @@ permalink: /patterns/strategy/ko
 categories: Behavioral
 language: ko
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 동의어
@@ -25,7 +27,7 @@ tags:
 
 평범한 말로는
 
-> 전략(Strategy) 패턴을 사용하면 런타임에 가장 적합한 알고리즘을 선택할 수 있습니다.   
+> 전략(Strategy) 패턴을 사용하면 런타임에 가장 적합한 알고리즘을 선택할 수 있습니다.
 
 Wikipedia는
 
@@ -36,6 +38,7 @@ Wikipedia는
 먼저 드래곤 사냥 전략 인터페이스와 그 구현을 살펴봅니다.
 
 ```java
+
 @FunctionalInterface
 public interface DragonSlayingStrategy {
 
@@ -95,7 +98,7 @@ public class DragonSlayer {
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
-    var dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    var dragonSlayer=new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
@@ -170,11 +173,12 @@ public class LambdaStrategy {
 다음과 같은 경우 전략(Strategy) 패턴을 사용합니다.
 
 * 비슷한 클래스들이 동작 만 다른 경우가 많이 있습니다. 전략 패턴은 여러 동작 중 하나를 클래스로 구성하는 방법을 제공합니다.
-* 알고리즘의 다양한 변형이 필요합니다. 예를 들어 다양한 공간 / 시간 절충을 반영하는 알고리즘을 정의할 수 있습니다. 이러한 변형이 알고리즘의 클래스 계층 구조로 구현될 때 전략 패턴을 사용할 수 있습니다.
+* 알고리즘의 다양한 변형이 필요합니다. 예를 들어 다양한 공간 / 시간 절충을 반영하는 알고리즘을 정의할 수 있습니다. 이러한 변형이 알고리즘의 클래스 계층 구조로 구현될 때
+  전략 패턴을 사용할 수 있습니다.
 * 알고리즘은 클라이언트가 알 필요 없는 데이터를 사용합니다. 전략 패턴을 사용하여 복잡한 알고리즘 별 데이터 구조가 노출되지 않도록 합니다.
 * 클래스는 많은 동작을 정의하며 이러한 동작은 작업에서 여러 조건문으로 나타납니다. 많은 조건부 대신 관련 조건부 분기를 자체 전략 클래스로 이동하세요.
 
-## 튜토리얼 
+## 튜토리얼
 
 * [전략 패턴 튜토리얼](https://www.journaldev.com/1754/strategy-design-pattern-in-java-example-tutorial)
 

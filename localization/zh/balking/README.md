@@ -6,7 +6,9 @@ permalink: /patterns/balking/
 categories: Concurrency
 language: zh
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## 意图
@@ -29,11 +31,13 @@ tags:
 
 **程序示例**
 
-在此示例中，` WashingMachine`是一个具有两个状态的对象，可以处于两种状态：ENABLED和WASHING。 如果机器已启用，则使用线程安全方法将状态更改为WASHING。 另一方面，如果已经进行了清洗并且任何其他线程执行`wash（）`，则它将不执行该操作，而是不执行任何操作而返回。
+在此示例中，` WashingMachine`是一个具有两个状态的对象，可以处于两种状态：ENABLED和WASHING。 如果机器已启用，则使用线程安全方法将状态更改为WASHING。
+另一方面，如果已经进行了清洗并且任何其他线程执行`wash（）`，则它将不执行该操作，而是不执行任何操作而返回。
 
 这里是`WashingMachine` 类相关的部分。
 
 ```java
+
 @Slf4j
 public class WashingMachine {
 
@@ -74,6 +78,7 @@ public class WashingMachine {
 
 ```java
 public interface DelayProvider {
+
   void executeAfterDelay(long interval, TimeUnit timeUnit, Runnable task);
 }
 ```
@@ -81,20 +86,20 @@ public interface DelayProvider {
 现在，我们使用`WashingMachine`介绍该应用程序。
 
 ```java
-  public static void main(String... args) {
-    final var washingMachine = new WashingMachine();
-    var executorService = Executors.newFixedThreadPool(3);
-    for (int i = 0; i < 3; i++) {
-      executorService.execute(washingMachine::wash);
+  public static void main(String...args){
+final var washingMachine=new WashingMachine();
+    var executorService=Executors.newFixedThreadPool(3);
+    for(int i=0;i< 3;i++){
+    executorService.execute(washingMachine::wash);
     }
     executorService.shutdown();
-    try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException ie) {
-      LOGGER.error("ERROR: Waiting on executor service shutdown!");
-      Thread.currentThread().interrupt();
+    try{
+    executorService.awaitTermination(10,TimeUnit.SECONDS);
+    }catch(InterruptedException ie){
+    LOGGER.error("ERROR: Waiting on executor service shutdown!");
+    Thread.currentThread().interrupt();
     }
-  }
+    }
 ```
 
 下面是程序的输出。
@@ -114,7 +119,6 @@ public interface DelayProvider {
 ![alt text](../../../balking/etc/balking.png "Balking")
 
 ## 适用性
-
 
 使用止步模式当
 

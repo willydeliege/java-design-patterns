@@ -6,9 +6,11 @@ permalink: /patterns/aggregator-microservices/
 categories: Architectural
 language: zh
 tags:
+
 - Cloud distributed
 - Decoupling
 - Microservices
+
 ---
 
 ## 意图
@@ -35,6 +37,7 @@ Stack Overflow上说
 
 ```java
 public class Product {
+
   private String title;
   private int productInventories;
   // getters and setters ->
@@ -45,6 +48,7 @@ public class Product {
 接下来，我们将介绍我们的聚合器微服务。 它包含用于调用相应微服务的客户端`ProductInformationClient`和` ProductInventoryClient`。
 
 ```java
+
 @RestController
 public class Aggregator {
 
@@ -75,8 +79,10 @@ public class Aggregator {
 这是产品信息微服务的精华实现。 库存微服务类似，它只返回库存计数。
 
 ```java
+
 @RestController
 public class InformationController {
+
   @RequestMapping(value = "/information", method = RequestMethod.GET)
   public String getProductTitle() {
     return "The Product Title.";

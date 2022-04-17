@@ -6,7 +6,9 @@ permalink: /patterns/event-aggregator/
 categories: Structural
 language: en
 tags:
- - Reactive
+
+- Reactive
+
 ---
 
 ## Name
@@ -14,6 +16,7 @@ tags:
 Event Aggregator
 
 ## Intent
+
 A system with lots of objects can lead to complexities when a
 client wants to subscribe to events. The client has to find and register for
 each object individually, if each object has multiple events then each event
@@ -37,11 +40,13 @@ In Plain Words
 
 **Programmatic Example**
 
-In our programmatic example, we demonstrate the implementation of an event aggregator pattern. Some of
+In our programmatic example, we demonstrate the implementation of an event aggregator pattern. Some
+of
 the objects are event listeners, some are event emitters, and the event aggregator does both.
 
 ```java
 public interface EventObserver {
+
   void onEvent(Event e);
 }
 
@@ -66,8 +71,10 @@ public abstract class EventEmitter {
 `KingJoffrey` is listening to events from `KingsHand`.
 
 ```java
+
 @Slf4j
 public class KingJoffrey implements EventObserver {
+
   @Override
   public void onEvent(Event e) {
     LOGGER.info("Received event from the King's Hand: {}", e.toString());
@@ -98,8 +105,10 @@ public class KingsHand extends EventEmitter implements EventObserver {
 For example, `LordVarys` finds a traitor every Sunday and notifies the `KingsHand`.
 
 ```java
+
 @Slf4j
 public class LordVarys extends EventEmitter implements EventObserver {
+
   @Override
   public void timePasses(Weekday day) {
     if (day == Weekday.SATURDAY) {
@@ -112,34 +121,34 @@ public class LordVarys extends EventEmitter implements EventObserver {
 The following snippet demonstrates how the objects are constructed and wired together.
 
 ```java
-    var kingJoffrey = new KingJoffrey();
+    var kingJoffrey=new KingJoffrey();
 
-    var kingsHand = new KingsHand();
-    kingsHand.registerObserver(kingJoffrey, Event.TRAITOR_DETECTED);
-    kingsHand.registerObserver(kingJoffrey, Event.STARK_SIGHTED);
-    kingsHand.registerObserver(kingJoffrey, Event.WARSHIPS_APPROACHING);
-    kingsHand.registerObserver(kingJoffrey, Event.WHITE_WALKERS_SIGHTED);
+    var kingsHand=new KingsHand();
+    kingsHand.registerObserver(kingJoffrey,Event.TRAITOR_DETECTED);
+    kingsHand.registerObserver(kingJoffrey,Event.STARK_SIGHTED);
+    kingsHand.registerObserver(kingJoffrey,Event.WARSHIPS_APPROACHING);
+    kingsHand.registerObserver(kingJoffrey,Event.WHITE_WALKERS_SIGHTED);
 
-    var varys = new LordVarys();
-    varys.registerObserver(kingsHand, Event.TRAITOR_DETECTED);
-    varys.registerObserver(kingsHand, Event.WHITE_WALKERS_SIGHTED);
+    var varys=new LordVarys();
+    varys.registerObserver(kingsHand,Event.TRAITOR_DETECTED);
+    varys.registerObserver(kingsHand,Event.WHITE_WALKERS_SIGHTED);
 
-    var scout = new Scout();
-    scout.registerObserver(kingsHand, Event.WARSHIPS_APPROACHING);
-    scout.registerObserver(varys, Event.WHITE_WALKERS_SIGHTED);
+    var scout=new Scout();
+    scout.registerObserver(kingsHand,Event.WARSHIPS_APPROACHING);
+    scout.registerObserver(varys,Event.WHITE_WALKERS_SIGHTED);
 
-    var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
+    var baelish=new LordBaelish(kingsHand,Event.STARK_SIGHTED);
 
-    var emitters = List.of(
-        kingsHand,
-        baelish,
-        varys,
-        scout
+    var emitters=List.of(
+    kingsHand,
+    baelish,
+    varys,
+    scout
     );
 
     Arrays.stream(Weekday.values())
-        .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))
-        .forEachOrdered(emitters::forEach);
+    .<Consumer<? super EventEmitter>>map(day->emitter->emitter.timePasses(day))
+    .forEachOrdered(emitters::forEach);
 ```
 
 The console output after running the example.
@@ -152,9 +161,11 @@ The console output after running the example.
 ```
 
 ## Class diagram
+
 ![alt text](/etc/classes.png "Event Aggregator")
 
 ## Applicability
+
 Use the Event Aggregator pattern when
 
 * Event Aggregator is a good choice when you have lots of objects that are

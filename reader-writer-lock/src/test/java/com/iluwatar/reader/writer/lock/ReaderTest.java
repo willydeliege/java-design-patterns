@@ -46,6 +46,10 @@
 
 package com.iluwatar.reader.writer.lock;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.spy;
+
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
@@ -53,16 +57,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.spy;
 
 /**
  * @author hongshuwei@gmail.com
  */
 class ReaderTest {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
   private InMemoryAppender appender;
 
   @BeforeEach
@@ -75,11 +76,7 @@ class ReaderTest {
     appender.stop();
   }
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderTest.class);
-
-  /**
-   * Verify that multiple readers can get the read lock concurrently
-   */
+  /** Verify that multiple readers can get the read lock concurrently */
   @Test
   void testRead() throws Exception {
 

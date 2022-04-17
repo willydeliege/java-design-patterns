@@ -29,14 +29,14 @@
  according to Google's Checkstyle format -->
 <additionalHeaders>
   <slashstar_custom_style>
-    <firstLine>/*</firstLine>
+    <allowBlankLines>false</allowBlankLines>
     <beforeEachLine>*</beforeEachLine>
     <endLine>*/EOL</endLine>
     <!-- Added EOL here -->
+    <firstLine>/*</firstLine>
     <firstLineDetectionPattern>(\\s|\\t)*/\\*.*$</firstLineDetectionPattern>
-    <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
-    <allowBlankLines>false</allowBlankLines>
     <isMultiline>true</isMultiline>
+    <lastLineDetectionPattern>.*\\*/(\\s|\\t)*$</lastLineDetectionPattern>
     <padLines>false</padLines>
   </slashstar_custom_style>
 </additionalHeaders>

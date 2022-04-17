@@ -71,11 +71,14 @@ public class ProductResource {
    * @return : all products in list but in the scheme of private dto.
    */
   public List<ProductDto.Response.Private> getAllProductsForAdmin() {
-    return products
-        .stream()
-        .map(p -> new ProductDto.Response.Private().setId(p.getId()).setName(p.getName())
-            .setCost(p.getCost())
-            .setPrice(p.getPrice()))
+    return products.stream()
+        .map(
+            p ->
+                new ProductDto.Response.Private()
+                    .setId(p.getId())
+                    .setName(p.getName())
+                    .setCost(p.getCost())
+                    .setPrice(p.getPrice()))
         .collect(Collectors.toList());
   }
 
@@ -85,10 +88,13 @@ public class ProductResource {
    * @return : all products in list but in the scheme of public dto.
    */
   public List<ProductDto.Response.Public> getAllProductsForCustomer() {
-    return products
-        .stream()
-        .map(p -> new ProductDto.Response.Public().setId(p.getId()).setName(p.getName())
-            .setPrice(p.getPrice()))
+    return products.stream()
+        .map(
+            p ->
+                new ProductDto.Response.Public()
+                    .setId(p.getId())
+                    .setName(p.getName())
+                    .setPrice(p.getPrice()))
         .collect(Collectors.toList());
   }
 
@@ -98,12 +104,13 @@ public class ProductResource {
    * @param createProductDto save new product to list.
    */
   public void save(ProductDto.Request.Create createProductDto) {
-    products.add(new Product()
-        .setId((long) (products.size() + 1))
-        .setName(createProductDto.getName())
-        .setSupplier(createProductDto.getSupplier())
-        .setPrice(createProductDto.getPrice())
-        .setCost(createProductDto.getCost()));
+    products.add(
+        new Product()
+            .setId((long) (products.size() + 1))
+            .setName(createProductDto.getName())
+            .setSupplier(createProductDto.getSupplier())
+            .setPrice(createProductDto.getPrice())
+            .setCost(createProductDto.getCost()));
   }
 
   /**

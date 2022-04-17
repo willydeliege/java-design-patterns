@@ -46,6 +46,8 @@
 
 package com.iluwatar.servicelayer.spell;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,12 +55,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
 
-/**
- * Spell entity.
- */
+/** Spell entity. */
 @Entity
 @Table(name = "SPELL")
 public class Spell extends BaseEntity {
@@ -74,8 +72,7 @@ public class Spell extends BaseEntity {
   @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
   private Spellbook spellbook;
 
-  public Spell() {
-  }
+  public Spell() {}
 
   public Spell(String name) {
     this();

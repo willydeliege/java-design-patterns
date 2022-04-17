@@ -46,12 +46,12 @@
 
 package com.iluwatar.producer.consumer;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 11:01 PM
@@ -78,5 +78,4 @@ public class ConsumerTest {
 
     verify(queue, times(ITEM_COUNT)).take();
   }
-
 }

@@ -46,19 +46,16 @@
 
 package com.iluwatar.acyclicvisitor;
 
-import uk.org.lidalia.slf4jtest.TestLogger;
-import uk.org.lidalia.slf4jtest.TestLoggerFactory;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 
-/**
- * ConfigureForDosVisitor test class
- */
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import uk.org.lidalia.slf4jtest.TestLogger;
+import uk.org.lidalia.slf4jtest.TestLoggerFactory;
+
+/** ConfigureForDosVisitor test class */
 class ConfigureForDosVisitorTest {
 
   private final TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);

@@ -46,13 +46,11 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test case for creating and checking the Message.
- */
+import org.junit.jupiter.api.Test;
+
+/** Test case for creating and checking the Message. */
 class MessageTest {
 
   @Test

@@ -6,16 +6,21 @@ permalink: /patterns/state/
 categories: Behavioral
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 又被称为
+
 对象状态
 
 ## 目的
+
 允许对象在内部状态改变时改变它的行为。对象看起来好像修改了它的类。
 
 ## 解释
+
 真实世界例子
 
 > 当在长毛象的自然栖息地观察长毛象时，似乎它会根据情况来改变自己的行为。它开始可能很平静但是随着时间推移当它检测到威胁时它会对周围的环境感到愤怒和危险。
@@ -121,20 +126,21 @@ public class Mammoth {
 然后这里是长毛象随着时间的推移后的整个行为示例。
 
 ```java
-    var mammoth = new Mammoth();
+    var mammoth=new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
-    
-    // The mammoth gets angry!
-    // The mammoth is furious!
-    // The mammoth calms down.
-    // The mammoth is calm and peaceful.
+
+// The mammoth gets angry!
+// The mammoth is furious!
+// The mammoth calms down.
+// The mammoth is calm and peaceful.
 ```
 
 ## 类图
+
 ![alt text](../../../state/etc/state_urm.png "State")
 
 ## 适用性
@@ -142,11 +148,15 @@ public class Mammoth {
 在以下两种情况下，请使用State模式
 
 * 对象的行为取决于它的状态，并且它必须在运行时根据状态更改其行为。
-* 根据对象状态的不同，操作有大量的条件语句。此状态通常由一个或多个枚举常量表示。通常，几个操作将包含此相同的条件结构。状态模式把条件语句的分支分别放入单独的类中。这样一来，你就可以将对象的状态视为独立的对象，该对象可以独立于其他对象而变化。
+*
+根据对象状态的不同，操作有大量的条件语句。此状态通常由一个或多个枚举常量表示。通常，几个操作将包含此相同的条件结构。状态模式把条件语句的分支分别放入单独的类中。这样一来，你就可以将对象的状态视为独立的对象，该对象可以独立于其他对象而变化。
 
 ## Java中例子
 
-* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-) controlled by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the behavior is dependent on current phase of lifecycle.
+* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-)
+  controlled
+  by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the
+  behavior is dependent on current phase of lifecycle.
 * [JDiameter - Diameter State Machine](https://github.com/npathai/jdiameter/blob/master/core/jdiameter/api/src/main/java/org/jdiameter/api/app/State.java)
 
 ## 鸣谢

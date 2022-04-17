@@ -6,7 +6,9 @@ permalink: /patterns/dao/
 categories: Architectural
 language: zh
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## 目的
@@ -50,7 +52,7 @@ public class Customer {
 
 这是`CustomerDao`接口及其两个不同的实现。
 
-Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao` 
+Here's the `CustomerDao` interface and two different implementations for it. `InMemoryCustomerDao`
 将简单的客户数据映射保存在内存中 而`DBCustomerDao`是真正的RDBMS实现。
 
 ```java
@@ -92,59 +94,59 @@ public class DbCustomerDao implements CustomerDao {
 最后，这是我们使用DAO管理客户数据的方式。
 
 ```java
-    final var dataSource = createDataSource();
+    final var dataSource=createDataSource();
     createSchema(dataSource);
-    final var customerDao = new DbCustomerDao(dataSource);
-    
+final var customerDao=new DbCustomerDao(dataSource);
+
     addCustomers(customerDao);
     log.info(ALL_CUSTOMERS);
-    try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((customer) -> log.info(customer.toString()));
+    try(var customerStream=customerDao.getAll()){
+    customerStream.forEach((customer)->log.info(customer.toString()));
     }
-    log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
-    final var customer = new Customer(4, "Dan", "Danson");
+    log.info("customerDao.getCustomerById(2): "+customerDao.getById(2));
+final var customer=new Customer(4,"Dan","Danson");
     customerDao.add(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
+    log.info(ALL_CUSTOMERS+customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.update(customer);
     log.info(ALL_CUSTOMERS);
-    try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((cust) -> log.info(cust.toString()));
+    try(var customerStream=customerDao.getAll()){
+    customerStream.forEach((cust)->log.info(cust.toString()));
     }
     customerDao.delete(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
-    
+    log.info(ALL_CUSTOMERS+customerDao.getAll());
+
     deleteSchema(dataSource);
 ```
 
 程序输出:
 
 ```java
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@7cef4e59
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-Customer{id=4, firstName='Daniel', lastName='Danielson'}
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@2db0f6b2
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-customerDao.getCustomerById(2): Optional[Customer{id=2, firstName='Bob', lastName='Bobson'}]
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@12c8a2c0
-customerDao.getAllCustomers(): 
-Customer{id=1, firstName='Adam', lastName='Adamson'}
-Customer{id=2, firstName='Bob', lastName='Bobson'}
-Customer{id=3, firstName='Carl', lastName='Carlson'}
-Customer{id=4, firstName='Daniel', lastName='Danielson'}
-customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
+customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@7cef4e59
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    Customer{id=4,firstName='Daniel',lastName='Danielson'}
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@2db0f6b2
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@12c8a2c0
+    customerDao.getAllCustomers():
+    Customer{id=1,firstName='Adam',lastName='Adamson'}
+    Customer{id=2,firstName='Bob',lastName='Bobson'}
+    Customer{id=3,firstName='Carl',lastName='Carlson'}
+    Customer{id=4,firstName='Daniel',lastName='Danielson'}
+    customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@6ec8211c
 ```
 
 ## 类图

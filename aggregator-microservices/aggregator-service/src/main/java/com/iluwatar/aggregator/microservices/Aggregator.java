@@ -46,11 +46,11 @@
 
 package com.iluwatar.aggregator.microservices;
 
+import static java.util.Objects.requireNonNullElse;
+
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static java.util.Objects.requireNonNullElse;
 
 /**
  * The aggregator aggregates calls on various micro-services, collects data and further publishes
@@ -59,11 +59,9 @@ import static java.util.Objects.requireNonNullElse;
 @RestController
 public class Aggregator {
 
-  @Resource
-  private ProductInformationClient informationClient;
+  @Resource private ProductInformationClient informationClient;
 
-  @Resource
-  private ProductInventoryClient inventoryClient;
+  @Resource private ProductInventoryClient inventoryClient;
 
   /**
    * Retrieves product data.
@@ -77,13 +75,12 @@ public class Aggregator {
     var productTitle = informationClient.getProductTitle();
     var productInventory = inventoryClient.getProductInventories();
 
-    //Fallback to error message
+    // Fallback to error message
     product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    //Fallback to default error inventory
+    // Fallback to default error inventory
     product.setProductInventories(requireNonNullElse(productInventory, -1));
 
     return product;
   }
-
 }

@@ -6,7 +6,9 @@ permalink: /patterns/private-class-data/
 categories: Idiom
 language: zh
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## 目的
@@ -33,21 +35,25 @@ tags:
 
 ```java
 public class Stew {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(Stew.class);
   private int numPotatoes;
   private int numCarrots;
   private int numMeat;
   private int numPeppers;
+
   public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;
     this.numMeat = numMeat;
     this.numPeppers = numPeppers;
   }
+
   public void mix() {
     LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
         numPotatoes, numCarrots, numMeat, numPeppers);
   }
+
   public void taste() {
     LOGGER.info("Tasting the stew");
     if (numPotatoes > 0) {
@@ -70,35 +76,45 @@ public class Stew {
 
 ```java
 public class StewData {
+
   private final int numPotatoes;
   private final int numCarrots;
   private final int numMeat;
   private final int numPeppers;
+
   public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;
     this.numMeat = numMeat;
     this.numPeppers = numPeppers;
   }
+
   public int getNumPotatoes() {
     return numPotatoes;
   }
+
   public int getNumCarrots() {
     return numCarrots;
   }
+
   public int getNumMeat() {
     return numMeat;
   }
+
   public int getNumPeppers() {
     return numPeppers;
   }
 }
+
 public class ImmutableStew {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(ImmutableStew.class);
   private final StewData data;
+
   public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
   }
+
   public void mix() {
     LOGGER
         .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
@@ -110,12 +126,12 @@ public class ImmutableStew {
 让我们尝试创建每个类的实例并调用其方法：
 
 ```java
-var stew = new Stew(1, 2, 3, 4);
-stew.mix();   // Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
-stew.taste(); // Tasting the stew
-stew.mix();   // Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers
-var immutableStew = new ImmutableStew(2, 4, 3, 6);
-immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrots, 3 meat and 6 peppers
+var stew=new Stew(1,2,3,4);
+    stew.mix();   // Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
+    stew.taste(); // Tasting the stew
+    stew.mix();   // Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers
+    var immutableStew=new ImmutableStew(2,4,3,6);
+    immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrots, 3 meat and 6 peppers
 ```
 
 ## 类图

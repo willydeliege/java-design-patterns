@@ -46,9 +46,8 @@
 
 package com.iluwatar.doubledispatch;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * When a message with a parameter is sent to an object, the resultant behaviour is defined by the
@@ -60,9 +59,9 @@ import java.util.List;
  * to change the method's implementation and add a new instanceof-check. This violates the single
  * responsibility principle - a class should have only one reason to change.
  *
- * <p>Instead of the instanceof-checks a better way is to make another virtual call on the
- * parameter object. This way new functionality can be easily added without the need to modify
- * existing implementation (open-closed principle).
+ * <p>Instead of the instanceof-checks a better way is to make another virtual call on the parameter
+ * object. This way new functionality can be easily added without the need to modify existing
+ * implementation (open-closed principle).
  *
  * <p>In this example we have hierarchy of objects ({@link GameObject}) that can collide to each
  * other. Each object has its own coordinates which are checked against the other objects'
@@ -79,21 +78,24 @@ public class App {
    */
   public static void main(String[] args) {
     // initialize game objects and print their status
-    var objects = List.of(
-        new FlamingAsteroid(0, 0, 5, 5),
-        new SpaceStationMir(1, 1, 2, 2),
-        new Meteoroid(10, 10, 15, 15),
-        new SpaceStationIss(12, 12, 14, 14)
-    );
+    var objects =
+        List.of(
+            new FlamingAsteroid(0, 0, 5, 5),
+            new SpaceStationMir(1, 1, 2, 2),
+            new Meteoroid(10, 10, 15, 15),
+            new SpaceStationIss(12, 12, 14, 14));
     objects.forEach(o -> LOGGER.info(o.toString()));
     LOGGER.info("");
 
     // collision check
-    objects.forEach(o1 -> objects.forEach(o2 -> {
-      if (o1 != o2 && o1.intersectsWith(o2)) {
-        o1.collision(o2);
-      }
-    }));
+    objects.forEach(
+        o1 ->
+            objects.forEach(
+                o2 -> {
+                  if (o1 != o2 && o1.intersectsWith(o2)) {
+                    o1.collision(o2);
+                  }
+                }));
     LOGGER.info("");
 
     // output eventual object statuses

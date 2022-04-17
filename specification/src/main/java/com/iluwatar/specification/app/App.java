@@ -46,11 +46,6 @@
 
 package com.iluwatar.specification.app;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Predicate;
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.creature.Dragon;
 import com.iluwatar.specification.creature.Goblin;
@@ -65,34 +60,31 @@ import com.iluwatar.specification.selector.MassEqualSelector;
 import com.iluwatar.specification.selector.MassGreaterThanSelector;
 import com.iluwatar.specification.selector.MassSmallerThanOrEqSelector;
 import com.iluwatar.specification.selector.MovementSelector;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>The central idea of the Specification pattern is to separate the statement of how to match a
+ * The central idea of the Specification pattern is to separate the statement of how to match a
  * candidate, from the candidate object that it is matched against. As well as its usefulness in
- * selection, it is also valuable for validation and for building to order.</p>
+ * selection, it is also valuable for validation and for building to order.
  *
  * <p>In this example we have a pool of creatures with different properties. We then have defined
  * separate selection rules (Specifications) that we apply to the collection and as output receive
- * only the creatures that match the selection criteria.</p>
+ * only the creatures that match the selection criteria.
  *
- * <p>http://martinfowler.com/apsupp/spec.pdf</p>
+ * <p>http://martinfowler.com/apsupp/spec.pdf
  */
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     // initialize creatures list
-    var creatures = List.of(
-        new Goblin(),
-        new Octopus(),
-        new Dragon(),
-        new Shark(),
-        new Troll(),
-        new KillerBee()
-    );
+    var creatures =
+        List.of(
+            new Goblin(), new Octopus(), new Dragon(), new Shark(), new Troll(), new KillerBee());
     // so-called "hard-coded" specification
     LOGGER.info("Demonstrating hard-coded specification :");
     // find all walking creatures
@@ -119,9 +111,11 @@ public class App {
     print(creatures, redAndFlying);
     // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
     LOGGER.info("Find all scary creatures");
-    var scaryCreaturesSelector = new ColorSelector(Color.DARK)
-        .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
-        .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
+    var scaryCreaturesSelector =
+        new ColorSelector(Color.DARK)
+            .or(new ColorSelector(Color.RED))
+            .and(new MovementSelector(Movement.SWIMMING).not())
+            .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
     print(creatures, scaryCreaturesSelector);
   }
 

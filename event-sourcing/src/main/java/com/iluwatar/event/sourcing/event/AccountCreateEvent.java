@@ -46,10 +46,9 @@
 
 package com.iluwatar.event.sourcing.event;
 
-import lombok.Getter;
-
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+import lombok.Getter;
 
 /**
  * This is the class that implements account create event. Holds the necessary info for an account
@@ -67,10 +66,10 @@ public class AccountCreateEvent extends DomainEvent {
   /**
    * Instantiates a new Account create event.
    *
-   * @param sequenceId  the sequence id
+   * @param sequenceId the sequence id
    * @param createdTime the created time
-   * @param accountNo   the account no
-   * @param owner       the owner
+   * @param accountNo the account no
+   * @param owner the owner
    */
   public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
     super(sequenceId, createdTime, "AccountCreateEvent");

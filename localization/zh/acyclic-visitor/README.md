@@ -6,7 +6,9 @@ permalink: /patterns/acyclic-visitor/
 categories: Behavioral
 language: zh
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## 目的
@@ -33,11 +35,13 @@ tags:
 
 ```java
 public abstract class Modem {
+
   public abstract void accept(ModemVisitor modemVisitor);
 }
 
 public class Zoom extends Modem {
   ...
+
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof ZoomVisitor) {
@@ -50,6 +54,7 @@ public class Zoom extends Modem {
 
 public class Hayes extends Modem {
   ...
+
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof HayesVisitor) {
@@ -65,25 +70,31 @@ public class Hayes extends Modem {
 
 ```java
 public interface ModemVisitor {
+
 }
 
 public interface HayesVisitor extends ModemVisitor {
+
   void visit(Hayes hayes);
 }
 
 public interface ZoomVisitor extends ModemVisitor {
+
   void visit(Zoom zoom);
 }
 
 public interface AllModemVisitor extends ZoomVisitor, HayesVisitor {
+
 }
 
 public class ConfigureForDosVisitor implements AllModemVisitor {
   ...
+
   @Override
   public void visit(Hayes hayes) {
     LOGGER.info(hayes + " used with Dos configurator.");
   }
+
   @Override
   public void visit(Zoom zoom) {
     LOGGER.info(zoom + " used with Dos configurator.");
@@ -92,6 +103,7 @@ public class ConfigureForDosVisitor implements AllModemVisitor {
 
 public class ConfigureForUnixVisitor implements ZoomVisitor {
   ...
+
   @Override
   public void visit(Zoom zoom) {
     LOGGER.info(zoom + " used with Unix configurator.");
@@ -102,10 +114,10 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 最后，这里是访问者的实践。
 
 ```java
-    var conUnix = new ConfigureForUnixVisitor();
-    var conDos = new ConfigureForDosVisitor();
-    var zoom = new Zoom();
-    var hayes = new Hayes();
+    var conUnix=new ConfigureForUnixVisitor();
+    var conDos=new ConfigureForDosVisitor();
+    var zoom=new Zoom();
+    var hayes=new Hayes();
     hayes.accept(conDos);
     zoom.accept(conDos);
     hayes.accept(conUnix);
@@ -145,7 +157,8 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 
 坏处:
 
-* 通过证明它可以接受所有访客，但实际上仅对特定访客感兴趣，从而违反了[Liskov的替代原则](https://java-design-patterns.com/principles/#liskov-substitution-principle)
+*
+通过证明它可以接受所有访客，但实际上仅对特定访客感兴趣，从而违反了[Liskov的替代原则](https://java-design-patterns.com/principles/#liskov-substitution-principle)
 * 必须为可访问的类层次结构中的所有成员创建访问者的并行层次结构。
 
 ## 相关的模式

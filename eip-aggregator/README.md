@@ -6,24 +6,32 @@ permalink: /patterns/eip-aggregator/
 categories: Integration
 language: en
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## Intent
-Sometimes in enterprise systems there is a need to group incoming data in order to process it as a whole. For example
-you may need to gather offers and after defined number of offers has been received you would like to choose the one with
-the best parameters. 
 
-Aggregator allows you to merge messages based on defined criteria and parameters. It gathers original messages, 
+Sometimes in enterprise systems there is a need to group incoming data in order to process it as a
+whole. For example
+you may need to gather offers and after defined number of offers has been received you would like to
+choose the one with
+the best parameters.
+
+Aggregator allows you to merge messages based on defined criteria and parameters. It gathers
+original messages,
 applies aggregation strategy and upon fulfilling given criteria, releasing merged messages.
 
-## Diagram 
+## Diagram
+
 ![alt text](/etc/aggregator.gif "Splitter")
 
 ## Applicability
+
 Use the Aggregator pattern when
 
-* You need to combine multiple incoming messages 
+* You need to combine multiple incoming messages
 * You want to process grouped data
 
 ## Credits

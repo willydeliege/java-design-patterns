@@ -46,6 +46,9 @@
 
 package com.iluwatar.partialresponse;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,28 +58,29 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-
-/**
- * tests {@link VideoResource}.
- */
+/** tests {@link VideoResource}. */
 @ExtendWith(MockitoExtension.class)
 class VideoResourceTest {
-  @Mock
-  private static FieldJsonMapper fieldJsonMapper;
+  @Mock private static FieldJsonMapper fieldJsonMapper;
 
   private static VideoResource resource;
 
   @BeforeEach
   void setUp() {
-    var videos = Map.of(
-        1, new Video(1, "Avatar", 178, "epic science fiction film",
-            "James Cameron", "English"),
-        2, new Video(2, "Godzilla Resurgence", 120, "Action & drama movie|",
-            "Hideaki Anno", "Japanese"),
-        3, new Video(3, "Interstellar", 169, "Adventure & Sci-Fi",
-            "Christopher Nolan", "English"));
+    var videos =
+        Map.of(
+            1, new Video(1, "Avatar", 178, "epic science fiction film", "James Cameron", "English"),
+            2,
+                new Video(
+                    2,
+                    "Godzilla Resurgence",
+                    120,
+                    "Action & drama movie|",
+                    "Hideaki Anno",
+                    "Japanese"),
+            3,
+                new Video(
+                    3, "Interstellar", 169, "Adventure & Sci-Fi", "Christopher Nolan", "English"));
     resource = new VideoResource(fieldJsonMapper, videos);
   }
 
@@ -84,14 +88,15 @@ class VideoResourceTest {
   void shouldGiveVideoDetailsById() throws Exception {
     var actualDetails = resource.getDetails(1);
 
-    var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
-        + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
+    var expectedDetails =
+        "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
+            + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
     Assertions.assertEquals(expectedDetails, actualDetails);
   }
 
   @Test
   void shouldGiveSpecifiedFieldsInformationOfVideo() throws Exception {
-    var fields = new String[]{"id", "title", "length"};
+    var fields = new String[] {"id", "title", "length"};
 
     var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178}";
     Mockito.when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);

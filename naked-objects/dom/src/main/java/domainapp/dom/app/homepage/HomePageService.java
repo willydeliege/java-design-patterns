@@ -65,8 +65,7 @@ public class HomePageService {
 
   // region > injected services
 
-  @javax.inject.Inject
-  DomainObjectContainer container;
+  @javax.inject.Inject DomainObjectContainer container;
 
   // endregion
 
@@ -77,5 +76,4 @@ public class HomePageService {
   public HomePageViewModel homePage() {
     return container.injectServicesInto(new HomePageViewModel());
   }
-
 }

@@ -46,15 +46,12 @@
 
 package com.iluwatar.typeobject;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.typeobject.Candy.Type;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * The CandyGameTest class tests the methods in the {@link CandyGame} class.
- */
+import com.iluwatar.typeobject.Candy.Type;
+import org.junit.jupiter.api.Test;
 
+/** The CandyGameTest class tests the methods in the {@link CandyGame} class. */
 class CandyGameTest {
 
   @Test
@@ -88,5 +85,4 @@ class CandyGameTest {
     var noneLeft = cg.continueRound();
     assertTrue(fruitInLastRow && matchingCandy && !noneLeft);
   }
-
 }

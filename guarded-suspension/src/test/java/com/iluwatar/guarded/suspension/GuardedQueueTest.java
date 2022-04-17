@@ -46,15 +46,13 @@
 
 package com.iluwatar.guarded.suspension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Test for Guarded Queue
- */
+/** Test for Guarded Queue */
 public class GuardedQueueTest {
   private volatile Integer value;
 
@@ -79,5 +77,4 @@ public class GuardedQueueTest {
     g.put(12);
     assertEquals(Integer.valueOf(12), g.get());
   }
-
 }

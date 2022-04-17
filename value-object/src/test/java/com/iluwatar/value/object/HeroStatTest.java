@@ -46,24 +46,23 @@
 
 package com.iluwatar.value.object;
 
-import org.junit.jupiter.api.Test;
-import com.google.common.testing.EqualsTester;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
-/**
- * Unit test for HeroStat.
- */
+import com.google.common.testing.EqualsTester;
+import org.junit.jupiter.api.Test;
+
+/** Unit test for HeroStat. */
 class HeroStatTest {
 
   /**
    * Tester for equals() and hashCode() methods of a class. Using guava's EqualsTester.
    *
-   * @see <a href="http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html">
-   * http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html
-   * </a>
+   * @see <a
+   *     href="http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html">
+   *     http://static.javadoc.io/com.google.guava/guava-testlib/19.0/com/google/common/testing/EqualsTester.html
+   *     </a>
    */
   @Test
   void testEquals() {
@@ -85,5 +84,4 @@ class HeroStatTest {
     assertThat(heroStatA.toString(), is(heroStatB.toString()));
     assertThat(heroStatA.toString(), is(not(heroStatC.toString())));
   }
-
 }

@@ -46,10 +46,9 @@
 
 package com.iluwatar.producer.consumer;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Producer Consumer Design pattern is a classic concurrency or threading pattern which reduces
@@ -77,20 +76,22 @@ public class App {
     for (var i = 0; i < 2; i++) {
 
       final var producer = new Producer("Producer_" + i, queue);
-      executorService.submit(() -> {
-        while (true) {
-          producer.produce();
-        }
-      });
+      executorService.submit(
+          () -> {
+            while (true) {
+              producer.produce();
+            }
+          });
     }
 
     for (var i = 0; i < 3; i++) {
       final var consumer = new Consumer("Consumer_" + i, queue);
-      executorService.submit(() -> {
-        while (true) {
-          consumer.consume();
-        }
-      });
+      executorService.submit(
+          () -> {
+            while (true) {
+              consumer.consume();
+            }
+          });
     }
 
     executorService.shutdown();

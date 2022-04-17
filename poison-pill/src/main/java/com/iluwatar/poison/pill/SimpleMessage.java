@@ -50,9 +50,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * {@link Message} basic implementation.
- */
+/** {@link Message} basic implementation. */
 public class SimpleMessage implements Message {
 
   private final Map<Headers, String> headers = new HashMap<>();
@@ -74,12 +72,12 @@ public class SimpleMessage implements Message {
   }
 
   @Override
-  public void setBody(String body) {
-    this.body = body;
+  public String getBody() {
+    return body;
   }
 
   @Override
-  public String getBody() {
-    return body;
+  public void setBody(String body) {
+    this.body = body;
   }
 }

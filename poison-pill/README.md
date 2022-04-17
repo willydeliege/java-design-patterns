@@ -6,30 +6,32 @@ permalink: /patterns/poison-pill/
 categories: Behavioral
 language: en
 tags:
- - Cloud distributed
- - Reactive
+
+- Cloud distributed
+- Reactive
+
 ---
 
 ## Intent
 
-Poison Pill is known predefined data item that allows to provide graceful shutdown for separate 
+Poison Pill is known predefined data item that allows to provide graceful shutdown for separate
 distributed consumption process.
 
 ## Explanation
 
 Real world example
 
-> Let's think about a message queue with one producer and one consumer. The producer keeps pushing 
-> new messages in the queue and the consumer keeps reading them. Finally when it's time to 
-> gracefully shut down the producer sends the poison pill message.             
+> Let's think about a message queue with one producer and one consumer. The producer keeps pushing
+> new messages in the queue and the consumer keeps reading them. Finally when it's time to
+> gracefully shut down the producer sends the poison pill message.
 
 In plain words
 
-> Poison Pill is a known message structure that ends the message exchange.   
+> Poison Pill is a known message structure that ends the message exchange.
 
 **Programmatic Example**
 
-Let's define the message structure first. There's interface `Message` and implementation 
+Let's define the message structure first. There's interface `Message` and implementation
 `SimpleMessage`.
 
 ```java
@@ -84,8 +86,8 @@ public class SimpleMessage implements Message {
 }
 ```
 
-To pass messages we are using message queues. Here we define the types related to the message queue: 
-`MqPublishPoint`, `MqSubscribePoint` and `MessageQueue`. `SimpleMessageQueue` implements all these 
+To pass messages we are using message queues. Here we define the types related to the message queue:
+`MqPublishPoint`, `MqSubscribePoint` and `MessageQueue`. `SimpleMessageQueue` implements all these
 interfaces.
 
 ```java
@@ -100,6 +102,7 @@ public interface MqSubscribePoint {
 }
 
 public interface MessageQueue extends MqPublishPoint, MqSubscribePoint {
+
 }
 
 public class SimpleMessageQueue implements MessageQueue {
@@ -123,13 +126,13 @@ public class SimpleMessageQueue implements MessageQueue {
 ```
 
 Next we need message `Producer` and `Consumer`. Internally they use the message queues from above.
-It's important to notice that when `Producer` stops, it sends out the poison pill to inform 
-`Consumer` that the messaging has finished. 
+It's important to notice that when `Producer` stops, it sends out the poison pill to inform
+`Consumer` that the messaging has finished.
 
 ```java
 public class Producer {
   
-  ... 
+  ...
 
   public void send(String body) {
     if (isStopped) {
@@ -188,18 +191,18 @@ public class Consumer {
 Finally we are ready to present the whole example in action.
 
 ```java
-    var queue = new SimpleMessageQueue(10000);
+    var queue=new SimpleMessageQueue(10000);
 
-    final var producer = new Producer("PRODUCER_1", queue);
-    final var consumer = new Consumer("CONSUMER_1", queue);
+final var producer=new Producer("PRODUCER_1",queue);
+final var consumer=new Consumer("CONSUMER_1",queue);
 
     new Thread(consumer::consume).start();
 
-    new Thread(() -> {
-      producer.send("hand shake");
-      producer.send("some very important information");
-      producer.send("bye!");
-      producer.stop();
+    new Thread(()->{
+    producer.send("hand shake");
+    producer.send("some very important information");
+    producer.send("bye!");
+    producer.stop();
     }).start();
 ```
 

@@ -46,19 +46,16 @@
 
 package com.iluwatar.api.gateway;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * An adapter to communicate with the Image microservice.
- */
+/** An adapter to communicate with the Image microservice. */
 @Slf4j
 @Component
 public class ImageClientImpl implements ImageClient {
@@ -71,10 +68,8 @@ public class ImageClientImpl implements ImageClient {
   @Override
   public String getImagePath() {
     var httpClient = HttpClient.newHttpClient();
-    var httpGet = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:50005/image-path"))
-        .build();
+    var httpGet =
+        HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();
 
     try {
       LOGGER.info("Sending request to fetch image path");

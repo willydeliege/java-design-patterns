@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,15 +46,12 @@
 
 package com.iluwatar.updatemethod;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * The game world class. Maintain all the objects existed in the game frames.
- */
+/** The game world class. Maintain all the objects existed in the game frames. */
 @Slf4j
 public class World {
 
@@ -68,9 +65,9 @@ public class World {
   }
 
   /**
-   * Main game loop. This loop will always run until the game is over. For
-   * each loop it will process user input, update internal status, and render
-   * the next frames. For more detail please refer to the game-loop pattern.
+   * Main game loop. This loop will always run until the game is over. For each loop it will process
+   * user input, update internal status, and render the next frames. For more detail please refer to
+   * the game-loop pattern.
    */
   private void gameLoop() {
     while (isRunning) {
@@ -81,9 +78,8 @@ public class World {
   }
 
   /**
-   * Handle any user input that has happened since the last call. In order to
-   * simulate the situation in real-life game, here we add a random time lag.
-   * The time lag ranges from 50 ms to 250 ms.
+   * Handle any user input that has happened since the last call. In order to simulate the situation
+   * in real-life game, here we add a random time lag. The time lag ranges from 50 ms to 250 ms.
    */
   private void processInput() {
     try {
@@ -96,8 +92,8 @@ public class World {
   }
 
   /**
-   * Update internal status. The update method pattern invoke udpate method for
-   * each entity in the game.
+   * Update internal status. The update method pattern invoke udpate method for each entity in the
+   * game.
    */
   private void update() {
     for (var entity : entities) {
@@ -105,17 +101,12 @@ public class World {
     }
   }
 
-  /**
-   * Render the next frame. Here we do nothing since it is not related to the
-   * pattern.
-   */
+  /** Render the next frame. Here we do nothing since it is not related to the pattern. */
   private void render() {
     // Does Nothing
   }
 
-  /**
-   * Run game loop.
-   */
+  /** Run game loop. */
   public void run() {
     LOGGER.info("Start game.");
     isRunning = true;
@@ -123,9 +114,7 @@ public class World {
     thread.start();
   }
 
-  /**
-   * Stop game loop.
-   */
+  /** Stop game loop. */
   public void stop() {
     LOGGER.info("Stop game.");
     isRunning = false;
@@ -134,5 +123,4 @@ public class World {
   public void addEntity(Entity entity) {
     entities.add(entity);
   }
-
 }

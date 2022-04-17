@@ -46,9 +46,7 @@
 
 package com.iluwatar.nullobject;
 
-/**
- * Interface for binary tree node.
- */
+/** Interface for binary tree node. */
 public interface Node {
 
   String getName();

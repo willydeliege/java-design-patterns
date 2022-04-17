@@ -47,14 +47,13 @@
 import abstractextensions.CommanderExtension;
 import abstractextensions.SergeantExtension;
 import abstractextensions.SoldierExtension;
+import java.util.Optional;
+import java.util.function.Function;
+import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
 import units.SergeantUnit;
 import units.SoldierUnit;
 import units.Unit;
-
-import java.util.Optional;
-import java.util.function.Function;
-import org.slf4j.LoggerFactory;
 
 /**
  * Anticipate that an object’s interface needs to be extended in the future. Additional interfaces
@@ -69,16 +68,15 @@ public class App {
    */
   public static void main(String[] args) {
 
-    //Create 3 different units
+    // Create 3 different units
     var soldierUnit = new SoldierUnit("SoldierUnit1");
     var sergeantUnit = new SergeantUnit("SergeantUnit1");
     var commanderUnit = new CommanderUnit("CommanderUnit1");
 
-    //check for each unit to have an extension
+    // check for each unit to have an extension
     checkExtensionsForUnit(soldierUnit);
     checkExtensionsForUnit(sergeantUnit);
     checkExtensionsForUnit(commanderUnit);
-
   }
 
   private static void checkExtensionsForUnit(Unit unit) {

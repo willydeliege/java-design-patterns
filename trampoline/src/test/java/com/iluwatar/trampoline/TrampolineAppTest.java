@@ -46,13 +46,11 @@
 
 package com.iluwatar.trampoline;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for trampoline pattern.
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for trampoline pattern. */
 class TrampolineAppTest {
 
   @Test
@@ -60,5 +58,4 @@ class TrampolineAppTest {
     long result = TrampolineApp.loop(10, 1).result();
     assertEquals(3_628_800, result);
   }
-
 }

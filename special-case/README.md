@@ -6,18 +6,22 @@ permalink: /patterns/special-case/
 categories: Behavioral
 language: en
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## Intent
 
-Define some special cases, and encapsulates them into subclasses that provide different special behaviors.
+Define some special cases, and encapsulates them into subclasses that provide different special
+behaviors.
 
 ## Explanation
 
 Real world example
 
-> In an e-commerce system, presentation layer expects application layer to produce certain view model.
+> In an e-commerce system, presentation layer expects application layer to produce certain view
+> model.
 > We have a successful scenario, in which receipt view model contains actual data from the purchase,
 > and a couple of failure scenarios.
 
@@ -25,17 +29,19 @@ In plain words
 
 > Special Case pattern allows returning non-null real objects that perform special behaviors.
 
-In [Patterns of Enterprise Application Architecture](https://martinfowler.com/books/eaa.html) says 
+In [Patterns of Enterprise Application Architecture](https://martinfowler.com/books/eaa.html) says
 the difference from Null Object Pattern
 
 > If you’ll pardon the unresistable pun, I see Null Object as special case of Special Case.
 
 **Programmatic Example**
 
-To focus on the pattern itself, we implement DB and maintenance lock of the e-commerce system by the singleton instance.
+To focus on the pattern itself, we implement DB and maintenance lock of the e-commerce system by the
+singleton instance.
 
 ```java
 public class Db {
+
   private static Db instance;
   private Map<String, User> userName2User;
   private Map<User, Account> user2Account;
@@ -89,6 +95,7 @@ public class Db {
   }
 
   public class User {
+
     private String userName;
 
     public User(String userName) {
@@ -105,6 +112,7 @@ public class Db {
   }
 
   public class Account {
+
     private Double amount;
 
     public Account(Double amount) {
@@ -124,6 +132,7 @@ public class Db {
   }
 
   public class Product {
+
     private Double price;
 
     public Product(Double price) {
@@ -137,6 +146,7 @@ public class Db {
 }
 
 public class MaintenanceLock {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(MaintenanceLock.class);
 
   private static MaintenanceLock instance;
@@ -164,10 +174,12 @@ public class MaintenanceLock {
 }
 ```
 
-Let's first introduce presentation layer, the receipt view model interface and its implementation of successful scenario.
+Let's first introduce presentation layer, the receipt view model interface and its implementation of
+successful scenario.
 
 ```java
 public interface ReceiptViewModel {
+
   void show();
 }
 
@@ -196,6 +208,7 @@ And here are the implementations of failure scenarios, which are the special cas
 
 ```java
 public class DownForMaintenance implements ReceiptViewModel {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(DownForMaintenance.class);
 
   @Override
@@ -205,6 +218,7 @@ public class DownForMaintenance implements ReceiptViewModel {
 }
 
 public class InvalidUser implements ReceiptViewModel {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
 
   private final String userName;
@@ -238,6 +252,7 @@ public class OutOfStock implements ReceiptViewModel {
 }
 
 public class InsufficientFunds implements ReceiptViewModel {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(InsufficientFunds.class);
 
   private String userName;
@@ -258,10 +273,12 @@ public class InsufficientFunds implements ReceiptViewModel {
 }
 ```
 
-Second, here's the application layer, the application services implementation and the domain services implementation.
+Second, here's the application layer, the application services implementation and the domain
+services implementation.
 
 ```java
 public class ApplicationServicesImpl implements ApplicationServices {
+
   private DomainServicesImpl domain = new DomainServicesImpl();
 
   @Override
@@ -278,6 +295,7 @@ public class ApplicationServicesImpl implements ApplicationServices {
 }
 
 public class DomainServicesImpl implements DomainServices {
+
   public ReceiptViewModel purchase(String userName, String itemName) {
     Db.User user = Db.getInstance().findUserByUserName(userName);
     if (user == null) {
@@ -309,31 +327,31 @@ Finally, the client send requests the application services to get the presentati
 
 ```java
     // DB seeding
-    LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, "
-        + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
-    Db.getInstance().seedUser("ignite1771", 1000.0);
-    Db.getInstance().seedItem("computer", 800.0);
-    Db.getInstance().seedItem("car", 20000.0);
+    LOGGER.info("Db seeding: "+"1 user: {\"ignite1771\", amount = 1000.0}, "
+        +"2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
+        Db.getInstance().seedUser("ignite1771",1000.0);
+        Db.getInstance().seedItem("computer",800.0);
+        Db.getInstance().seedItem("car",20000.0);
 
-    var applicationServices = new ApplicationServicesImpl();
-    ReceiptViewModel receipt;
+        var applicationServices=new ApplicationServicesImpl();
+        ReceiptViewModel receipt;
 
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
-    receipt.show();
-    MaintenanceLock.getInstance().setLock(false);
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "tv");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "car");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "car");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "computer");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "computer");
-    receipt.show();
+        LOGGER.info("[REQUEST] User: "+"abc123"+" buy product: "+"tv");
+        receipt=applicationServices.loggedInUserPurchase("abc123","tv");
+        receipt.show();
+        MaintenanceLock.getInstance().setLock(false);
+        LOGGER.info("[REQUEST] User: "+"abc123"+" buy product: "+"tv");
+        receipt=applicationServices.loggedInUserPurchase("abc123","tv");
+        receipt.show();
+        LOGGER.info("[REQUEST] User: "+"ignite1771"+" buy product: "+"tv");
+        receipt=applicationServices.loggedInUserPurchase("ignite1771","tv");
+        receipt.show();
+        LOGGER.info("[REQUEST] User: "+"ignite1771"+" buy product: "+"car");
+        receipt=applicationServices.loggedInUserPurchase("ignite1771","car");
+        receipt.show();
+        LOGGER.info("[REQUEST] User: "+"ignite1771"+" buy product: "+"computer");
+        receipt=applicationServices.loggedInUserPurchase("ignite1771","computer");
+        receipt.show();
 ```
 
 Program output of every request:
@@ -354,11 +372,12 @@ Program output of every request:
 
 Use the Special Case pattern when
 
-* You have multiple places in the system that have the same behavior after a conditional check 
-for a particular class instance, or the same behavior after a null check.
-* Return a real object that performs the real behavior, instead of a null object that performs nothing.
+* You have multiple places in the system that have the same behavior after a conditional check
+  for a particular class instance, or the same behavior after a null check.
+* Return a real object that performs the real behavior, instead of a null object that performs
+  nothing.
 
-## Tutorial 
+## Tutorial
 
 * [Special Case Tutorial](https://www.codinghelmet.com/articles/reduce-cyclomatic-complexity-special-case)
 

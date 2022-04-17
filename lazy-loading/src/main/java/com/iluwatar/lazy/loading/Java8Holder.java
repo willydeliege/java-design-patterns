@@ -46,9 +46,8 @@
 
 package com.iluwatar.lazy.loading;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This lazy loader is thread safe and more efficient than {@link HolderThreadSafe}. It utilizes
@@ -57,11 +56,9 @@ import java.util.function.Supplier;
 @Slf4j
 public class Java8Holder {
 
-  private Supplier<Heavy> heavy = this::createAndCacheHeavy;
-
   public Java8Holder() {
     LOGGER.info("Java8Holder created");
-  }
+  }  private Supplier<Heavy> heavy = this::createAndCacheHeavy;
 
   public Heavy getHeavy() {
     return heavy.get();
@@ -83,4 +80,6 @@ public class Java8Holder {
 
     return heavy.get();
   }
+
+
 }

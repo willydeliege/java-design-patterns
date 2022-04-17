@@ -6,20 +6,28 @@ permalink: /patterns/presentation/
 categories: Behavioral
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Also known as
+
 Application Model
 
 ## Intent
-Presentation Model pulls the state and behavior of the view out into a model class that is part of the presentation.  
+
+Presentation Model pulls the state and behavior of the view out into a model class that is part of
+the presentation.
 
 ## Explanation
 
 Real world example
 
-> When we need to write a program with GUI, there is no need for us to put all presentation behavior in the view class. Because it will test become harder. So we can use Presentation Model Pattern to separate the behavior and view. The view only need to load the data and states from other class and show these data on the screen according to the states.  
+> When we need to write a program with GUI, there is no need for us to put all presentation behavior
+> in the view class. Because it will test become harder. So we can use Presentation Model Pattern to
+> separate the behavior and view. The view only need to load the data and states from other class and
+> show these data on the screen according to the states.
 
 In plain words
 
@@ -27,10 +35,12 @@ In plain words
 
 Code Example
 
-Class `view` is the GUI of albums. Methods `saveToPMod` and `loadFromPMod` are used to achieve synchronization.
+Class `view` is the GUI of albums. Methods `saveToPMod` and `loadFromPMod` are used to achieve
+synchronization.
 
 ```java
 public class View {
+
   /**
    * the model that controls this view.
    */
@@ -81,7 +91,7 @@ Class `Album` is to store information of a album.
 
 ```java
 public class Album {
-    
+
   private String title;
   private String artist;
   private boolean isClassical;
@@ -98,6 +108,7 @@ Class `DisplatedAlbums` is store the information of all the albums that will be 
 
 ```java
 public class DisplayedAlbums {
+
   private final List<Album> albums;
 
   public DisplayedAlbums() {
@@ -105,8 +116,8 @@ public class DisplayedAlbums {
   }
 
   public void addAlbums(final String title,
-                        final String artist, final boolean isClassical,
-                        final String composer) {
+      final String artist, final boolean isClassical,
+      final String composer) {
     if (isClassical) {
       this.albums.add(new Album(title, artist, true, composer));
     } else {
@@ -116,12 +127,13 @@ public class DisplayedAlbums {
 }
 ```
 
- Class `PresentationMod` is used to control all the action of GUI.
+Class `PresentationMod` is used to control all the action of GUI.
 
 ```java
 public class PresentationModel {
+
   private final DisplayedAlbums data;
-  
+
   private int selectedAlbumNumber;
   private Album selectedAlbum;
 
@@ -138,7 +150,7 @@ public class PresentationModel {
    */
   public void setSelectedAlbumNumber(final int albumNumber) {
     LOGGER.info("Change select number from {} to {}",
-            this.selectedAlbumNumber, albumNumber);
+        this.selectedAlbumNumber, albumNumber);
     this.selectedAlbumNumber = albumNumber;
     this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
   }
@@ -150,7 +162,7 @@ public class PresentationModel {
 
   public void setTitle(final String value) {
     LOGGER.info("Change album title from {} to {}",
-            selectedAlbum.getTitle(), value);
+        selectedAlbum.getTitle(), value);
     selectedAlbum.setTitle(value);
   }
   // other set methods are like this, which are used to get information of selected album.
@@ -170,15 +182,18 @@ public class PresentationModel {
 }
 ```
 
-We can run class `App` to start this demo. the checkbox is the album classical; the first text field is the name of album artist; the second is the name of album title; the last one is the name of the composer:
+We can run class `App` to start this demo. the checkbox is the album classical; the first text field
+is the name of album artist; the second is the name of album title; the last one is the name of the
+composer:
 
 ![alt text](/etc/result.png "Album GUI Result")
 
-
 ## Class diagram
+
 ![alt text](/etc/presentation.urm.png "presentation model")
 
 ## Applicability
+
 Use the Presentation Model Pattern when
 
 * Testing a presentation through a GUI window is often awkward, and in some cases impossible.
@@ -186,10 +201,9 @@ Use the Presentation Model Pattern when
 
 ## Related patterns
 
-- [Supervising Controller](https://martinfowler.com/eaaDev/SupervisingPresenter.html) 
+- [Supervising Controller](https://martinfowler.com/eaaDev/SupervisingPresenter.html)
 - [Passive View](https://martinfowler.com/eaaDev/PassiveScreen.html)
 
 ## Credits
 
 * [Presentation Model Patterns](https://martinfowler.com/eaaDev/PresentationModel.html)
-

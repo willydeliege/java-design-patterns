@@ -6,7 +6,9 @@ permalink: /patterns/value-object/
 categories: Creational
 language: en
 tags:
- - Instantiation
+
+- Instantiation
+
 ---
 
 ## Intent
@@ -29,38 +31,39 @@ In plain words
 
 Wikipedia says
 
-> In computer science, a value object is a small object that represents a simple entity whose 
-> equality is not based on identity: i.e. two value objects are equal when they have the same 
+> In computer science, a value object is a small object that represents a simple entity whose
+> equality is not based on identity: i.e. two value objects are equal when they have the same
 > value, not necessarily being the same object.
 
 **Programmatic Example**
 
-Here is the `HeroStat` class that is the value object. Notice the use of 
+Here is the `HeroStat` class that is the value object. Notice the use of
 [Lombok's `@Value`](https://projectlombok.org/features/Value) annotation.
 
 ```java
+
 @Value(staticConstructor = "valueOf")
 class HeroStat {
 
-    int strength;
-    int intelligence;
-    int luck;
+  int strength;
+  int intelligence;
+  int luck;
 }
 ```
 
 The example creates three different `HeroStat`s and compares their equality.
 
 ```java
-var statA = HeroStat.valueOf(10, 5, 0);
-var statB = HeroStat.valueOf(10, 5, 0);
-var statC = HeroStat.valueOf(5, 1, 8);
+var statA=HeroStat.valueOf(10,5,0);
+    var statB=HeroStat.valueOf(10,5,0);
+    var statC=HeroStat.valueOf(5,1,8);
 
-LOGGER.info(statA.toString());
-LOGGER.info(statB.toString());
-LOGGER.info(statC.toString());
+    LOGGER.info(statA.toString());
+    LOGGER.info(statB.toString());
+    LOGGER.info(statC.toString());
 
-LOGGER.info("Is statA and statB equal : {}", statA.equals(statB));
-LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));
+    LOGGER.info("Is statA and statB equal : {}",statA.equals(statB));
+    LOGGER.info("Is statA and statC equal : {}",statA.equals(statC));
 ```
 
 Here's the console output.

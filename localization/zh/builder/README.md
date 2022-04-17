@@ -6,7 +6,8 @@ permalink: /patterns/builder/
 categories: Creational
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
 
 ---
 
@@ -31,8 +32,8 @@ tags:
 说了这么多，让我补充一下什么是伸缩构造函数反模式。我们肯定都见过像下面这样的构造器：
 
 ```java
-public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
-}
+public Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon){
+    }
 ```
 
 就像你看到的构造器参数的数量很快就会失控同时参数的排列方式可能变得难以理解。另外，如果您将来希望添加更多选项，则此参数列表可能会继续增长。这就被称伸缩构造器反模式。
@@ -43,6 +44,7 @@ public Hero(Profession profession, String name, HairType hairType, HairColor hai
 
 ```java
 public final class Hero {
+
   private final Profession profession;
   private final String name;
   private final HairType hairType;
@@ -65,51 +67,52 @@ public final class Hero {
 
 ```java
   public static class Builder {
-    private final Profession profession;
-    private final String name;
-    private HairType hairType;
-    private HairColor hairColor;
-    private Armor armor;
-    private Weapon weapon;
 
-    public Builder(Profession profession, String name) {
-      if (profession == null || name == null) {
-        throw new IllegalArgumentException("profession and name can not be null");
-      }
-      this.profession = profession;
-      this.name = name;
-    }
+  private final Profession profession;
+  private final String name;
+  private HairType hairType;
+  private HairColor hairColor;
+  private Armor armor;
+  private Weapon weapon;
 
-    public Builder withHairType(HairType hairType) {
-      this.hairType = hairType;
-      return this;
+  public Builder(Profession profession, String name) {
+    if (profession == null || name == null) {
+      throw new IllegalArgumentException("profession and name can not be null");
     }
-
-    public Builder withHairColor(HairColor hairColor) {
-      this.hairColor = hairColor;
-      return this;
-    }
-
-    public Builder withArmor(Armor armor) {
-      this.armor = armor;
-      return this;
-    }
-
-    public Builder withWeapon(Weapon weapon) {
-      this.weapon = weapon;
-      return this;
-    }
-
-    public Hero build() {
-      return new Hero(this);
-    }
+    this.profession = profession;
+    this.name = name;
   }
+
+  public Builder withHairType(HairType hairType) {
+    this.hairType = hairType;
+    return this;
+  }
+
+  public Builder withHairColor(HairColor hairColor) {
+    this.hairColor = hairColor;
+    return this;
+  }
+
+  public Builder withArmor(Armor armor) {
+    this.armor = armor;
+    return this;
+  }
+
+  public Builder withWeapon(Weapon weapon) {
+    this.weapon = weapon;
+    return this;
+  }
+
+  public Hero build() {
+    return new Hero(this);
+  }
+}
 ```
 
 然后可以这样使用
 
 ```java
-var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
+var mage=new Hero.Builder(Profession.MAGE,"Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 
 ## 类图
@@ -126,9 +129,11 @@ var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.
 ## Java世界例子
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
-* [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-) as well as similar buffers such as FloatBuffer, IntBuffer and so on.
+* [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-)
+  as well as similar buffers such as FloatBuffer, IntBuffer and so on.
 * [java.lang.StringBuffer](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html#append-boolean-)
-* All implementations of [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
+* All implementations
+  of [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
 * [Apache Commons Option.Builder](https://commons.apache.org/proper/commons-cli/apidocs/org/apache/commons/cli/Option.Builder.html)
 

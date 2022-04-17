@@ -22,15 +22,20 @@
 
 # 시작하기
 
-이 사이트는 Java 디자인 패턴을 설명합니다. 이 솔루션은 오픈 소스 커뮤니티의 경험이 많은 개발자와 설계자가 개발했습니다. 패턴은 높은 수준의 설명이나 소스 코드를 통해 찾아볼 수 있습니다. 소스 코드 예제는 잘 설명되어 있으며 특정 패턴을 구현하는 방법을 알려주는 프로그래밍 튜토리얼로 사용할 수 있습니다. 우리는 가장 널리 알려지고 실무에서 입증된 오픈 소스 Java 기술을 사용합니다.
+이 사이트는 Java 디자인 패턴을 설명합니다. 이 솔루션은 오픈 소스 커뮤니티의 경험이 많은 개발자와 설계자가 개발했습니다. 패턴은 높은 수준의 설명이나 소스 코드를 통해 찾아볼
+수 있습니다. 소스 코드 예제는 잘 설명되어 있으며 특정 패턴을 구현하는 방법을 알려주는 프로그래밍 튜토리얼로 사용할 수 있습니다. 우리는 가장 널리 알려지고 실무에서 입증된 오픈
+소스 Java 기술을 사용합니다.
 
 자료를 살펴보기 전에 다양한 [소프트웨어 설계 원칙](https://java-design-patterns.com/principles/)을 숙지해야 합니다.
 
-모든 디자인 패턴은 가능한 한 심플해야 합니다. 소프트웨어 개발의 KISS, YAGNI 원칙을 지켜야 하며, 문제를 해결할 수 있는 가장 심플한 일을 해야 합니다. 복잡한 디자인 패턴은 실용적이고 확장성을 위해 필요할 때만 도입되어야 합니다.
+모든 디자인 패턴은 가능한 한 심플해야 합니다. 소프트웨어 개발의 KISS, YAGNI 원칙을 지켜야 하며, 문제를 해결할 수 있는 가장 심플한 일을 해야 합니다. 복잡한 디자인
+패턴은 실용적이고 확장성을 위해 필요할 때만 도입되어야 합니다.
 
-이러한 개념에 익숙해지면 아래와 같은 방법으로 [사용 가능한 디자인 패턴](https://java-design-patterns.com/patterns/) 중 하나를 선택하여 문제를 해결할 수 있습니다.
+이러한 개념에 익숙해지면 아래와 같은 방법으로 [사용 가능한 디자인 패턴](https://java-design-patterns.com/patterns/) 중 하나를 선택하여 문제를
+해결할 수 있습니다.
 
-- 이름으로 특정 패턴을 검색합니다. 찾는 패턴이 없다면 [여기](https://github.com/iluwatar/java-design-patterns/issues)에서 새 패턴을 요청하세요.
+- 이름으로 특정 패턴을 검색합니다. 찾는 패턴이 없다면 [여기](https://github.com/iluwatar/java-design-patterns/issues)에서 새
+  패턴을 요청하세요.
 - `Performance`, `Gang of Four` 또는 `Data access` 등의 태그로 검색하세요.
 - `Creational`, `Behavioral` 등의 패턴 카테고리로 검색하세요.
 
@@ -38,7 +43,9 @@
 
 # 기여하는 방법
 
-프로젝트에 기여할 의향이 있다면 [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki)에서 관련 정보를 찾을 수 있습니다. [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns)에서 귀하를 돕고 질문에 답변해 드리겠습니다.
+프로젝트에 기여할 의향이 있다면 [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki)에서 관련 정보를
+찾을 수 있습니다. [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns)에서 귀하를 돕고 질문에 답변해
+드리겠습니다.
 
 # 특허
 

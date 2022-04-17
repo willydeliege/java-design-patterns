@@ -6,19 +6,21 @@ permalink: /patterns/transaction-script/
 categories: Behavioral
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
 
-Transaction Script organizes business logic by procedures where each procedure handles a single 
+Transaction Script organizes business logic by procedures where each procedure handles a single
 request from the presentation.
 
 ## Explanation
 
 Real world example
 
-> You need to create a hotel room booking system. Since the requirements are quite simple we intend 
+> You need to create a hotel room booking system. Since the requirements are quite simple we intend
 > to use the Transaction Script pattern here.
 
 In plain words
@@ -30,6 +32,7 @@ Programmatic example
 The `Hotel` class takes care of booking and cancelling room reservations.
 
 ```java
+
 @Slf4j
 public class Hotel {
 
@@ -79,14 +82,14 @@ public class Hotel {
 }
 ```
 
-The `Hotel` class has two methods, one for booking and cancelling a room respectively. Each one of 
-them handles a single transaction in the system, making `Hotel` implement the Transaction Script 
+The `Hotel` class has two methods, one for booking and cancelling a room respectively. Each one of
+them handles a single transaction in the system, making `Hotel` implement the Transaction Script
 pattern.
 
 The `bookRoom` method consolidates all the needed steps like checking if the room is already booked
-or not, if not booked then books the room and updates the database by using the DAO. 
+or not, if not booked then books the room and updates the database by using the DAO.
 
-The `cancelRoom` method consolidates steps like checking if the room is booked or not, 
+The `cancelRoom` method consolidates steps like checking if the room is booked or not,
 if booked then calculates the refund amount and updates the database using the DAO.
 
 ## Class diagram
@@ -95,17 +98,17 @@ if booked then calculates the refund amount and updates the database using the D
 
 ## Applicability
 
-Use the Transaction Script pattern when the application has only a small amount of logic and that 
+Use the Transaction Script pattern when the application has only a small amount of logic and that
 logic won't be extended in the future.
 
 ## Consequences
 
-* As the business logic gets more complicated, 
-it gets progressively harder to keep the transaction script 
-in a well-designed state.
+* As the business logic gets more complicated,
+  it gets progressively harder to keep the transaction script
+  in a well-designed state.
 * Code duplication between transaction scripts can occur.
 * Normally not easy to refactor transactions script to other domain logic
-patterns.
+  patterns.
 
 ## Related patterns
 

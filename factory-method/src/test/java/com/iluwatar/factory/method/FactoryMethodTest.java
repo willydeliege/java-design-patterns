@@ -46,10 +46,10 @@
 
 package com.iluwatar.factory.method;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * The Factory Method is a creational design pattern which uses factory methods to deal with the
@@ -58,10 +58,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * and implemented by child classes, or implemented in a base class and optionally overridden by
  * derived classes—rather than by calling a constructor.
  *
- * <p>Factory produces the object of its liking.
- * The weapon {@link Weapon} manufactured by the blacksmith depends on the kind of factory
- * implementation it is referring to.
- * </p>
+ * <p>Factory produces the object of its liking. The weapon {@link Weapon} manufactured by the
+ * blacksmith depends on the kind of factory implementation it is referring to.
  */
 class FactoryMethodTest {
 
@@ -113,13 +111,15 @@ class FactoryMethodTest {
    * This method asserts that the weapon object that is passed is an instance of the clazz and the
    * weapon is of type expectedWeaponType.
    *
-   * @param weapon             weapon object which is to be verified
+   * @param weapon weapon object which is to be verified
    * @param expectedWeaponType expected WeaponType of the weapon
-   * @param clazz              expected class of the weapon
+   * @param clazz expected class of the weapon
    */
   private void verifyWeapon(Weapon weapon, WeaponType expectedWeaponType, Class<?> clazz) {
     assertTrue(clazz.isInstance(weapon), "Weapon must be an object of: " + clazz.getName());
-    assertEquals(expectedWeaponType, weapon
-        .getWeaponType(), "Weapon must be of weaponType: " + expectedWeaponType);
+    assertEquals(
+        expectedWeaponType,
+        weapon.getWeaponType(),
+        "Weapon must be of weaponType: " + expectedWeaponType);
   }
 }

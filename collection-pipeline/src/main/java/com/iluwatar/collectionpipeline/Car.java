@@ -50,9 +50,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * A Car class that has the properties of make, model, year and category.
- */
+/** A Car class that has the properties of make, model, year and category. */
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -61,5 +59,4 @@ public class Car {
   private final String model;
   private final int year;
   private final Category category;
-
 }

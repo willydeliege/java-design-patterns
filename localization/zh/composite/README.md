@@ -6,7 +6,9 @@ permalink: /patterns/composite/
 categories: Structural
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 目的
@@ -25,7 +27,8 @@ tags:
 
 维基百科说
 
-> 在软件工程中，组合模式是一种分区设计模式。组合模式中，一组对象将像一个对象的单独实例一样被对待。组合的目的是将对象“组成”树状结构，以表示部分整体层次结构。实现组合模式可使客户统一对待单个对象和组合对象。
+>
+在软件工程中，组合模式是一种分区设计模式。组合模式中，一组对象将像一个对象的单独实例一样被对待。组合的目的是将对象“组成”树状结构，以表示部分整体层次结构。实现组合模式可使客户统一对待单个对象和组合对象。
 
 **程序示例**
 
@@ -146,10 +149,10 @@ public class Messenger {
 然后它可以这样使用:
 
 ```java
-var orcMessage = new Messenger().messageFromOrcs();
-orcMessage.print(); // Where there is a whip there is a way.
-var elfMessage = new Messenger().messageFromElves();
-elfMessage.print(); // Much wind pours from your mouth.
+var orcMessage=new Messenger().messageFromOrcs();
+    orcMessage.print(); // Where there is a whip there is a way.
+    var elfMessage=new Messenger().messageFromElves();
+    elfMessage.print(); // Much wind pours from your mouth.
 ```
 
 ## 类图
@@ -165,8 +168,11 @@ elfMessage.print(); // Much wind pours from your mouth.
 
 ## 真实世界例子
 
-* [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
-* [Apache Wicket](https://github.com/apache/wicket) component tree, see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java) and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html)
+  and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
+* [Apache Wicket](https://github.com/apache/wicket) component tree,
+  see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java)
+  and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 
 ## 鸣谢
 

@@ -46,11 +46,10 @@
 
 package com.iluwatar.event.queue;
 
+import javax.sound.sampled.AudioInputStream;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.sound.sampled.AudioInputStream;
 
 /**
  * The Event Queue's queue will store the instances of this class.
@@ -63,7 +62,5 @@ public class PlayMessage {
 
   private final AudioInputStream stream;
 
-  @Setter
-  private float volume;
-
+  @Setter private float volume;
 }

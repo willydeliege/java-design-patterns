@@ -46,36 +46,35 @@
 
 package com.iluwatar.masterworker.system;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.masterworker.ArrayInput;
 import com.iluwatar.masterworker.ArrayResult;
 import com.iluwatar.masterworker.ArrayUtilityMethods;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-/**
- * Testing getResult method in {@link ArrayTransposeMasterWorker} class.
- */
-
+/** Testing getResult method in {@link ArrayTransposeMasterWorker} class. */
 class ArrayTransposeMasterWorkerTest {
 
   @Test
   void getResultTest() {
     var atmw = new ArrayTransposeMasterWorker();
-    var matrix = new int[][]{
-        {1, 2, 3, 4, 5},
-        {1, 2, 3, 4, 5},
-        {1, 2, 3, 4, 5},
-        {1, 2, 3, 4, 5},
-        {1, 2, 3, 4, 5}
-    };
-    var matrixTranspose = new int[][]{
-        {1, 1, 1, 1, 1},
-        {2, 2, 2, 2, 2},
-        {3, 3, 3, 3, 3},
-        {4, 4, 4, 4, 4},
-        {5, 5, 5, 5, 5}
-    };
+    var matrix =
+        new int[][] {
+          {1, 2, 3, 4, 5},
+          {1, 2, 3, 4, 5},
+          {1, 2, 3, 4, 5},
+          {1, 2, 3, 4, 5},
+          {1, 2, 3, 4, 5}
+        };
+    var matrixTranspose =
+        new int[][] {
+          {1, 1, 1, 1, 1},
+          {2, 2, 2, 2, 2},
+          {3, 3, 3, 3, 3},
+          {4, 4, 4, 4, 4},
+          {5, 5, 5, 5, 5}
+        };
     var i = new ArrayInput(matrix);
     var r = (ArrayResult) atmw.getResult(i);
     assertTrue(ArrayUtilityMethods.matricesSame(r.data, matrixTranspose));

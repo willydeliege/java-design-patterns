@@ -59,7 +59,7 @@
         <executions>
           <execution>
             <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
+              <appendAssemblyId>true</appendAssemblyId>
               <descriptors>
                 <descriptor>src/main/assembly/webapp.xml</descriptor>
               </descriptors>

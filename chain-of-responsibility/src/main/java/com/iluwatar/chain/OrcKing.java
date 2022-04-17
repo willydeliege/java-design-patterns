@@ -46,9 +46,7 @@
 
 package com.iluwatar.chain;
 
-/**
- * OrcKing makes requests that are handled by the chain.
- */
+/** OrcKing makes requests that are handled by the chain. */
 public class OrcKing {
 
   private RequestHandler chain;
@@ -64,5 +62,4 @@ public class OrcKing {
   public void makeRequest(Request req) {
     chain.handleRequest(req);
   }
-
 }

@@ -46,9 +46,7 @@
 
 package com.iluwatar.datatransfer.product;
 
-/**
- * {@link Product} is a entity class for product entity. This class act as entity in the demo.
- */
+/** {@link Product} is a entity class for product entity. This class act as entity in the demo. */
 public final class Product {
   private Long id;
   private String name;
@@ -59,10 +57,10 @@ public final class Product {
   /**
    * Constructor.
    *
-   * @param id       product id
-   * @param name     product name
-   * @param price    product price
-   * @param cost     product cost
+   * @param id product id
+   * @param name product name
+   * @param price product price
+   * @param cost product cost
    * @param supplier product supplier
    */
   public Product(Long id, String name, Double price, Double cost, String supplier) {
@@ -73,11 +71,8 @@ public final class Product {
     this.supplier = supplier;
   }
 
-  /**
-   * Constructor.
-   */
-  public Product() {
-  }
+  /** Constructor. */
+  public Product() {}
 
   public Long getId() {
     return id;
@@ -127,11 +122,18 @@ public final class Product {
   @Override
   public String toString() {
     return "Product{"
-        + "id=" + id
-        + ", name='" + name + '\''
-        + ", price=" + price
-        + ", cost=" + cost
-        + ", supplier='" + supplier + '\''
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", price="
+        + price
+        + ", cost="
+        + cost
+        + ", supplier='"
+        + supplier
+        + '\''
         + '}';
   }
 }

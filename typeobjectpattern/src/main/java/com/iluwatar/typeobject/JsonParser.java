@@ -46,6 +46,7 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -55,12 +56,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.iluwatar.typeobject.Candy.Type;
 
-/**
- * The JsonParser class helps parse the json file candy.json to get all the different candies.
- */
-
+/** The JsonParser class helps parse the json file candy.json to get all the different candies. */
 public class JsonParser {
   Hashtable<String, Candy> candies;
 
@@ -104,5 +101,4 @@ public class JsonParser {
       }
     }
   }
-
 }

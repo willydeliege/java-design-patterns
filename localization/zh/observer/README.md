@@ -6,11 +6,14 @@ permalink: /patterns/observer/
 categories: Behavioral
 language: zh
 tags:
- - Gang Of Four
- - Reactive
+
+- Gang Of Four
+- Reactive
+
 ---
 
 ## Also known as
+
 ## 又被称为
 
 家属，发布订阅模式
@@ -59,13 +62,14 @@ public class Hobbits implements WeatherObserver {
   public void update(WeatherType currentWeather) {
     switch (currentWeather) {
       LOGGER.info("The hobbits are facing " + currentWeather.getDescription() + " weather now");
+    }
   }
-}
 ```
 
 然后这里是不断变化的天气。
 
 ```java
+
 @Slf4j
 public class Weather {
 
@@ -106,7 +110,7 @@ public class Weather {
 这是完整的示例。
 
 ```java
-    var weather = new Weather();
+    var weather=new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
 
@@ -123,15 +127,17 @@ public class Weather {
     // The orcs are facing cold weather now
     // The hobbits are facing cold weather now
     weather.timePasses();
-    // The weather changed to sunny.
-    // The orcs are facing sunny weather now
-    // The hobbits are facing sunny weather now
+// The weather changed to sunny.
+// The orcs are facing sunny weather now
+// The hobbits are facing sunny weather now
 ```
 
 ## Class diagram
+
 ![alt text](../../../observer/etc/observer.png "Observer")
 
 ## 应用
+
 在下面任何一种情况下都可以使用观察者模式
 
 * 当抽象具有两个方面时，一个方面依赖于另一个方面。将这些方面封装在单独的对象中，可以使你分别进行更改和重用

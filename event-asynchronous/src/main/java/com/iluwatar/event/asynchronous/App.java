@@ -46,11 +46,10 @@
 
 package com.iluwatar.event.asynchronous;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates the <b>Event-based Asynchronous</b> pattern. Essentially, users (of
@@ -119,9 +118,7 @@ public class App {
     }
   }
 
-  /**
-   * Run program in either interactive mode or not.
-   */
+  /** Run program in either interactive mode or not. */
   public void run() {
     if (interactiveMode) {
       runInteractiveMode();
@@ -130,9 +127,7 @@ public class App {
     }
   }
 
-  /**
-   * Run program in non-interactive mode.
-   */
+  /** Run program in non-interactive mode. */
   public void quickRun() {
     var eventManager = new EventManager();
 
@@ -157,15 +152,15 @@ public class App {
       eventManager.cancel(syncEventId);
       LOGGER.info("Sync Event [{}] has been stopped.", syncEventId);
 
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
+    } catch (MaxNumOfEventsAllowedException
+        | LongRunningEventException
+        | EventDoesNotExistException
         | InvalidOperationException e) {
       LOGGER.error(e.getMessage());
     }
   }
 
-  /**
-   * Run program in interactive mode.
-   */
+  /** Run program in interactive mode. */
   public void runInteractiveMode() {
     var eventManager = new EventManager();
 
@@ -231,7 +226,8 @@ public class App {
         var eventId = eventManager.createAsync(eventTime);
         eventManager.start(eventId);
         LOGGER.info("Egg [{}] is being boiled.", eventId);
-      } catch (MaxNumOfEventsAllowedException | LongRunningEventException
+      } catch (MaxNumOfEventsAllowedException
+          | LongRunningEventException
           | EventDoesNotExistException e) {
         LOGGER.error(e.getMessage());
       }
@@ -240,13 +236,14 @@ public class App {
         var eventId = eventManager.create(eventTime);
         eventManager.start(eventId);
         LOGGER.info("Egg [{}] is being boiled.", eventId);
-      } catch (MaxNumOfEventsAllowedException | InvalidOperationException
-          | LongRunningEventException | EventDoesNotExistException e) {
+      } catch (MaxNumOfEventsAllowedException
+          | InvalidOperationException
+          | LongRunningEventException
+          | EventDoesNotExistException e) {
         LOGGER.error(e.getMessage());
       }
     } else {
       LOGGER.info("Unknown event type.");
     }
   }
-
 }

@@ -46,23 +46,22 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.parser.ParseException;
-import com.iluwatar.typeobject.Candy.Type;
 
 /**
  * The CellPool class allows the reuse of crushed cells instead of creation of new cells each time.
  * The reused cell is given a new candy to hold using the randomCode field which holds all the
  * candies available.
  */
-
 public class CellPool {
-  private static final SecureRandom RANDOM = new SecureRandom();
   public static final String FRUIT = "fruit";
   public static final String CANDY = "candy";
+  private static final SecureRandom RANDOM = new SecureRandom();
   List<Cell> pool;
   int pointer;
   Candy[] randomCode;
@@ -73,7 +72,7 @@ public class CellPool {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {
       e.printStackTrace();
-      //manually initialising this.randomCode
+      // manually initialising this.randomCode
       this.randomCode = new Candy[5];
       randomCode[0] = new Candy("cherry", FRUIT, Type.REWARD_FRUIT, 20);
       randomCode[1] = new Candy("mango", FRUIT, Type.REWARD_FRUIT, 20);
@@ -96,7 +95,7 @@ public class CellPool {
   }
 
   void addNewCell(Cell c) {
-    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
+    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; // changing candytype to new
     this.pool.add(c);
     pointer++;
   }
@@ -104,12 +103,12 @@ public class CellPool {
   Candy[] assignRandomCandytypes() throws IOException, ParseException {
     var jp = new JsonParser();
     jp.parse();
-    var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    var randomCode = new Candy[jp.candies.size() - 2]; // exclude generic types 'fruit' and 'candy'
     var i = 0;
     for (var e = jp.candies.keys(); e.hasMoreElements(); ) {
       var s = e.nextElement();
       if (!s.equals(FRUIT) && !s.equals(CANDY)) {
-        //not generic
+        // not generic
         randomCode[i] = jp.candies.get(s);
         i++;
       }

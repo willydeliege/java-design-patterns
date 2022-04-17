@@ -46,11 +46,6 @@
 
 package com.iluwatar.unitofwork;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -58,10 +53,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-/**
- * tests {@link ArmsDealer}
- */
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
 
+/** tests {@link ArmsDealer} */
 class ArmsDealerTest {
   private final Weapon weapon1 = new Weapon(1, "battle ram");
   private final Weapon weapon2 = new Weapon(1, "wooden lance");

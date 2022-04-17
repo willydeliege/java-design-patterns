@@ -46,11 +46,10 @@
 
 package com.iluwatar.eda.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.event.UserUpdatedEvent;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This {@link User} class is a basic pojo used to demonstrate user data sent along with the {@link

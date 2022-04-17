@@ -75,5 +75,4 @@ public interface Service {
    * @return Boolean {@code true} if enhanced.
    */
   boolean isEnhanced();
-
 }

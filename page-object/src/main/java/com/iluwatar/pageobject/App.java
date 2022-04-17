@@ -46,7 +46,7 @@
 
 package com.iluwatar.pageobject;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
@@ -72,8 +72,7 @@ import java.io.IOException;
  */
 public final class App {
 
-  private App() {
-  }
+  private App() {}
 
   /**
    * Application entry point
@@ -106,6 +105,5 @@ public final class App {
     } catch (IOException ex) {
       ex.printStackTrace();
     }
-
   }
 }

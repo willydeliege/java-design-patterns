@@ -46,22 +46,20 @@
 
 package com.iluwatar.acyclicvisitor;
 
-import uk.org.lidalia.slf4jtest.TestLogger;
-import uk.org.lidalia.slf4jtest.TestLoggerFactory;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.groups.Tuple.tuple;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 
-/**
- * ConfigureForUnixVisitor test class
- */
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import uk.org.lidalia.slf4jtest.TestLogger;
+import uk.org.lidalia.slf4jtest.TestLoggerFactory;
+
+/** ConfigureForUnixVisitor test class */
 class ConfigureForUnixVisitorTest {
 
-  private static final TestLogger LOGGER = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
+  private static final TestLogger LOGGER =
+      TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
 
   @AfterEach
   public void clearLoggers() {

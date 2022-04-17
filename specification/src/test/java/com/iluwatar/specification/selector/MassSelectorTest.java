@@ -46,20 +46,18 @@
 
 package com.iluwatar.specification.selector;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Mass;
+import org.junit.jupiter.api.Test;
+
 public class MassSelectorTest {
 
-  /**
-   * Verify if the mass selector gives the correct results.
-   */
+  /** Verify if the mass selector gives the correct results. */
   @Test
   void testMass() {
     final var lightCreature = mock(Creature.class);

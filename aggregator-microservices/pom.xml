@@ -23,18 +23,20 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <artifactId>java-design-patterns</artifactId>
-    <groupId>com.iluwatar</groupId>
-    <version>1.26.0-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>aggregator-microservices</artifactId>
-  <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
   <modules>
     <module>information-microservice</module>
     <module>aggregator-service</module>
     <module>inventory-microservice</module>
   </modules>
+  <packaging>pom</packaging>
+  <parent>
+    <artifactId>java-design-patterns</artifactId>
+    <groupId>com.iluwatar</groupId>
+    <version>1.26.0-SNAPSHOT</version>
+  </parent>
 </project>

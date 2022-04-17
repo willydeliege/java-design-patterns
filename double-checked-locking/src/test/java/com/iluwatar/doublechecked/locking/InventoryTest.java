@@ -79,6 +79,7 @@ class InventoryTest {
   private static final int THREAD_COUNT = 8;
   /** The maximum number of {@link Item}s allowed in the {@link Inventory} */
   private static final int INVENTORY_SIZE = 1000;
+
   private InMemoryAppender appender;
 
   @BeforeEach

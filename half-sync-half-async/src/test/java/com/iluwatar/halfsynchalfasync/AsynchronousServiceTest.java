@@ -46,11 +46,6 @@
 
 package com.iluwatar.halfsynchalfasync;
 
-import java.io.IOException;
-import java.util.concurrent.LinkedBlockingQueue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.inOrder;
@@ -60,6 +55,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+import java.util.concurrent.LinkedBlockingQueue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 11:15 PM

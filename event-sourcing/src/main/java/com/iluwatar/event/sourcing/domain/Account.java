@@ -46,16 +46,15 @@
 
 package com.iluwatar.event.sourcing.domain;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-import java.math.BigDecimal;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+import java.math.BigDecimal;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the Account class that holds the account info, the account number, account owner name and
@@ -70,12 +69,11 @@ import com.iluwatar.event.sourcing.state.AccountAggregate;
 @Slf4j
 public class Account {
 
+  private static final String MSG =
+      "Some external api for only realtime execution could be called here.";
   private final int accountNo;
   private final String owner;
   private BigDecimal money = BigDecimal.ZERO;
-
-  private static final String MSG =
-      "Some external api for only realtime execution could be called here.";
 
   /**
    * Copy account.
@@ -91,9 +89,13 @@ public class Account {
   @Override
   public String toString() {
     return "Account{"
-        + "accountNo=" + accountNo
-        + ", owner='" + owner + '\''
-        + ", money=" + money
+        + "accountNo="
+        + accountNo
+        + ", owner='"
+        + owner
+        + '\''
+        + ", money="
+        + money
         + '}';
   }
 
@@ -134,7 +136,6 @@ public class Account {
     handleDeposit(moneyDepositEvent.getMoney(), moneyDepositEvent.isRealTime());
   }
 
-
   /**
    * Handles the AccountCreateEvent.
    *
@@ -164,6 +165,4 @@ public class Account {
   public void handleTransferToEvent(MoneyTransferEvent moneyTransferEvent) {
     handleDeposit(moneyTransferEvent.getMoney(), moneyTransferEvent.isRealTime());
   }
-
-
 }

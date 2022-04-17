@@ -6,7 +6,9 @@ permalink: /patterns/arrange-act-assert/
 categories: Idiom
 language: zh
 tags:
- - Testing
+
+- Testing
+
 ---
 
 ## 或称

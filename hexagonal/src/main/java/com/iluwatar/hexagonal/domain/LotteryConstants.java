@@ -54,5 +54,6 @@ public class LotteryConstants {
   public static final int TICKET_PRIZE = 3;
   public static final int SERVICE_BANK_ACCOUNT_BALANCE = 150000;
   public static final int PLAYER_MAX_BALANCE = 100;
+
   private LotteryConstants() {}
 }

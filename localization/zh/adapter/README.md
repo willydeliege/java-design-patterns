@@ -6,13 +6,17 @@ permalink: /patterns/adapter/
 categories: Structural
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 又被称为
+
 包装器
 
 ## 目的
+
 将一个接口转换成另一个客户所期望的接口。适配器让那些本来因为接口不兼容的类可以合作无间。
 
 ## 解释
@@ -39,22 +43,26 @@ tags:
 
 ```java
 public interface RowingBoat {
+
   void row();
 }
 
 @Slf4j
 public class FishingBoat {
+
   public void sail() {
     LOGGER.info("The fishing boat is sailing");
   }
 }
 ```
+
 船长希望有一个`RowingBoat`接口的实现，这样就可以移动
 
 ```java
 public class Captain {
 
   private final RowingBoat rowingBoat;
+
   // default constructor and setter for rowingBoat
   public Captain(RowingBoat rowingBoat) {
     this.rowingBoat = rowingBoat;
@@ -69,6 +77,7 @@ public class Captain {
 现在海盗来了，我们的船长需要逃跑但是只有一个渔船可用。我们需要创建一个可以让船长使用其划船技能来操作渔船的适配器。
 
 ```java
+
 @Slf4j
 public class FishingBoatAdapter implements RowingBoat {
 
@@ -89,15 +98,16 @@ public class FishingBoatAdapter implements RowingBoat {
 现在 `船长` 可以使用`FishingBoat`接口来逃离海盗了。
 
 ```java
-var captain = new Captain(new FishingBoatAdapter());
-captain.row();
+var captain=new Captain(new FishingBoatAdapter());
+    captain.row();
 ```
 
 ## 类图
+
 ![alt text](../../../adapter/etc/adapter.urm.png "Adapter class diagram")
 
-
 ## 应用
+
 使用适配器模式当
 
 * 你想使用一个已有类，但是它的接口不能和你需要的所匹配
@@ -106,17 +116,17 @@ captain.row();
 * 大多数使用第三方类库的应用使用适配器作为一个在应用和第三方类库间的中间层来使应用和类库解耦。如果必须使用另一个库，则只需使用一个新库的适配器而无需改变应用程序的代码。
 
 ## 后果:
+
 类和对象适配器有不同的权衡取舍。一个类适配器
 
-*	适配被适配者到目标接口，需要保证只有一个具体的被适配者类。作为结果，当我们想适配一个类和它所有的子类时，类适配器将不会起作用。
-*	可以让适配器重写一些被适配者的行为，因为适配器是被适配者的子类。
-*	只引入了一个对象，并且不需要其他指针间接访问被适配者。
+* 适配被适配者到目标接口，需要保证只有一个具体的被适配者类。作为结果，当我们想适配一个类和它所有的子类时，类适配器将不会起作用。
+* 可以让适配器重写一些被适配者的行为，因为适配器是被适配者的子类。
+* 只引入了一个对象，并且不需要其他指针间接访问被适配者。
 
-对象适配器	
+对象适配器
 
-*	一个适配器可以和许多被适配者工作，也就是被适配者自己和所有它的子类。适配器同时可以为所有被适配者添加功能。
-*	覆盖被适配者的行为变得更难。需要子类化被适配者然后让适配器引用这个子类不是被适配者。
-
+* 一个适配器可以和许多被适配者工作，也就是被适配者自己和所有它的子类。适配器同时可以为所有被适配者添加功能。
+* 覆盖被适配者的行为变得更难。需要子类化被适配者然后让适配器引用这个子类不是被适配者。
 
 ## 现实世界的案例
 
@@ -124,7 +134,6 @@ captain.row();
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
 * [java.util.Collections#enumeration()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#enumeration-java.util.Collection-)
 * [javax.xml.bind.annotation.adapters.XMLAdapter](http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#marshal-BoundType-)
-
 
 ## 鸣谢
 

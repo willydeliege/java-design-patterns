@@ -44,62 +44,57 @@
  * THE SOFTWARE.
  */
 
-import java.math.BigDecimal;
-import java.util.Date;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
+import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
-
-import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
-import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.math.BigDecimal;
+import java.util.Date;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Intergartion Test for Event Sourcing state recovery
- * <p>
- * Created by Serdar Hamzaogullari on 19.08.2017.
+ *
+ * <p>Created by Serdar Hamzaogullari on 19.08.2017.
  */
 class IntegrationTest {
 
-  /**
-   * The Domain event processor.
-   */
+  /** The Domain event processor. */
   private DomainEventProcessor eventProcessor;
 
-  /**
-   * Initialize.
-   */
+  /** Initialize. */
   @BeforeEach
   void initialize() {
     eventProcessor = new DomainEventProcessor();
   }
 
-  /**
-   * Test state recovery.
-   */
+  /** Test state recovery. */
   @Test
   void testStateRecovery() {
     eventProcessor.reset();
 
-    eventProcessor.process(new AccountCreateEvent(
-        0, new Date().getTime(), ACCOUNT_OF_DAENERYS, "Daenerys Targaryen"));
+    eventProcessor.process(
+        new AccountCreateEvent(0, new Date().getTime(), ACCOUNT_OF_DAENERYS, "Daenerys Targaryen"));
 
-    eventProcessor.process(new AccountCreateEvent(
-        1, new Date().getTime(), ACCOUNT_OF_JON, "Jon Snow"));
+    eventProcessor.process(
+        new AccountCreateEvent(1, new Date().getTime(), ACCOUNT_OF_JON, "Jon Snow"));
 
-    eventProcessor.process(new MoneyDepositEvent(
-        2, new Date().getTime(), ACCOUNT_OF_DAENERYS, new BigDecimal("100000")));
+    eventProcessor.process(
+        new MoneyDepositEvent(
+            2, new Date().getTime(), ACCOUNT_OF_DAENERYS, new BigDecimal("100000")));
 
-    eventProcessor.process(new MoneyDepositEvent(
-        3, new Date().getTime(), ACCOUNT_OF_JON, new BigDecimal("100")));
+    eventProcessor.process(
+        new MoneyDepositEvent(3, new Date().getTime(), ACCOUNT_OF_JON, new BigDecimal("100")));
 
-    eventProcessor.process(new MoneyTransferEvent(
-        4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS,
-        ACCOUNT_OF_JON));
+    eventProcessor.process(
+        new MoneyTransferEvent(
+            4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS, ACCOUNT_OF_JON));
 
     var accountOfDaenerysBeforeShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
     var accountOfJonBeforeShotDown = AccountAggregate.getAccount(ACCOUNT_OF_JON);
@@ -112,9 +107,8 @@ class IntegrationTest {
     var accountOfDaenerysAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
     var accountOfJonAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_JON);
 
-    assertEquals(accountOfDaenerysBeforeShotDown.getMoney(),
-        accountOfDaenerysAfterShotDown.getMoney());
+    assertEquals(
+        accountOfDaenerysBeforeShotDown.getMoney(), accountOfDaenerysAfterShotDown.getMoney());
     assertEquals(accountOfJonBeforeShotDown.getMoney(), accountOfJonAfterShotDown.getMoney());
   }
-
 }

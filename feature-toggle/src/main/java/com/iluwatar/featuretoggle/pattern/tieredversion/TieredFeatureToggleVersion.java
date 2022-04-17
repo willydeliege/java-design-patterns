@@ -71,8 +71,8 @@ public class TieredFeatureToggleVersion implements Service {
    * the enhanced version of the welcome message will be returned where the username is displayed.
    *
    * @param user the {@link User} to generate the welcome message for, different messages are
-   *             displayed if the user is in the {@link UserGroup#isPaid(User)} or {@link
-   *             UserGroup#freeGroup}
+   *     displayed if the user is in the {@link UserGroup#isPaid(User)} or {@link
+   *     UserGroup#freeGroup}
    * @return Resulting welcome message.
    * @see User
    * @see UserGroup
@@ -97,5 +97,4 @@ public class TieredFeatureToggleVersion implements Service {
   public boolean isEnhanced() {
     return true;
   }
-
 }

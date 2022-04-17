@@ -46,9 +46,8 @@
 
 package com.iluwatar.datatransfer.customer;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The resource class which serves customer information. This class act as server in the demo. Which

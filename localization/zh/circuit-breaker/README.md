@@ -6,9 +6,11 @@ permalink: /patterns/circuit-breaker/
 categories: Behavioral
 language: zh
 tags:
-  - Performance
-  - Decoupling
-  - Cloud distributed
+
+- Performance
+- Decoupling
+- Cloud distributed
+
 ---
 
 ## 意图
@@ -19,7 +21,10 @@ tags:
 
 真实世界例子
 
-> 想象一个 Web 应用程序，它同时具有用于获取数据的本地文件/图像和远程服务。 这些远程服务有时可能健康且响应迅速，或者由于各种原因可能在某 个时间点变得缓慢和无响应。因此，如果其中一个远程服务缓慢或未成功响应，我们的应用程序将尝试使用多个线程/进程从远程服务获取响应，很快它们都会挂起（也称为 [线程饥饿][thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science)))导致我们的整个 Web 应用程序崩溃。我们应该能够检测到这种情况并向用户显示适当的消息，以便他/她可以探索不受远程服务故障影响的应用程序的其他部分。 同时，其他正常工作的服务应保持正常运行，不受此故障的影响。
+> 想象一个 Web 应用程序，它同时具有用于获取数据的本地文件/图像和远程服务。 这些远程服务有时可能健康且响应迅速，或者由于各种原因可能在某
+> 个时间点变得缓慢和无响应。因此，如果其中一个远程服务缓慢或未成功响应，我们的应用程序将尝试使用多个线程/进程从远程服务获取响应，很快它们都会挂起（也称为 [线程饥饿][thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science)))
+> 导致我们的整个 Web 应用程序崩溃。我们应该能够检测到这种情况并向用户显示适当的消息，以便他/她可以探索不受远程服务故障影响的应用程序的其他部分。
+> 同时，其他正常工作的服务应保持正常运行，不受此故障的影响。
 >
 
 通俗地说
@@ -32,8 +37,8 @@ tags:
 
 ## 程序示例
 
-So, how does this all come together? With the above example in mind we will imitate the 
-functionality in a simple example. A monitoring service mimics the web app and makes both local and 
+So, how does this all come together? With the above example in mind we will imitate the
+functionality in a simple example. A monitoring service mimics the web app and makes both local and
 remote calls.
 
 那么，这一切是如何结合在一起的呢？ 记住上面的例子，我们将在一个简单的例子中模仿这个功能。 监控服务模仿 Web 应用程序并进行本地和远程调用。
@@ -45,6 +50,7 @@ remote calls.
 在代码方面，最终用户应用程序是：
 
 ```java
+
 @Slf4j
 public class App {
 
@@ -82,7 +88,7 @@ public class App {
     // 现在是打开状态
     LOGGER.info(delayedServiceCircuitBreaker.getState());
 
-     // 同时，延迟服务宕机，从健康快速服务获取响应
+    // 同时，延迟服务宕机，从健康快速服务获取响应
     LOGGER.info(monitoringService.quickServiceResponse());
     LOGGER.info(quickServiceCircuitBreaker.getState());
 
@@ -150,6 +156,7 @@ public class MonitoringService {
   }
 }
 ```
+
 可以看出，它直接调用获取本地资源，但它将对远程（昂贵）服务的调用包装在断路器对象中，防止故障如下：
 
 ```java
@@ -264,8 +271,8 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     } else {
       // 如果电路未打开，则发出 API 请求
       try {
-	//在实际应用程序中，这将在线程中运行，并且将利用断路器的超时参数来了解服务
-    // 是否正在工作。 在这里，我们根据服务器响应本身模拟
+        //在实际应用程序中，这将在线程中运行，并且将利用断路器的超时参数来了解服务
+        // 是否正在工作。 在这里，我们根据服务器响应本身模拟
         var response = service.call();
         // api 响应正常，重置所有。
         recordSuccess();
@@ -286,8 +293,9 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 - 我们使用某些参数初始化断路器对象：`timeout`、`failureThreshold` 和 `retryTimePeriod`，这有助于确定 API 的弹性。
 - 最初，我们处于“关闭”状态，没有发生对 API 的远程调用。
 - 每次调用成功时，我们都会将状态重置为开始时的状态。
-- 如果失败次数超过某个阈值，我们将进入“open”状态，这就像开路一样，阻止远程服务调用，从而节省资源。  （这里，我们从 API 返回名为 ```stale response``` 的响应）
-- 一旦超过重试超时时间，我们就会进入“半开”状态并再次调用远程服务以检查服务是否正常工作，以便我们可以提供新鲜内容。 失败将其设置回“打开”状态，并在重试超时时间后进行另一次尝试，而成功将其设置为“关闭”状态，以便一切重新开始正常工作。
+- 如果失败次数超过某个阈值，我们将进入“open”状态，这就像开路一样，阻止远程服务调用，从而节省资源。 （这里，我们从 API 返回名为 ```stale response``` 的响应）
+- 一旦超过重试超时时间，我们就会进入“半开”状态并再次调用远程服务以检查服务是否正常工作，以便我们可以提供新鲜内容。
+  失败将其设置回“打开”状态，并在重试超时时间后进行另一次尝试，而成功将其设置为“关闭”状态，以便一切重新开始正常工作。
 
 ## 类图
 

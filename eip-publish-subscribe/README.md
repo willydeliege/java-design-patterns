@@ -6,16 +6,21 @@ permalink: /patterns/eip-publish-subscribe/
 categories: Integration
 language: en
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## Intent
+
 Broadcast messages from sender to all the interested receivers.
 
 ## Class diagram
+
 ![alt text](/etc/publish-subscribe.png "Publish Subscribe Channel")
 
 ## Applicability
+
 Use the Publish Subscribe Channel pattern when
 
 * two or more applications need to communicate using a messaging system for broadcasts.

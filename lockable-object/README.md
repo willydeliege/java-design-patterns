@@ -6,29 +6,36 @@ permalink: /patterns/lockable-object/
 language: en
 categories: Concurrency
 tags:
-- Performance
----
 
+- Performance
+
+---
 
 ## Intent
 
-The lockable object design pattern ensures that there is only one user using the target object. Compared to the built-in synchronization mechanisms such as using the `synchronized` keyword, this pattern can lock objects for an undetermined time and is not tied to the duration of the request.
+The lockable object design pattern ensures that there is only one user using the target object.
+Compared to the built-in synchronization mechanisms such as using the `synchronized` keyword, this
+pattern can lock objects for an undetermined time and is not tied to the duration of the request.
 
 ## Explanation
 
-
 Real-world example
 
->The Sword Of Aragorn is a legendary object that only one creature can possess at the time.
->Every creature in the middle earth wants to possess is, so as long as it's not locked, every creature will fight for it.
+> The Sword Of Aragorn is a legendary object that only one creature can possess at the time.
+> Every creature in the middle earth wants to possess is, so as long as it's not locked, every
+> creature will fight for it.
 
 Under the hood
 
->In this particular module, the SwordOfAragorn.java is a class that implements the Lockable interface.
-It reaches the goal of the Lockable-Object pattern by implementing unlock() and unlock() methods using
-thread-safety logic. The thread-safety logic is implemented with the built-in monitor mechanism of Java.
-The SwordOfAaragorn.java has an Object property called "synchronizer". In every crucial concurrency code block,
-it's synchronizing the block by using the synchronizer.
+> In this particular module, the SwordOfAragorn.java is a class that implements the Lockable
+> interface.
+> It reaches the goal of the Lockable-Object pattern by implementing unlock() and unlock() methods
+> using
+> thread-safety logic. The thread-safety logic is implemented with the built-in monitor mechanism of
+> Java.
+> The SwordOfAaragorn.java has an Object property called "synchronizer". In every crucial concurrency
+> code block,
+> it's synchronizing the block by using the synchronizer.
 
 
 
@@ -139,7 +146,8 @@ public class SwordOfAragorn implements Lockable {
 }
 ```
 
-According to our context, there are creatures that are looking for the sword, so must define the parent class:
+According to our context, there are creatures that are looking for the sword, so must define the
+parent class:
 
 ```java
 public abstract class Creature {
@@ -216,7 +224,7 @@ public abstract class Creature {
 }
 ```
 
-As mentioned before, we have classes that extend the Creature class, such as Elf, Orc,  and Human.
+As mentioned before, we have classes that extend the Creature class, such as Elf, Orc, and Human.
 
 Finally, the following program will simulate a battle for the sword:
 
@@ -279,7 +287,6 @@ and keeping their domain models in memory(in contrast to persisted models such a
 ## Class diagram
 
 ![alt text](/etc/lockable-object.urm.png "Lockable Object class diagram")
-
 
 ## Credits
 

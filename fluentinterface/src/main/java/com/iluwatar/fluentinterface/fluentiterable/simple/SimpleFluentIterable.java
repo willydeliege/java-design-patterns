@@ -46,8 +46,7 @@
 
 package com.iluwatar.fluentinterface.fluentiterable.simple;
 
-import lombok.RequiredArgsConstructor;
-
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,7 +55,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This is a simple implementation of the FluentIterable interface. It evaluates all chained
@@ -70,11 +69,36 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   private final Iterable<E> iterable;
 
   /**
+   * Constructs FluentIterable from iterable.
+   *
+   * @return a FluentIterable from a given iterable. Calls the SimpleFluentIterable constructor.
+   */
+  public static <E> FluentIterable<E> from(Iterable<E> iterable) {
+    return new SimpleFluentIterable<>(iterable);
+  }
+
+  public static <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
+    var copy = FluentIterable.copyToList(iterable);
+    return new SimpleFluentIterable<>(copy);
+  }
+
+  /**
+   * Collects the remaining objects of the given iterator into a List.
+   *
+   * @return a new List with the remaining objects.
+   */
+  public static <E> List<E> toList(Iterator<E> iterator) {
+    var copy = new ArrayList<E>();
+    iterator.forEachRemaining(copy::add);
+    return copy;
+  }
+
+  /**
    * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy
    * the predicate.
    *
    * @param predicate the condition to test with for the filtering. If the test is negative, the
-   *                  tested object is removed by the iterator.
+   *     tested object is removed by the iterator.
    * @return the same FluentIterable with a filtered collection
    */
   @Override
@@ -162,7 +186,7 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
    * Transforms this FluentIterable into a new one containing objects of the type T.
    *
    * @param function a function that transforms an instance of E into an instance of T
-   * @param <T>      the target type of the transformation
+   * @param <T> the target type of the transformation
    * @return a new FluentIterable of the new type
    */
   @Override
@@ -182,20 +206,6 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
     return toList(iterable.iterator());
   }
 
-  /**
-   * Constructs FluentIterable from iterable.
-   *
-   * @return a FluentIterable from a given iterable. Calls the SimpleFluentIterable constructor.
-   */
-  public static <E> FluentIterable<E> from(Iterable<E> iterable) {
-    return new SimpleFluentIterable<>(iterable);
-  }
-
-  public static <E> FluentIterable<E> fromCopyOf(Iterable<E> iterable) {
-    var copy = FluentIterable.copyToList(iterable);
-    return new SimpleFluentIterable<>(copy);
-  }
-
   @Override
   public Iterator<E> iterator() {
     return iterable.iterator();
@@ -205,7 +215,6 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
   public void forEach(Consumer<? super E> action) {
     iterable.forEach(action);
   }
-
 
   @Override
   public Spliterator<E> spliterator() {
@@ -223,16 +232,5 @@ public class SimpleFluentIterable<E> implements FluentIterable<E> {
       counter++;
     }
     return counter;
-  }
-
-  /**
-   * Collects the remaining objects of the given iterator into a List.
-   *
-   * @return a new List with the remaining objects.
-   */
-  public static <E> List<E> toList(Iterator<E> iterator) {
-    var copy = new ArrayList<E>();
-    iterator.forEachRemaining(copy::add);
-    return copy;
   }
 }

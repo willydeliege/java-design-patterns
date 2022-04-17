@@ -49,9 +49,7 @@ package com.iluwatar.factory.method;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * ElfWeapon.
- */
+/** ElfWeapon. */
 @RequiredArgsConstructor
 @Getter
 public class ElfWeapon implements Weapon {

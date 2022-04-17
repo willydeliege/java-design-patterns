@@ -6,7 +6,9 @@ permalink: /patterns/factory/ko
 categories: Creational
 language: ko
 tags:
+
 - Gang of Four
+
 ---
 
 ## 또한 ~으로 알려진
@@ -22,7 +24,8 @@ tags:
 
 예시
 
-> SQLServer에 연결된 웹 응용 프로그램이 있지만 이제 Oracle로 전환하려고 합니다. 기존 소스 코드를 수정하지 않고 이를 수행하려면 주어진 데이터베이스에 대한 연결을 생성하기 위해 정적 메서드를 호출 할 수 있는 Simple Factory 패턴을 구현해야합니다.
+> SQLServer에 연결된 웹 응용 프로그램이 있지만 이제 Oracle로 전환하려고 합니다. 기존 소스 코드를 수정하지 않고 이를 수행하려면 주어진 데이터베이스에 대한 연결을
+> 생성하기 위해 정적 메서드를 호출 할 수 있는 Simple Factory 패턴을 구현해야합니다.
 
 Wikipedia 말에 의하면
 
@@ -34,6 +37,7 @@ Wikipedia 말에 의하면
 
 ```java
 public interface Car {
+
   String getDescription();
 }
 
@@ -48,7 +52,7 @@ public class Ford implements Car {
 }
 
 public class Ferrari implements Car {
-   
+
   static final String DESCRIPTION = "This is Ferrari.";
 
   @Override
@@ -62,16 +66,16 @@ public class Ferrari implements Car {
 
 ```java
 public enum CarType {
-  
+
   FORD(Ford::new),
   FERRARI(Ferrari::new);
-  
+
   private final Supplier<Car> constructor;
-  
+
   CarType(Supplier<Car> constructor) {
     this.constructor = constructor;
   }
-  
+
   public Supplier<Car> getConstructor() {
     return this.constructor;
   }
@@ -82,7 +86,7 @@ public enum CarType {
 
 ```java
 public class CarsFactory {
-  
+
   public static Car getCar(CarType type) {
     return type.getConstructor().get();
   }
@@ -92,17 +96,17 @@ public class CarsFactory {
 이제 클라이언트 코드에서 factory 클래스를 사용하여 다양한 유형의 자동차를 만들 수 있습니다.
 
 ```java
-var car1 = CarsFactory.getCar(CarType.FORD);
-var car2 = CarsFactory.getCar(CarType.FERRARI);
-LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());;
+var car1=CarsFactory.getCar(CarType.FORD);
+    var car2=CarsFactory.getCar(CarType.FERRARI);
+    LOGGER.info(car1.getDescription());
+    LOGGER.info(car2.getDescription());;
 ```
 
 프로그램 출력 :
 
 ```java
 This is Ford.
-This Ferrari.
+    This Ferrari.
 ```
 
 ## 클래스 다이어그램

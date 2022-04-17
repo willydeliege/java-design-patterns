@@ -6,20 +6,26 @@ permalink: /patterns/dirty-flag/
 categories: Behavioral
 language: zh
 tags:
- - Game programming
- - Performance
+
+- Game programming
+- Performance
+
 ---
 
 ## 或称
+
 * 是否脏 模式
 
 ## 目的
+
 避免昂贵资源的重新获取。资源保留其身份，保留在某些快速访问的存储中，并被重新使用以避免再次获取它们。
 
 ## 类图
+
 ![alt text](../../../dirty-flag/etc/dirty-flag.png "Dirty Flag")
 
 ## 适用性
+
 在以下情况下使用脏标志模式
 
 * 重复获取，初始化，释放相同资源所导致不必要的性能开销

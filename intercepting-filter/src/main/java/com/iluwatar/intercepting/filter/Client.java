@@ -46,10 +46,19 @@
 
 package com.iluwatar.intercepting.filter;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 /**
  * The Client class is responsible for handling the input and running them through filters inside
@@ -63,17 +72,14 @@ import javax.swing.*;
 public class Client extends JFrame { // NOSONAR
 
   private static final long serialVersionUID = 1L;
-
-  private transient FilterManager filterManager;
   private final JLabel jl;
   private final JTextField[] jtFields;
   private final JTextArea[] jtAreas;
   private final JButton clearButton;
   private final JButton processButton;
+  private transient FilterManager filterManager;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Client() {
     super("Client System");
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -112,10 +118,11 @@ public class Client extends JFrame { // NOSONAR
     panel.add(clearButton);
     panel.add(processButton);
 
-    clearButton.addActionListener(e -> {
-      Arrays.stream(jtAreas).forEach(i -> i.setText(""));
-      Arrays.stream(jtFields).forEach(i -> i.setText(""));
-    });
+    clearButton.addActionListener(
+        e -> {
+          Arrays.stream(jtAreas).forEach(i -> i.setText(""));
+          Arrays.stream(jtFields).forEach(i -> i.setText(""));
+        });
 
     processButton.addActionListener(this::actionPerformed);
 

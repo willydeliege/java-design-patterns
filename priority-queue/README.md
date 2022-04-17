@@ -6,40 +6,42 @@ permalink: /patterns/priority-queue/
 categories: Behavioral
 language: en
 tags:
- - Decoupling
- - Cloud distributed
+
+- Decoupling
+- Cloud distributed
+
 ---
 
 ## Intent
 
-Prioritize requests sent to services so that requests with a higher priority are received and 
-processed more quickly than those of a lower priority. This pattern is useful in applications that 
+Prioritize requests sent to services so that requests with a higher priority are received and
+processed more quickly than those of a lower priority. This pattern is useful in applications that
 offer different service level guarantees to individual clients.
 
 ## Explanation
 
-Applications may delegate specific tasks to other services; for example, to perform background 
-processing or to integrate with other applications or services. In the cloud, a message queue is 
-typically used to delegate tasks to background processing. In many cases the order in which requests 
-are received by a service is not important. However, in some cases it may be necessary to prioritize 
-specific requests. These requests should be processed earlier than others of a lower priority that 
+Applications may delegate specific tasks to other services; for example, to perform background
+processing or to integrate with other applications or services. In the cloud, a message queue is
+typically used to delegate tasks to background processing. In many cases the order in which requests
+are received by a service is not important. However, in some cases it may be necessary to prioritize
+specific requests. These requests should be processed earlier than others of a lower priority that
 may have been sent previously by the application.
 
 Real world example
 
 > Imagine a video processing service with free and premium customers. The requests coming from the
-> paying premium customers should be prioritized over the others. 
+> paying premium customers should be prioritized over the others.
 
 In plain words
 
 > Priority Queue enables processing of high priority messages first, regardless of queue size or
-> message age. 
+> message age.
 
 Wikipedia says
 
-> In computer science, a priority queue is an abstract data type similar to regular queue or stack 
-> data structure in which each element additionally has a "priority" associated with it. In a 
-> priority queue, an element with high priority is served before an element with low priority. 
+> In computer science, a priority queue is an abstract data type similar to regular queue or stack
+> data structure in which each element additionally has a "priority" associated with it. In a
+> priority queue, an element with high priority is served before an element with low priority.
 
 **Programmatic Example**
 
@@ -123,6 +125,7 @@ public class QueueManager {
 `Worker` constantly polls `QueueManager` for highest priority message and processes it.
 
 ```java
+
 @Slf4j
 public class Worker {
 
@@ -154,17 +157,17 @@ Here's the full example how we create an instance of `QueueManager` and process 
 `Worker`.
 
 ```java
-    var queueManager = new QueueManager(100);
+    var queueManager=new QueueManager(100);
 
-    for (var i = 0; i < 100; i++) {
-      queueManager.publishMessage(new Message("Low Message Priority", 0));
+    for(var i=0;i< 100;i++){
+    queueManager.publishMessage(new Message("Low Message Priority",0));
     }
 
-    for (var i = 0; i < 100; i++) {
-      queueManager.publishMessage(new Message("High Message Priority", 1));
+    for(var i=0;i< 100;i++){
+    queueManager.publishMessage(new Message("High Message Priority",1));
     }
 
-    var worker = new Worker(queueManager);
+    var worker=new Worker(queueManager);
     worker.run();
 ```
 
@@ -195,7 +198,6 @@ No Message ... waiting
 No Message ... waiting
 No Message ... waiting
 ```
-
 
 ## Class diagram
 

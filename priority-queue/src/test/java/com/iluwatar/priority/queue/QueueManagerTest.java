@@ -46,13 +46,11 @@
 
 package com.iluwatar.priority.queue;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Check queue manager
- */
+import org.junit.jupiter.api.Test;
+
+/** Check queue manager */
 public class QueueManagerTest {
 
   @Test

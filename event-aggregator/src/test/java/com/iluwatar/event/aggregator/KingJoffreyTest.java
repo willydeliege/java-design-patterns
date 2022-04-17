@@ -46,10 +46,11 @@
 
 package com.iluwatar.event.aggregator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -57,8 +58,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/12/15 - 3:04 PM
@@ -79,9 +78,7 @@ class KingJoffreyTest {
     appender.stop();
   }
 
-  /**
-   * Test if {@link KingJoffrey} tells us what event he received
-   */
+  /** Test if {@link KingJoffrey} tells us what event he received */
   @Test
   void testOnEvent() {
     final var kingJoffrey = new KingJoffrey();
@@ -119,5 +116,4 @@ class KingJoffreyTest {
       return log.size();
     }
   }
-
 }

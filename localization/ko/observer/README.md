@@ -6,8 +6,10 @@ permalink: /patterns/observer/ko
 categories: Behavioral
 language: ko
 tags:
+
 - Gang Of Four
 - Reactive
+
 ---
 
 ## 또한 ~으로 알려진
@@ -30,7 +32,8 @@ Dependents, Publish-Subscribe
 
 Wikipedia 말에 의하면
 
-> observer 패턴은 주제라고하는 객체가 observer라고 하는 종속 항목 목록을 유지하고 일반적으로 메서드 중 하나를 호출하여 상태 변경을 자동으로 알리는 소프트웨어 디자인 패턴입니다.
+> observer 패턴은 주제라고하는 객체가 observer라고 하는 종속 항목 목록을 유지하고 일반적으로 메서드 중 하나를 호출하여 상태 변경을 자동으로 알리는 소프트웨어
+> 디자인 패턴입니다.
 
 **프로그램 코드 예제**
 
@@ -109,7 +112,7 @@ public class Weather {
 여기에 전체 예제가 있습니다.
 
 ```java
-    var weather = new Weather();
+    var weather=new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
     weather.timePasses();

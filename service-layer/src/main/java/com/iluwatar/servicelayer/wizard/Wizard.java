@@ -46,6 +46,8 @@
 
 package com.iluwatar.servicelayer.wizard;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -55,12 +57,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
 
-/**
- * Wizard entity.
- */
+/** Wizard entity. */
 @Entity
 @Table(name = "WIZARD")
 public class Wizard extends BaseEntity {

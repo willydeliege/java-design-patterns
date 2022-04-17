@@ -46,17 +46,17 @@
 
 package com.iluwatar.guarded.suspension;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.LinkedList;
 import java.util.Queue;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Guarded Queue is an implementation for Guarded Suspension Pattern Guarded suspension pattern is
  * used to handle a situation when you want to execute a method on an object which is not in a
  * proper state.
  *
- * @see <a href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
+ * @see <a
+ *     href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
  */
 @Slf4j
 public class GuardedQueue {

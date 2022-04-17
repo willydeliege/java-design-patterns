@@ -66,5 +66,4 @@ public class HolderNaiveTest extends AbstractHolderTest {
   Heavy getHeavy() {
     return holder.getHeavy();
   }
-
 }

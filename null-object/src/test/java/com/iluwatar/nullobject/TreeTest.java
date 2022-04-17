@@ -46,10 +46,14 @@
 
 package com.iluwatar.nullobject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -57,29 +61,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * Date: 12/26/15 - 11:44 PM
  *
  * @author Jeroen Meulemeester
  */
 public class TreeTest {
-
-  private InMemoryAppender appender;
-
-  @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender();
-  }
-
-  @AfterEach
-  public void tearDown() {
-    appender.stop();
-  }
 
   /**
    * During the tests, the same tree structure will be used, shown below. End points will be
@@ -107,6 +94,18 @@ public class TreeTest {
     TREE_ROOT = new NodeImpl("root", level1A, level1B);
   }
 
+  private InMemoryAppender appender;
+
+  @BeforeEach
+  public void setUp() {
+    appender = new InMemoryAppender();
+  }
+
+  @AfterEach
+  public void tearDown() {
+    appender.stop();
+  }
+
   /**
    * Verify the number of items in the tree. The root has 6 children so we expect a {@link
    * Node#getTreeSize()} of 7 {@link Node}s in total.
@@ -116,9 +115,7 @@ public class TreeTest {
     assertEquals(7, TREE_ROOT.getTreeSize());
   }
 
-  /**
-   * Walk through the tree and verify if every item is handled
-   */
+  /** Walk through the tree and verify if every item is handled */
   @Test
   void testWalk() {
     TREE_ROOT.walk();
@@ -184,5 +181,4 @@ public class TreeTest {
       return log.size();
     }
   }
-
 }

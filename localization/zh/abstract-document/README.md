@@ -5,8 +5,10 @@ folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
 language: zh
-tags: 
- - Extensibility
+tags:
+
+- Extensibility
+
 ---
 
 ## 目的
@@ -19,7 +21,7 @@ tags:
 
 真实世界例子
 
->  考虑由多个部分组成的汽车。 但是，我们不知道特定汽车是否真的拥有所有零件，或者仅仅是零件中的一部分。 我们的汽车是动态而且非常灵活的。
+> 考虑由多个部分组成的汽车。 但是，我们不知道特定汽车是否真的拥有所有零件，或者仅仅是零件中的一部分。 我们的汽车是动态而且非常灵活的。
 
 通俗的说
 
@@ -27,7 +29,8 @@ tags:
 
 维基百科说
 
-> 面向对象的结构设计模式，用于组织松散类型的键值存储中的对象并使用类型化的视图公开数据。 该模式的目的是在强类型语言中实现组件之间的高度灵活性，在这种语言中，可以在不丢失类型安全支持的情况下，将新属性动态地添加到对象树中。 该模式利用特征将类的不同属性分成不同的接口。
+> 面向对象的结构设计模式，用于组织松散类型的键值存储中的对象并使用类型化的视图公开数据。
+> 该模式的目的是在强类型语言中实现组件之间的高度灵活性，在这种语言中，可以在不丢失类型安全支持的情况下，将新属性动态地添加到对象树中。 该模式利用特征将类的不同属性分成不同的接口。
 
 **程序示例**
 
@@ -76,6 +79,7 @@ public abstract class AbstractDocument implements Document {
   ...
 }
 ```
+
 接下来，我们定义一个枚举“属性”和一组类型，价格，模型和零件的接口。 这使我们能够为Car类创建静态外观的界面。
 
 ```java
@@ -97,6 +101,7 @@ public interface HasPrice extends Document {
     return Optional.ofNullable((Number) get(Property.PRICE.toString()));
   }
 }
+
 public interface HasModel extends Document {
 
   default Optional<String> getModel() {
@@ -128,40 +133,40 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 ```java
     LOGGER.info("Constructing parts and car");
 
-    var wheelProperties = Map.of(
-        Property.TYPE.toString(), "wheel",
-        Property.MODEL.toString(), "15C",
-        Property.PRICE.toString(), 100L);
+    var wheelProperties=Map.of(
+    Property.TYPE.toString(),"wheel",
+    Property.MODEL.toString(),"15C",
+    Property.PRICE.toString(),100L);
 
-    var doorProperties = Map.of(
-        Property.TYPE.toString(), "door",
-        Property.MODEL.toString(), "Lambo",
-        Property.PRICE.toString(), 300L);
+    var doorProperties=Map.of(
+    Property.TYPE.toString(),"door",
+    Property.MODEL.toString(),"Lambo",
+    Property.PRICE.toString(),300L);
 
-    var carProperties = Map.of(
-        Property.MODEL.toString(), "300SL",
-        Property.PRICE.toString(), 10000L,
-        Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
+    var carProperties=Map.of(
+    Property.MODEL.toString(),"300SL",
+    Property.PRICE.toString(),10000L,
+    Property.PARTS.toString(),List.of(wheelProperties,doorProperties));
 
-    var car = new Car(carProperties);
+    var car=new Car(carProperties);
 
     LOGGER.info("Here is our car:");
-    LOGGER.info("-> model: {}", car.getModel().orElseThrow());
-    LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
+    LOGGER.info("-> model: {}",car.getModel().orElseThrow());
+    LOGGER.info("-> price: {}",car.getPrice().orElseThrow());
     LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
-        p.getType().orElse(null),
-        p.getModel().orElse(null),
-        p.getPrice().orElse(null))
+    car.getParts().forEach(p->LOGGER.info("\t{}/{}/{}",
+    p.getType().orElse(null),
+    p.getModel().orElse(null),
+    p.getPrice().orElse(null))
     );
 
-    // Constructing parts and car
-    // Here is our car:
-    // model: 300SL
-    // price: 10000
-    // parts: 
-    // wheel/15C/100
-    // door/Lambo/300
+// Constructing parts and car
+// Here is our car:
+// model: 300SL
+// price: 10000
+// parts: 
+// wheel/15C/100
+// door/Lambo/300
 ```
 
 ## 类图

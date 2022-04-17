@@ -6,7 +6,9 @@ permalink: /patterns/abstract-factory/
 categories: Creational
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 或称
@@ -37,34 +39,45 @@ tags:
 
 ```java
 public interface Castle {
+
   String getDescription();
 }
 
 public interface King {
+
   String getDescription();
 }
 
 public interface Army {
+
   String getDescription();
 }
 
 // Elven implementations ->
 public class ElfCastle implements Castle {
+
   static final String DESCRIPTION = "This is the Elven castle!";
+
   @Override
   public String getDescription() {
     return DESCRIPTION;
   }
 }
+
 public class ElfKing implements King {
+
   static final String DESCRIPTION = "This is the Elven king!";
+
   @Override
   public String getDescription() {
     return DESCRIPTION;
   }
 }
+
 public class ElfArmy implements Army {
+
   static final String DESCRIPTION = "This is the Elven Army!";
+
   @Override
   public String getDescription() {
     return DESCRIPTION;
@@ -79,30 +92,39 @@ public class ElfArmy implements Army {
 
 ```java
 public interface KingdomFactory {
+
   Castle createCastle();
+
   King createKing();
+
   Army createArmy();
 }
 
 public class ElfKingdomFactory implements KingdomFactory {
+
   public Castle createCastle() {
     return new ElfCastle();
   }
+
   public King createKing() {
     return new ElfKing();
   }
+
   public Army createArmy() {
     return new ElfArmy();
   }
 }
 
 public class OrcKingdomFactory implements KingdomFactory {
+
   public Castle createCastle() {
     return new OrcCastle();
   }
+
   public King createKing() {
     return new OrcKing();
   }
+
   public Army createArmy() {
     return new OrcArmy();
   }
@@ -112,25 +134,26 @@ public class OrcKingdomFactory implements KingdomFactory {
 现在我们有了抽象工厂，使我们可以制作相关对象的系列，即精灵王国工厂创建了精灵城堡，国王和军队等。
 
 ```java
-var factory = new ElfKingdomFactory();
-var castle = factory.createCastle();
-var king = factory.createKing();
-var army = factory.createArmy();
+var factory=new ElfKingdomFactory();
+    var castle=factory.createCastle();
+    var king=factory.createKing();
+    var army=factory.createArmy();
 
-castle.getDescription();
-king.getDescription();
-army.getDescription();
+    castle.getDescription();
+    king.getDescription();
+    army.getDescription();
 ```
 
 程序输出:
 
 ```java
 This is the Elven castle!
-This is the Elven king!
-This is the Elven Army!
+    This is the Elven king!
+    This is the Elven Army!
 ```
 
-现在，我们可以为不同的王国工厂设计工厂。 在此示例中，我们创建了FactoryMaker，负责返回ElfKingdomFactory或OrcKingdomFactory的实例。 客户可以使用FactoryMaker来创建所需的具体工厂，该工厂随后将生产不同的具体对象（军队，国王，城堡）。 在此示例中，我们还使用了一个枚举来参数化客户要求的王国工厂类型。
+现在，我们可以为不同的王国工厂设计工厂。 在此示例中，我们创建了FactoryMaker，负责返回ElfKingdomFactory或OrcKingdomFactory的实例。
+客户可以使用FactoryMaker来创建所需的具体工厂，该工厂随后将生产不同的具体对象（军队，国王，城堡）。 在此示例中，我们还使用了一个枚举来参数化客户要求的王国工厂类型。
 
 ```java
 public static class FactoryMaker {
@@ -151,25 +174,24 @@ public static class FactoryMaker {
   }
 }
 
-public static void main(String[] args) {
-  var app = new App();
+  public static void main(String[] args) {
+    var app = new App();
 
-  LOGGER.info("Elf Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-  LOGGER.info(app.getArmy().getDescription());
-  LOGGER.info(app.getCastle().getDescription());
-  LOGGER.info(app.getKing().getDescription());
+    LOGGER.info("Elf Kingdom");
+    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+    LOGGER.info(app.getArmy().getDescription());
+    LOGGER.info(app.getCastle().getDescription());
+    LOGGER.info(app.getKing().getDescription());
 
-  LOGGER.info("Orc Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-  -- similar use of the orc factory
-}
+    LOGGER.info("Orc Kingdom");
+    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+    --similar use of the orc factory
+  }
 ```
 
 ## 类图
 
 ![alt text](../../../abstract-factory/etc/abstract-factory.urm.png "Abstract Factory class diagram")
-
 
 ## 适用性
 
@@ -200,7 +222,7 @@ public static void main(String[] args) {
 
 ## 教程
 
-* [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
+* [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java)
 
 ## 已知使用
 

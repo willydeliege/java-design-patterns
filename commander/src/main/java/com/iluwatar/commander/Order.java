@@ -64,6 +64,7 @@ public class Order { // can store all transactions ids also
   PaymentStatus paid;
   MessageSent messageSent; // to avoid sending error msg on page and text more than once
   boolean addedToEmployeeHandle; // to avoid creating more to enqueue
+
   Order(User user, String item, float price) {
     this.createdTime = System.currentTimeMillis();
     this.user = user;

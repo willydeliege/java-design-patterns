@@ -46,14 +46,14 @@
 
 package com.iluwatar.intercepting.filter;
 
-import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+
+import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Date: 12/13/15 - 2:17 PM
@@ -72,41 +72,36 @@ public class FilterTest {
 
   static List<Object[]> getTestData() {
     return List.of(
-        new Object[]{new NameFilter(), PERFECT_ORDER, ""},
-        new Object[]{new NameFilter(), WRONG_NAME, "Invalid name!"},
-        new Object[]{new NameFilter(), WRONG_CONTACT, ""},
-        new Object[]{new NameFilter(), WRONG_ADDRESS, ""},
-        new Object[]{new NameFilter(), WRONG_DEPOSIT, ""},
-        new Object[]{new NameFilter(), WRONG_ORDER, ""},
-
-        new Object[]{new ContactFilter(), PERFECT_ORDER, ""},
-        new Object[]{new ContactFilter(), WRONG_NAME, ""},
-        new Object[]{new ContactFilter(), WRONG_CONTACT, "Invalid contact number!"},
-        new Object[]{new ContactFilter(), WRONG_ADDRESS, ""},
-        new Object[]{new ContactFilter(), WRONG_DEPOSIT, ""},
-        new Object[]{new ContactFilter(), WRONG_ORDER, ""},
-
-        new Object[]{new AddressFilter(), PERFECT_ORDER, ""},
-        new Object[]{new AddressFilter(), WRONG_NAME, ""},
-        new Object[]{new AddressFilter(), WRONG_CONTACT, ""},
-        new Object[]{new AddressFilter(), WRONG_ADDRESS, "Invalid address!"},
-        new Object[]{new AddressFilter(), WRONG_DEPOSIT, ""},
-        new Object[]{new AddressFilter(), WRONG_ORDER, ""},
-
-        new Object[]{new DepositFilter(), PERFECT_ORDER, ""},
-        new Object[]{new DepositFilter(), WRONG_NAME, ""},
-        new Object[]{new DepositFilter(), WRONG_CONTACT, ""},
-        new Object[]{new DepositFilter(), WRONG_ADDRESS, ""},
-        new Object[]{new DepositFilter(), WRONG_DEPOSIT, "Invalid deposit number!"},
-        new Object[]{new DepositFilter(), WRONG_ORDER, ""},
-
-        new Object[]{new OrderFilter(), PERFECT_ORDER, ""},
-        new Object[]{new OrderFilter(), WRONG_NAME, ""},
-        new Object[]{new OrderFilter(), WRONG_CONTACT, ""},
-        new Object[]{new OrderFilter(), WRONG_ADDRESS, ""},
-        new Object[]{new OrderFilter(), WRONG_DEPOSIT, ""},
-        new Object[]{new OrderFilter(), WRONG_ORDER, "Invalid order!"}
-    );
+        new Object[] {new NameFilter(), PERFECT_ORDER, ""},
+        new Object[] {new NameFilter(), WRONG_NAME, "Invalid name!"},
+        new Object[] {new NameFilter(), WRONG_CONTACT, ""},
+        new Object[] {new NameFilter(), WRONG_ADDRESS, ""},
+        new Object[] {new NameFilter(), WRONG_DEPOSIT, ""},
+        new Object[] {new NameFilter(), WRONG_ORDER, ""},
+        new Object[] {new ContactFilter(), PERFECT_ORDER, ""},
+        new Object[] {new ContactFilter(), WRONG_NAME, ""},
+        new Object[] {new ContactFilter(), WRONG_CONTACT, "Invalid contact number!"},
+        new Object[] {new ContactFilter(), WRONG_ADDRESS, ""},
+        new Object[] {new ContactFilter(), WRONG_DEPOSIT, ""},
+        new Object[] {new ContactFilter(), WRONG_ORDER, ""},
+        new Object[] {new AddressFilter(), PERFECT_ORDER, ""},
+        new Object[] {new AddressFilter(), WRONG_NAME, ""},
+        new Object[] {new AddressFilter(), WRONG_CONTACT, ""},
+        new Object[] {new AddressFilter(), WRONG_ADDRESS, "Invalid address!"},
+        new Object[] {new AddressFilter(), WRONG_DEPOSIT, ""},
+        new Object[] {new AddressFilter(), WRONG_ORDER, ""},
+        new Object[] {new DepositFilter(), PERFECT_ORDER, ""},
+        new Object[] {new DepositFilter(), WRONG_NAME, ""},
+        new Object[] {new DepositFilter(), WRONG_CONTACT, ""},
+        new Object[] {new DepositFilter(), WRONG_ADDRESS, ""},
+        new Object[] {new DepositFilter(), WRONG_DEPOSIT, "Invalid deposit number!"},
+        new Object[] {new DepositFilter(), WRONG_ORDER, ""},
+        new Object[] {new OrderFilter(), PERFECT_ORDER, ""},
+        new Object[] {new OrderFilter(), WRONG_NAME, ""},
+        new Object[] {new OrderFilter(), WRONG_CONTACT, ""},
+        new Object[] {new OrderFilter(), WRONG_ADDRESS, ""},
+        new Object[] {new OrderFilter(), WRONG_DEPOSIT, ""},
+        new Object[] {new OrderFilter(), WRONG_ORDER, "Invalid order!"});
   }
 
   @ParameterizedTest
@@ -123,5 +118,4 @@ public class FilterTest {
     assertNull(filter.getNext());
     assertSame(filter, filter.getLast());
   }
-
 }

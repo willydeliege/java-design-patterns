@@ -46,13 +46,11 @@
 
 package com.iluwatar.servicelayer.spell;
 
+import com.iluwatar.servicelayer.common.DaoBaseImpl;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import com.iluwatar.servicelayer.common.DaoBaseImpl;
 
-/**
- * SpellDao implementation.
- */
+/** SpellDao implementation. */
 public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
   @Override

@@ -46,6 +46,9 @@
 
 package com.iluwatar.reader.writer.lock;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.AfterEach;
@@ -53,15 +56,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.iluwatar.reader.writer.lock.utils.InMemoryAppender;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author hongshuwei@gmail.com
  */
 class ReaderAndWriterTest {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
   private InMemoryAppender appender;
 
   @BeforeEach
@@ -74,11 +75,7 @@ class ReaderAndWriterTest {
     appender.stop();
   }
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReaderAndWriterTest.class);
-
-  /**
-   * Verify reader and writer can only get the lock to read and write orderly
-   */
+  /** Verify reader and writer can only get the lock to read and write orderly */
   @Test
   void testReadAndWrite() throws Exception {
 
@@ -106,9 +103,7 @@ class ReaderAndWriterTest {
     assertTrue(appender.logContains("Writer 1 finish"));
   }
 
-  /**
-   * Verify reader and writer can only get the lock to read and write orderly
-   */
+  /** Verify reader and writer can only get the lock to read and write orderly */
   @Test
   void testWriteAndRead() throws Exception {
 

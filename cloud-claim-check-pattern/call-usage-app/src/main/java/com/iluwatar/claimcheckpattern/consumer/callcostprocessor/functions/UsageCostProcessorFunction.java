@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -71,10 +71,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Azure Functions with HTTP Trigger.
- * This is Consumer class.
- */
+/** Azure Functions with HTTP Trigger. This is Consumer class. */
 public class UsageCostProcessorFunction {
 
   private MessageHandlerUtility<UsageDetail> messageHandlerUtilityForUsageDetail;
@@ -93,26 +90,31 @@ public class UsageCostProcessorFunction {
   }
 
   /**
-   * Azure function which gets triggered when event grid event send event to it.
-   * After receiving event, it read input file from blob storage, calculate call cost details.
-   * It creates new message with cost details and drop message to blob storage.
+   * Azure function which gets triggered when event grid event send event to it. After receiving
+   * event, it read input file from blob storage, calculate call cost details. It creates new
+   * message with cost details and drop message to blob storage.
+   *
    * @param request represents HttpRequestMessage
    * @param context represents ExecutionContext
    * @return HttpResponseMessage
    */
   @FunctionName("UsageCostProcessorFunction")
-  public HttpResponseMessage run(@HttpTrigger(name = "req", methods = { HttpMethod.GET,
-      HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS)
-                                       HttpRequestMessage<Optional<String>> request,
-                                 final ExecutionContext context) {
+  public HttpResponseMessage run(
+      @HttpTrigger(
+              name = "req",
+              methods = {HttpMethod.GET, HttpMethod.POST},
+              authLevel = AuthorizationLevel.ANONYMOUS)
+          HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) {
     try {
       var eventGridEvents = EventGridEvent.fromString(request.getBody().get());
       for (var eventGridEvent : eventGridEvents) {
         // Handle system events
-        if (eventGridEvent.getEventType()
+        if (eventGridEvent
+            .getEventType()
             .equals("Microsoft.EventGrid.SubscriptionValidationEvent")) {
-          SubscriptionValidationEventData subscriptionValidationEventData = eventGridEvent.getData()
-              .toObject(SubscriptionValidationEventData.class);
+          SubscriptionValidationEventData subscriptionValidationEventData =
+              eventGridEvent.getData().toObject(SubscriptionValidationEventData.class);
           // Handle the subscription validation event
           var responseData = new SubscriptionValidationResponse();
           responseData.setValidationResponse(subscriptionValidationEventData.getValidationCode());
@@ -120,18 +122,17 @@ public class UsageCostProcessorFunction {
 
         } else if (eventGridEvent.getEventType().equals("UsageDetail")) {
           // Get message header and reference
-          var messageReference = eventGridEvent.getData()
-              .toObject(MessageReference.class);
+          var messageReference = eventGridEvent.getData().toObject(MessageReference.class);
 
           // Read message from persistent storage
-          var message = this.messageHandlerUtilityForUsageDetail
-              .readFromPersistantStorage(messageReference, context.getLogger());
+          var message =
+              this.messageHandlerUtilityForUsageDetail.readFromPersistantStorage(
+                  messageReference, context.getLogger());
 
           // Get Data and generate cost details
-          List<UsageDetail> usageDetailsList = BinaryData.fromObject(
-              message.getMessageBody().getData())
-              .toObject(new TypeReference<>() {
-              });
+          List<UsageDetail> usageDetailsList =
+              BinaryData.fromObject(message.getMessageBody().getData())
+                  .toObject(new TypeReference<>() {});
           var usageCostDetailsList = calculateUsageCostDetails(usageDetailsList);
 
           // Create message body
@@ -139,8 +140,8 @@ public class UsageCostProcessorFunction {
           newMessageBody.setData(usageCostDetailsList);
 
           // Create message header
-          var newMessageReference = new MessageReference("callusageapp",
-              eventGridEvent.getId() + "/output.json");
+          var newMessageReference =
+              new MessageReference("callusageapp", eventGridEvent.getId() + "/output.json");
           var newMessageHeader = new MessageHeader();
           newMessageHeader.setId(eventGridEvent.getId());
           newMessageHeader.setSubject("UsageCostProcessor");
@@ -156,12 +157,14 @@ public class UsageCostProcessorFunction {
           newMessage.setMessageBody(newMessageBody);
 
           // Drop data to persistent storage
-          this.messageHandlerUtilityForUsageCostDetail.dropToPersistantStorage(newMessage,
-              context.getLogger());
+          this.messageHandlerUtilityForUsageCostDetail.dropToPersistantStorage(
+              newMessage, context.getLogger());
 
           context.getLogger().info("Message is dropped successfully");
-          return request.createResponseBuilder(HttpStatus.OK)
-              .body("Message is dropped successfully").build();
+          return request
+              .createResponseBuilder(HttpStatus.OK)
+              .body("Message is dropped successfully")
+              .build();
         }
       }
     } catch (Exception e) {
@@ -177,14 +180,15 @@ public class UsageCostProcessorFunction {
     }
     var usageCostDetailsList = new ArrayList<UsageCostDetail>();
 
-    usageDetailsList.forEach(usageDetail -> {
-      var usageCostDetail = new UsageCostDetail();
-      usageCostDetail.setUserId(usageDetail.getUserId());
-      usageCostDetail.setCallCost(usageDetail.getDuration() * 0.30); // 0.30₹ per minute
-      usageCostDetail.setDataCost(usageDetail.getData() * 0.20); // 0.20₹ per MB
+    usageDetailsList.forEach(
+        usageDetail -> {
+          var usageCostDetail = new UsageCostDetail();
+          usageCostDetail.setUserId(usageDetail.getUserId());
+          usageCostDetail.setCallCost(usageDetail.getDuration() * 0.30); // 0.30₹ per minute
+          usageCostDetail.setDataCost(usageDetail.getData() * 0.20); // 0.20₹ per MB
 
-      usageCostDetailsList.add(usageCostDetail);
-    });
+          usageCostDetailsList.add(usageCostDetail);
+        });
 
     return usageCostDetailsList;
   }

@@ -46,14 +46,14 @@
 
 package com.iluwatar.priority.queue;
 
-import lombok.extern.slf4j.Slf4j;
-
 import static java.util.Arrays.copyOf;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Keep high Priority message on top using maxHeap.
  *
- * @param <T> :  DataType to push in Queue
+ * @param <T> : DataType to push in Queue
  */
 @Slf4j
 public class PriorityMessageQueue<T extends Comparable> {
@@ -62,7 +62,6 @@ public class PriorityMessageQueue<T extends Comparable> {
 
   private int capacity;
 
-
   private T[] queue;
 
   public PriorityMessageQueue(T[] queue) {
@@ -70,9 +69,7 @@ public class PriorityMessageQueue<T extends Comparable> {
     this.capacity = queue.length;
   }
 
-  /**
-   * Remove top message from queue.
-   */
+  /** Remove top message from queue. */
   public T remove() {
     if (isEmpty()) {
       return null;
@@ -85,9 +82,7 @@ public class PriorityMessageQueue<T extends Comparable> {
     return root;
   }
 
-  /**
-   * Add message to queue.
-   */
+  /** Add message to queue. */
   public void add(T t) {
     ensureCapacity();
     queue[size] = t;
@@ -95,13 +90,10 @@ public class PriorityMessageQueue<T extends Comparable> {
     maxHeapifyUp();
   }
 
-  /**
-   * Check queue size.
-   */
+  /** Check queue size. */
   public boolean isEmpty() {
     return size == 0;
   }
-
 
   private void maxHeapifyDown() {
     var index = 0;
@@ -120,10 +112,7 @@ public class PriorityMessageQueue<T extends Comparable> {
       }
 
       index = smallerIndex;
-
-
     }
-
   }
 
   private void maxHeapifyUp() {
@@ -133,7 +122,6 @@ public class PriorityMessageQueue<T extends Comparable> {
       index = parentIndex(index);
     }
   }
-
 
   // index
   private int parentIndex(int pos) {
@@ -187,14 +175,11 @@ public class PriorityMessageQueue<T extends Comparable> {
     }
   }
 
-  /**
-   * For debug .. print current state of queue
-   */
+  /** For debug .. print current state of queue */
   public void print() {
     for (var i = 0; i <= size / 2; i++) {
-      LOGGER.info(" PARENT : " + queue[i] + " LEFT CHILD : "
-          + left(i) + " RIGHT CHILD :" + right(i));
+      LOGGER.info(
+          " PARENT : " + queue[i] + " LEFT CHILD : " + left(i) + " RIGHT CHILD :" + right(i));
     }
   }
-
 }

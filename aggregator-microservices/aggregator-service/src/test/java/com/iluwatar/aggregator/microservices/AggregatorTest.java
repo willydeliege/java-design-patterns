@@ -46,37 +46,30 @@
 
 package com.iluwatar.aggregator.microservices;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-/**
- * Test Aggregation of domain objects
- */
+/** Test Aggregation of domain objects */
 class AggregatorTest {
 
-  @InjectMocks
-  private Aggregator aggregator;
+  @InjectMocks private Aggregator aggregator;
 
-  @Mock
-  private ProductInformationClient informationClient;
+  @Mock private ProductInformationClient informationClient;
 
-  @Mock
-  private ProductInventoryClient inventoryClient;
+  @Mock private ProductInventoryClient inventoryClient;
 
   @BeforeEach
   public void setup() {
     MockitoAnnotations.openMocks(this);
   }
 
-  /**
-   * Tests getting the data for a desktop client
-   */
+  /** Tests getting the data for a desktop client */
   @Test
   void testGetProduct() {
     var title = "The Product Title.";
@@ -90,5 +83,4 @@ class AggregatorTest {
     assertEquals(title, testProduct.getTitle());
     assertEquals(inventories, testProduct.getProductInventories());
   }
-
 }

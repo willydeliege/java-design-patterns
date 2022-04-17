@@ -46,10 +46,11 @@
 
 package com.iluwatar.poison.pill;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,8 +58,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Date: 12/27/15 - 9:45 PM
@@ -68,6 +67,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ConsumerTest {
 
   private InMemoryAppender appender;
+
+  /**
+   * Create a new message from the given sender with the given message body
+   *
+   * @param sender The sender's name
+   * @param message The message body
+   * @return The message instance
+   */
+  private static Message createMessage(final String sender, final String message) {
+    final var msg = new SimpleMessage();
+    msg.addHeader(Message.Headers.SENDER, sender);
+    msg.addHeader(Message.Headers.DATE, LocalDateTime.now().toString());
+    msg.setBody(message);
+    return msg;
+  }
 
   @BeforeEach
   public void setUp() {
@@ -81,12 +95,12 @@ public class ConsumerTest {
 
   @Test
   void testConsume() throws Exception {
-    final var messages = List.of(
-        createMessage("you", "Hello!"),
-        createMessage("me", "Hi!"),
-        Message.POISON_PILL,
-        createMessage("late_for_the_party", "Hello? Anyone here?")
-    );
+    final var messages =
+        List.of(
+            createMessage("you", "Hello!"),
+            createMessage("me", "Hi!"),
+            Message.POISON_PILL,
+            createMessage("late_for_the_party", "Hello? Anyone here?"));
 
     final var queue = new SimpleMessageQueue(messages.size());
     for (final var message : messages) {
@@ -98,21 +112,6 @@ public class ConsumerTest {
     assertTrue(appender.logContains("Message [Hello!] from [you] received by [NSA]"));
     assertTrue(appender.logContains("Message [Hi!] from [me] received by [NSA]"));
     assertTrue(appender.logContains("Consumer NSA receive request to terminate."));
-  }
-
-  /**
-   * Create a new message from the given sender with the given message body
-   *
-   * @param sender  The sender's name
-   * @param message The message body
-   * @return The message instance
-   */
-  private static Message createMessage(final String sender, final String message) {
-    final var msg = new SimpleMessage();
-    msg.addHeader(Message.Headers.SENDER, sender);
-    msg.addHeader(Message.Headers.DATE, LocalDateTime.now().toString());
-    msg.setBody(message);
-    return msg;
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -132,5 +131,4 @@ public class ConsumerTest {
       return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
-
 }

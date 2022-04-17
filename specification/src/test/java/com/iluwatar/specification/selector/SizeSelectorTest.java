@@ -46,14 +46,14 @@
 
 package com.iluwatar.specification.selector;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Size;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Size;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:43 PM
@@ -62,9 +62,7 @@ import static org.mockito.Mockito.when;
  */
 public class SizeSelectorTest {
 
-  /**
-   * Verify if the size selector gives the correct results
-   */
+  /** Verify if the size selector gives the correct results */
   @Test
   void testMovement() {
     final var normalCreature = mock(Creature.class);
@@ -77,5 +75,4 @@ public class SizeSelectorTest {
     assertTrue(normalSelector.test(normalCreature));
     assertFalse(normalSelector.test(smallCreature));
   }
-
 }

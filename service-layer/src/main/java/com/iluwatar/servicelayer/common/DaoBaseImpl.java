@@ -46,13 +46,13 @@
 
 package com.iluwatar.servicelayer.common;
 
+import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
-import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 
 /**
  * Base class for Dao implementations.
@@ -62,8 +62,9 @@ import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
 
   @SuppressWarnings("unchecked")
-  protected Class<E> persistentClass = (Class<E>) ((ParameterizedType) getClass()
-      .getGenericSuperclass()).getActualTypeArguments()[0];
+  protected Class<E> persistentClass =
+      (Class<E>)
+          ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
   /*
    * Making this getSessionFactory() instead of getSession() so that it is the responsibility

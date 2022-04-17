@@ -46,11 +46,11 @@
 
 package com.iluwatar.templatemethod;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 18:15 PM
@@ -59,9 +59,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
  */
 public class HalflingThiefTest {
 
-  /**
-   * Verify if the thief uses the provided stealing method
-   */
+  /** Verify if the thief uses the provided stealing method */
   @Test
   void testSteal() {
     final var method = mock(StealingMethod.class);
@@ -73,9 +71,7 @@ public class HalflingThiefTest {
     verifyNoMoreInteractions(method);
   }
 
-  /**
-   * Verify if the thief uses the provided stealing method, and the new method after changing it
-   */
+  /** Verify if the thief uses the provided stealing method, and the new method after changing it */
   @Test
   void testChangeMethod() {
     final var initialMethod = mock(StealingMethod.class);
@@ -91,6 +87,5 @@ public class HalflingThiefTest {
     verify(newMethod).steal();
 
     verifyNoMoreInteractions(initialMethod, newMethod);
-
   }
 }

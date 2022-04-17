@@ -75,6 +75,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   private final Optional<String> sergeantResponse;
   /** The optional expected response when being visited by a soldier. */
   private final Optional<String> soldierResponse;
+
   private InMemoryAppender appender;
 
   /**

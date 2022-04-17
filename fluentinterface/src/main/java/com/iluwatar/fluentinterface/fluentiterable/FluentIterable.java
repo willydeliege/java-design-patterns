@@ -62,11 +62,24 @@ import java.util.function.Predicate;
 public interface FluentIterable<E> extends Iterable<E> {
 
   /**
+   * Utility method that iterates over iterable and adds the contents to a list.
+   *
+   * @param iterable the iterable to collect
+   * @param <E> the type of the objects to iterate
+   * @return a list with all objects of the given iterator
+   */
+  static <E> List<E> copyToList(Iterable<E> iterable) {
+    var copy = new ArrayList<E>();
+    iterable.forEach(copy::add);
+    return copy;
+  }
+
+  /**
    * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy
    * the predicate.
    *
    * @param predicate the condition to test with for the filtering. If the test is negative, the
-   *                  tested object is removed by the iterator.
+   *     tested object is removed by the iterator.
    * @return a filtered FluentIterable
    */
   FluentIterable<E> filter(Predicate<? super E> predicate);
@@ -104,7 +117,7 @@ public interface FluentIterable<E> extends Iterable<E> {
    * Transforms this FluentIterable into a new one containing objects of the type T.
    *
    * @param function a function that transforms an instance of E into an instance of T
-   * @param <T>      the target type of the transformation
+   * @param <T> the target type of the transformation
    * @return a new FluentIterable of the new type
    */
   <T> FluentIterable<T> map(Function<? super E, T> function);
@@ -115,17 +128,4 @@ public interface FluentIterable<E> extends Iterable<E> {
    * @return a List representation of this Iterable
    */
   List<E> asList();
-
-  /**
-   * Utility method that iterates over iterable and adds the contents to a list.
-   *
-   * @param iterable the iterable to collect
-   * @param <E>      the type of the objects to iterate
-   * @return a list with all objects of the given iterator
-   */
-  static <E> List<E> copyToList(Iterable<E> iterable) {
-    var copy = new ArrayList<E>();
-    iterable.forEach(copy::add);
-    return copy;
-  }
 }

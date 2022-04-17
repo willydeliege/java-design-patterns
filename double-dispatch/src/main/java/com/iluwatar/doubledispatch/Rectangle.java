@@ -49,9 +49,7 @@ package com.iluwatar.doubledispatch;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Rectangle has coordinates and can be checked for overlap against other Rectangles.
- */
+/** Rectangle has coordinates and can be checked for overlap against other Rectangles. */
 @Getter
 @RequiredArgsConstructor
 public class Rectangle {
@@ -62,8 +60,10 @@ public class Rectangle {
   private final int bottom;
 
   boolean intersectsWith(Rectangle r) {
-    return !(r.getLeft() > getRight() || r.getRight() < getLeft() || r.getTop() > getBottom() || r
-        .getBottom() < getTop());
+    return !(r.getLeft() > getRight()
+        || r.getRight() < getLeft()
+        || r.getTop() > getBottom()
+        || r.getBottom() < getTop());
   }
 
   @Override

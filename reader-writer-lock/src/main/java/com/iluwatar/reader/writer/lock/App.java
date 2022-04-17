@@ -46,11 +46,10 @@
 
 package com.iluwatar.reader.writer.lock;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In a multiple thread applications, the threads may try to synchronize the shared resources
@@ -109,7 +108,6 @@ public class App {
     }
     LOGGER.info("More readers added...");
 
-
     // In the system console, it can see that the read operations are executed concurrently while
     // write operations are exclusive.
     executeService.shutdown();
@@ -119,7 +117,5 @@ public class App {
       LOGGER.error("Error waiting for ExecutorService shutdown", e);
       Thread.currentThread().interrupt();
     }
-
   }
-
 }

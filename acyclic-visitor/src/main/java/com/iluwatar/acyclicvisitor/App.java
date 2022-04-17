@@ -59,9 +59,7 @@ package com.iluwatar.acyclicvisitor;
  */
 public class App {
 
-  /**
-   * Program's entry point.
-   */
+  /** Program's entry point. */
   public static void main(String[] args) {
     var conUnix = new ConfigureForUnixVisitor();
     var conDos = new ConfigureForDosVisitor();
@@ -72,6 +70,6 @@ public class App {
     hayes.accept(conDos); // Hayes modem with Dos configurator
     zoom.accept(conDos); // Zoom modem with Dos configurator
     hayes.accept(conUnix); // Hayes modem with Unix configurator
-    zoom.accept(conUnix); // Zoom modem with Unix configurator   
+    zoom.accept(conUnix); // Zoom modem with Unix configurator
   }
 }

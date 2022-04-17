@@ -46,15 +46,13 @@
 
 package com.iluwatar.typeobject;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.typeobject.Candy.Type;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * The CellTest class tests the methods in the {@link Cell} class.
- */
+import com.iluwatar.typeobject.Candy.Type;
+import org.junit.jupiter.api.Test;
+
+/** The CellTest class tests the methods in the {@link Cell} class. */
 class CellTest {
 
   @Test

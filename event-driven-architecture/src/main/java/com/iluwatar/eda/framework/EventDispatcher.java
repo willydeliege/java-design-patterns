@@ -65,12 +65,9 @@ public class EventDispatcher {
    * Links an {@link Event} to a specific {@link Handler}.
    *
    * @param eventType The {@link Event} to be registered
-   * @param handler   The {@link Handler} that will be handling the {@link Event}
+   * @param handler The {@link Handler} that will be handling the {@link Event}
    */
-  public <E extends Event> void registerHandler(
-      Class<E> eventType,
-      Handler<E> handler
-  ) {
+  public <E extends Event> void registerHandler(Class<E> eventType, Handler<E> handler) {
     handlers.put(eventType, handler);
   }
 
@@ -86,5 +83,4 @@ public class EventDispatcher {
       handler.onEvent(event);
     }
   }
-
 }

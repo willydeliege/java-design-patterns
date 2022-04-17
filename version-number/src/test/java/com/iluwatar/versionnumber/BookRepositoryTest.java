@@ -46,15 +46,13 @@
 
 package com.iluwatar.versionnumber;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-/**
- * Tests for {@link BookRepository}
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link BookRepository} */
 class BookRepositoryTest {
   private final long bookId = 1;
   private final BookRepository bookRepository = new BookRepository();
@@ -73,7 +71,8 @@ class BookRepositoryTest {
   }
 
   @Test
-  void testAliceAndBobHaveDifferentVersionsAfterAliceUpdate() throws BookNotFoundException, VersionMismatchException {
+  void testAliceAndBobHaveDifferentVersionsAfterAliceUpdate()
+      throws BookNotFoundException, VersionMismatchException {
     final var aliceBook = bookRepository.get(bookId);
     final var bobBook = bookRepository.get(bookId);
 
@@ -89,7 +88,8 @@ class BookRepositoryTest {
   }
 
   @Test
-  void testShouldThrowVersionMismatchExceptionOnStaleUpdate() throws BookNotFoundException, VersionMismatchException {
+  void testShouldThrowVersionMismatchExceptionOnStaleUpdate()
+      throws BookNotFoundException, VersionMismatchException {
     final var aliceBook = bookRepository.get(bookId);
     final var bobBook = bookRepository.get(bookId);
 

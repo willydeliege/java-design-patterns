@@ -1,24 +1,29 @@
 ---
 layout: pattern  
-title: Sharding 
+title: Sharding
 folder: sharding  
 permalink: /patterns/sharding/  
 categories: Behavioral
 language: zh
-tags:  
- - Performance
- - Cloud distributed
+tags:
+
+- Performance
+- Cloud distributed
+
 ---
 
-## 含义 
+## 含义
+
 分片模式是指将数据存储划分为水平分区或分片。每个分片都有相同的模式，但持有自己独特的数据子集。
 
 一个分片本身就是一个数据存储（它可以包含许多不同类型的实体的数据），运行在作为存储节点的服务器上。
 
 ## 类图
+
 ![alt text](../../../sharding/etc/sharding.urm.png "Sharding pattern class diagram")
 
-## 适用场景 
+## 适用场景
+
 这种设计模式提供了一下的好处：
 
 - 你可以通过增加在额外的存储节点上，运行的更多分片来实现系统扩容。

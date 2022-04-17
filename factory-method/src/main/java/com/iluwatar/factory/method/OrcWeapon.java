@@ -49,9 +49,7 @@ package com.iluwatar.factory.method;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * OrcWeapon.
- */
+/** OrcWeapon. */
 @RequiredArgsConstructor
 @Getter
 public class OrcWeapon implements Weapon {

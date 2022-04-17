@@ -6,11 +6,14 @@ permalink: /patterns/facade/
 categories: Structural
 language: zh
 tags:
- - Gang Of Four
- - Decoupling
+
+- Gang Of Four
+- Decoupling
+
 ---
 
 ## 目的
+
 为一个子系统中的一系列接口提供一个统一的接口。外观定义了一个更高级别的接口以便子系统更容易使用。
 
 ## 解释
@@ -32,6 +35,7 @@ tags:
 使用上面金矿的例子。这里我们有矮人的矿工等级制度。
 
 ```java
+
 @Slf4j
 public abstract class DwarvenMineWorker {
 
@@ -139,10 +143,10 @@ public class DwarvenGoldmineFacade {
   private final List<DwarvenMineWorker> workers;
 
   public DwarvenGoldmineFacade() {
-      workers = List.of(
-            new DwarvenGoldDigger(),
-            new DwarvenCartOperator(),
-            new DwarvenTunnelDigger());
+    workers = List.of(
+        new DwarvenGoldDigger(),
+        new DwarvenCartOperator(),
+        new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {
@@ -167,19 +171,19 @@ public class DwarvenGoldmineFacade {
 现在来使用外观
 
 ```java
-DwarvenGoldmineFacade facade = new DwarvenGoldmineFacade();
-facade.startNewDay();
+DwarvenGoldmineFacade facade=new DwarvenGoldmineFacade();
+    facade.startNewDay();
 // Dwarf gold digger wakes up.
 // Dwarf gold digger goes to the mine.
 // Dwarf cart operator wakes up.
 // Dwarf cart operator goes to the mine.
 // Dwarven tunnel digger wakes up.
 // Dwarven tunnel digger goes to the mine.
-facade.digOutGold();
+    facade.digOutGold();
 // Dwarf gold digger digs for gold.
 // Dwarf cart operator moves gold chunks out of the mine.
 // Dwarven tunnel digger creates another promising tunnel.
-facade.endDay();
+    facade.endDay();
 // Dwarf gold digger goes home.
 // Dwarf gold digger goes to sleep.
 // Dwarf cart operator goes home.
@@ -189,12 +193,16 @@ facade.endDay();
 ```
 
 ## 类图
+
 ![alt text](../../../facade/etc/facade.urm.png "Facade pattern class diagram")
 
 ## 适用性
+
 使用外观模式当
 
-* 你想为一个复杂的子系统提供一个简单的接口。随着子系统的发展，它们通常会变得更加复杂。多数模式在应用时会导致更多和更少的类。这使子系统更可重用，更易于自定义，但是对于不需要自定义它的客户来说，使用它也变得更加困难。 外观可以提供子系统的简单默认视图，足以满足大多数客户端的需求。只有需要更多可定制性的客户才需要查看外观外的东西（原子系统提供的接口）。
+*
+你想为一个复杂的子系统提供一个简单的接口。随着子系统的发展，它们通常会变得更加复杂。多数模式在应用时会导致更多和更少的类。这使子系统更可重用，更易于自定义，但是对于不需要自定义它的客户来说，使用它也变得更加困难。
+外观可以提供子系统的简单默认视图，足以满足大多数客户端的需求。只有需要更多可定制性的客户才需要查看外观外的东西（原子系统提供的接口）。
 * 客户端与抽象的实现类之间存在许多依赖关系。 引入外观以使子系统与客户端和其他子系统分离，从而提高子系统的独立性和可移植性。
 * 您想对子系统进行分层。 使用外观来定义每个子系统级别的入口点。 如果子系统是相关的，则可以通过使子系统仅通过其外观相互通信来简化它们之间的依赖性。
 

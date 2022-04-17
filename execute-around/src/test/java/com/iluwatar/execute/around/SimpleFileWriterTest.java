@@ -46,6 +46,10 @@
 
 package com.iluwatar.execute.around;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -55,10 +59,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * Date: 12/12/15 - 3:21 PM
  *
@@ -67,8 +67,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @EnableRuleMigrationSupport
 class SimpleFileWriterTest {
 
-  @Rule
-  public final TemporaryFolder testFolder = new TemporaryFolder();
+  @Rule public final TemporaryFolder testFolder = new TemporaryFolder();
 
   @Test
   void testWriterNotNull() throws Exception {
@@ -99,12 +98,16 @@ class SimpleFileWriterTest {
   @Test
   void testRipplesIoExceptionOccurredWhileWriting() {
     var message = "Some error";
-    assertThrows(IOException.class, () -> {
-      final var temporaryFile = this.testFolder.newFile();
-      new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-        throw new IOException(message);
-      });
-    }, message);
+    assertThrows(
+        IOException.class,
+        () -> {
+          final var temporaryFile = this.testFolder.newFile();
+          new SimpleFileWriter(
+              temporaryFile.getPath(),
+              writer -> {
+                throw new IOException(message);
+              });
+        },
+        message);
   }
-
 }

@@ -6,7 +6,9 @@ permalink: /patterns/business-delegate/
 categories: Structural
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
@@ -30,9 +32,9 @@ In Plain Words
 
 Wikipedia says
 
-> Business delegate is a Java EE design pattern. This pattern is directing to reduce the coupling 
-> in between business services and the connected presentation tier, and to hide the implementation 
-> details of services (including lookup and accessibility of EJB architecture). Business delegates 
+> Business delegate is a Java EE design pattern. This pattern is directing to reduce the coupling
+> in between business services and the connected presentation tier, and to hide the implementation
+> details of services (including lookup and accessibility of EJB architecture). Business delegates
 > acts as an adaptor to invoke business objects from the presentation tier.
 
 **Programmatic Example**
@@ -41,11 +43,13 @@ First, we have an abstraction for video streaming services and a couple of imple
 
 ```java
 public interface VideoStreamingService {
+
   void doProcessing();
 }
 
 @Slf4j
 public class NetflixService implements VideoStreamingService {
+
   @Override
   public void doProcessing() {
     LOGGER.info("NetflixService is now processing");
@@ -54,6 +58,7 @@ public class NetflixService implements VideoStreamingService {
 
 @Slf4j
 public class YouTubeService implements VideoStreamingService {
+
   @Override
   public void doProcessing() {
     LOGGER.info("YouTubeService is now processing");
@@ -64,6 +69,7 @@ public class YouTubeService implements VideoStreamingService {
 Then we have a lookup service that decides which video streaming service is used.
 
 ```java
+
 @Setter
 public class BusinessLookup {
 
@@ -84,6 +90,7 @@ The business delegate uses a business lookup to route movie playback requests to
 video streaming service.
 
 ```java
+
 @Setter
 public class BusinessDelegate {
 
@@ -116,20 +123,20 @@ public class MobileClient {
 Finally, we can show the full example in action.
 
 ```java
-  public static void main(String[] args) {
+  public static void main(String[]args){
 
     // prepare the objects
-    var businessDelegate = new BusinessDelegate();
-    var businessLookup = new BusinessLookup();
+    var businessDelegate=new BusinessDelegate();
+    var businessLookup=new BusinessLookup();
     businessLookup.setNetflixService(new NetflixService());
     businessLookup.setYouTubeService(new YouTubeService());
     businessDelegate.setLookupService(businessLookup);
 
     // create the client and use the business delegate
-    var client = new MobileClient(businessDelegate);
+    var client=new MobileClient(businessDelegate);
     client.playbackMovie("Die Hard 2");
     client.playbackMovie("Maradona: The Greatest Ever");
-  }
+    }
 ```
 
 Here is the console output.

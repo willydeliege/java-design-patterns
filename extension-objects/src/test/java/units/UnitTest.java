@@ -46,14 +46,12 @@
 
 package units;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Created by Srdjan on 03-May-17.
- */
+import org.junit.jupiter.api.Test;
+
+/** Created by Srdjan on 03-May-17. */
 class UnitTest {
 
   @Test
@@ -66,11 +64,9 @@ class UnitTest {
     unit.setName(newName);
     assertEquals(newName, unit.getName());
 
-
     assertNull(unit.getUnitExtension(""));
     assertNull(unit.getUnitExtension("SoldierExtension"));
     assertNull(unit.getUnitExtension("SergeantExtension"));
     assertNull(unit.getUnitExtension("CommanderExtension"));
   }
-
 }

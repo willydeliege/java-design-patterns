@@ -46,11 +46,10 @@
 
 package com.iluwatar.threadpool;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Thread Pool pattern is where a number of threads are created to perform a number of tasks, which
@@ -78,22 +77,23 @@ public class App {
     LOGGER.info("Program started");
 
     // Create a list of tasks to be executed
-    var tasks = List.of(
-        new PotatoPeelingTask(3),
-        new PotatoPeelingTask(6),
-        new CoffeeMakingTask(2),
-        new CoffeeMakingTask(6),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(2),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(9),
-        new PotatoPeelingTask(3),
-        new CoffeeMakingTask(2),
-        new PotatoPeelingTask(4),
-        new CoffeeMakingTask(2),
-        new CoffeeMakingTask(7),
-        new PotatoPeelingTask(4),
-        new PotatoPeelingTask(5));
+    var tasks =
+        List.of(
+            new PotatoPeelingTask(3),
+            new PotatoPeelingTask(6),
+            new CoffeeMakingTask(2),
+            new CoffeeMakingTask(6),
+            new PotatoPeelingTask(4),
+            new CoffeeMakingTask(2),
+            new PotatoPeelingTask(4),
+            new CoffeeMakingTask(9),
+            new PotatoPeelingTask(3),
+            new CoffeeMakingTask(2),
+            new PotatoPeelingTask(4),
+            new CoffeeMakingTask(2),
+            new CoffeeMakingTask(7),
+            new PotatoPeelingTask(4),
+            new PotatoPeelingTask(5));
 
     // Creates a thread pool that reuses a fixed number of threads operating off a shared
     // unbounded queue. At any point, at most nThreads threads will be active processing

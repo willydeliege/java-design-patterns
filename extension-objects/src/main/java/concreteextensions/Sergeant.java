@@ -52,9 +52,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import units.SergeantUnit;
 
-/**
- * Class defining Sergeant.
- */
+/** Class defining Sergeant. */
 @Getter
 @RequiredArgsConstructor
 @Slf4j
@@ -66,5 +64,4 @@ public class Sergeant implements SergeantExtension {
   public void sergeantReady() {
     LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
   }
-
 }

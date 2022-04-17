@@ -48,9 +48,7 @@ package com.iluwatar.specification.property;
 
 import lombok.EqualsAndHashCode;
 
-/**
- * Mass property.
- */
+/** Mass property. */
 @EqualsAndHashCode
 public class Mass {
 
@@ -82,5 +80,4 @@ public class Mass {
   public String toString() {
     return title;
   }
-
 }

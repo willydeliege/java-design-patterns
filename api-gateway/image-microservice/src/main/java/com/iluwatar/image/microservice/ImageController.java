@@ -47,14 +47,10 @@
 package com.iluwatar.image.microservice;
 
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-/**
- * Exposes the Image microservice's endpoints.
- */
+/** Exposes the Image microservice's endpoints. */
 @Slf4j
 @RestController
 public class ImageController {

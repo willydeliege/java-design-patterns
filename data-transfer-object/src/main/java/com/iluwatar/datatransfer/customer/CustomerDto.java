@@ -61,5 +61,4 @@ public class CustomerDto {
   private final String id;
   private final String firstName;
   private final String lastName;
-
 }

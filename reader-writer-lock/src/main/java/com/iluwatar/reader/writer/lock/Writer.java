@@ -46,13 +46,10 @@
 
 package com.iluwatar.reader.writer.lock;
 
+import java.util.concurrent.locks.Lock;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.locks.Lock;
-
-/**
- * Writer class, write when it acquired the write lock.
- */
+/** Writer class, write when it acquired the write lock. */
 @Slf4j
 public class Writer implements Runnable {
 
@@ -65,7 +62,7 @@ public class Writer implements Runnable {
   /**
    * Create new Writer who writes for 250ms.
    *
-   * @param name      - Name of the thread owning the writer
+   * @param name - Name of the thread owning the writer
    * @param writeLock - Lock for this writer
    */
   public Writer(String name, Lock writeLock) {
@@ -75,8 +72,8 @@ public class Writer implements Runnable {
   /**
    * Create new Writer.
    *
-   * @param name        - Name of the thread owning the writer
-   * @param writeLock   - Lock for this writer
+   * @param name - Name of the thread owning the writer
+   * @param writeLock - Lock for this writer
    * @param writingTime - amount of time (in milliseconds) for this reader to engage writing
    */
   public Writer(String name, Lock writeLock, long writingTime) {
@@ -84,7 +81,6 @@ public class Writer implements Runnable {
     this.writeLock = writeLock;
     this.writingTime = writingTime;
   }
-
 
   @Override
   public void run() {
@@ -99,9 +95,7 @@ public class Writer implements Runnable {
     }
   }
 
-  /**
-   * Simulate the write operation.
-   */
+  /** Simulate the write operation. */
   public void write() throws InterruptedException {
     LOGGER.info("{} begin", name);
     Thread.sleep(writingTime);

@@ -6,7 +6,9 @@ permalink: /patterns/business-delegate/
 categories: Structural
 language: zh
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## 意图
@@ -21,7 +23,7 @@ tags:
 
 通俗的说
 
-> 业务委托模式在表示层和业务层之间添加了一个抽象层。 
+> 业务委托模式在表示层和业务层之间添加了一个抽象层。
 
 维基百科说
 
@@ -33,11 +35,13 @@ tags:
 
 ```java
 public interface VideoStreamingService {
+
   void doProcessing();
 }
 
 @Slf4j
 public class NetflixService implements VideoStreamingService {
+
   @Override
   public void doProcessing() {
     LOGGER.info("NetflixService is now processing");
@@ -46,6 +50,7 @@ public class NetflixService implements VideoStreamingService {
 
 @Slf4j
 public class YouTubeService implements VideoStreamingService {
+
   @Override
   public void doProcessing() {
     LOGGER.info("YouTubeService is now processing");
@@ -56,6 +61,7 @@ public class YouTubeService implements VideoStreamingService {
 然后我们有一个查找服务来决定我们使用哪个视频流服务。
 
 ```java
+
 @Setter
 public class BusinessLookup {
 
@@ -75,6 +81,7 @@ public class BusinessLookup {
 业务委托类使用业务查找服务将电影播放请求路由到合适的视频流服务。
 
 ```java
+
 @Setter
 public class BusinessDelegate {
 
@@ -107,20 +114,20 @@ public class MobileClient {
 最后我们展示完整示例。
 
 ```java
-  public static void main(String[] args) {
+  public static void main(String[]args){
 
     // prepare the objects
-    var businessDelegate = new BusinessDelegate();
-    var businessLookup = new BusinessLookup();
+    var businessDelegate=new BusinessDelegate();
+    var businessLookup=new BusinessLookup();
     businessLookup.setNetflixService(new NetflixService());
     businessLookup.setYouTubeService(new YouTubeService());
     businessDelegate.setLookupService(businessLookup);
 
     // create the client and use the business delegate
-    var client = new MobileClient(businessDelegate);
+    var client=new MobileClient(businessDelegate);
     client.playbackMovie("Die Hard 2");
     client.playbackMovie("Maradona: The Greatest Ever");
-  }
+    }
 ```
 
 这是控制台的输出。

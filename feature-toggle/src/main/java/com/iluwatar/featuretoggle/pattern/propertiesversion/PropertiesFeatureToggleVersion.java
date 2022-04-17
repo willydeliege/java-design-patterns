@@ -46,11 +46,10 @@
 
 package com.iluwatar.featuretoggle.pattern.propertiesversion;
 
-import lombok.Getter;
-
-import java.util.Properties;
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
+import java.util.Properties;
+import lombok.Getter;
 
 /**
  * This example of the Feature Toogle pattern is less dynamic version than {@link
@@ -69,8 +68,8 @@ import com.iluwatar.featuretoggle.user.User;
 public class PropertiesFeatureToggleVersion implements Service {
 
   /**
-   * True if the welcome message to be returned is the enhanced venison or not. For
-   * this service it will see the value of the boolean that was set in the constructor {@link
+   * True if the welcome message to be returned is the enhanced venison or not. For this service it
+   * will see the value of the boolean that was set in the constructor {@link
    * PropertiesFeatureToggleVersion#PropertiesFeatureToggleVersion(Properties)}
    */
   private final boolean enhanced;
@@ -103,9 +102,9 @@ public class PropertiesFeatureToggleVersion implements Service {
    * passed {@link User}. However if disabled then a generic version fo the message is returned.
    *
    * @param user the {@link User} to be displayed in the message if the enhanced version is enabled
-   *             see {@link PropertiesFeatureToggleVersion#isEnhanced()}. If the enhanced version is
-   *             enabled, then the message will be personalised with the name of the passed {@link
-   *             User}. However if disabled then a generic version fo the message is returned.
+   *     see {@link PropertiesFeatureToggleVersion#isEnhanced()}. If the enhanced version is
+   *     enabled, then the message will be personalised with the name of the passed {@link User}.
+   *     However if disabled then a generic version fo the message is returned.
    * @return Resulting welcome message.
    * @see User
    */

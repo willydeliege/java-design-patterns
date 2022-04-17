@@ -23,13 +23,9 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.iluwatar</groupId>
-    <artifactId>naked-objects</artifactId>
-    <version>1.26.0-SNAPSHOT</version>
-  </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <artifactId>naked-objects-integtests</artifactId>
   <build>
     <testResources>
@@ -38,73 +34,73 @@
       </testResource>
       <testResource>
         <directory>src/test/java</directory>
-        <includes>
-          <include>**</include>
-        </includes>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
+        <includes>
+          <include>**</include>
+        </includes>
       </testResource>
     </testResources>
   </build>
   <dependencies>
     <!-- other modules in this project -->
     <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>naked-objects-fixture</artifactId>
+      <groupId>${project.groupId}</groupId>
     </dependency>
     <dependency>
-      <groupId>org.apache.isis.core</groupId>
       <artifactId>isis-core-unittestsupport</artifactId>
+      <groupId>org.apache.isis.core</groupId>
     </dependency>
     <dependency>
-      <groupId>org.apache.isis.core</groupId>
       <artifactId>isis-core-integtestsupport</artifactId>
+      <groupId>org.apache.isis.core</groupId>
     </dependency>
     <dependency>
-      <groupId>org.apache.isis.core</groupId>
       <artifactId>isis-core-specsupport</artifactId>
+      <groupId>org.apache.isis.core</groupId>
     </dependency>
     <dependency>
-      <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-library</artifactId>
-        <version>2.2</version>
+      <groupId>org.hamcrest</groupId>
+      <version>2.2</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.isis.core</groupId>
       <artifactId>isis-core-wrapper</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.apache.isis.core</groupId>
-      <artifactId>isis-core-runtime</artifactId>
     </dependency>
-      <dependency>
-          <groupId>org.assertj</groupId>
-          <artifactId>assertj-core</artifactId>
-          <version>3.22.0</version>
-          <scope>test</scope>
-      </dependency>
     <dependency>
-      <groupId>org.junit.vintage</groupId>
+      <artifactId>isis-core-runtime</artifactId>
+      <groupId>org.apache.isis.core</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>assertj-core</artifactId>
+      <groupId>org.assertj</groupId>
+      <scope>test</scope>
+      <version>3.22.0</version>
+    </dependency>
+    <dependency>
       <artifactId>junit-vintage-engine</artifactId>
+      <groupId>org.junit.vintage</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-        <version>2.6.1</version>
+      <groupId>org.hsqldb</groupId>
+      <version>2.6.1</version>
     </dependency>
     <dependency>
-      <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
+      <groupId>javax.annotation</groupId>
     </dependency>
-    <!-- 
+    <!--
         uncomment to enable enhanced cucumber-jvm reporting
         http://www.masterthought.net/section/cucumber-reporting
-        <dependency>  
-            <groupId>com.googlecode.totallylazy</groupId>  
-            <artifactId>totallylazy</artifactId>  
-            <version>991</version>  
+        <dependency>
+            <groupId>com.googlecode.totallylazy</groupId>
+            <artifactId>totallylazy</artifactId>
+            <version>991</version>
         </dependency>
 
         <dependency>
@@ -116,9 +112,15 @@
             <groupId>net.masterthought</groupId>
             <artifactId>maven-cucumber-reporting</artifactId>
             <version>0.0.4</version>
-        </dependency>  
+        </dependency>
         -->
   </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>naked-objects</artifactId>
+    <groupId>com.iluwatar</groupId>
+    <version>1.26.0-SNAPSHOT</version>
+  </parent>
   <!-- 
     uncomment for enhanced cucumber-jvm reporting
     http://www.masterthought.net/section/cucumber-reporting

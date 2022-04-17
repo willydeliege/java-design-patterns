@@ -46,14 +46,13 @@
 
 package com.iluwatar.halfsynchalfasync;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the asynchronous layer which does not block when a new request arrives. It just passes
@@ -81,7 +80,6 @@ public class AsynchronousService {
     service = new ThreadPoolExecutor(10, 10, 10, TimeUnit.SECONDS, workQueue);
   }
 
-
   /**
    * A non-blocking method which performs the task provided in background and returns immediately.
    *
@@ -102,30 +100,29 @@ public class AsynchronousService {
       return;
     }
 
-    service.submit(new FutureTask<T>(task) {
-      @Override
-      protected void done() {
-        super.done();
-        try {
-          /*
-           * called in context of background thread. There is other variant possible where result is
-           * posted back and sits in the queue of caller thread which then picks it up for
-           * processing. An example of such a system is Android OS, where the UI elements can only
-           * be updated using UI thread. So result must be posted back in UI thread.
-           */
-          task.onPostCall(get());
-        } catch (InterruptedException e) {
-          // should not occur
-        } catch (ExecutionException e) {
-          task.onError(e.getCause());
-        }
-      }
-    });
+    service.submit(
+        new FutureTask<T>(task) {
+          @Override
+          protected void done() {
+            super.done();
+            try {
+              /*
+               * called in context of background thread. There is other variant possible where result is
+               * posted back and sits in the queue of caller thread which then picks it up for
+               * processing. An example of such a system is Android OS, where the UI elements can only
+               * be updated using UI thread. So result must be posted back in UI thread.
+               */
+              task.onPostCall(get());
+            } catch (InterruptedException e) {
+              // should not occur
+            } catch (ExecutionException e) {
+              task.onError(e.getCause());
+            }
+          }
+        });
   }
 
-  /**
-   * Stops the pool of workers. This is a blocking call to wait for all tasks to be completed.
-   */
+  /** Stops the pool of workers. This is a blocking call to wait for all tasks to be completed. */
   public void close() {
     service.shutdown();
     try {

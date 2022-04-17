@@ -6,20 +6,29 @@ permalink: /patterns/eip-splitter/
 categories: Integration
 language: en
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## Intent
-It is very common in integration systems that incoming messages consists of many items bundled together. For example
-an invoice document contains multiple invoice lines describing transaction (quantity, name of provided
-service/sold goods, price etc.). Such bundled messages may not be accepted by other systems. This is where splitter
-pattern comes in handy. It will take the whole document, split it based on given criteria and send individual
+
+It is very common in integration systems that incoming messages consists of many items bundled
+together. For example
+an invoice document contains multiple invoice lines describing transaction (quantity, name of
+provided
+service/sold goods, price etc.). Such bundled messages may not be accepted by other systems. This is
+where splitter
+pattern comes in handy. It will take the whole document, split it based on given criteria and send
+individual
 items to the endpoint.
 
 ## Diagram
+
 ![alt text](/etc/sequencer.gif "Splitter")
 
 ## Applicability
+
 Use the Splitter pattern when
 
 * You need to split received data into smaller pieces to process them individually

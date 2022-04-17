@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -58,6 +58,7 @@ import java.util.logging.Logger;
 
 /**
  * This class read and drop message from Azure blob storage.
+ *
  * @param <T> represents UsageDetail or UsageCostDetail
  */
 public class MessageHandlerUtility<T> {
@@ -66,25 +67,26 @@ public class MessageHandlerUtility<T> {
 
   /**
    * Parameterized constructor.
+   *
    * @param blobServiceClient represents BlobServiceClient
    */
   public MessageHandlerUtility(BlobServiceClient blobServiceClient) {
     this.blobServiceClient = blobServiceClient;
   }
 
-  /**
-   * Default constructor.
-   */
+  /** Default constructor. */
   public MessageHandlerUtility() {
     // Create a BlobServiceClient object which will be used to create a container
     // client
-    this.blobServiceClient = new BlobServiceClientBuilder()
-        .connectionString(System.getenv("BlobStorageConnectionString")).buildClient();
-
+    this.blobServiceClient =
+        new BlobServiceClientBuilder()
+            .connectionString(System.getenv("BlobStorageConnectionString"))
+            .buildClient();
   }
 
   /**
    * Read message from blob storage.
+   *
    * @param messageReference represents MessageReference
    * @param logger represents Logger
    * @return Message
@@ -106,17 +108,16 @@ public class MessageHandlerUtility<T> {
       BlobClient blobClient = containerClient.getBlobClient(blobName);
 
       // download the blob
-      message = blobClient.downloadContent().toObject(new TypeReference<Message<T>>() {
-      });
+      message = blobClient.downloadContent().toObject(new TypeReference<Message<T>>() {});
     } catch (Exception e) {
       logger.info(e.getMessage());
     }
     return message;
-
   }
 
   /**
    * Drop message to blob storage.
+   *
    * @param message represents Message
    * @param logger represents Logger
    */
@@ -130,8 +131,8 @@ public class MessageHandlerUtility<T> {
       String containerName = messageReference.getDataLocation();
 
       // Create the container and return a container client object
-      BlobContainerClient containerClient = this.blobServiceClient
-          .getBlobContainerClient(containerName);
+      BlobContainerClient containerClient =
+          this.blobServiceClient.getBlobContainerClient(containerName);
       if (!containerClient.exists()) {
         containerClient.create();
       }
@@ -144,7 +145,5 @@ public class MessageHandlerUtility<T> {
     } catch (Exception e) {
       logger.info(e.getMessage());
     }
-
   }
-
 }

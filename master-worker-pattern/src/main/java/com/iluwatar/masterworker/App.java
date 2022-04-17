@@ -46,23 +46,23 @@
 
 package com.iluwatar.masterworker;
 
-import lombok.extern.slf4j.Slf4j;
-
 import com.iluwatar.masterworker.system.ArrayTransposeMasterWorker;
 import com.iluwatar.masterworker.system.MasterWorker;
 import com.iluwatar.masterworker.system.systemmaster.ArrayTransposeMaster;
 import com.iluwatar.masterworker.system.systemmaster.Master;
 import com.iluwatar.masterworker.system.systemworkers.ArrayTransposeWorker;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>The <b><em>Master-Worker</em></b> pattern is used when the problem at hand can be solved by
+ * The <b><em>Master-Worker</em></b> pattern is used when the problem at hand can be solved by
  * dividing into multiple parts which need to go through the same computation and may need to be
  * aggregated to get final result. Parallel processing is performed using a system consisting of a
  * master and some number of workers, where a master divides the work among the workers, gets the
  * result back from them and assimilates all the results to give final result. The only
  * communication is between the master and the worker - none of the workers communicate among one
- * another and the user only communicates with the master to get required job done.</p>
+ * another and the user only communicates with the master to get required job done.
+ *
  * <p>In our example, we have generic abstract classes {@link MasterWorker}, {@link Master} and
  * {@link Worker} which have to be extended by the classes which will perform the specific job at
  * hand (in this case finding transpose of matrix, done by {@link ArrayTransposeMasterWorker},
@@ -75,9 +75,8 @@ import com.iluwatar.masterworker.system.systemworkers.Worker;
  * result. We also have 2 abstract classes {@link Input} and {@link Result}, which contain the input
  * data and result data respectively. The Input class also has an abstract method divideData which
  * defines how the data is to be divided into segments. These classes are extended by {@link
- * ArrayInput} and {@link ArrayResult}.</p>
+ * ArrayInput} and {@link ArrayResult}.
  */
-
 @Slf4j
 public class App {
 
@@ -86,7 +85,6 @@ public class App {
    *
    * @param args command line args
    */
-
   public static void main(String[] args) {
     var mw = new ArrayTransposeMasterWorker();
     var rows = 10;
@@ -101,5 +99,4 @@ public class App {
       LOGGER.info("Please enter non-zero input");
     }
   }
-
 }

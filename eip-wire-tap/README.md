@@ -6,18 +6,26 @@ permalink: /patterns/eip-wire-tap/
 categories: Integration
 language: en
 tags:
- - Enterprise Integration Pattern
+
+- Enterprise Integration Pattern
+
 ---
 
 ## Intent
-In most integration cases there is a need to monitor the messages flowing through the system. It is usually achieved
-by intercepting the message and redirecting it to a different location like console, filesystem or the database.
-It is important that such functionality should not modify the original message and influence the processing path.
+
+In most integration cases there is a need to monitor the messages flowing through the system. It is
+usually achieved
+by intercepting the message and redirecting it to a different location like console, filesystem or
+the database.
+It is important that such functionality should not modify the original message and influence the
+processing path.
 
 ## Diagram
+
 ![alt text](/etc/wiretap.gif "Wire Tap")
 
 ## Applicability
+
 Use the Wire Tap pattern when
 
 * You need to monitor messages flowing through the system

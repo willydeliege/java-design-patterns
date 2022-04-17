@@ -53,11 +53,8 @@ package com.iluwatar.event.aggregator;
  */
 class LordVarysTest extends EventEmitterTest<LordVarys> {
 
-  /**
-   * Create a new test instance, using the correct object factory
-   */
+  /** Create a new test instance, using the correct object factory */
   public LordVarysTest() {
     super(Weekday.SATURDAY, Event.TRAITOR_DETECTED, LordVarys::new, LordVarys::new);
   }
-
 }

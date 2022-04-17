@@ -46,11 +46,11 @@
 
 package com.iluwatar.servicelayer.spell;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.servicelayer.common.BaseDaoTest;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import com.iluwatar.servicelayer.common.BaseDaoTest;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/28/15 - 11:02 PM
@@ -74,5 +74,4 @@ class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
       assertEquals(spell.getName(), spellByName.getName());
     }
   }
-
 }

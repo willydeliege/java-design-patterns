@@ -46,10 +46,9 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * MessageQueue class. In this class we will create a Blocking Queue and submit/retrieve all the
@@ -60,7 +59,7 @@ public class MessageQueue {
 
   private final BlockingQueue<Message> blkQueue;
 
-  // Default constructor when called creates Blocking Queue object. 
+  // Default constructor when called creates Blocking Queue object.
   public MessageQueue() {
     this.blkQueue = new ArrayBlockingQueue<>(1024);
   }

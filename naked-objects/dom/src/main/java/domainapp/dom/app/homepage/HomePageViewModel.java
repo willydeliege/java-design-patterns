@@ -48,7 +48,6 @@ package domainapp.dom.app.homepage;
 
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.dom.modules.simple.SimpleObjects;
-
 import java.util.List;
 import org.apache.isis.applib.annotation.ViewModel;
 
@@ -64,8 +63,7 @@ public class HomePageViewModel {
 
   // region > injected services
 
-  @javax.inject.Inject
-  SimpleObjects simpleObjects;
+  @javax.inject.Inject SimpleObjects simpleObjects;
 
   // endregion
 
@@ -81,5 +79,4 @@ public class HomePageViewModel {
   public List<SimpleObject> getObjects() {
     return simpleObjects.listAll();
   }
-
 }

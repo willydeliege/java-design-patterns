@@ -46,9 +46,7 @@
 
 package com.iluwatar.chain;
 
-/**
- * OrcOfficer.
- */
+/** OrcOfficer. */
 public class OrcOfficer extends RequestHandler {
 
   public OrcOfficer(RequestHandler handler) {
@@ -69,5 +67,4 @@ public class OrcOfficer extends RequestHandler {
   public String toString() {
     return "Orc officer";
   }
-
 }

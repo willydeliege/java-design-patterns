@@ -6,17 +6,22 @@ permalink: /patterns/partial-response/
 categories: Behavioral
 language: en
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## Intent
+
 Send partial response from server to client on need basis. Client will specify the the fields
-that it need to server, instead of serving all details for resource. 
+that it need to server, instead of serving all details for resource.
 
 ## Class diagram
+
 ![alt text](/etc/partial-response.urm.png "partial-response")
 
 ## Applicability
+
 Use the Partial Response pattern when
 
 * Client need only subset of data from resource.

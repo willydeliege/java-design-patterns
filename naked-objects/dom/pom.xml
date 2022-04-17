@@ -23,183 +23,185 @@
     THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.iluwatar</groupId>
-    <artifactId>naked-objects</artifactId>
-    <version>1.26.0-SNAPSHOT</version>
-  </parent>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <artifactId>naked-objects-dom</artifactId>
   <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>${compiler.version}</version>
+      </plugin>
+    </plugins>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
       </resource>
       <resource>
         <directory>src/main/java</directory>
-        <includes>
-          <include>**</include>
-        </includes>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
+        <includes>
+          <include>**</include>
+        </includes>
       </resource>
     </resources>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${compiler.version}</version>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
   <dependencies>
     <dependency>
-      <groupId>org.apache.isis.core</groupId>
       <artifactId>isis-core-applib</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.apache.isis.core</groupId>
-      <artifactId>isis-core-unittestsupport</artifactId>
-        <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.vintage</groupId>
+      <artifactId>isis-core-unittestsupport</artifactId>
+      <groupId>org.apache.isis.core</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <artifactId>junit-vintage-engine</artifactId>
+      <groupId>org.junit.vintage</groupId>
       <scope>test</scope>
     </dependency>
     <!-- Bytecode libraries (for mocking) -->
-      <dependency>
-          <groupId>org.objenesis</groupId>
-          <artifactId>objenesis</artifactId>
-          <version>3.2</version>
-          <scope>test</scope>
-      </dependency>
-      <dependency>
-          <groupId>org.assertj</groupId>
-          <artifactId>assertj-core</artifactId>
-          <version>3.22.0</version>
-          <scope>test</scope>
-      </dependency>
+    <dependency>
+      <artifactId>objenesis</artifactId>
+      <groupId>org.objenesis</groupId>
+      <scope>test</scope>
+      <version>3.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>assertj-core</artifactId>
+      <groupId>org.assertj</groupId>
+      <scope>test</scope>
+      <version>3.22.0</version>
+    </dependency>
   </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>naked-objects</artifactId>
+    <groupId>com.iluwatar</groupId>
+    <version>1.26.0-SNAPSHOT</version>
+  </parent>
   <profiles>
     <profile>
-      <id>enhance</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <properties>
-        <datanucleus-maven-plugin.version>5.2.1</datanucleus-maven-plugin.version>
-      </properties>
       <build>
         <pluginManagement>
           <plugins>
             <plugin>
-              <!--This plugin's configuration is used to store Eclipse m2e settings 
+              <!--This plugin's configuration is used to store Eclipse m2e settings
 								only. It has no influence on the Maven build itself. -->
-              <groupId>org.eclipse.m2e</groupId>
               <artifactId>lifecycle-mapping</artifactId>
-              <version>1.0.0</version>
               <configuration>
                 <lifecycleMappingMetadata>
                   <pluginExecutions>
                     <pluginExecution>
+                      <action>
+                        <ignore/>
+                      </action>
                       <pluginExecutionFilter>
-                        <groupId>org.datanucleus</groupId>
                         <artifactId>datanucleus-maven-plugin</artifactId>
-                        <versionRange>[${datanucleus-maven-plugin.version},)</versionRange>
                         <goals>
                           <goal>enhance</goal>
                         </goals>
+                        <groupId>org.datanucleus</groupId>
+                        <versionRange>[${datanucleus-maven-plugin.version},)</versionRange>
                       </pluginExecutionFilter>
-                      <action>
-                        <ignore />
-                      </action>
                     </pluginExecution>
                   </pluginExecutions>
                 </lifecycleMappingMetadata>
               </configuration>
+              <groupId>org.eclipse.m2e</groupId>
+              <version>1.0.0</version>
             </plugin>
           </plugins>
         </pluginManagement>
         <plugins>
           <plugin>
-            <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-maven-plugin</artifactId>
-            <version>${datanucleus-maven-plugin.version}</version>
             <configuration>
               <fork>false</fork>
-              <verbose>true</verbose>
               <props>${basedir}/datanucleus.properties</props>
+              <verbose>true</verbose>
             </configuration>
             <executions>
               <execution>
-                <phase>process-classes</phase>
                 <goals>
                   <goal>enhance</goal>
                 </goals>
+                <phase>process-classes</phase>
               </execution>
             </executions>
+            <groupId>org.datanucleus</groupId>
+            <version>${datanucleus-maven-plugin.version}</version>
           </plugin>
         </plugins>
       </build>
       <dependencies>
         <dependency>
-          <groupId>org.datanucleus</groupId>
           <artifactId>datanucleus-core</artifactId>
+          <groupId>org.datanucleus</groupId>
         </dependency>
         <dependency>
-          <groupId>org.datanucleus</groupId>
           <artifactId>datanucleus-jodatime</artifactId>
+          <groupId>org.datanucleus</groupId>
         </dependency>
         <dependency>
-          <groupId>org.datanucleus</groupId>
           <artifactId>datanucleus-api-jdo</artifactId>
+          <groupId>org.datanucleus</groupId>
         </dependency>
       </dependencies>
+      <id>enhance</id>
+      <properties>
+        <datanucleus-maven-plugin.version>5.2.1</datanucleus-maven-plugin.version>
+      </properties>
     </profile>
     <profile>
-      <id>isis-validate</id>
-      <activation />
+      <activation/>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.isis.tool</groupId>
             <artifactId>isis-maven-plugin</artifactId>
-            <version>1.9.0-SNAPSHOT</version>
             <configuration>
               <isisConfigDir>../webapp/src/main/webapp/WEB-INF</isisConfigDir>
             </configuration>
             <dependencies>
               <dependency>
-                <groupId>org.apache.isis.example.application</groupId>
                 <artifactId>simpleapp-dom</artifactId>
+                <groupId>org.apache.isis.example.application</groupId>
                 <version>1.9.0-SNAPSHOT</version>
               </dependency>
-              <!-- ... workaround to avoid conflict with plexus-default (not sure 
+              <!-- ... workaround to avoid conflict with plexus-default (not sure
 								why exclusions in the isis-maven-plugin aren't sufficient, though ... -->
               <dependency>
-                <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
+                <groupId>com.google.guava</groupId>
                 <version>16.0.1</version>
               </dependency>
             </dependencies>
             <executions>
               <execution>
-                <phase>test</phase>
                 <goals>
                   <goal>validate</goal>
                 </goals>
+                <phase>test</phase>
               </execution>
             </executions>
+            <groupId>org.apache.isis.tool</groupId>
+            <version>1.9.0-SNAPSHOT</version>
           </plugin>
         </plugins>
       </build>
+      <id>isis-validate</id>
     </profile>
   </profiles>
 </project>

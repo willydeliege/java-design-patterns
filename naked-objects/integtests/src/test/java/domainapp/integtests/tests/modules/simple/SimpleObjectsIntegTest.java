@@ -46,11 +46,13 @@
 
 package domainapp.integtests.tests.modules.simple;
 
+import static org.junit.Assert.assertEquals;
+
+import com.google.common.base.Throwables;
 import domainapp.dom.modules.simple.SimpleObjects;
 import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
 import domainapp.fixture.scenarios.RecreateSimpleObjects;
 import domainapp.integtests.tests.SimpleAppIntegTest;
-
 import java.sql.SQLIntegrityConstraintViolationException;
 import javax.inject.Inject;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
@@ -59,20 +61,30 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
-import com.google.common.base.Throwables;
 
-import static org.junit.Assert.assertEquals;
-
-/**
- * Fixture Pattern Integration Test
- */
+/** Fixture Pattern Integration Test */
 public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
 
-  @Inject
-  FixtureScripts fixtureScripts;
+  @Inject FixtureScripts fixtureScripts;
 
-  @Inject
-  SimpleObjects simpleObjects;
+  @Inject SimpleObjects simpleObjects;
+
+  @SuppressWarnings("SameParameterValue")
+  private static Matcher<? extends Throwable> causalChainContains(final Class<?> cls) {
+    return new TypeSafeMatcher<>() {
+      @Override
+      @SuppressWarnings("UnstableApiUsage")
+      protected boolean matchesSafely(Throwable item) {
+        final var causalChain = Throwables.getCausalChain(item);
+        return causalChain.stream().map(Throwable::getClass).anyMatch(cls::isAssignableFrom);
+      }
+
+      @Override
+      public void describeTo(Description description) {
+        description.appendText("exception with causal chain containing " + cls.getSimpleName());
+      }
+    };
+  }
 
   @Test
   public void testListAll() {
@@ -134,28 +146,11 @@ public class SimpleObjectsIntegTest extends SimpleAppIntegTest {
     nextTransaction();
 
     // then
-    expectedExceptions
-        .expectCause(causalChainContains(SQLIntegrityConstraintViolationException.class));
+    expectedExceptions.expectCause(
+        causalChainContains(SQLIntegrityConstraintViolationException.class));
 
     // when
     wrap(simpleObjects).create("Faz");
     nextTransaction();
-  }
-
-  @SuppressWarnings("SameParameterValue")
-  private static Matcher<? extends Throwable> causalChainContains(final Class<?> cls) {
-    return new TypeSafeMatcher<>() {
-      @Override
-      @SuppressWarnings("UnstableApiUsage")
-      protected boolean matchesSafely(Throwable item) {
-        final var causalChain = Throwables.getCausalChain(item);
-        return causalChain.stream().map(Throwable::getClass).anyMatch(cls::isAssignableFrom);
-      }
-
-      @Override
-      public void describeTo(Description description) {
-        description.appendText("exception with causal chain containing " + cls.getSimpleName());
-      }
-    };
   }
 }

@@ -49,9 +49,7 @@ package com.iluwatar.queue.load.leveling;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Message class with only one parameter.
- */
+/** Message class with only one parameter. */
 @Getter
 @RequiredArgsConstructor
 public class Message {

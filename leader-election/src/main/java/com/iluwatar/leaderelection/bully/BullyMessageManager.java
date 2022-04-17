@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,22 +46,18 @@
 
 package com.iluwatar.leaderelection.bully;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import com.iluwatar.leaderelection.AbstractMessageManager;
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-/**
- * Implementation of BullyMessageManager.
- */
+/** Implementation of BullyMessageManager. */
 public class BullyMessageManager extends AbstractMessageManager {
 
-  /**
-   * Constructor of BullyMessageManager.
-   */
+  /** Constructor of BullyMessageManager. */
   public BullyMessageManager(Map<Integer, Instance> instanceMap) {
     super(instanceMap);
   }
@@ -83,7 +79,7 @@ public class BullyMessageManager extends AbstractMessageManager {
    * Send election message to all the instances with smaller ID.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param content   Election message content.
+   * @param content Election message content.
    * @return {@code true} if no alive instance has smaller ID, so that the election is accepted.
    */
   @Override
@@ -102,14 +98,13 @@ public class BullyMessageManager extends AbstractMessageManager {
    * Send leader message to all the instances to notify the new leader.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param leaderId  Leader message content.
+   * @param leaderId Leader message content.
    * @return {@code true} if the message is accepted.
    */
   @Override
   public boolean sendLeaderMessage(int currentId, int leaderId) {
     var leaderMessage = new Message(MessageType.LEADER, String.valueOf(leaderId));
-    instanceMap.keySet()
-        .stream()
+    instanceMap.keySet().stream()
         .filter((i) -> i != currentId)
         .forEach((i) -> instanceMap.get(i).onMessage(leaderMessage));
     return false;
@@ -134,10 +129,8 @@ public class BullyMessageManager extends AbstractMessageManager {
    * @return ID list of all the candidate instance.
    */
   private List<Integer> findElectionCandidateInstanceList(int currentId) {
-    return instanceMap.keySet()
-        .stream()
+    return instanceMap.keySet().stream()
         .filter((i) -> i < currentId && instanceMap.get(i).isAlive())
         .collect(Collectors.toList());
   }
-
 }

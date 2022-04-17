@@ -46,13 +46,10 @@
 
 package com.iluwatar.event.aggregator;
 
-/**
- * KingsHand observes events from multiple sources and delivers them to listeners.
- */
+/** KingsHand observes events from multiple sources and delivers them to listeners. */
 public class KingsHand extends EventEmitter implements EventObserver {
 
-  public KingsHand() {
-  }
+  public KingsHand() {}
 
   public KingsHand(EventObserver obs, Event e) {
     super(obs, e);
@@ -64,6 +61,5 @@ public class KingsHand extends EventEmitter implements EventObserver {
   }
 
   @Override
-  public void timePasses(Weekday day) {
-  }
+  public void timePasses(Weekday day) {}
 }

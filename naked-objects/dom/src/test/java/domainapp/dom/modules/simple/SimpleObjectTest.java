@@ -46,15 +46,13 @@
 
 package domainapp.dom.modules.simple;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-/**
- * Test for SimpleObject
- */
+import org.junit.Before;
+import org.junit.Test;
+
+/** Test for SimpleObject */
 public class SimpleObjectTest {
 
   SimpleObject simpleObject;
@@ -76,5 +74,4 @@ public class SimpleObjectTest {
     // then
     assertEquals(name, simpleObject.getName());
   }
-
 }

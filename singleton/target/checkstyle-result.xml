@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.19">
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/EnumIvoryTower.java">
-  </file>
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/InitializingOnDemandHolderIdiom.java">
-  </file>
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/IvoryTower.java">
-  </file>
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/ThreadSafeLazyLoadedIvoryTower.java">
-  </file>
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/App.java">
-  </file>
-  <file
-    name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/ThreadSafeDoubleCheckLocking.java">
-  </file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/EnumIvoryTower.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/InitializingOnDemandHolderIdiom.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/IvoryTower.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/ThreadSafeLazyLoadedIvoryTower.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/App.java">
+</file>
+<file name="/home/willefi/IdeaProjects/java-design-patterns/singleton/src/main/java/com/iluwatar/singleton/ThreadSafeDoubleCheckLocking.java">
+</file>
 </checkstyle>

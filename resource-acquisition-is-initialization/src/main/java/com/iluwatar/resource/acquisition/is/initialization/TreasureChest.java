@@ -46,13 +46,10 @@
 
 package com.iluwatar.resource.acquisition.is.initialization;
 
+import java.io.Closeable;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.Closeable;
-
-/**
- * TreasureChest resource.
- */
+/** TreasureChest resource. */
 @Slf4j
 public class TreasureChest implements Closeable {
 

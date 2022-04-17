@@ -36,13 +36,16 @@
 
 すべてのデザインは、可能な限りシンプルであるべきです。
 
-KISS(シンプルにしておけ!この間抜け)、YAGNI(機能は実際に必要となるまでは追加しないのがよい)、そして Do The Simplest Thing That Could Possibly Work(機能する可能性のある中で最もシンプルなことをする)の原則に基づいて設計を始めるべきです。
+KISS(シンプルにしておけ!この間抜け)、YAGNI(機能は実際に必要となるまでは追加しないのがよい)、そして Do The Simplest Thing That Could Possibly
+Work(機能する可能性のある中で最もシンプルなことをする)の原則に基づいて設計を始めるべきです。
 
 複雑さやパターンは、実用的な拡張性が必要な場合にのみ導入すべきです。
 
 これらの概念を理解した上で、以下のような方法で[デザインパターン](https://java-design-patterns.com/patterns/) を掘り下げていくことができます。
 
-- 特定のパターンを、パターン名で検索することができます。見つかない場合は、新しいパターンを[ここ](https://github.com/iluwatar/java-design-patterns/issues)で報告してください
+-
+特定のパターンを、パターン名で検索することができます。見つかない場合は、新しいパターンを[ここ](https://github.com/iluwatar/java-design-patterns/issues)
+で報告してください
 - `Performance`, `Gang of Four` もしくは`Data access`などのタグを使用。
 - `Creational`, `Behavioral`などのパターンカテゴリーを使用。
 

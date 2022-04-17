@@ -46,14 +46,14 @@
 
 package com.iluwatar.front.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.iluwatar.front.controller.utils.InMemoryAppender;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import com.iluwatar.front.controller.utils.InMemoryAppender;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/13/15 - 1:39 PM
@@ -63,6 +63,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CommandTest {
 
   private InMemoryAppender appender;
+
+  static List<Object[]> dataProvider() {
+    return List.of(
+        new Object[] {"Archer", "Displaying archers"},
+        new Object[] {"Catapult", "Displaying catapults"},
+        new Object[] {"NonExistentCommand", "Error 500"});
+  }
 
   @BeforeEach
   public void setUp() {
@@ -74,16 +81,8 @@ public class CommandTest {
     appender.stop();
   }
 
-  static List<Object[]> dataProvider() {
-    return List.of(
-        new Object[]{"Archer", "Displaying archers"},
-        new Object[]{"Catapult", "Displaying catapults"},
-        new Object[]{"NonExistentCommand", "Error 500"}
-    );
-  }
-
   /**
-   * @param request        The request that's been tested
+   * @param request The request that's been tested
    * @param displayMessage The expected display message
    */
   @ParameterizedTest
@@ -95,5 +94,4 @@ public class CommandTest {
     assertEquals(displayMessage, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

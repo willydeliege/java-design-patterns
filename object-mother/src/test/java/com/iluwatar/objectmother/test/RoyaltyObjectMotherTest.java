@@ -46,18 +46,16 @@
 
 package com.iluwatar.objectmother.test;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.objectmother.King;
-import com.iluwatar.objectmother.Queen;
-import com.iluwatar.objectmother.RoyaltyObjectMother;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test Generation of Royalty Types using the object-mother
- */
+import com.iluwatar.objectmother.King;
+import com.iluwatar.objectmother.Queen;
+import com.iluwatar.objectmother.RoyaltyObjectMother;
+import org.junit.jupiter.api.Test;
+
+/** Test Generation of Royalty Types using the object-mother */
 public class RoyaltyObjectMotherTest {
 
   @Test

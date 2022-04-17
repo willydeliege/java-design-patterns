@@ -6,8 +6,10 @@ permalink: /patterns/version-number/
 categories: Concurrency
 language: en
 tags:
- - Data access
- - Microservices
+
+- Data access
+- Microservices
+
 ---
 
 ## Name / classification
@@ -47,6 +49,7 @@ We have a `Book` entity, which is versioned, and has a copy-constructor:
 
 ```java
 public class Book {
+
   private long id;
   private String title = "";
   private String author = "";
@@ -68,6 +71,7 @@ We also have `BookRepository`, which implements concurrency control:
 
 ```java
 public class BookRepository {
+
   private final Map<Long, Book> collection = new HashMap<>();
 
   public void update(Book book) throws BookNotFoundException, VersionMismatchException {
@@ -78,8 +82,8 @@ public class BookRepository {
     var latestBook = collection.get(book.getId());
     if (book.getVersion() != latestBook.getVersion()) {
       throw new VersionMismatchException(
-        "Tried to update stale version " + book.getVersion()
-          + " while actual version is " + latestBook.getVersion()
+          "Tried to update stale version " + book.getVersion()
+              + " while actual version is " + latestBook.getVersion()
       );
     }
 
@@ -104,34 +108,34 @@ public class BookRepository {
 Here's the concurrency control in action:
 
 ```java
-var bookId = 1;
+var bookId=1;
 // Alice and Bob took the book concurrently
-final var aliceBook = bookRepository.get(bookId);
-final var bobBook = bookRepository.get(bookId);
+final var aliceBook=bookRepository.get(bookId);
+final var bobBook=bookRepository.get(bookId);
 
-aliceBook.setTitle("Kama Sutra"); // Alice has updated book title
-bookRepository.update(aliceBook); // and successfully saved book in database
-LOGGER.info("Alice updates the book with new version {}", aliceBook.getVersion());
+    aliceBook.setTitle("Kama Sutra"); // Alice has updated book title
+    bookRepository.update(aliceBook); // and successfully saved book in database
+    LOGGER.info("Alice updates the book with new version {}",aliceBook.getVersion());
 
 // now Bob has the stale version of the book with empty title and version = 0
 // while actual book in database has filled title and version = 1
-bobBook.setAuthor("Vatsyayana Mallanaga"); // Bob updates the author
-try {
-  LOGGER.info("Bob tries to update the book with his version {}", bobBook.getVersion());
-  bookRepository.update(bobBook); // Bob tries to save his book to database
-} catch (VersionMismatchException e) {
-  // Bob update fails, and book in repository remained untouchable
-  LOGGER.info("Exception: {}", e.getMessage());
-  // Now Bob should reread actual book from repository, do his changes again and save again
-}
+    bobBook.setAuthor("Vatsyayana Mallanaga"); // Bob updates the author
+    try{
+    LOGGER.info("Bob tries to update the book with his version {}",bobBook.getVersion());
+    bookRepository.update(bobBook); // Bob tries to save his book to database
+    }catch(VersionMismatchException e){
+    // Bob update fails, and book in repository remained untouchable
+    LOGGER.info("Exception: {}",e.getMessage());
+    // Now Bob should reread actual book from repository, do his changes again and save again
+    }
 ```
 
 Program output:
 
 ```java
 Alice updates the book with new version 1
-Bob tries to update the book with his version 0
-Exception: Tried to update stale version 0 while actual version is 1
+    Bob tries to update the book with his version 0
+    Exception:Tried to update stale version 0while actual version is 1
 ```
 
 ## Class diagram
@@ -146,21 +150,26 @@ Use Version Number for:
 * strong data consistency
 
 ## Tutorials
+
 * [Version Number Pattern Tutorial](http://www.java2s.com/Tutorial/Java/0355__JPA/VersioningEntity.htm)
 
 ## Known uses
- * [Hibernate](https://vladmihalcea.com/jpa-entity-version-property-hibernate/)
- * [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning)
- * [Apache Solr](https://lucene.apache.org/solr/guide/6_6/updating-parts-of-documents.html)
+
+* [Hibernate](https://vladmihalcea.com/jpa-entity-version-property-hibernate/)
+* [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning)
+* [Apache Solr](https://lucene.apache.org/solr/guide/6_6/updating-parts-of-documents.html)
 
 ## Consequences
+
 Version Number pattern allows to implement a concurrency control, which is usually done
 via Optimistic Offline Lock pattern.
 
 ## Related patterns
+
 * [Optimistic Offline Lock](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
 
 ## Credits
+
 * [Optimistic Locking in JPA](https://www.baeldung.com/jpa-optimistic-locking)
 * [JPA entity versioning](https://www.byteslounge.com/tutorials/jpa-entity-versioning-version-and-optimistic-locking)
 * [J2EE Design Patterns](http://ommolketab.ir/aaf-lib/axkwht7wxrhvgs2aqkxse8hihyu9zv.pdf)

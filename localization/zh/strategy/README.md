@@ -6,10 +6,13 @@ permalink: /patterns/strategy/
 categories: Behavioral
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 又被称为
+
 政策（方针）模式
 
 ## 目的
@@ -20,7 +23,7 @@ tags:
 
 现实世界例子
 
-> 屠龙是一项危险的职业。有经验将会使它变得简单。经验丰富的屠龙者对不同类型的龙有不同的战斗策略。       
+> 屠龙是一项危险的职业。有经验将会使它变得简单。经验丰富的屠龙者对不同类型的龙有不同的战斗策略。
 
 直白点说
 
@@ -35,6 +38,7 @@ tags:
 让我们先介绍屠龙的策略模式接口和它的实现。
 
 ```java
+
 @FunctionalInterface
 public interface DragonSlayingStrategy {
 
@@ -94,7 +98,7 @@ public class DragonSlayer {
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
-    var dragonSlayer = new DragonSlayer(new MeleeStrategy());
+    var dragonSlayer=new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
     LOGGER.info("Red dragon emerges.");
     dragonSlayer.changeStrategy(new ProjectileStrategy());
@@ -102,19 +106,21 @@ public class DragonSlayer {
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
-    
-    // Green dragon spotted ahead!
-    // With your Excalibur you sever the dragon's head!
-    // Red dragon emerges.
-    // You shoot the dragon with the magical crossbow and it falls dead on the ground!
-    // Black dragon lands before you.
-    // You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+
+// Green dragon spotted ahead!
+// With your Excalibur you sever the dragon's head!
+// Red dragon emerges.
+// You shoot the dragon with the magical crossbow and it falls dead on the ground!
+// Black dragon lands before you.
+// You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
 
 ## 类图
+
 ![alt text](../../../strategy/etc/strategy_urm.png "Strategy")
 
 ## 应用
+
 使用策略模式当
 
 * 许多相关的类只是行为不同。策略模式提供了一种为一种类配置多种行为的能力。

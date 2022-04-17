@@ -6,16 +6,21 @@ permalink: /patterns/command/
 categories: Behavioral
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 或称
+
 行动, 事务模式
 
 ## 目的
+
 将请求封装为对象，从而使你可以将具有不同请求的客户端参数化，队列或记录请求，并且支持可撤销操作。
 
 ## 解释
+
 真实世界例子
 
 > 有一个巫师在地精上施放咒语。咒语在地精上一一执行。第一个咒语使地精缩小，第二个使他不可见。然后巫师将咒语一个个的反转。这里的每一个咒语都是一个可撤销的命令对象。
@@ -40,7 +45,8 @@ public class Wizard {
   private final Deque<Command> undoStack = new LinkedList<>();
   private final Deque<Command> redoStack = new LinkedList<>();
 
-  public Wizard() {}
+  public Wizard() {
+  }
 
   public void castSpell(Command command, Target target) {
     LOGGER.info("{} casts {} at {}", this, command, target);
@@ -203,35 +209,39 @@ public class Goblin extends Target {
 最后是整个示例的实践。
 
 ```java
-var wizard = new Wizard();
-var goblin = new Goblin();
-goblin.printStatus();
+var wizard=new Wizard();
+    var goblin=new Goblin();
+    goblin.printStatus();
 // Goblin, [size=normal] [visibility=visible]
-wizard.castSpell(new ShrinkSpell(), goblin);
+    wizard.castSpell(new ShrinkSpell(),goblin);
 // Wizard casts Shrink spell at Goblin
-goblin.printStatus();
+    goblin.printStatus();
 // Goblin, [size=small] [visibility=visible]
-wizard.castSpell(new InvisibilitySpell(), goblin);
+    wizard.castSpell(new InvisibilitySpell(),goblin);
 // Wizard casts Invisibility spell at Goblin
-goblin.printStatus();
+    goblin.printStatus();
 // Goblin, [size=small] [visibility=invisible]
-wizard.undoLastSpell();
+    wizard.undoLastSpell();
 // Wizard undoes Invisibility spell
-goblin.printStatus();
+    goblin.printStatus();
 // Goblin, [size=small] [visibility=visible]
 ```
 
 ## 类图
+
 ![alt text](../../../command/etc/command.png "Command")
 
 ## 适用性
+
 使用命令模式当你想
 
 * 通过操作将对象参数化。您可以使用回调函数（即，已在某处注册以便稍后调用的函数）以过程语言表示这种参数化。命令是回调的一种面向对象替代方案。
 * 在不同的时间指定，排队和执行请求。一个命令对象的生存期可以独立于原始请求。如果请求的接收方可以以地址空间无关的方式来表示，那么你可以将请求的命令对象传输到其他进程并在那里执行请求。
-* 支持撤销。命令的执行操作可以在命令本身中存储状态以反转其效果。命令接口必须有添加的反执行操作，该操作可以逆转上一次执行调用的效果。执行的命令存储在历史列表中。无限撤消和重做通过分别向后和向前遍历此列表来实现，分别调用unexecute和execute。
+*
+支持撤销。命令的执行操作可以在命令本身中存储状态以反转其效果。命令接口必须有添加的反执行操作，该操作可以逆转上一次执行调用的效果。执行的命令存储在历史列表中。无限撤消和重做通过分别向后和向前遍历此列表来实现，分别调用unexecute和execute。
 * 支持日志记录更改，以便在系统崩溃时可以重新应用它们。通过使用加载和存储操作扩展命令接口，你可以保留更改的永久日志。从崩溃中恢复涉及从磁盘重新加载记录的命令，并通过执行操作重新执行它们。
-* 通过原始的操作来构建一个以高级操作围绕的系统。这种结构在支持事务的信息系统中很常见。事务封装了一组数据更改。命令模式提供了一种对事务进行建模的方法。命令具有公共接口，让你以相同的方式调用所有事务。该模式还可以通过新的事务来轻松扩展系统。
+*
+通过原始的操作来构建一个以高级操作围绕的系统。这种结构在支持事务的信息系统中很常见。事务封装了一组数据更改。命令模式提供了一种对事务进行建模的方法。命令具有公共接口，让你以相同的方式调用所有事务。该模式还可以通过新的事务来轻松扩展系统。
 
 ## 典型用例
 

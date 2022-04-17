@@ -6,13 +6,17 @@ permalink: /patterns/iterator/
 categories: Behavioral
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 又被称为
+
 游标
 
 ## 目的
+
 提供一种在不暴露其基础表示的情况下顺序访问聚合对象的元素的方法。
 
 ## 解释
@@ -106,18 +110,20 @@ public interface Iterator<T> {
 在以下示例中，我们遍历在宝箱中找到的戒指类型物品。
 
 ```java
-var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
-while (itemIterator.hasNext()) {
-  LOGGER.info(itemIterator.next().toString());
-}
+var itemIterator=TREASURE_CHEST.iterator(ItemType.RING);
+    while(itemIterator.hasNext()){
+    LOGGER.info(itemIterator.next().toString());
+    }
 // Ring of shadows
 // Ring of armor
 ```
 
 ## 类图
+
 ![alt text](../../../iterator/etc/iterator_1.png "Iterator")
 
 ## 适用性
+
 以下情况使用迭代器模式
 
 * 在不暴露其内部表示的情况下访问聚合对象的内容

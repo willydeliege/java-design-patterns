@@ -46,14 +46,12 @@
 
 package units;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * Created by Srdjan on 03-May-17.
- */
+import org.junit.jupiter.api.Test;
+
+/** Created by Srdjan on 03-May-17. */
 class SergeantUnitTest {
 
   @Test
@@ -64,5 +62,4 @@ class SergeantUnitTest {
     assertNotNull(unit.getUnitExtension("SergeantExtension"));
     assertNull(unit.getUnitExtension("CommanderExtension"));
   }
-
 }

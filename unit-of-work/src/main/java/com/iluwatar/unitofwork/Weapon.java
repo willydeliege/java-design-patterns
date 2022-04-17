@@ -49,9 +49,7 @@ package com.iluwatar.unitofwork;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * {@link Weapon} is an entity.
- */
+/** {@link Weapon} is an entity. */
 @Getter
 @RequiredArgsConstructor
 public class Weapon {

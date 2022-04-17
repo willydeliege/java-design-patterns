@@ -46,9 +46,9 @@
 
 package com.iluwatar.intercepting.filter;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/13/15 - 2:57 PM
@@ -93,5 +93,4 @@ public class OrderTest {
     order.setOrderItem(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
-
 }

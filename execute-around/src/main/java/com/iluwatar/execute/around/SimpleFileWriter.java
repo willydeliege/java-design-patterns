@@ -46,10 +46,9 @@
 
 package com.iluwatar.execute.around;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.FileWriter;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SimpleFileWriter handles opening and closing file for the user. The user only has to specify what
@@ -58,9 +57,7 @@ import java.io.IOException;
 @Slf4j
 public class SimpleFileWriter {
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
     LOGGER.info("Opening the file");
     try (var writer = new FileWriter(filename)) {

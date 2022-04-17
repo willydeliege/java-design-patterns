@@ -46,8 +46,5 @@
 
 package abstractextensions;
 
-/**
- * Other Extensions will extend this interface.
- */
-public interface UnitExtension {
-}
+/** Other Extensions will extend this interface. */
+public interface UnitExtension {}

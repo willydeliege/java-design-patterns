@@ -46,14 +46,13 @@
 
 package com.iluwatar.featuretoggle;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.Properties;
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.pattern.propertiesversion.PropertiesFeatureToggleVersion;
 import com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion;
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
+import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Feature Toggle pattern allows for complete code executions to be turned on or off with ease.

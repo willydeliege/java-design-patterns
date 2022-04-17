@@ -6,34 +6,36 @@ permalink: /patterns/template-method/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Intent
 
-Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template 
-Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's 
+Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template
+Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's
 structure.
 
 ## Explanation
 
 Real-world example
 
-> The general steps in stealing an item are the same. First, you pick the target, next you confuse 
-> him somehow and finally, you steal the item. However, there are many ways to implement these 
-> steps.   
+> The general steps in stealing an item are the same. First, you pick the target, next you confuse
+> him somehow and finally, you steal the item. However, there are many ways to implement these
+> steps.
 
 In plain words
 
-> Template Method pattern outlines the general steps in the parent class and lets the concrete child 
-> implementations define the details. 
+> Template Method pattern outlines the general steps in the parent class and lets the concrete child
+> implementations define the details.
 
 Wikipedia says
 
-> In object-oriented programming, the template method is one of the behavioral design patterns 
-> identified by Gamma et al. in the book Design Patterns. The template method is a method in a 
-> superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of 
-> a number of high-level steps. These steps are themselves implemented by additional helper methods 
+> In object-oriented programming, the template method is one of the behavioral design patterns
+> identified by Gamma et al. in the book Design Patterns. The template method is a method in a
+> superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of
+> a number of high-level steps. These steps are themselves implemented by additional helper methods
 > in the same class as the template method.
 
 **Programmatic Example**
@@ -41,6 +43,7 @@ Wikipedia says
 Let's first introduce the template method class along with its concrete implementations.
 
 ```java
+
 @Slf4j
 public abstract class StealingMethod {
 
@@ -121,7 +124,7 @@ public class HalflingThief {
 And finally, we show how the halfling thief utilizes the different stealing methods.
 
 ```java
-    var thief = new HalflingThief(new HitAndRunMethod());
+    var thief=new HalflingThief(new HitAndRunMethod());
     thief.steal();
     thief.changeMethod(new SubtleMethod());
     thief.steal();
@@ -135,9 +138,15 @@ And finally, we show how the halfling thief utilizes the different stealing meth
 
 The Template Method pattern should be used
 
-* To implement the invariant parts of an algorithm once and leave it up to subclasses to implement the behavior that can vary
-* When common behavior among subclasses should be factored and localized in a common class to avoid code duplication. This is a good example of "refactoring to generalize" as described by Opdyke and Johnson. You first identify the differences in the existing code and then separate the differences into new operations. Finally, you replace the differing code with a template method that calls one of these new operations
-* To control subclasses extensions. You can define a template method that calls "hook" operations at specific points, thereby permitting extensions only at those points
+* To implement the invariant parts of an algorithm once and leave it up to subclasses to implement
+  the behavior that can vary
+* When common behavior among subclasses should be factored and localized in a common class to avoid
+  code duplication. This is a good example of "refactoring to generalize" as described by Opdyke and
+  Johnson. You first identify the differences in the existing code and then separate the differences
+  into new operations. Finally, you replace the differing code with a template method that calls one
+  of these new operations
+* To control subclasses extensions. You can define a template method that calls "hook" operations at
+  specific points, thereby permitting extensions only at those points
 
 ## Tutorials
 
@@ -145,9 +154,10 @@ The Template Method pattern should be used
 
 ## Known uses
 
-* [javax.servlet.GenericServlet.init](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/GenericServlet.html#init--): 
-Method `GenericServlet.init(ServletConfig config)` calls the parameterless method `GenericServlet.init()` which is intended to be overridden in subclasses.
-Method `GenericServlet.init(ServletConfig config)` is the template method in this example.
+* [javax.servlet.GenericServlet.init](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/GenericServlet.html#init--):
+  Method `GenericServlet.init(ServletConfig config)` calls the parameterless
+  method `GenericServlet.init()` which is intended to be overridden in subclasses.
+  Method `GenericServlet.init(ServletConfig config)` is the template method in this example.
 
 ## Credits
 

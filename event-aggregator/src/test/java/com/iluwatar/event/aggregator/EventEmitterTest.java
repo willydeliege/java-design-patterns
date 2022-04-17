@@ -69,17 +69,17 @@
 
 package com.iluwatar.event.aggregator;
 
-import java.util.Objects;
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+
+import java.util.Objects;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/12/15 - 10:58 PM Tests for Event Emitter

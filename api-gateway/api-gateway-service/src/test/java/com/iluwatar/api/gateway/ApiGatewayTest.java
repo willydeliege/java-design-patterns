@@ -46,37 +46,30 @@
 
 package com.iluwatar.api.gateway;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-/**
- * Test API Gateway Pattern
- */
+/** Test API Gateway Pattern */
 class ApiGatewayTest {
 
-  @InjectMocks
-  private ApiGateway apiGateway;
+  @InjectMocks private ApiGateway apiGateway;
 
-  @Mock
-  private ImageClient imageClient;
+  @Mock private ImageClient imageClient;
 
-  @Mock
-  private PriceClient priceClient;
+  @Mock private PriceClient priceClient;
 
   @BeforeEach
   public void setup() {
     MockitoAnnotations.openMocks(this);
   }
 
-  /**
-   * Tests getting the data for a desktop client
-   */
+  /** Tests getting the data for a desktop client */
   @Test
   void testGetProductDesktop() {
     var imagePath = "/product-image.png";
@@ -90,9 +83,7 @@ class ApiGatewayTest {
     assertEquals(imagePath, desktopProduct.getImagePath());
   }
 
-  /**
-   * Tests getting the data for a mobile client
-   */
+  /** Tests getting the data for a mobile client */
   @Test
   void testGetProductMobile() {
     var price = "20";

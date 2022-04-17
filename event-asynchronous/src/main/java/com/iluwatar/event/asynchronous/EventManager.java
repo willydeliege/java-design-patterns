@@ -65,19 +65,15 @@ public class EventManager implements ThreadCompleteListener {
   public static final int MIN_ID = 1;
   public static final int MAX_ID = MAX_RUNNING_EVENTS;
   public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
-  private int currentlyRunningSyncEvent = -1;
+  private static final String DOES_NOT_EXIST = " does not exist.";
   private final SecureRandom rand;
   private final Map<Integer, Event> eventPool;
+  private int currentlyRunningSyncEvent = -1;
 
-  private static final String DOES_NOT_EXIST = " does not exist.";
-
-  /**
-   * EventManager constructor.
-   */
+  /** EventManager constructor. */
   public EventManager() {
     rand = new SecureRandom();
     eventPool = new ConcurrentHashMap<>(MAX_RUNNING_EVENTS);
-
   }
 
   /**
@@ -86,15 +82,18 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws InvalidOperationException      No new synchronous events can be created when one is
-   *                                        already running.
-   * @throws LongRunningEventException      Long running events are not allowed in the app.
+   * @throws InvalidOperationException No new synchronous events can be created when one is already
+   *     running.
+   * @throws LongRunningEventException Long running events are not allowed in the app.
    */
   public int create(int eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
     if (currentlyRunningSyncEvent != -1) {
-      throw new InvalidOperationException("Event [" + currentlyRunningSyncEvent + "] is still"
-          + " running. Please wait until it finishes and try again.");
+      throw new InvalidOperationException(
+          "Event ["
+              + currentlyRunningSyncEvent
+              + "] is still"
+              + " running. Please wait until it finishes and try again.");
     }
 
     var eventId = createEvent(eventTime, true);
@@ -109,18 +108,18 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws LongRunningEventException      Long running events are not allowed in the app.
+   * @throws LongRunningEventException Long running events are not allowed in the app.
    */
-  public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException,
-      LongRunningEventException {
+  public int createAsync(int eventTime)
+      throws MaxNumOfEventsAllowedException, LongRunningEventException {
     return createEvent(eventTime, false);
   }
 
   private int createEvent(int eventTime, boolean isSynchronous)
       throws MaxNumOfEventsAllowedException, LongRunningEventException {
     if (eventPool.size() == MAX_RUNNING_EVENTS) {
-      throw new MaxNumOfEventsAllowedException("Too many events are running at the moment."
-          + " Please try again later.");
+      throw new MaxNumOfEventsAllowedException(
+          "Too many events are running at the moment." + " Please try again later.");
     }
 
     if (eventTime >= MAX_EVENT_TIME) {
@@ -184,17 +183,13 @@ public class EventManager implements ThreadCompleteListener {
     eventPool.get(eventId).status();
   }
 
-  /**
-   * Gets status of all running events.
-   */
+  /** Gets status of all running events. */
   @SuppressWarnings("rawtypes")
   public void statusOfAllEvents() {
     eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).status());
   }
 
-  /**
-   * Stop all running events.
-   */
+  /** Stop all running events. */
   @SuppressWarnings("rawtypes")
   public void shutdown() {
     eventPool.entrySet().forEach(entry -> ((Event) ((Map.Entry) entry).getValue()).stop());
@@ -202,8 +197,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Returns a pseudo-random number between min and max, inclusive. The difference between min and
-   * max can be at most
-   * <code>Integer.MAX_VALUE - 1</code>.
+   * max can be at most <code>Integer.MAX_VALUE - 1</code>.
    */
   private int generateId() {
     // nextInt is normally exclusive of the top value,
@@ -228,16 +222,12 @@ public class EventManager implements ThreadCompleteListener {
     eventPool.remove(eventId);
   }
 
-  /**
-   * Getter method for event pool.
-   */
+  /** Getter method for event pool. */
   public Map<Integer, Event> getEventPool() {
     return eventPool;
   }
 
-  /**
-   * Get number of currently running Synchronous events.
-   */
+  /** Get number of currently running Synchronous events. */
   public int numOfCurrentlyRunningSyncEvent() {
     return currentlyRunningSyncEvent;
   }

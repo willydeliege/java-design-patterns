@@ -14,15 +14,19 @@
 
 <br/>
 
-Leia em outro idioma: [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
+Leia em outro idioma: [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md)
+, [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**
+ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
 
 <br/>
 
 # Introdução
 
-Os padrões de projeto são um conjunto das melhores práticas e soluções formalizadas que um programador pode usar para resolver problemas comuns ao projetar um aplicativo ou sistema.
+Os padrões de projeto são um conjunto das melhores práticas e soluções formalizadas que um
+programador pode usar para resolver problemas comuns ao projetar um aplicativo ou sistema.
 
-Os padrões de projeto podem acelerar o processo de desenvolvimento, fornecendo testes e comprovados paradigmas de desenvolvimento.
+Os padrões de projeto podem acelerar o processo de desenvolvimento, fornecendo testes e comprovados
+paradigmas de desenvolvimento.
 
 Reutilizar padrões de projeto ajuda a evitar problemas sutis que causam
 problemas, e também melhora a legibilidade do código para desenvolvedores e arquitetos que
@@ -32,7 +36,7 @@ estão familiarizados com os padrões.
 
 Este site apresenta padrões de projeto Java. As soluções foram desenvolvidas por
 programadores e arquitetos experientes da comunidade de código aberto. Os
-padrões podem ser acessados por meio de suas descrições de alto nível ou  por meio de seu
+padrões podem ser acessados por meio de suas descrições de alto nível ou por meio de seu
 Código fonte. Os exemplos de código-fonte são bem comentados e podem ser considerados como
 tutoriais de programação sobre como implementar um padrão específico. Nós usamos as mais
 populares tecnologias Java de código aberto comprovadas em batalhas.
@@ -49,16 +53,20 @@ Assim que estiver familiarizado com esses conceitos, você pode começar a se ap
 [padrões de projeto disponíveis](https://java-design-patterns.com/patterns/) por qualquer
 das seguintes abordagens
 
- - Pesquise um padrão específico por nome. Não consegue encontrar um? Informe um novo padrão [aqui](https://github.com/iluwatar/java-design-patterns/issues).
- - Usando tags como `Performance`,` Gang of Four` ou `Acesso de dados`.
- - Usando categorias de padrões, `Criacional`,` Comportamental` e outros.
+- Pesquise um padrão específico por nome. Não consegue encontrar um? Informe um novo
+  padrão [aqui](https://github.com/iluwatar/java-design-patterns/issues).
+- Usando tags como `Performance`,` Gang of Four` ou `Acesso de dados`.
+- Usando categorias de padrões, `Criacional`,` Comportamental` e outros.
 
- Esperamos que você encontre as soluções orientadas a objetos apresentadas neste site úteis
+Esperamos que você encontre as soluções orientadas a objetos apresentadas neste site úteis
 em suas arquiteturas e divirta-se as aprendendo tanto quanto nos divertimos ao desenvolvê-las.
 
 # Como contribuir
 
-Se você estiver disposto a contribuir para o projeto, você encontrará as informações mais relevantes em nossa [wiki do desenvolvedor](https://github.com/iluwatar/java-design-patterns/wiki). Ajudaremos você e responderemos as suas perguntas na [sala de bate-papo do Gitter](https://gitter.im/iluwatar/java-design-patterns).
+Se você estiver disposto a contribuir para o projeto, você encontrará as informações mais relevantes
+em nossa [wiki do desenvolvedor](https://github.com/iluwatar/java-design-patterns/wiki). Ajudaremos
+você e responderemos as suas perguntas
+na [sala de bate-papo do Gitter](https://gitter.im/iluwatar/java-design-patterns).
 
 # Licença
 

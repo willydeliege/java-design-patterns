@@ -46,13 +46,11 @@
 
 package com.iluwatar.queue.load.leveling;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test case for submitting and retrieving messages from Blocking Queue.
- */
+import org.junit.jupiter.api.Test;
+
+/** Test case for submitting and retrieving messages from Blocking Queue. */
 class MessageQueueTest {
 
   @Test
@@ -66,5 +64,4 @@ class MessageQueueTest {
     // retrieve message
     assertEquals("MessageQueue Test", msgQueue.retrieveMsg().getMsg());
   }
-
 }

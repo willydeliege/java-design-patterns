@@ -46,9 +46,9 @@
 
 package com.iluwatar.front.controller;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertSame;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/13/15 - 1:35 PM
@@ -62,5 +62,4 @@ public class ApplicationExceptionTest {
     final var cause = new Exception();
     assertSame(cause, new ApplicationException(cause).getCause());
   }
-
 }

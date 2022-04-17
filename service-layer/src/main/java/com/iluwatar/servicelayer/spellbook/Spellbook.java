@@ -46,6 +46,9 @@
 
 package com.iluwatar.servicelayer.spellbook;
 
+import com.iluwatar.servicelayer.common.BaseEntity;
+import com.iluwatar.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.wizard.Wizard;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -57,13 +60,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.iluwatar.servicelayer.common.BaseEntity;
-import com.iluwatar.servicelayer.spell.Spell;
-import com.iluwatar.servicelayer.wizard.Wizard;
 
-/**
- * Spellbook entity.
- */
+/** Spellbook entity. */
 @Entity
 @Table(name = "SPELLBOOK")
 public class Spellbook extends BaseEntity {

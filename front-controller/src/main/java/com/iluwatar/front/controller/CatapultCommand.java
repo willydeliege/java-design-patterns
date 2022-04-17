@@ -46,9 +46,7 @@
 
 package com.iluwatar.front.controller;
 
-/**
- * Command for catapults.
- */
+/** Command for catapults. */
 public class CatapultCommand implements Command {
 
   @Override

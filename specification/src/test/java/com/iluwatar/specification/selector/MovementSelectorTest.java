@@ -46,14 +46,14 @@
 
 package com.iluwatar.specification.selector;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Movement;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Movement;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 7:37 PM
@@ -62,9 +62,7 @@ import static org.mockito.Mockito.when;
  */
 public class MovementSelectorTest {
 
-  /**
-   * Verify if the movement selector gives the correct results.
-   */
+  /** Verify if the movement selector gives the correct results. */
   @Test
   void testMovement() {
     final var swimmingCreature = mock(Creature.class);
@@ -76,7 +74,5 @@ public class MovementSelectorTest {
     final var swimmingSelector = new MovementSelector(Movement.SWIMMING);
     assertTrue(swimmingSelector.test(swimmingCreature));
     assertFalse(swimmingSelector.test(flyingCreature));
-
   }
-
 }

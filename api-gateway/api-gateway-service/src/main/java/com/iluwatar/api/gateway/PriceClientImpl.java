@@ -46,20 +46,16 @@
 
 package com.iluwatar.api.gateway;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-
-/**
- * An adapter to communicate with the Price microservice.
- */
+/** An adapter to communicate with the Price microservice. */
 @Slf4j
 @Component
 public class PriceClientImpl implements PriceClient {
@@ -72,10 +68,8 @@ public class PriceClientImpl implements PriceClient {
   @Override
   public String getPrice() {
     var httpClient = HttpClient.newHttpClient();
-    var httpGet = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:50006/price"))
-        .build();
+    var httpGet =
+        HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50006/price")).build();
 
     try {
       LOGGER.info("Sending request to fetch price info");

@@ -48,9 +48,7 @@ package com.iluwatar.priority.queue;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Message Worker.
- */
+/** Message Worker. */
 @Slf4j
 public class Worker {
 
@@ -60,9 +58,7 @@ public class Worker {
     this.queueManager = queueManager;
   }
 
-  /**
-   * Keep checking queue for message.
-   */
+  /** Keep checking queue for message. */
   @SuppressWarnings("squid:S2189")
   public void run() throws Exception {
     while (true) {
@@ -76,11 +72,8 @@ public class Worker {
     }
   }
 
-  /**
-   * Process message.
-   */
+  /** Process message. */
   private void processMessage(Message message) {
     LOGGER.info(message.toString());
   }
-
 }

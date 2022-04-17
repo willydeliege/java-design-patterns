@@ -69,15 +69,6 @@
 
 package com.iluwatar.servicelayer.magic;
 
-import java.util.Set;
-import org.junit.jupiter.api.Test;
-import com.iluwatar.servicelayer.spell.Spell;
-import com.iluwatar.servicelayer.spell.SpellDao;
-import com.iluwatar.servicelayer.spellbook.Spellbook;
-import com.iluwatar.servicelayer.spellbook.SpellbookDao;
-import com.iluwatar.servicelayer.wizard.Wizard;
-import com.iluwatar.servicelayer.wizard.WizardDao;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.eq;
@@ -86,6 +77,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+
+import com.iluwatar.servicelayer.spell.Spell;
+import com.iluwatar.servicelayer.spell.SpellDao;
+import com.iluwatar.servicelayer.spellbook.Spellbook;
+import com.iluwatar.servicelayer.spellbook.SpellbookDao;
+import com.iluwatar.servicelayer.wizard.Wizard;
+import com.iluwatar.servicelayer.wizard.WizardDao;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/29/15 - 12:06 AM

@@ -46,9 +46,8 @@
 
 package com.iluwatar.collectionpipeline;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In imperative-style programming, it is common to use for and while loops for most kinds of data

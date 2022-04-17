@@ -46,14 +46,11 @@
 
 package com.iluwatar.tolerantreader;
 
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.io.Serializable;
-
-/**
- * RainbowFish is the initial schema.
- */
+/** RainbowFish is the initial schema. */
 @Getter
 @RequiredArgsConstructor
 public class RainbowFish implements Serializable {
@@ -64,5 +61,4 @@ public class RainbowFish implements Serializable {
   private final int age;
   private final int lengthMeters;
   private final int weightTons;
-
 }

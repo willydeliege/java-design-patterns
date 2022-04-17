@@ -6,7 +6,9 @@ permalink: /patterns/dependency-injection/
 categories: Creational
 language: zh
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## 目的
@@ -17,7 +19,7 @@ tags:
 
 真实世界例子
 
-> 老巫师喜欢不时地装满烟斗抽烟。 但是，他不想只依赖一个烟草品牌，而是希望能够互换使用它们。 
+> 老巫师喜欢不时地装满烟斗抽烟。 但是，他不想只依赖一个烟草品牌，而是希望能够互换使用它们。
 
 通俗的说
 
@@ -43,12 +45,15 @@ public abstract class Tobacco {
 }
 
 public class SecondBreakfastTobacco extends Tobacco {
+
 }
 
 public class RivendellTobacco extends Tobacco {
+
 }
 
 public class OldTobyTobacco extends Tobacco {
+
 }
 ```
 
@@ -78,7 +83,7 @@ public class AdvancedWizard implements Wizard {
 最后我们可以看到给老巫师任意品牌的烟草是多么的简单。
 
 ```java
-    var advancedWizard = new AdvancedWizard(new SecondBreakfastTobacco());
+    var advancedWizard=new AdvancedWizard(new SecondBreakfastTobacco());
     advancedWizard.smoke();
 ```
 

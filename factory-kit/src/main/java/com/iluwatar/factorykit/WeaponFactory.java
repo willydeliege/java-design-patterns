@@ -51,21 +51,13 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * Functional interface, an example of the factory-kit design pattern.
- * <br>Instance created locally gives an opportunity to strictly define
- * which objects types the instance of a factory will be able to create.
- * <br>Factory is a placeholder for {@link Builder}s
- * with {@link WeaponFactory#create(WeaponType)} method to initialize new objects.
+ * Functional interface, an example of the factory-kit design pattern. <br>
+ * Instance created locally gives an opportunity to strictly define which objects types the instance
+ * of a factory will be able to create. <br>
+ * Factory is a placeholder for {@link Builder}s with {@link WeaponFactory#create(WeaponType)}
+ * method to initialize new objects.
  */
 public interface WeaponFactory {
-
-  /**
-   * Creates an instance of the given type.
-   *
-   * @param name representing enum of an object type to be created.
-   * @return new instance of a requested class implementing {@link Weapon} interface.
-   */
-  Weapon create(WeaponType name);
 
   /**
    * Creates factory - placeholder for specified {@link Builder}s.
@@ -78,4 +70,12 @@ public interface WeaponFactory {
     consumer.accept(map::put);
     return name -> map.get(name).get();
   }
+
+  /**
+   * Creates an instance of the given type.
+   *
+   * @param name representing enum of an object type to be created.
+   * @return new instance of a requested class implementing {@link Weapon} interface.
+   */
+  Weapon create(WeaponType name);
 }

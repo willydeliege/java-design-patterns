@@ -47,14 +47,11 @@
 package domainapp.integtests.tests;
 
 import domainapp.integtests.bootstrap.SimpleAppSystemInitializer;
-
 import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 import org.junit.BeforeClass;
 
-/**
- * SimpleApp Integration Tests will implement this Abstract Class.
- */
+/** SimpleApp Integration Tests will implement this Abstract Class. */
 public abstract class SimpleAppIntegTest extends IntegrationTestAbstract {
 
   @BeforeClass

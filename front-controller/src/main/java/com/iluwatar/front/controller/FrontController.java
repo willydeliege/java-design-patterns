@@ -52,6 +52,14 @@ package com.iluwatar.front.controller;
  */
 public class FrontController {
 
+  private static Class<?> getCommandClass(String request) {
+    try {
+      return Class.forName("com.iluwatar.front.controller." + request + "Command");
+    } catch (ClassNotFoundException e) {
+      return UnknownCommand.class;
+    }
+  }
+
   public void handleRequest(String request) {
     var command = getCommand(request);
     command.process();
@@ -63,14 +71,6 @@ public class FrontController {
       return (Command) commandClass.newInstance();
     } catch (Exception e) {
       throw new ApplicationException(e);
-    }
-  }
-
-  private static Class<?> getCommandClass(String request) {
-    try {
-      return Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      return UnknownCommand.class;
     }
   }
 }

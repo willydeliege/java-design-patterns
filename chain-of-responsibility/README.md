@@ -6,32 +6,35 @@ permalink: /patterns/chain-of-responsibility/
 categories: Behavioral
 language: en
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## Intent
 
-Avoid coupling the sender of a request to its receiver by giving more than one object a chance to 
-handle the request. Chain the receiving objects and pass the request along the chain until an object 
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to
+handle the request. Chain the receiving objects and pass the request along the chain until an object
 handles it.
 
 ## Explanation
 
 Real-world example
 
-> The Orc King gives loud orders to his army. The closest one to react is the commander, then 
-> an officer, and then a soldier. The commander, officer, and soldier form a chain of responsibility.
+> The Orc King gives loud orders to his army. The closest one to react is the commander, then
+> an officer, and then a soldier. The commander, officer, and soldier form a chain of
+> responsibility.
 
 In plain words
 
-> It helps to build a chain of objects. A request enters from one end and keeps going from an object 
+> It helps to build a chain of objects. A request enters from one end and keeps going from an object
 > to another until it finds a suitable handler.
 
 Wikipedia says
 
-> In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of 
-> a source of command objects and a series of processing objects. Each processing object contains 
-> logic that defines the types of command objects that it can handle; the rest are passed to the 
+> In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of
+> a source of command objects and a series of processing objects. Each processing object contains
+> logic that defines the types of command objects that it can handle; the rest are passed to the
 > next processing object in the chain.
 
 **Programmatic Example**
@@ -50,16 +53,26 @@ public class Request {
     this.requestDescription = Objects.requireNonNull(requestDescription);
   }
 
-  public String getRequestDescription() { return requestDescription; }
+  public String getRequestDescription() {
+    return requestDescription;
+  }
 
-  public RequestType getRequestType() { return requestType; }
+  public RequestType getRequestType() {
+    return requestType;
+  }
 
-  public void markHandled() { this.handled = true; }
+  public void markHandled() {
+    this.handled = true;
+  }
 
-  public boolean isHandled() { return this.handled; }
+  public boolean isHandled() {
+    return this.handled;
+  }
 
   @Override
-  public String toString() { return getRequestDescription(); }
+  public String toString() {
+    return getRequestDescription();
+  }
 }
 
 public enum RequestType {
@@ -70,8 +83,10 @@ public enum RequestType {
 Next, we show the request handler hierarchy.
 
 ```java
+
 @Slf4j
 public abstract class RequestHandler {
+
   private final RequestHandler next;
 
   public RequestHandler(RequestHandler next) {
@@ -93,6 +108,7 @@ public abstract class RequestHandler {
 }
 
 public class OrcCommander extends RequestHandler {
+
   public OrcCommander(RequestHandler handler) {
     super(handler);
   }
@@ -121,6 +137,7 @@ The Orc King gives the orders and forms the chain.
 
 ```java
 public class OrcKing {
+
   RequestHandler chain;
 
   public OrcKing() {
@@ -140,10 +157,10 @@ public class OrcKing {
 The chain of responsibility in action.
 
 ```java
-var king = new OrcKing();
-king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
-king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
-king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
+var king=new OrcKing();
+    king.makeRequest(new Request(RequestType.DEFEND_CASTLE,"defend castle"));
+    king.makeRequest(new Request(RequestType.TORTURE_PRISONER,"torture prisoner"));
+    king.makeRequest(new Request(RequestType.COLLECT_TAX,"collect tax"));
 ```
 
 The console output.
@@ -162,7 +179,8 @@ Orc soldier handling request "collect tax"
 
 Use Chain of Responsibility when
 
-* More than one object may handle a request, and the handler isn't known a priori. The handler should be ascertained automatically.
+* More than one object may handle a request, and the handler isn't known a priori. The handler
+  should be ascertained automatically.
 * You want to issue a request to one of several objects without specifying the receiver explicitly.
 * The set of objects that can handle a request should be specified dynamically.
 

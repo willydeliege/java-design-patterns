@@ -49,18 +49,14 @@ package com.iluwatar.chain;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * RequestHandler.
- */
+/** RequestHandler. */
 @Slf4j
 @AllArgsConstructor
 public abstract class RequestHandler {
 
   private final RequestHandler next;
 
-  /**
-   * Request handler.
-   */
+  /** Request handler. */
   public void handleRequest(Request req) {
     if (next != null) {
       next.handleRequest(req);

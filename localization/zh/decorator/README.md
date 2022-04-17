@@ -6,14 +6,18 @@ permalink: /patterns/decorator/
 categories: Structural
 language: zh
 tags:
- - Gang Of Four
- - Extensibility
+
+- Gang Of Four
+- Extensibility
+
 ---
 
 ## 或称
+
 包装器
 
 ## 目的
+
 动态的为对象附加额外的职责。装饰器为子类提供了灵活的替代方案，以扩展功能。
 
 ## 解释
@@ -28,7 +32,8 @@ tags:
 
 维基百科说
 
-> 在面向对象的编程中，装饰器模式是一种设计模式，它允许将行为静态或动态地添加到单个对象中，而不会影响同一类中其他对象的行为。装饰器模式通常对于遵守单一责任原则很有用，因为它允许将功能划分到具有唯一关注领域的类之间。
+>
+在面向对象的编程中，装饰器模式是一种设计模式，它允许将行为静态或动态地添加到单个对象中，而不会影响同一类中其他对象的行为。装饰器模式通常对于遵守单一责任原则很有用，因为它允许将功能划分到具有唯一关注领域的类之间。
 
 **程序示例**
 
@@ -36,8 +41,11 @@ tags:
 
 ```java
 public interface Troll {
+
   void attack();
+
   int getAttackPower();
+
   void fleeBattle();
 }
 
@@ -64,6 +72,7 @@ public class SimpleTroll implements Troll {
 下面我们想为巨魔添加球棒。我们可以用装饰者来动态的实现。
 
 ```java
+
 @Slf4j
 public class ClubbedTroll implements Troll {
 
@@ -95,20 +104,22 @@ public class ClubbedTroll implements Troll {
 
 ```java
 // simple troll
-var troll = new SimpleTroll();
-troll.attack(); // The troll tries to grab you!
-troll.fleeBattle(); // The troll shrieks in horror and runs away!
+var troll=new SimpleTroll();
+    troll.attack(); // The troll tries to grab you!
+    troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
 // change the behavior of the simple troll by adding a decorator
-var clubbedTroll = new ClubbedTroll(troll);
-clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you with a club!
-clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
+    var clubbedTroll=new ClubbedTroll(troll);
+    clubbedTroll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+    clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```
 
 ## 类图
+
 ![alt text](../../../decorator/etc/decorator.urm.png "Decorator pattern class diagram")
 
 ## 适用性
+
 使用装饰者
 
 * 动态透明地向单个对象添加职责，即不影响其他对象
@@ -116,15 +127,18 @@ clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
 * 当通过子类化进行扩展是不切实际的。有时可能会有大量的独立扩展，并且会产生大量的子类来支持每种组合。 否则类定义可能被隐藏或无法用于子类化。
 
 ## 教程
+
 * [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
 
 ## Java世界的例子
- * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
- [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
- * [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#synchronizedCollection-java.util.Collection-)
- * [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#unmodifiableCollection-java.util.Collection-)
- * [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#checkedCollection-java.util.Collection-java.lang.Class-)
 
+* [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html)
+  , [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html),
+  [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html)
+  and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
+* [java.util.Collections#synchronizedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#synchronizedCollection-java.util.Collection-)
+* [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#unmodifiableCollection-java.util.Collection-)
+* [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#checkedCollection-java.util.Collection-java.lang.Class-)
 
 ## 鸣谢
 

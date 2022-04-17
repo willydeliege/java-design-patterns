@@ -46,9 +46,8 @@
 
 package com.iluwatar.factorykit;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Factory kit is a creational pattern that defines a factory of immutable content with separated
@@ -58,9 +57,9 @@ import java.util.ArrayList;
  * <p>In the given example {@link WeaponFactory} represents the factory kit, that contains four
  * {@link Builder}s for creating new objects of the classes implementing {@link Weapon} interface.
  *
- * <p>Each of them can be called with {@link WeaponFactory#create(WeaponType)} method, with
- * an input representing an instance of {@link WeaponType} that needs to be mapped explicitly with
- * desired class type in the factory instance.
+ * <p>Each of them can be called with {@link WeaponFactory#create(WeaponType)} method, with an input
+ * representing an instance of {@link WeaponType} that needs to be mapped explicitly with desired
+ * class type in the factory instance.
  */
 @Slf4j
 public class App {
@@ -71,12 +70,14 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    var factory = WeaponFactory.factory(builder -> {
-      builder.add(WeaponType.SWORD, Sword::new);
-      builder.add(WeaponType.AXE, Axe::new);
-      builder.add(WeaponType.SPEAR, Spear::new);
-      builder.add(WeaponType.BOW, Bow::new);
-    });
+    var factory =
+        WeaponFactory.factory(
+            builder -> {
+              builder.add(WeaponType.SWORD, Sword::new);
+              builder.add(WeaponType.AXE, Axe::new);
+              builder.add(WeaponType.SPEAR, Spear::new);
+              builder.add(WeaponType.BOW, Bow::new);
+            });
     var list = new ArrayList<Weapon>();
     list.add(factory.create(WeaponType.AXE));
     list.add(factory.create(WeaponType.SPEAR));

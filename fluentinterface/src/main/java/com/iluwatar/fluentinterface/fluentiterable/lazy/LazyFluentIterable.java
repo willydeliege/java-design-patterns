@@ -46,15 +46,14 @@
 
 package com.iluwatar.fluentinterface.fluentiterable.lazy;
 
-import lombok.RequiredArgsConstructor;
-
+import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This is a lazy implementation of the FluentIterable interface. It evaluates all chained
@@ -67,11 +66,18 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 
   private final Iterable<E> iterable;
 
-  /**
-   * This constructor can be used to implement anonymous subclasses of the LazyFluentIterable.
-   */
+  /** This constructor can be used to implement anonymous subclasses of the LazyFluentIterable. */
   protected LazyFluentIterable() {
     iterable = this;
+  }
+
+  /**
+   * Constructors FluentIterable from given iterable.
+   *
+   * @return a FluentIterable from a given iterable. Calls the LazyFluentIterable constructor.
+   */
+  public static <E> FluentIterable<E> from(Iterable<E> iterable) {
+    return new LazyFluentIterable<>(iterable);
   }
 
   /**
@@ -79,7 +85,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    * the predicate.
    *
    * @param predicate the condition to test with for the filtering. If the test is negative, the
-   *                  tested object is removed by the iterator.
+   *     tested object is removed by the iterator.
    * @return a new FluentIterable object that decorates the source iterable
    */
   @Override
@@ -206,7 +212,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    * Transforms this FluentIterable into a new one containing objects of the type T.
    *
    * @param function a function that transforms an instance of E into an instance of T
-   * @param <T>      the target type of the transformation
+   * @param <T> the target type of the transformation
    * @return a new FluentIterable of the new type
    */
   @Override
@@ -250,14 +256,4 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
       }
     };
   }
-
-  /**
-   * Constructors FluentIterable from given iterable.
-   *
-   * @return a FluentIterable from a given iterable. Calls the LazyFluentIterable constructor.
-   */
-  public static <E> FluentIterable<E> from(Iterable<E> iterable) {
-    return new LazyFluentIterable<>(iterable);
-  }
-
 }

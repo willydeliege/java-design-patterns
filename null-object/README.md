@@ -6,33 +6,35 @@ permalink: /patterns/null-object/
 categories: Behavioral
 language: en
 tags:
- - Extensibility
+
+- Extensibility
+
 ---
 
 ## Intent
 
-In most object-oriented languages, such as Java or C#, references may be null. These references need 
-to be checked to ensure they are not null before invoking any methods, because methods typically 
+In most object-oriented languages, such as Java or C#, references may be null. These references need
+to be checked to ensure they are not null before invoking any methods, because methods typically
 cannot be invoked on null references. Instead of using a null reference to convey absence of an
-object (for instance, a non-existent customer), one uses an object which implements the expected 
-interface, but whose method body is empty. The advantage of this approach over a working default 
+object (for instance, a non-existent customer), one uses an object which implements the expected
+interface, but whose method body is empty. The advantage of this approach over a working default
 implementation is that a Null Object is very predictable and has no side effects: it does nothing.
 
 ## Explanation
 
 Real world example
 
-> We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing 
-> the tree normally should not cause errors, so we use null object pattern where necessary.            
+> We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing
+> the tree normally should not cause errors, so we use null object pattern where necessary.
 
 In plain words
 
-> Null Object pattern handles "empty" objects gracefully.   
+> Null Object pattern handles "empty" objects gracefully.
 
 Wikipedia says
 
-> In object-oriented computer programming, a null object is an object with no referenced value or 
-> with defined neutral ("null") behavior. The null object design pattern describes the uses of such 
+> In object-oriented computer programming, a null object is an object with no referenced value or
+> with defined neutral ("null") behavior. The null object design pattern describes the uses of such
 > objects and their behavior (or lack thereof).
 
 **Programmatic Example**
@@ -58,6 +60,7 @@ We have two implementations of `Node`. The normal implementation `NodeImpl` and 
 empty nodes.
 
 ```java
+
 @Slf4j
 public class NodeImpl implements Node {
 
@@ -147,16 +150,16 @@ public final class NullNode implements Node {
 Then we can construct and traverse the binary tree without errors as follows.
 
 ```java
-    var root = new NodeImpl("1",
-            new NodeImpl("11",
-                new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
-                NullNode.getInstance()
-            ),
-            new NodeImpl("12",
-                NullNode.getInstance(),
-                new NodeImpl("122", NullNode.getInstance(), NullNode.getInstance())
-            )
-        );
+    var root=new NodeImpl("1",
+    new NodeImpl("11",
+    new NodeImpl("111",NullNode.getInstance(),NullNode.getInstance()),
+    NullNode.getInstance()
+    ),
+    new NodeImpl("12",
+    NullNode.getInstance(),
+    new NodeImpl("122",NullNode.getInstance(),NullNode.getInstance())
+    )
+    );
     root.walk();
 ```
 

@@ -57,7 +57,6 @@ public class Java8HolderTest extends AbstractHolderTest {
 
   private final Java8Holder holder = new Java8Holder();
 
-
   @Override
   Heavy getInternalHeavyValue() throws Exception {
     final var holderField = Java8Holder.class.getDeclaredField("heavy");
@@ -81,5 +80,4 @@ public class Java8HolderTest extends AbstractHolderTest {
   Heavy getHeavy() throws Exception {
     return holder.getHeavy();
   }
-
 }

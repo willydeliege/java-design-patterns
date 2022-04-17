@@ -6,7 +6,9 @@ permalink: /patterns/converter/
 categories: Creational
 language: zh
 tags:
- - Decoupling
+
+- Decoupling
+
 ---
 
 ## 目的
@@ -79,9 +81,9 @@ public class UserConverter extends Converter<UserDto, User> {
 现在，在User和UserDto之间的映射变得轻而易举。
 
 ```java
-var userConverter = new UserConverter();
-var dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
-var user = userConverter.convertFromDto(dtoUser);
+var userConverter=new UserConverter();
+    var dtoUser=new UserDto("John","Doe",true,"whatever[at]wherever.com");
+    var user=userConverter.convertFromDto(dtoUser);
 ```
 
 ## 类图

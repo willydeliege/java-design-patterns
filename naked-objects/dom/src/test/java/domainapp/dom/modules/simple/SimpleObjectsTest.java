@@ -46,6 +46,9 @@
 
 package domainapp.dom.modules.simple;
 
+import static org.junit.Assert.assertEquals;
+
+import com.google.common.collect.Lists;
 import java.util.List;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
@@ -56,20 +59,13 @@ import org.jmock.auto.Mock;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import com.google.common.collect.Lists;
 
-import static org.junit.Assert.assertEquals;
-
-/**
- * Test for SimpleObjects
- */
+/** Test for SimpleObjects */
 public class SimpleObjectsTest {
 
-  @Rule
-  public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
+  @Rule public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
 
-  @Mock
-  DomainObjectContainer mockContainer;
+  @Mock DomainObjectContainer mockContainer;
 
   SimpleObjects simpleObjects;
 
@@ -86,16 +82,17 @@ public class SimpleObjectsTest {
     final SimpleObject simpleObject = new SimpleObject();
 
     final Sequence seq = context.sequence("create");
-    context.checking(new Expectations() {
-      {
-        oneOf(mockContainer).newTransientInstance(SimpleObject.class);
-        inSequence(seq);
-        will(returnValue(simpleObject));
+    context.checking(
+        new Expectations() {
+          {
+            oneOf(mockContainer).newTransientInstance(SimpleObject.class);
+            inSequence(seq);
+            will(returnValue(simpleObject));
 
-        oneOf(mockContainer).persistIfNotAlready(simpleObject);
-        inSequence(seq);
-      }
-    });
+            oneOf(mockContainer).persistIfNotAlready(simpleObject);
+            inSequence(seq);
+          }
+        });
 
     // when
     String objectName = "Foobar";
@@ -112,12 +109,13 @@ public class SimpleObjectsTest {
     // given
     final List<SimpleObject> all = Lists.newArrayList();
 
-    context.checking(new Expectations() {
-      {
-        oneOf(mockContainer).allInstances(SimpleObject.class);
-        will(returnValue(all));
-      }
-    });
+    context.checking(
+        new Expectations() {
+          {
+            oneOf(mockContainer).allInstances(SimpleObject.class);
+            will(returnValue(all));
+          }
+        });
 
     // when
     final List<SimpleObject> list = simpleObjects.listAll();
@@ -125,5 +123,4 @@ public class SimpleObjectsTest {
     // then
     assertEquals(all, list);
   }
-
 }

@@ -6,7 +6,9 @@ permalink: /patterns/metadata-mapping/
 categories: Architectural
 language: en
 tags:
- - Data access
+
+- Data access
+
 ---
 
 ## Intent
@@ -17,23 +19,29 @@ Holds details of object-relational mapping in the metadata.
 
 Real world example
 
-> Hibernate ORM Tool uses Metadata Mapping Pattern to specify the mapping between classes and tables either using XML or annotations in code. 
+> Hibernate ORM Tool uses Metadata Mapping Pattern to specify the mapping between classes and tables
+> either using XML or annotations in code.
 
 In plain words
 
-> Metadata Mapping specifies the mapping between classes and tables so that we could treat a table of any database like a Java class.
+> Metadata Mapping specifies the mapping between classes and tables so that we could treat a table
+> of any database like a Java class.
 
 Wikipedia says
 
-> Create a "virtual [object database](https://en.wikipedia.org/wiki/Object_database)" that can be used from within the programming language.
+> Create a "virtual [object database](https://en.wikipedia.org/wiki/Object_database)" that can be
+> used from within the programming language.
 
 **Programmatic Example**
 
-We give an example about visiting the information of `USER` table in `h2` database. Firstly, we create `USER` table with `h2`:
+We give an example about visiting the information of `USER` table in `h2` database. Firstly, we
+create `USER` table with `h2`:
 
 ```java
+
 @Slf4j
 public class DatabaseUtil {
+
   private static final String DB_URL = "jdbc:h2:mem:metamapping";
   private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;"
       + "CREATE TABLE `user` (\n"
@@ -42,7 +50,7 @@ public class DatabaseUtil {
       + "  `password` varchar(255) NOT NULL,\n"
       + "  PRIMARY KEY (`id`)\n"
       + ");";
-    
+
   /**
    * Create database.
    */
@@ -62,14 +70,16 @@ public class DatabaseUtil {
 Correspondingly, here's the basic `User` entity.
 
 ```java
+
 @Setter
 @Getter
 @ToString
 public class User {
+
   private Integer id;
   private String username;
   private String password;
-    
+
   /**
    * Get a user.
    * @param username user name
@@ -87,8 +97,8 @@ Then we write a `xml` file to show the mapping between the table and the object:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+  "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
   <class name="com.iluwatar.metamapping.model.User" table="user">
@@ -106,8 +116,8 @@ We use `Hibernate` to resolve the mapping and connect to our database, here's it
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
     <!-- JDBC Database connection settings -->
@@ -121,7 +131,7 @@ We use `Hibernate` to resolve the mapping and connect to our database, here's it
     <property name="show_sql">false</property>
     <!-- Drop and re-create the database schema on startup -->
     <property name="hbm2ddl.auto">create-drop</property>
-    <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml" />
+    <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
 ```
@@ -129,8 +139,10 @@ We use `Hibernate` to resolve the mapping and connect to our database, here's it
 Then we can get access to the table just like an object with `Hibernate`, here's some CRUDs:
 
 ```java
+
 @Slf4j
 public class UserService {
+
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
   /**
@@ -143,7 +155,7 @@ public class UserService {
     try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       List<User> userIter = session.createQuery("FROM User").list();
-      for (var iterator = userIter.iterator(); iterator.hasNext();) {
+      for (var iterator = userIter.iterator(); iterator.hasNext(); ) {
         users.add(iterator.next());
       }
       tx.commit();
@@ -152,10 +164,10 @@ public class UserService {
     }
     return users;
   }
-  
+
   // other CRUDs ->
   ...
-    
+
   public void close() {
     HibernateUtil.shutdown();
   }
@@ -174,9 +186,9 @@ Use the Metadata Mapping when:
 
 ## Known uses
 
-[Hibernate](https://hibernate.org/), [EclipseLink](https://www.eclipse.org/eclipselink/), [MyBatis](https://blog.mybatis.org/)......
+[Hibernate](https://hibernate.org/), [EclipseLink](https://www.eclipse.org/eclipselink/)
+, [MyBatis](https://blog.mybatis.org/)......
 
 ## Credits
 
 - [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-

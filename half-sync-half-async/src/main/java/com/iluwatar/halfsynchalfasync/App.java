@@ -46,9 +46,8 @@
 
 package com.iluwatar.halfsynchalfasync;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.LinkedBlockingQueue;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates Half-Sync/Half-Async pattern. Key parts of the pattern are {@link
@@ -66,13 +65,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  *
  * <p><i>APPLICABILITY</i> <br>
  * UNIX network subsystems - In operating systems network operations are carried out asynchronously
- * with help of hardware level interrupts.<br> CORBA - At the asynchronous layer one thread is
- * associated with each socket that is connected to the client. Thread blocks waiting for CORBA
- * requests from the client. On receiving request it is inserted in the queuing layer which is then
- * picked up by synchronous layer which processes the request and sends response back to the
- * client.<br> Android AsyncTask framework - Framework provides a way to execute long running
- * blocking calls, such as downloading a file, in background threads so that the UI thread remains
- * free to respond to user inputs.<br>
+ * with help of hardware level interrupts.<br>
+ * CORBA - At the asynchronous layer one thread is associated with each socket that is connected to
+ * the client. Thread blocks waiting for CORBA requests from the client. On receiving request it is
+ * inserted in the queuing layer which is then picked up by synchronous layer which processes the
+ * request and sends response back to the client.<br>
+ * Android AsyncTask framework - Framework provides a way to execute long running blocking calls,
+ * such as downloading a file, in background threads so that the UI thread remains free to respond
+ * to user inputs.<br>
  *
  * <p><i>IMPLEMENTATION</i> <br>
  * The main method creates an asynchronous service which does not block the main thread while the
@@ -113,9 +113,16 @@ public class App {
     service.close();
   }
 
-  /**
-   * ArithmeticSumTask.
-   */
+  private static long ap(long i) {
+    try {
+      Thread.sleep(i);
+    } catch (InterruptedException e) {
+      LOGGER.error("Exception caught.", e);
+    }
+    return i * (i + 1) / 2;
+  }
+
+  /** ArithmeticSumTask. */
   static class ArithmeticSumTask implements AsyncTask<Long> {
     private final long numberOfElements;
 
@@ -155,14 +162,5 @@ public class App {
     public void onError(Throwable throwable) {
       throw new IllegalStateException("Should not occur");
     }
-  }
-
-  private static long ap(long i) {
-    try {
-      Thread.sleep(i);
-    } catch (InterruptedException e) {
-      LOGGER.error("Exception caught.", e);
-    }
-    return i * (i + 1) / 2;
   }
 }

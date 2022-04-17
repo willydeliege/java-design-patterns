@@ -6,7 +6,9 @@ permalink: /patterns/bridge/
 categories: Structural
 language: zh
 tags:
- - Gang of Four
+
+- Gang of Four
+
 ---
 
 ## 又被称为
@@ -21,7 +23,8 @@ tags:
 
 真实世界例子
 
-> 考虑一下你拥有一种具有不同附魔的武器，并且应该允许将具有不同附魔的不同武器混合使用。 你会怎么做？ 为每个附魔创建每种武器的多个副本，还是只是创建单独的附魔并根据需要为武器设置它？ 桥接模式使您可以进行第二次操作。
+> 考虑一下你拥有一种具有不同附魔的武器，并且应该允许将具有不同附魔的不同武器混合使用。 你会怎么做？ 为每个附魔创建每种武器的多个副本，还是只是创建单独的附魔并根据需要为武器设置它？
+> 桥接模式使您可以进行第二次操作。
 
 通俗的说
 
@@ -37,9 +40,13 @@ tags:
 
 ```java
 public interface Weapon {
+
   void wield();
+
   void swing();
+
   void unwield();
+
   Enchantment getEnchantment();
 }
 
@@ -112,8 +119,11 @@ public class Hammer implements Weapon {
 
 ```java
 public interface Enchantment {
+
   void onActivate();
+
   void apply();
+
   void onDeactivate();
 }
 
@@ -157,10 +167,10 @@ public class SoulEatingEnchantment implements Enchantment {
 这里是两种层次结构的实践：
 
 ```java
-var enchantedSword = new Sword(new SoulEatingEnchantment());
-enchantedSword.wield();
-enchantedSword.swing();
-enchantedSword.unwield();
+var enchantedSword=new Sword(new SoulEatingEnchantment());
+    enchantedSword.wield();
+    enchantedSword.swing();
+    enchantedSword.unwield();
 // The sword is wielded.
 // The item spreads bloodlust.
 // The sword is swinged.
@@ -168,10 +178,10 @@ enchantedSword.unwield();
 // The sword is unwielded.
 // Bloodlust slowly disappears.
 
-var hammer = new Hammer(new FlyingEnchantment());
-hammer.wield();
-hammer.swing();
-hammer.unwield();
+    var hammer=new Hammer(new FlyingEnchantment());
+    hammer.wield();
+    hammer.swing();
+    hammer.unwield();
 // The hammer is wielded.
 // The item begins to glow faintly.
 // The hammer is swinged.
@@ -179,8 +189,6 @@ hammer.unwield();
 // The hammer is unwielded.
 // The item's glow fades.
 ```
-
-
 
 ## 类图
 

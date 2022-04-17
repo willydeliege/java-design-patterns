@@ -1,22 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type"/>
-  <link href="../jacoco-resources/report.css" rel="stylesheet" type="text/css"/>
-  <link href="../jacoco-resources/report.gif" rel="shortcut icon" type="image/gif"/>
-  <title>ThreadSafeLazyLoadedIvoryTower.java</title>
-  <link href="../jacoco-resources/prettify.css" rel="stylesheet" type="text/css"/>
-  <script src="../jacoco-resources/prettify.js" type="text/javascript"></script>
-</head>
-<body onload="window['PR_TAB_WIDTH']=4;prettyPrint()">
-<div class="breadcrumb" id="breadcrumb"><span class="info"><a class="el_session"
-                                                              href="../jacoco-sessions.html">Sessions</a></span><a
-    class="el_report" href="../index.html">singleton</a> &gt; <a class="el_package"
-                                                                 href="index.source.html">com.iluwatar.singleton</a>
-  &gt; <span class="el_source">ThreadSafeLazyLoadedIvoryTower.java</span></div>
-<h1>ThreadSafeLazyLoadedIvoryTower.java</h1>
-<pre class="source lang-java linenums">/*
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadSafeLazyLoadedIvoryTower.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">singleton</a> &gt; <a href="index.source.html" class="el_package">com.iluwatar.singleton</a> &gt; <span class="el_source">ThreadSafeLazyLoadedIvoryTower.java</span></div><h1>ThreadSafeLazyLoadedIvoryTower.java</h1><pre class="source lang-java linenums">/*
  *The MIT License
  *Copyright © 2014-2021 Ilkka Seppälä
  *
@@ -65,36 +47,30 @@
 package com.iluwatar.singleton;
 
 /**
- * &lt;p&gt;Thread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
- * mechanism.&lt;/p&gt;
- *
+ * Thread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
+ * mechanism.
  */
 public final class ThreadSafeLazyLoadedIvoryTower {
 
   private static volatile ThreadSafeLazyLoadedIvoryTower instance;
 
-<span class="fc" id="L58">  private ThreadSafeLazyLoadedIvoryTower() {</span>
+<span class="fc" id="L57">  private ThreadSafeLazyLoadedIvoryTower() {</span>
     // Protect against instantiation via reflection
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">    if (instance != null) {</span>
-<span class="nc"
-      id="L61">      throw new IllegalStateException(&quot;Already initialized.&quot;);</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">    if (instance != null) {</span>
+<span class="nc" id="L60">      throw new IllegalStateException(&quot;Already initialized.&quot;);</span>
     }
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L62">  }</span>
 
-  /**
-   * The instance doesn't get created until the method is called for the first time.
-   */
+  /** The instance doesn't get created until the method is called for the first time. */
   public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">    if (instance == null) {</span>
-<span class="fc" id="L70">      synchronized (ThreadSafeLazyLoadedIvoryTower.class) {</span>
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if (instance == null) {</span>
-<span class="fc" id="L72">          instance = new ThreadSafeLazyLoadedIvoryTower();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (instance == null) {</span>
+<span class="fc" id="L67">      synchronized (ThreadSafeLazyLoadedIvoryTower.class) {</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (instance == null) {</span>
+<span class="fc" id="L69">          instance = new ThreadSafeLazyLoadedIvoryTower();</span>
         }
-<span class="fc" id="L74">      }</span>
+<span class="fc" id="L71">      }</span>
     }
-<span class="fc" id="L76">    return instance;</span>
+<span class="fc" id="L73">    return instance;</span>
   }
 }
-</pre>
-<div class="footer"><span class="right">Created with <a
-    href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

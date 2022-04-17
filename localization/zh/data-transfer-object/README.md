@@ -6,7 +6,9 @@ permalink: /patterns/data-transfer-object/
 categories: Architectural
 language: zh
 tags:
- - Performance
+
+- Performance
+
 ---
 
 ## 目的
@@ -26,7 +28,7 @@ tags:
 维基百科说
 
 > 在编程领域，数据传输对象（DTO）是在进程之间承载数据的对象。 使用它的动机是，通常依靠远程接口（例如Web服务）来完成进程之间的通信，在这种情况下，每个调用都是昂贵的操作。
-> 
+>
 > 因为每个（方法）调用的大部分成本与客户端和服务器之间的往返时间有关，所以减少调用数量的一种方法是使用一个对象（DTO）来聚合将要在多次调用间传输的数据，但仅由一个调用提供。
 
 **程序示例**
@@ -35,6 +37,7 @@ tags:
 
 ```java
 public class CustomerDto {
+
   private final String id;
   private final String firstName;
   private final String lastName;
@@ -63,6 +66,7 @@ public class CustomerDto {
 
 ```java
 public class CustomerResource {
+
   private final List<CustomerDto> customers;
 
   public CustomerResource(List<CustomerDto> customers) {
@@ -86,10 +90,10 @@ public class CustomerResource {
 现在拉取客户信息变得简单自从我们有了DTOs。
 
 ```java
-    var allCustomers = customerResource.getAllCustomers();
-    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
-    // Kelly
-    // Alfonso
+    var allCustomers=customerResource.getAllCustomers();
+    allCustomers.forEach(customer->LOGGER.info(customer.getFirstName()));
+// Kelly
+// Alfonso
 ```
 
 ## 类图

@@ -48,16 +48,15 @@ package domainapp.integtests.specs;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-
 import org.junit.runner.RunWith;
 
-/**
- * Runs scenarios in all <tt>.feature</tt> files (this package and any subpackages).
- */
+/** Runs scenarios in all <tt>.feature</tt> files (this package and any subpackages). */
 @RunWith(Cucumber.class)
-@CucumberOptions(format = {"html:target/cucumber-html-report", "json:target/cucumber.json"},
-    glue = {"classpath:domainapp.integtests.specglue"}, strict = true, tags = {"~@backlog",
-    "~@ignore"})
+@CucumberOptions(
+    format = {"html:target/cucumber-html-report", "json:target/cucumber.json"},
+    glue = {"classpath:domainapp.integtests.specglue"},
+    strict = true,
+    tags = {"~@backlog", "~@ignore"})
 public class RunSpecs {
   // intentionally empty
 }

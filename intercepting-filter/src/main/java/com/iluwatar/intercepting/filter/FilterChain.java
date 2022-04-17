@@ -55,10 +55,7 @@ public class FilterChain {
 
   private Filter chain;
 
-
-  /**
-   * Adds filter.
-   */
+  /** Adds filter. */
   public void addFilter(Filter filter) {
     if (chain == null) {
       chain = filter;
@@ -67,9 +64,7 @@ public class FilterChain {
     }
   }
 
-  /**
-   * Execute filter chain.
-   */
+  /** Execute filter chain. */
   public String execute(Order order) {
     if (chain != null) {
       return chain.execute(order);

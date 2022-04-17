@@ -49,14 +49,11 @@ package com.iluwatar.partialresponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Application test
- */
+/** Application test */
 class AppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    Assertions.assertDoesNotThrow(() -> App.main(new String[]{}));
+    Assertions.assertDoesNotThrow(() -> App.main(new String[] {}));
   }
-
 }

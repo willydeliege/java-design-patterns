@@ -59,7 +59,7 @@
           <executions>
             <execution>
               <configuration>
-                <appendAssemblyId>false</appendAssemblyId>
+                <appendAssemblyId>true</appendAssemblyId>
                 <!-- below two line make sure the fat jar is sharing the same name
                                     as of project name -->
                 <descriptorRefs>

@@ -46,11 +46,10 @@
 
 package com.iluwatar.event.sourcing.event;
 
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 /**
  * This is the base class for domain events. All events must extend this class.
@@ -67,9 +66,6 @@ public abstract class DomainEvent implements Serializable {
   private final String eventClassName;
   private boolean realTime = true;
 
-  /**
-   * Process.
-   */
+  /** Process. */
   public abstract void process();
-
 }

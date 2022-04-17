@@ -46,10 +46,9 @@
 
 package com.iluwatar.typeobject;
 
+import com.iluwatar.typeobject.Candy.Type;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import com.iluwatar.typeobject.Candy.Type;
 
 /**
  * The Cell object is what the game matrix is made of and contains the candy which is to be crushed
@@ -63,7 +62,7 @@ public class Cell {
   int positionY;
 
   void crush(CellPool pool, Cell[][] cellMatrix) {
-    //take out from this position and put back in pool
+    // take out from this position and put back in pool
     pool.addNewCell(this);
     this.fillThisSpace(pool, cellMatrix);
   }
@@ -90,8 +89,8 @@ public class Cell {
   }
 
   int interact(Cell c, CellPool pool, Cell[][] cellMatrix) {
-    if (this.candy.getType().equals(Type.REWARD_FRUIT) || c.candy.getType()
-        .equals(Type.REWARD_FRUIT)) {
+    if (this.candy.getType().equals(Type.REWARD_FRUIT)
+        || c.candy.getType().equals(Type.REWARD_FRUIT)) {
       return 0;
     } else {
       if (this.candy.name.equals(c.candy.name)) {

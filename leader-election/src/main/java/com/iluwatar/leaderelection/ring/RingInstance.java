@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,13 +46,12 @@
 
 package com.iluwatar.leaderelection.ring;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation with token ring algorithm. The instances in the system are organized as a ring.
@@ -69,9 +68,7 @@ import com.iluwatar.leaderelection.MessageManager;
 public class RingInstance extends AbstractInstance {
   private static final String INSTANCE = "Instance ";
 
-  /**
-   * Constructor of RingInstance.
-   */
+  /** Constructor of RingInstance. */
   public RingInstance(MessageManager messageManager, int localId, int leaderId) {
     super(messageManager, localId, leaderId);
   }
@@ -108,10 +105,11 @@ public class RingInstance extends AbstractInstance {
   protected void handleElectionMessage(Message message) {
     var content = message.getContent();
     LOGGER.info(INSTANCE + localId + " - Election Message: " + content);
-    var candidateList = Arrays.stream(content.trim().split(","))
-        .map(Integer::valueOf)
-        .sorted()
-        .collect(Collectors.toList());
+    var candidateList =
+        Arrays.stream(content.trim().split(","))
+            .map(Integer::valueOf)
+            .sorted()
+            .collect(Collectors.toList());
     if (candidateList.contains(localId)) {
       var newLeaderId = candidateList.get(0);
       LOGGER.info(INSTANCE + localId + " - New leader should be " + newLeaderId + ".");
@@ -139,9 +137,7 @@ public class RingInstance extends AbstractInstance {
     }
   }
 
-  /**
-   * Not used in Ring instance.
-   */
+  /** Not used in Ring instance. */
   @Override
   protected void handleLeaderInvokeMessage() {
     // Not used in Ring instance.
@@ -156,5 +152,4 @@ public class RingInstance extends AbstractInstance {
   protected void handleElectionInvokeMessage() {
     // Not used in Ring instance.
   }
-
 }

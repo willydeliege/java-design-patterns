@@ -1,25 +1,25 @@
 /*
-*The MIT License
-*Copyright © 2014-2021 Ilkka Seppälä
-*
-*Permission is hereby granted, free of charge, to any person obtaining a copy
-*of this software and associated documentation files (the "Software"), to deal
-*in the Software without restriction, including without limitation the rights
-*to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*copies of the Software, and to permit persons to whom the Software is
-*furnished to do so, subject to the following conditions:
-*
-*The above copyright notice and this permission notice shall be included in
-*all copies or substantial portions of the Software.
-*
-*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*THE SOFTWARE.
-*/
+ *The MIT License
+ *Copyright © 2014-2021 Ilkka Seppälä
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ */
 
 /*
  * The MIT License
@@ -46,78 +46,52 @@
 
 package com.iluwatar.presentation;
 
+import java.awt.TextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JList;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.*;
-
-/**
- * Generates the GUI of albums.
- */
+/** Generates the GUI of albums. */
 @Getter
 @Slf4j
 public class View {
-  /**
-   * the model that controls this view.
-   */
-  private final PresentationModel model;
-
-  /**
-   * the filed to show and modify title.
-    */
-  private TextField txtTitle;
-  /**
-   * the filed to show and modify the name of artist.
-   */
-  private TextField txtArtist;
-  /**
-   * the checkbox for is classical.
-   */
-  private JCheckBox chkClassical;
-  /**
-   * the filed to show and modify composer.
-   */
-  private TextField txtComposer;
-  /**
-   * a list to show all the name of album.
-   */
-  private JList<String> albumList;
-  /**
-   * a button to apply of all the change.
-   */
-  private JButton apply;
-  /**
-   * roll back the change.
-   */
-  private JButton cancel;
-
-  /**
-   * the value of the text field size.
-   */
+  /** the value of the text field size. */
   static final int WIDTH_TXT = 200;
   static final int HEIGHT_TXT = 50;
-
-  /**
-   * the value of the GUI size and location.
-   */
+  /** the value of the GUI size and location. */
   static final int LOCATION_X = 200;
   static final int LOCATION_Y = 200;
   static final int WIDTH = 500;
   static final int HEIGHT = 300;
+  /** the model that controls this view. */
+  private final PresentationModel model;
+  /** the filed to show and modify title. */
+  private TextField txtTitle;
+  /** the filed to show and modify the name of artist. */
+  private TextField txtArtist;
+  /** the checkbox for is classical. */
+  private JCheckBox chkClassical;
+  /** the filed to show and modify composer. */
+  private TextField txtComposer;
+  /** a list to show all the name of album. */
+  private JList<String> albumList;
+  /** a button to apply of all the change. */
+  private JButton apply;
+  /** roll back the change. */
+  private JButton cancel;
 
-  /**
-   * constructor method.
-   */
+  /** constructor method. */
   public View() {
     model = new PresentationModel(PresentationModel.albumDataSet());
   }
 
-  /**
-   * save the data to PresentationModel.
-   */
+  /** save the data to PresentationModel. */
   public void saveToPMod() {
     LOGGER.info("Save data to PresentationModel");
     model.setArtist(txtArtist.getText());
@@ -126,9 +100,7 @@ public class View {
     model.setComposer(txtComposer.getText());
   }
 
-  /**
-   * load the data from PresentationModel.
-   */
+  /** load the data from PresentationModel. */
   public void loadFromPMod() {
     LOGGER.info("Load data from PresentationModel");
     txtArtist.setText(model.getArtist());
@@ -138,22 +110,21 @@ public class View {
     txtComposer.setText(model.getComposer());
   }
 
-  /**
-   * initialize the GUI.
-   */
+  /** initialize the GUI. */
   public void createView() {
     var frame = new JFrame("Album");
     var b1 = Box.createHorizontalBox();
 
     frame.add(b1);
     albumList = new JList<>(model.getAlbumList());
-    albumList.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        model.setSelectedAlbumNumber(albumList.getSelectedIndex() + 1);
-        loadFromPMod();
-      }
-    });
+    albumList.addMouseListener(
+        new MouseAdapter() {
+          @Override
+          public void mouseClicked(final MouseEvent e) {
+            model.setSelectedAlbumNumber(albumList.getSelectedIndex() + 1);
+            loadFromPMod();
+          }
+        });
     b1.add(albumList);
 
     var b2 = Box.createVerticalBox();
@@ -167,30 +138,33 @@ public class View {
 
     chkClassical = new JCheckBox();
     txtComposer = new TextField();
-    chkClassical.addActionListener(itemEvent -> {
-      txtComposer.setEditable(chkClassical.isSelected());
-      if (!chkClassical.isSelected()) {
-        txtComposer.setText("");
-      }
-    });
+    chkClassical.addActionListener(
+        itemEvent -> {
+          txtComposer.setEditable(chkClassical.isSelected());
+          if (!chkClassical.isSelected()) {
+            txtComposer.setText("");
+          }
+        });
     txtComposer.setSize(WIDTH_TXT, HEIGHT_TXT);
     txtComposer.setEditable(model.getIsClassical());
 
     apply = new JButton("Apply");
-    apply.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        saveToPMod();
-        loadFromPMod();
-      }
-    });
+    apply.addMouseListener(
+        new MouseAdapter() {
+          @Override
+          public void mouseClicked(final MouseEvent e) {
+            saveToPMod();
+            loadFromPMod();
+          }
+        });
     cancel = new JButton("Cancel");
-    cancel.addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(final MouseEvent e) {
-        loadFromPMod();
-      }
-    });
+    cancel.addMouseListener(
+        new MouseAdapter() {
+          @Override
+          public void mouseClicked(final MouseEvent e) {
+            loadFromPMod();
+          }
+        });
 
     b2.add(txtArtist);
     b2.add(txtTitle);
@@ -205,5 +179,4 @@ public class View {
     frame.setBounds(LOCATION_X, LOCATION_Y, WIDTH, HEIGHT);
     frame.setVisible(true);
   }
-
 }

@@ -46,17 +46,17 @@
 
 package com.iluwatar.typeobject;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 
 /**
- * <p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
+ * Type object pattern is the pattern we use when the OOP concept of creating a base class and
  * inheriting from it just doesn't work for the case in hand. This happens when we either don't know
  * what types we will need upfront, or want to be able to modify or add new types conveniently w/o
  * recompiling repeatedly. The pattern provides a solution by allowing flexible creation of required
- * objects by creating one class, which has a field which represents the 'type' of the object.</p>
+ * objects by creating one class, which has a field which represents the 'type' of the object.
+ *
  * <p>In this example, we have a mini candy-crush game in action. There are many different candies
  * in the game, which may change over time, as we may want to upgrade the game. To make the object
  * creation convenient, we have a class {@link Candy} which has a field name, parent, points and
@@ -66,9 +66,8 @@ import org.json.simple.parser.ParseException;
  * how crushing can be done, how the matrix is to be reconfigured and how points are to be gained.
  * The {@link CellPool} class is a pool which reuses the candy cells that have been crushed instead
  * of making new ones repeatedly. The {@link CandyGame} class has the rules for the continuation of
- * the game and the {@link App} class has the game itself.</p>
+ * the game and the {@link App} class has the game itself.
  */
-
 @Slf4j
 public class App {
 
@@ -78,8 +77,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) throws IOException, ParseException {
-    var givenTime = 50; //50ms
-    var toWin = 500; //points
+    var givenTime = 50; // 50ms
+    var toWin = 500; // points
     var pointsWon = 0;
     var numOfRows = 3;
     var start = System.currentTimeMillis();

@@ -46,13 +46,10 @@
 
 package com.iluwatar.poison.pill;
 
+import com.iluwatar.poison.pill.Message.Headers;
 import lombok.extern.slf4j.Slf4j;
 
-import com.iluwatar.poison.pill.Message.Headers;
-
-/**
- * Class responsible for receiving and handling submitted to the queue messages.
- */
+/** Class responsible for receiving and handling submitted to the queue messages. */
 @Slf4j
 public class Consumer {
 
@@ -64,9 +61,7 @@ public class Consumer {
     this.queue = queue;
   }
 
-  /**
-   * Consume message.
-   */
+  /** Consume message. */
   public void consume() {
     while (true) {
       try {

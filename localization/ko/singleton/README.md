@@ -6,7 +6,9 @@ permalink: /patterns/singleton/ko
 categories: Creational
 language: ko
 tags:
+
 - Gang of Four
+
 ---
 
 ## 의도
@@ -25,7 +27,8 @@ tags:
 
 Wikipedia 말에 의하면
 
-> 소프트웨어 엔지니어링에서 singleton 패턴은 클래스의 인스턴스화를 하나의 객체로 제한하는 소프트웨어 디자인 패턴입니다. 이는 시스템 전체에서 작업을 조정하는 데 정확히 하나의 개체가 필요할 때 유용합니다.
+> 소프트웨어 엔지니어링에서 singleton 패턴은 클래스의 인스턴스화를 하나의 객체로 제한하는 소프트웨어 디자인 패턴입니다. 이는 시스템 전체에서 작업을 조정하는 데 정확히
+> 하나의 개체가 필요할 때 유용합니다.
 
 **프로그램 코드 예제**
 
@@ -42,9 +45,9 @@ public enum EnumIvoryTower {
 그런 다음 사용하려면 :
 
 ```java
-var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
-var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
-assertEquals(enumIvoryTower1, enumIvoryTower2); // true
+var enumIvoryTower1=EnumIvoryTower.INSTANCE;
+    var enumIvoryTower2=EnumIvoryTower.INSTANCE;
+    assertEquals(enumIvoryTower1,enumIvoryTower2); // true
 ```
 
 ## 클래스 다이어그램

@@ -5,20 +5,29 @@ folder: reader-writer-lock
 permalink: /patterns/reader-writer-lock/
 categories: Concurrency
 language: en
-tags: 
- - Performance
+tags:
+
+- Performance
+
 ---
 
-## Intent  
+## Intent
 
-Suppose we have a shared memory area with the basic constraints detailed above. It is possible to protect the shared data behind a mutual exclusion mutex, in which case no two threads can access the data at the same time. However, this solution is suboptimal, because it is possible that a reader R1 might have the lock, and then another reader R2 requests access. It would be foolish for R2 to wait until R1 was done before starting its own read operation; instead, R2 should start right away. This is the motivation for the Reader Writer Lock pattern.
+Suppose we have a shared memory area with the basic constraints detailed above. It is possible to
+protect the shared data behind a mutual exclusion mutex, in which case no two threads can access the
+data at the same time. However, this solution is suboptimal, because it is possible that a reader R1
+might have the lock, and then another reader R2 requests access. It would be foolish for R2 to wait
+until R1 was done before starting its own read operation; instead, R2 should start right away. This
+is the motivation for the Reader Writer Lock pattern.
 
 ## Class diagram
+
 ![alt text](/etc/reader-writer-lock.png "Reader writer lock")
 
-## Applicability  
+## Applicability
 
-Application need to  increase the performance of resource synchronize for multiple thread, in particularly there are mixed read/write operations.
+Application need to increase the performance of resource synchronize for multiple thread, in
+particularly there are mixed read/write operations.
 
 ## Real world examples
 

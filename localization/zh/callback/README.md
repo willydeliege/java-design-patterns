@@ -6,10 +6,13 @@ permalink: /patterns/callback/
 categories: Idiom
 language: zh
 tags:
- - Reactive
+
+- Reactive
+
 ---
 
 ## 目的
+
 回调是一部分被当为参数来传递给其他代码的可执行代码，接收方的代码可以在一些方便的时候来调用它。
 
 ## 解释
@@ -21,7 +24,7 @@ tags:
 通俗的讲
 
 
-> 回调是一个用来传递给调用者的方法，它将在定义的时刻被调用。 
+> 回调是一个用来传递给调用者的方法，它将在定义的时刻被调用。
 
 维基百科说
 
@@ -65,16 +68,21 @@ public final class SimpleTask extends Task {
 最后这里是我们如何执行一个任务然后接收一个回调当它完成时。
 
 ```java
-    var task = new SimpleTask();
-    task.executeWith(() -> LOGGER.info("I'm done now."));
+    var task=new SimpleTask();
+    task.executeWith(()->LOGGER.info("I'm done now."));
 ```
+
 ## 类图
+
 ![alt text](../../../callback/etc/callback.png "Callback")
 
 ## 适用性
+
 使用回调模式当
+
 * 当一些同步或异步架构动作必须在一些定义好的活动执行后执行时。
 
 ## Java例子
 
-* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) 构造函数可以接受回调，该回调将在每次障碍被触发时触发。
+* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29)
+  构造函数可以接受回调，该回调将在每次障碍被触发时触发。

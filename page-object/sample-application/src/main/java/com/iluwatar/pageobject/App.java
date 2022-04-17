@@ -46,11 +46,10 @@
 
 package com.iluwatar.pageobject;
 
-import lombok.extern.slf4j.Slf4j;
-
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Page Object pattern wraps an UI component with an application specific API allowing you to
@@ -75,8 +74,7 @@ import java.io.IOException;
 @Slf4j
 public final class App {
 
-  private App() {
-  }
+  private App() {}
 
   /**
    * Application entry point
@@ -108,6 +106,5 @@ public final class App {
     } catch (IOException ex) {
       LOGGER.error("An error occured.", ex);
     }
-
   }
 }

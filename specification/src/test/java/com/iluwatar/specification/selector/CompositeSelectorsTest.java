@@ -46,21 +46,19 @@
 
 package com.iluwatar.specification.selector;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.specification.creature.Creature;
-import com.iluwatar.specification.property.Mass;
-import com.iluwatar.specification.property.Movement;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.iluwatar.specification.creature.Creature;
+import com.iluwatar.specification.property.Mass;
+import com.iluwatar.specification.property.Movement;
+import org.junit.jupiter.api.Test;
+
 class CompositeSelectorsTest {
 
-  /**
-   * Verify if the conjunction selector gives the correct results.
-   */
+  /** Verify if the conjunction selector gives the correct results. */
   @Test
   void testAndComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
@@ -71,15 +69,13 @@ class CompositeSelectorsTest {
     when(swimmingLightCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingLightCreature.getMass()).thenReturn(new Mass(25.0));
 
-    final var lightAndSwimmingSelector = new MassSmallerThanOrEqSelector(50.0)
-        .and(new MovementSelector(Movement.SWIMMING));
+    final var lightAndSwimmingSelector =
+        new MassSmallerThanOrEqSelector(50.0).and(new MovementSelector(Movement.SWIMMING));
     assertFalse(lightAndSwimmingSelector.test(swimmingHeavyCreature));
     assertTrue(lightAndSwimmingSelector.test(swimmingLightCreature));
   }
 
-  /**
-   * Verify if the disjunction selector gives the correct results.
-   */
+  /** Verify if the disjunction selector gives the correct results. */
   @Test
   void testOrComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
@@ -90,15 +86,13 @@ class CompositeSelectorsTest {
     when(swimmingLightCreature.getMovement()).thenReturn(Movement.SWIMMING);
     when(swimmingLightCreature.getMass()).thenReturn(new Mass(25.0));
 
-    final var lightOrSwimmingSelector = new MassSmallerThanOrEqSelector(50.0)
-        .or(new MovementSelector(Movement.SWIMMING));
+    final var lightOrSwimmingSelector =
+        new MassSmallerThanOrEqSelector(50.0).or(new MovementSelector(Movement.SWIMMING));
     assertTrue(lightOrSwimmingSelector.test(swimmingHeavyCreature));
     assertTrue(lightOrSwimmingSelector.test(swimmingLightCreature));
   }
 
-  /**
-   * Verify if the negation selector gives the correct results.
-   */
+  /** Verify if the negation selector gives the correct results. */
   @Test
   void testNotComposition() {
     final var swimmingHeavyCreature = mock(Creature.class);
