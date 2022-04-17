@@ -33,13 +33,13 @@
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
-      <scope>test</scope>
+        <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
       <scope>test</scope>
+      <version>${junit-jupiter.version}</version>
     </dependency>
   </dependencies>
   <parent>
