@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,41 +22,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.monitor;
 
-import java.util.*;
-import java.util.concurrent.ExecutorService;
+import java.security.SecureRandom;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.</p>
+ * The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.
  *
- * <p>Bank is a simple class that transfers money from an account to another account using
- * {@link Bank#transfer}. It can also return the balance of the bank account stored in the bank.</p>
+ * <p>Bank is a simple class that transfers money from an account to another account using {@link
+ * Bank#transfer}. It can also return the balance of the bank account stored in the bank.
  *
- * <p>Main class uses ThreadPool to run threads that do transactions on the bank accounts.</p>
+ * <p>Main class uses ThreadPool to run threads that do transactions on the bank accounts.
  */
-
+@Slf4j
 public class Main {
 
-    public static void main(String[] args) {
-        Logger logger = Logger.getLogger("monitor");
-        var bank = new Bank(4, 1000, logger);
-        Runnable runnable = () -> {
-            try {
-                Thread.sleep((long) (Math.random() * 1000));
-                Random random = new Random();
-                for (int i = 0; i < 1000000; i++)
-                    bank.transfer(random.nextInt(4), random.nextInt(4), (int) (Math.random() * 1000));
-            } catch (InterruptedException e) {
-                logger.info(e.getMessage());
-            }
-        };
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
-        for (int i = 0; i < 5; i++) {
-            executorService.execute(runnable);
-        }
+  private static final int NUMBER_OF_THREADS = 5;
+
+  /**
+   * Runner to perform a bunch of transfers and handle exception.
+   *
+   * @param bank  bank object
+   * @param latch signal finished execution
+   */
+  public static void runner(Bank bank, CountDownLatch latch) {
+    try {
+      SecureRandom random = new SecureRandom();
+      Thread.sleep(random.nextInt(1000));
+      LOGGER.info("Start transferring...");
+      for (int i = 0; i < 1000000; i++) {
+        bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
+      }
+      LOGGER.info("Finished transferring.");
+      latch.countDown();
+    } catch (InterruptedException e) {
+      LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
     }
+  }
+
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) throws InterruptedException {
+    var bank = new Bank(4, 1000);
+    var latch = new CountDownLatch(NUMBER_OF_THREADS);
+    var executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+    for (int i = 0; i < NUMBER_OF_THREADS; i++) {
+      executorService.execute(() -> runner(bank, latch));
+    }
+
+    latch.await();
+  }
 }
